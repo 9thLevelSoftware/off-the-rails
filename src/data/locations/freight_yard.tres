@@ -6,8 +6,7 @@
 script = ExtResource("1")
 id = "freight_yard"
 name = "Freight Yard"
-description = "Massive logistics center with shipping containers, loading equipment, and warehouses. Excellent for bulk materials but easy to get lost.
-"
+description = "Massive logistics center with shipping containers, loading equipment, and warehouses. Excellent for bulk materials but easy to get lost.\n"
 theme = ["industrial", "maze-like", "utilitarian", "vast"]
 layout_style = "grid_maze"
 size = "large"

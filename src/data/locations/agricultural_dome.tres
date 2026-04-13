@@ -6,8 +6,7 @@
 script = ExtResource("1")
 id = "agricultural_dome"
 name = "Agricultural Dome"
-description = "Enclosed farming complex with greenhouses, water systems, and storage silos. Relatively safe source of food and botanical resources.
-"
+description = "Enclosed farming complex with greenhouses, water systems, and storage silos. Relatively safe source of food and botanical resources.\n"
 theme = ["organic", "humid", "overgrown", "peaceful"]
 layout_style = "radial_hub"
 size = "medium"

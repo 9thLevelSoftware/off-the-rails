@@ -13,3 +13,4 @@ subsystems = ["comms_array", "navigation", "radar_sensors"]
 dependencies = ["engine_car"]
 crew_station = true
 upgrade_tree = "signal_upgrades"
+type = "car"

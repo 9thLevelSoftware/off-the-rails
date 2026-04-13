@@ -13,3 +13,4 @@ subsystems = ["weapon_racks", "ammo_fabricator", "turrets_defense"]
 dependencies = ["engine_car", "workshop_car"]
 crew_station = true
 upgrade_tree = "armory_upgrades"
+type = "car"

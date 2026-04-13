@@ -6,8 +6,7 @@
 script = ExtResource("1")
 id = "tunnel_maintenance"
 name = "Tunnel / Maintenance"
-description = "Underground service tunnels and maintenance access ways. Cramped, dark, and dangerous, but can contain rare finds and route shortcuts.
-"
+description = "Underground service tunnels and maintenance access ways. Cramped, dark, and dangerous, but can contain rare finds and route shortcuts.\n"
 theme = ["underground", "claustrophobic", "industrial", "dark"]
 layout_style = "linear_branches"
 size = "medium"

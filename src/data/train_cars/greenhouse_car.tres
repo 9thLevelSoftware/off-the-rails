@@ -13,3 +13,4 @@ subsystems = ["hydroponics", "nutrient_cycling"]
 dependencies = ["engine_car", "refinery_car"]
 crew_station = true
 upgrade_tree = "greenhouse_upgrades"
+type = "car"

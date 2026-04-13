@@ -6,8 +6,7 @@
 script = ExtResource("1")
 id = "rail_station"
 name = "Rail Station"
-description = "Transit hub where routes converge. Control rooms, platforms, and maintenance bays. Key source of route intel and rail components.
-"
+description = "Transit hub where routes converge. Control rooms, platforms, and maintenance bays. Key source of route intel and rail components.\n"
 theme = ["industrial", "transit", "utilitarian", "echoing"]
 layout_style = "linear_branching"
 size = "medium"

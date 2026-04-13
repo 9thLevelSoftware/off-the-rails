@@ -6,8 +6,7 @@
 script = ExtResource("1")
 id = "industrial_facility"
 name = "Industrial Facility"
-description = "Factory or processing plant. Heavy machinery, production lines, and hazardous materials. Rich in components but dangerous.
-"
+description = "Factory or processing plant. Heavy machinery, production lines, and hazardous materials. Rich in components but dangerous.\n"
 theme = ["factory", "mechanical", "hazardous", "noisy"]
 layout_style = "complex_multi_level"
 size = "large"

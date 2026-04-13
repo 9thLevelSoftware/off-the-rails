@@ -6,8 +6,7 @@
 script = ExtResource("1")
 id = "small_town"
 name = "Small Town"
-description = "Abandoned residential settlement. Houses, shops, and community buildings slowly being reclaimed by nature. Relatively safe but picked over.
-"
+description = "Abandoned residential settlement. Houses, shops, and community buildings slowly being reclaimed by nature. Relatively safe but picked over.\n"
 theme = ["suburban", "overgrown", "domestic", "quiet"]
 layout_style = "sprawling"
 size = "medium"

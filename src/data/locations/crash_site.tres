@@ -6,8 +6,7 @@
 script = ExtResource("1")
 id = "crash_site"
 name = "Crash Site"
-description = "Wreckage of a spacecraft or large vehicle. Scattered debris, fires, and extremely dangerous conditions. Source of milestone components.
-"
+description = "Wreckage of a spacecraft or large vehicle. Scattered debris, fires, and extremely dangerous conditions. Source of milestone components.\n"
 theme = ["destruction", "technological", "hazardous", "urgent"]
 layout_style = "radial_debris"
 size = "large"

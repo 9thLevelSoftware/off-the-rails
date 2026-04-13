@@ -13,3 +13,4 @@ subsystems = ["storage_racks"]
 dependencies = ["engine_car"]
 crew_station = false
 upgrade_tree = "cargo_upgrades"
+type = "car"

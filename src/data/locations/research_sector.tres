@@ -6,8 +6,7 @@
 script = ExtResource("1")
 id = "research_sector"
 name = "Research Sector"
-description = "Scientific or medical research facility. Labs, clean rooms, and data centers. Source of advanced tech and schematics, but heavily guarded.
-"
+description = "Scientific or medical research facility. Labs, clean rooms, and data centers. Source of advanced tech and schematics, but heavily guarded.\n"
 theme = ["clinical", "technological", "mysterious", "sterile"]
 layout_style = "modular_connected"
 size = "medium"

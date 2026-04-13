@@ -6,8 +6,7 @@
 script = ExtResource("1")
 id = "survivor_enclave"
 name = "Survivor Enclave"
-description = "Living community of other survivors. Can be friendly, hostile, or cautious depending on reputation and approach. Source of trade, intel, and specialist recruitment.
-"
+description = "Living community of other survivors. Can be friendly, hostile, or cautious depending on reputation and approach. Source of trade, intel, and specialist recruitment.\n"
 theme = ["social", "fortified", "varied", "tense"]
 layout_style = "fortified_compound"
 size = "small"

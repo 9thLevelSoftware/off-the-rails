@@ -13,3 +13,4 @@ subsystems = ["medical_bay", "surgery_suite"]
 dependencies = ["engine_car", "workshop_car"]
 crew_station = true
 upgrade_tree = "infirmary_upgrades"
+type = "car"

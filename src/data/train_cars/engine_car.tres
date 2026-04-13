@@ -13,3 +13,4 @@ subsystems = ["locomotion", "power_grid"]
 dependencies = []
 crew_station = true
 upgrade_tree = "engine_upgrades"
+type = "car"

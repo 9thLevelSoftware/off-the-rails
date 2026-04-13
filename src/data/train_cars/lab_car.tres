@@ -13,3 +13,4 @@ subsystems = ["research_station", "analysis_suite", "prototype_fabricator"]
 dependencies = ["engine_car", "workshop_car", "signal_car"]
 crew_station = true
 upgrade_tree = "lab_upgrades"
+type = "car"

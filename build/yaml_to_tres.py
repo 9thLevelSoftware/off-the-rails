@@ -80,7 +80,7 @@ class TresConverter:
         """Escape string for .tres format."""
         if value is None:
             return '""'
-        escaped = str(value).replace('\\', '\\\\').replace('"', '\\"')
+        escaped = str(value).replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n').replace('\r', '')
         return f'"{escaped}"'
 
     def format_value(self, value: Any, indent: int = 0) -> str:
@@ -145,17 +145,21 @@ class TresConverter:
 
         # Convert cars
         for car in yaml_data.get('cars', []):
+            car_data = dict(car)
+            car_data['type'] = 'car'
             resources.append({
                 'id': car['id'],
-                'data': car,
+                'data': car_data,
                 'type': 'car'
             })
 
         # Convert subsystems as separate resources
         for subsystem in yaml_data.get('subsystems', []):
+            subsystem_data = dict(subsystem)
+            subsystem_data['type'] = 'subsystem'
             resources.append({
                 'id': f"subsystem_{subsystem['id']}",
-                'data': subsystem,
+                'data': subsystem_data,
                 'type': 'subsystem'
             })
 
