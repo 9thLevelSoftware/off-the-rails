@@ -171,7 +171,7 @@
 
 | Phase | Plans | Completed | Status |
 |-------|-------|-----------|--------|
-| Phase 1: Foundation | 3 | 3 | Complete |
+| Phase 1: Foundation | 3 | 3 | Verified |
 | Phase 2: Player & Movement | 2 | 0 | Not Started |
 | Phase 3: Train Core | 3 | 0 | Not Started |
 | Phase 4: Expedition Core | 4 | 0 | Not Started |

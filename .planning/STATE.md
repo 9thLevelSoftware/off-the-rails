@@ -1,27 +1,28 @@
 # Project State
 
 ## Current Position
-- **Phase**: 1 of 7 (executed, pending review)
-- **Status**: Phase 1 complete — all 3 plans executed successfully
-- **Last Activity**: Phase 1 execution (2026-04-12)
+- **Phase**: 1 of 7 (complete)
+- **Status**: Phase 1 complete — review passed (2 cycles)
+- **Last Activity**: Phase 1 review passed (2026-04-12)
 
 ## Progress
 ```
-[####                ] 15% — 3/~20 plans complete
+[####                ] 15% — 3/~21 plans complete
 ```
 
-## Phase 1: Foundation — COMPLETE
+## Phase 1: Foundation — VERIFIED
 
 | Plan | Wave | Name | Agent | Status |
 |------|------|------|-------|--------|
-| 01-01 | 1 | Directory & Autoloads | Godot Developer | ✓ Complete |
-| 01-02 | 2 | Build Pipeline | DevOps Automator | ✓ Complete |
-| 01-03 | 2 | Scene Architecture | Godot Developer | ✓ Complete |
+| 01-01 | 1 | Directory & Autoloads | Godot Developer | ✓ Verified |
+| 01-02 | 2 | Build Pipeline | DevOps Automator | ✓ Verified |
+| 01-03 | 2 | Scene Architecture | Godot Developer | ✓ Verified |
 
+**Review**: 2 blockers found and fixed (cycle 1), verified (cycle 2)
 **Key Outputs**:
 - `src/` directory structure (6 subdirectories)
 - GameState autoload with signals and methods
-- Build pipeline: 205 .tres resources from YAML
+- Build pipeline: 205 .tres resources from YAML (fixed)
 - Main scene with additive loading pattern
 - MCP workflow verified (gdai-mcp primary)
 
@@ -47,4 +48,4 @@
 
 ## Next Action
 
-Run `/legion:review` to verify Phase 1: Foundation
+Run `/legion:plan 2` to plan Phase 2: Player & Movement
