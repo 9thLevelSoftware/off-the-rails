@@ -1,9 +1,9 @@
 # Project State
 
 ## Current Position
-- **Phase**: 1 of 7 (complete)
-- **Status**: Phase 1 complete — review passed (2 cycles)
-- **Last Activity**: Phase 1 review passed (2026-04-12)
+- **Phase**: 2 of 7 (planned)
+- **Status**: Phase 2 planned — 2 plans across 2 waves
+- **Last Activity**: Phase 2 planning with auto-refine (2026-04-13)
 
 ## Progress
 ```
@@ -25,6 +25,25 @@
 - Build pipeline: 205 .tres resources from YAML (fixed)
 - Main scene with additive loading pattern
 - MCP workflow verified (gdai-mcp primary)
+
+## Phase 2: Player & Movement — PLANNED
+
+| Plan | Wave | Name | Agent(s) | Status |
+|------|------|------|----------|--------|
+| 02-01 | 1 | Player Character & Movement | engineering-senior-developer | Pending |
+| 02-02 | 2 | Scene Integration & Transitions | engineering-senior-developer, testing-qa-verification-specialist | Pending |
+
+**Plan Critique**: PASS after 1 auto-refine cycle
+- Fixed: Verification command mismatch in Plan 02-02
+- Watch: Jolt Physics compatibility with CharacterBody3D
+
+**Expected Outputs**:
+- `src/player/player.tscn` — Player character scene
+- `src/player/player.gd` — Movement controller with WASD + mouse look
+- `src/player/camera_controller.gd` — Camera controller placeholder
+- `src/train/train.tscn` — Train scene with spawn point
+- `src/expedition/expedition.tscn` — Expedition scene with spawn point
+- Extended `src/autoloads/game_state.gd` with scene transitions
 
 ## Recent Decisions
 
@@ -48,4 +67,4 @@
 
 ## Next Action
 
-Run `/legion:plan 2` to plan Phase 2: Player & Movement
+Run `/legion:build` to execute Phase 2: Player & Movement
