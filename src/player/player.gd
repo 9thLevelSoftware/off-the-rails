@@ -20,6 +20,11 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity", 9
 
 
 func _ready() -> void:
+	# Explicit collision layer setup (layer 1: physics bodies)
+	set_collision_layer_value(1, true)
+	set_collision_mask_value(1, true)
+	# Add to player group for identification
+	add_to_group("player")
 	# Capture the mouse cursor for FPS-style controls
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 

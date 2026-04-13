@@ -18,7 +18,14 @@ var _expedition_instance: Node = null
 # --- Lifecycle ---
 
 func _ready() -> void:
+	# Scene loading architecture:
+	# - Main handles initial scene loading on startup (load_train/load_expedition)
+	# - Each scene registers itself with GameState in its _ready() via register_scene()
+	# - After initial load, GameState handles all transitions via transition_to_train/expedition()
+	# - GameState manages player spawning, scene visibility, and process modes
 	print("Main: Scene initialized")
+	# Start in the train scene by default
+	load_train()
 
 
 # --- Public Methods ---
