@@ -1,0 +1,5 @@
+[gd_resource type="Resource" script_class="CarData" format=3]
+
+[resource]
+; Placeholder for engine car data configuration
+; Will be extended in Phase 6 for data-driven car creation

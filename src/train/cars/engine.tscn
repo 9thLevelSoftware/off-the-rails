@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://ds2p1acadwd2a"]
+
+[ext_resource type="Script" uid="uid://bgpiatq8eos85" path="res://src/train/cars/engine.gd" id="1_pgm2c"]
+[ext_resource type="Script" uid="uid://cjbt501nqpcio" path="res://src/train/subsystems/power_grid.gd" id="2_qrefb"]
+[ext_resource type="Script" uid="uid://dogx6ispnjv80" path="res://src/train/subsystems/locomotion.gd" id="3_laesy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_laesy"]
+size = Vector3(4, 3, 8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5e0cg"]
+size = Vector3(4, 3, 8)
+
+[node name="EngineCar" type="Node3D" unique_id=1111560780]
+script = ExtResource("1_pgm2c")
+
+[node name="PowerGrid" type="Node" parent="." unique_id=1216626228]
+script = ExtResource("2_qrefb")
+
+[node name="Locomotion" type="Node" parent="." unique_id=506796017]
+script = ExtResource("3_laesy")
+
+[node name="InteractionArea" type="Area3D" parent="." unique_id=438939452]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea" unique_id=261412937]
+shape = SubResource("BoxShape3D_laesy")
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=1804149571]
+mesh = SubResource("BoxMesh_5e0cg")

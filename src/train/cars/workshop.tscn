@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://di7615wbfd2q1"]
+
+[ext_resource type="Script" uid="uid://c3ufg0y7dntir" path="res://src/train/cars/workshop.gd" id="1_cd6tj"]
+[ext_resource type="Script" uid="uid://dav8t8bj5q6wp" path="res://src/train/subsystems/fabricator.gd" id="2_nok85"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nok85"]
+size = Vector3(4, 3, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nok85"]
+size = Vector3(4, 3, 6)
+
+[node name="WorkshopCar" type="Node3D" unique_id=824380337]
+script = ExtResource("1_cd6tj")
+
+[node name="Fabricator" type="Node" parent="." unique_id=278627486]
+script = ExtResource("2_nok85")
+
+[node name="InteractionArea" type="Area3D" parent="." unique_id=187565211]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea" unique_id=209278913]
+shape = SubResource("BoxShape3D_nok85")
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=1581590963]
+mesh = SubResource("BoxMesh_nok85")
