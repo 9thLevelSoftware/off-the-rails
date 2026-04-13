@@ -1,0 +1,263 @@
+# Train Car Definitions
+# Each car is a distinct module of the train with specific functions and subsystems.
+#
+# Schema:
+#   id: snake_case identifier
+#   name: Display name
+#   description: What this car does
+#   category: engine | utility | crew | production | specialist
+#   acquisition: starting | early | mid | late
+#   subsystems: List of subsystem IDs housed in this car
+#   dependencies: Other cars required for this car to function
+#   crew_station: Whether this car has a dedicated crew station
+#   upgrade_tree: Reference to upgrade tree branch
+
+cars:
+  - id: engine_car
+    name: Engine
+    description: The heart of the train. Provides locomotion and power generation for all other systems.
+    category: engine
+    acquisition: starting
+    subsystems:
+      - locomotion
+      - power_grid
+    dependencies: []
+    crew_station: true
+    upgrade_tree: engine_upgrades
+
+  - id: cargo_car
+    name: Cargo
+    description: Storage space for recovered resources, equipment, and supplies.
+    category: utility
+    acquisition: starting
+    subsystems:
+      - storage_racks
+    dependencies:
+      - engine_car
+    crew_station: false
+    upgrade_tree: cargo_upgrades
+
+  - id: bunks_car
+    name: Bunks
+    description: Living quarters for the crew. Provides rest, morale recovery, and climate control.
+    category: crew
+    acquisition: starting
+    subsystems:
+      - climate_control
+      - crew_quarters
+    dependencies:
+      - engine_car
+    crew_station: false
+    upgrade_tree: bunks_upgrades
+
+  - id: workshop_car
+    name: Workshop
+    description: Crafting and fabrication station. Repairs equipment and constructs upgrades.
+    category: production
+    acquisition: early
+    subsystems:
+      - fabricator
+      - repair_station
+    dependencies:
+      - engine_car
+    crew_station: true
+    upgrade_tree: workshop_upgrades
+
+  - id: infirmary_car
+    name: Infirmary
+    description: Medical treatment facility. Heals injuries, cures status effects, performs surgery.
+    category: crew
+    acquisition: early
+    subsystems:
+      - medical_bay
+      - surgery_suite
+    dependencies:
+      - engine_car
+      - workshop_car
+    crew_station: true
+    upgrade_tree: infirmary_upgrades
+
+  - id: armory_car
+    name: Armory
+    description: Weapon storage, ammunition crafting, and train defense systems.
+    category: utility
+    acquisition: mid
+    subsystems:
+      - weapon_racks
+      - ammo_fabricator
+      - turrets_defense
+    dependencies:
+      - engine_car
+      - workshop_car
+    crew_station: true
+    upgrade_tree: armory_upgrades
+
+  - id: signal_car
+    name: Signal/Command
+    description: Communications, navigation, and route intelligence center.
+    category: specialist
+    acquisition: mid
+    subsystems:
+      - comms_array
+      - navigation
+      - radar_sensors
+    dependencies:
+      - engine_car
+    crew_station: true
+    upgrade_tree: signal_upgrades
+
+  - id: refinery_car
+    name: Refinery
+    description: Fuel processing and resource conversion. Turns raw materials into usable forms.
+    category: production
+    acquisition: mid
+    subsystems:
+      - refinery_stack
+      - material_processor
+    dependencies:
+      - engine_car
+      - workshop_car
+    crew_station: true
+    upgrade_tree: refinery_upgrades
+
+  - id: greenhouse_car
+    name: Greenhouse
+    description: Hydroponics and sustainable food/medicine production for long campaigns.
+    category: production
+    acquisition: late
+    subsystems:
+      - hydroponics
+      - nutrient_cycling
+    dependencies:
+      - engine_car
+      - refinery_car
+    crew_station: true
+    upgrade_tree: greenhouse_upgrades
+
+  - id: lab_car
+    name: Lab/Research
+    description: Advanced research facility. Analyzes schematics, unlocks prototype technology.
+    category: specialist
+    acquisition: late
+    subsystems:
+      - research_station
+      - analysis_suite
+      - prototype_fabricator
+    dependencies:
+      - engine_car
+      - workshop_car
+      - signal_car
+    crew_station: true
+    upgrade_tree: lab_upgrades
+
+# Subsystem definitions
+subsystems:
+  - id: locomotion
+    name: Locomotion
+    description: Drives the train forward. Determines speed and fuel efficiency.
+    damage_effect: Slower travel, increased fuel consumption, stranding risk
+
+  - id: power_grid
+    name: Power Grid
+    description: Generates and distributes power to all train systems.
+    damage_effect: Systems go offline in priority order
+
+  - id: storage_racks
+    name: Storage Racks
+    description: Cargo storage capacity.
+    damage_effect: Reduced carry capacity, items may be lost
+
+  - id: climate_control
+    name: Climate Control
+    description: Maintains habitable conditions for crew.
+    damage_effect: Fatigue debuffs, morale loss
+
+  - id: crew_quarters
+    name: Crew Quarters
+    description: Sleeping and rest facilities.
+    damage_effect: Reduced rest recovery
+
+  - id: fabricator
+    name: Fabricator
+    description: Primary crafting station for equipment and parts.
+    damage_effect: Cannot craft, only basic repairs
+
+  - id: repair_station
+    name: Repair Station
+    description: Tools and workspace for repairs.
+    damage_effect: Slower repair speed
+
+  - id: medical_bay
+    name: Medical Bay
+    description: Treatment facility for injuries and illness.
+    damage_effect: Slower healing, increased death risk
+
+  - id: surgery_suite
+    name: Surgery Suite
+    description: Advanced medical procedures.
+    damage_effect: Cannot perform surgery
+
+  - id: weapon_racks
+    name: Weapon Racks
+    description: Secure weapon storage.
+    damage_effect: Weapons may be damaged or inaccessible
+
+  - id: ammo_fabricator
+    name: Ammo Fabricator
+    description: Manufactures ammunition from raw materials.
+    damage_effect: Cannot craft ammo
+
+  - id: turrets_defense
+    name: Turrets/Defense
+    description: Automated or manned defensive weapons.
+    damage_effect: Train vulnerable during travel
+
+  - id: comms_array
+    name: Comms Array
+    description: Long-range communications and intel gathering.
+    damage_effect: No route warnings, blind travel
+
+  - id: navigation
+    name: Navigation
+    description: Route planning and hazard detection.
+    damage_effect: Limited route options, no hazard preview
+
+  - id: radar_sensors
+    name: Radar/Sensors
+    description: Enemy and obstacle detection.
+    damage_effect: Ambush vulnerability
+
+  - id: refinery_stack
+    name: Refinery Stack
+    description: Fuel processing from raw materials.
+    damage_effect: Cannot process fuel
+
+  - id: material_processor
+    name: Material Processor
+    description: Converts raw resources to usable materials.
+    damage_effect: Resource inefficiency
+
+  - id: hydroponics
+    name: Hydroponics
+    description: Grows food and medicinal plants.
+    damage_effect: No passive food/med generation
+
+  - id: nutrient_cycling
+    name: Nutrient Cycling
+    description: Recycles waste into plant nutrients.
+    damage_effect: Hydroponics efficiency reduced
+
+  - id: research_station
+    name: Research Station
+    description: Analyzes schematics and data.
+    damage_effect: Cannot research new tech
+
+  - id: analysis_suite
+    name: Analysis Suite
+    description: Detailed examination of artifacts and samples.
+    damage_effect: Cannot analyze finds
+
+  - id: prototype_fabricator
+    name: Prototype Fabricator
+    description: Constructs experimental technology.
+    damage_effect: Cannot build prototypes

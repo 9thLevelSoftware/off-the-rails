@@ -1,0 +1,1142 @@
+# Train Upgrade Tree
+# Each car has a core upgrade path (T1-T4) plus optional side branches.
+#
+# Schema:
+#   id: snake_case identifier
+#   name: Display name
+#   car: Which car this upgrade belongs to
+#   path: core | side
+#   tier: 1-4 for core, or unlock_tier for side branches
+#   description: What this upgrade does
+#   effects: List of gameplay effects
+#   costs: Resource requirements
+#   requires: Prerequisite upgrades
+#   profession_bonus: Which profession speeds/cheapens this upgrade
+#
+# Cost tiers reference:
+#   T1: 5-10 Common
+#   T2: 3-5 Common + 2-4 Structured
+#   T3: 5+ Structured + 1 Milestone component
+#   T4: Multiple Structured + Milestone key item
+#   Side: Similar to unlock tier, slightly cheaper
+
+# =============================================================================
+# ENGINE CAR UPGRADES
+# =============================================================================
+
+engine_car:
+  core:
+    - id: patched_locomotion
+      name: Patched Locomotion
+      tier: 1
+      description: Basic repairs to get the train moving. Barely functional, but mobile.
+      effects:
+        - Train can move between nodes
+        - Base speed (slow)
+        - High fuel consumption
+      costs:
+        scrap_metal: 8
+        wiring: 4
+      requires: []
+      profession_bonus: engineer
+
+    - id: reinforced_drive
+      name: Reinforced Drive
+      tier: 2
+      description: Strengthened drivetrain and improved power transfer.
+      effects:
+        - +20% travel speed
+        - -10% fuel consumption
+      costs:
+        scrap_metal: 5
+        machine_parts: 3
+        refined_alloys: 2
+      requires: [patched_locomotion]
+      profession_bonus: engineer
+
+    - id: high_efficiency_engine
+      name: High-Efficiency Engine
+      tier: 3
+      description: Rebuilt engine with optimized combustion and power delivery.
+      effects:
+        - +40% travel speed (total)
+        - -25% fuel consumption (total)
+        - Unlocks longer routes
+      costs:
+        machine_parts: 5
+        refined_alloys: 4
+        power_cores: 2
+        engine_assembly: 1
+      requires: [reinforced_drive]
+      profession_bonus: engineer
+
+    - id: command_engine
+      name: Command Engine
+      tier: 4
+      description: Peak engineering. The train becomes a precision instrument.
+      effects:
+        - +60% travel speed (total)
+        - -40% fuel consumption (total)
+        - Unlocks endgame routes
+        - Reduced breakdown chance
+      costs:
+        power_cores: 3
+        refined_alloys: 6
+        prototype_component: 1
+        engine_assembly: 1
+      requires: [high_efficiency_engine]
+      profession_bonus: engineer
+
+  side:
+    - id: power_distributor
+      name: Power Distributor
+      unlock_tier: 2
+      description: Expanded power grid supports more train cars.
+      effects:
+        - Power supports +2 additional cars
+        - Smoother power distribution
+      costs:
+        wiring: 6
+        relays: 4
+        circuit_boards: 2
+      requires: [patched_locomotion]
+      profession_bonus: engineer
+
+    - id: emergency_boost
+      name: Emergency Boost
+      unlock_tier: 2
+      description: Overload the engine for a desperate burst of speed.
+      effects:
+        - Activate for 2x speed for 30 seconds
+        - 25% chance of engine damage after use
+      costs:
+        machine_parts: 2
+        processed_fuel: 5
+      requires: [patched_locomotion]
+      profession_bonus: engineer
+
+    - id: auxiliary_generator
+      name: Auxiliary Generator
+      unlock_tier: 3
+      description: Backup power system kicks in when main engine fails.
+      effects:
+        - 60 seconds of emergency power during engine failure
+        - Keeps critical systems online
+      costs:
+        power_cores: 1
+        relays: 3
+        machine_parts: 3
+      requires: [reinforced_drive]
+      profession_bonus: engineer
+
+    - id: overcharge_system
+      name: Overcharge System
+      unlock_tier: 3
+      description: Sustained power boost for demanding situations.
+      effects:
+        - Toggle: +30% speed at +50% fuel cost
+        - No damage risk (unlike Emergency Boost)
+      costs:
+        power_cores: 2
+        circuit_boards: 4
+        refined_alloys: 3
+      requires: [reinforced_drive]
+      profession_bonus: engineer
+
+# =============================================================================
+# CARGO CAR UPGRADES
+# =============================================================================
+
+cargo_car:
+  core:
+    - id: basic_storage
+      name: Basic Storage
+      tier: 1
+      description: Cleared space and makeshift shelving. Room for essentials.
+      effects:
+        - Base storage capacity (100 kg)
+      costs:
+        scrap_metal: 6
+        fabric_seals: 3
+      requires: []
+      profession_bonus: scavenger
+
+    - id: organized_racks
+      name: Organized Racks
+      tier: 2
+      description: Proper shelving and categorized storage.
+      effects:
+        - +50% storage capacity (150 kg)
+        - Faster item retrieval
+      costs:
+        scrap_metal: 4
+        refined_alloys: 2
+        machine_parts: 2
+      requires: [basic_storage]
+      profession_bonus: scavenger
+
+    - id: cargo_expansion
+      name: Cargo Expansion
+      tier: 3
+      description: Maximized storage with efficient space utilization.
+      effects:
+        - +100% storage capacity (200 kg)
+        - Item sorting system
+      costs:
+        refined_alloys: 4
+        machine_parts: 3
+        circuit_boards: 2
+      requires: [organized_racks]
+      profession_bonus: scavenger
+
+    - id: secure_vault
+      name: Secure Vault
+      tier: 4
+      description: Reinforced storage with preservation systems.
+      effects:
+        - +150% storage capacity (250 kg)
+        - Protected from damage during attacks
+        - Preserves perishables longer
+      costs:
+        refined_alloys: 6
+        power_cores: 1
+        prototype_component: 1
+      requires: [cargo_expansion]
+      profession_bonus: scavenger
+
+  side:
+    - id: quick_access_bins
+      name: Quick-Access Bins
+      unlock_tier: 2
+      description: Rapid-retrieval storage for frequently used items.
+      effects:
+        - 10 kg dedicated quick-access storage
+        - Instant retrieval during expeditions
+      costs:
+        scrap_metal: 3
+        fabric_seals: 4
+      requires: [basic_storage]
+      profession_bonus: scavenger
+
+    - id: hazmat_containment
+      name: Hazmat Containment
+      unlock_tier: 2
+      description: Sealed containers for dangerous materials.
+      effects:
+        - Store hazardous/radioactive materials safely
+        - No contamination risk
+      costs:
+        polymer_compounds: 4
+        glass_ceramics: 3
+        chemicals: 2
+      requires: [basic_storage]
+      profession_bonus: researcher
+
+    - id: refrigeration_unit
+      name: Refrigeration Unit
+      unlock_tier: 3
+      description: Climate-controlled storage for perishables.
+      effects:
+        - Perishables last 3x longer
+        - Store biological samples
+      costs:
+        machine_parts: 3
+        relays: 2
+        power_cores: 1
+      requires: [organized_racks]
+      profession_bonus: botanist
+
+# =============================================================================
+# BUNKS CAR UPGRADES
+# =============================================================================
+
+bunks_car:
+  core:
+    - id: makeshift_beds
+      name: Makeshift Beds
+      tier: 1
+      description: Basic sleeping arrangements. Better than the floor.
+      effects:
+        - Crew can rest
+        - Slow fatigue recovery
+      costs:
+        fabric_seals: 6
+        scrap_metal: 4
+      requires: []
+      profession_bonus: null
+
+    - id: proper_quarters
+      name: Proper Quarters
+      tier: 2
+      description: Individual bunks with basic privacy and comfort.
+      effects:
+        - +50% rest efficiency
+        - Supports 4 crew comfortably
+      costs:
+        fabric_seals: 4
+        scrap_metal: 3
+        machine_parts: 2
+      requires: [makeshift_beds]
+      profession_bonus: null
+
+    - id: climate_control
+      name: Climate Control
+      tier: 3
+      description: Temperature and air quality management.
+      effects:
+        - +100% rest efficiency (total)
+        - Supports 6 crew comfortably
+        - Reduces illness chance
+      costs:
+        relays: 3
+        machine_parts: 3
+        polymer_compounds: 4
+      requires: [proper_quarters]
+      profession_bonus: engineer
+
+    - id: crew_quarters
+      name: Crew Quarters
+      tier: 4
+      description: Full living accommodations with personal space.
+      effects:
+        - +150% rest efficiency (total)
+        - Supports 8 crew comfortably
+        - Morale bonus
+        - Fatigue immunity during short stops
+      costs:
+        refined_alloys: 4
+        power_cores: 1
+        prototype_component: 1
+      requires: [climate_control]
+      profession_bonus: null
+
+  side:
+    - id: morale_station
+      name: Morale Station
+      unlock_tier: 2
+      description: Recreation area to maintain crew spirits.
+      effects:
+        - Passive morale regeneration
+        - Reduces stress debuffs
+      costs:
+        scrap_electronics: 3
+        fabric_seals: 4
+      requires: [makeshift_beds]
+      profession_bonus: null
+
+    - id: lockdown_bunks
+      name: Lockdown Bunks
+      unlock_tier: 3
+      description: Reinforced sleeping area for emergencies.
+      effects:
+        - Bunks car takes reduced damage during attacks
+        - Crew can shelter during combat
+      costs:
+        refined_alloys: 3
+        machine_parts: 2
+      requires: [proper_quarters]
+      profession_bonus: security
+
+# =============================================================================
+# WORKSHOP CAR UPGRADES
+# =============================================================================
+
+workshop_car:
+  core:
+    - id: basic_workbench
+      name: Basic Workbench
+      tier: 1
+      description: Simple tools and workspace. Crude but functional.
+      effects:
+        - Basic crafting available
+        - Basic repairs available
+        - Slow crafting speed
+      costs:
+        scrap_metal: 8
+        wiring: 4
+        scrap_electronics: 3
+      requires: []
+      profession_bonus: machinist
+
+    - id: equipped_workshop
+      name: Equipped Workshop
+      tier: 2
+      description: Proper tools and organized workspace.
+      effects:
+        - Intermediate crafting unlocked
+        - +30% crafting speed
+        - +20% repair speed
+      costs:
+        machine_parts: 4
+        scrap_metal: 4
+        circuit_boards: 2
+      requires: [basic_workbench]
+      profession_bonus: machinist
+
+    - id: fabrication_station
+      name: Fabrication Station
+      tier: 3
+      description: Automated fabrication for complex items.
+      effects:
+        - Advanced crafting unlocked
+        - +60% crafting speed (total)
+        - -15% material costs
+      costs:
+        machine_parts: 5
+        circuit_boards: 4
+        power_cores: 1
+        relays: 3
+      requires: [equipped_workshop]
+      profession_bonus: machinist
+
+    - id: master_fabricator
+      name: Master Fabricator
+      tier: 4
+      description: Precision manufacturing for the most complex items.
+      effects:
+        - All crafting unlocked
+        - +100% crafting speed (total)
+        - -25% material costs (total)
+        - Prototype crafting available
+      costs:
+        power_cores: 2
+        optical_components: 3
+        prototype_component: 1
+        refined_alloys: 5
+      requires: [fabrication_station]
+      profession_bonus: machinist
+
+  side:
+    - id: tool_rack
+      name: Tool Rack
+      unlock_tier: 2
+      description: Organized tool storage for field repairs.
+      effects:
+        - Field repair kits are 20% more effective
+        - Tools degrade slower
+      costs:
+        scrap_metal: 3
+        machine_parts: 2
+      requires: [basic_workbench]
+      profession_bonus: machinist
+
+    - id: salvage_processor
+      name: Salvage Processor
+      unlock_tier: 2
+      description: Break down items for component recovery.
+      effects:
+        - Salvage items for 50% material return
+        - Convert between some material types
+      costs:
+        machine_parts: 3
+        chemicals: 4
+      requires: [basic_workbench]
+      profession_bonus: scavenger
+
+    - id: ammo_press
+      name: Ammo Press
+      unlock_tier: 3
+      description: Dedicated ammunition manufacturing.
+      effects:
+        - Craft ammo at 2x speed
+        - Craft advanced ammo types
+      costs:
+        machine_parts: 4
+        refined_alloys: 2
+        chemicals: 3
+      requires: [equipped_workshop]
+      profession_bonus: security
+
+# =============================================================================
+# INFIRMARY CAR UPGRADES
+# =============================================================================
+
+infirmary_car:
+  core:
+    - id: first_aid_station
+      name: First Aid Station
+      tier: 1
+      description: Basic medical supplies and treatment area.
+      effects:
+        - Basic healing available
+        - Stabilization possible
+        - Slow healing rate
+      costs:
+        fabric_seals: 5
+        basic_meds: 8
+        chemicals: 3
+      requires: []
+      profession_bonus: medic
+
+    - id: treatment_bay
+      name: Treatment Bay
+      tier: 2
+      description: Proper medical equipment and medication storage.
+      effects:
+        - Intermediate healing
+        - Status effect treatment
+        - +40% healing speed
+      costs:
+        medical_stock: 4
+        machine_parts: 2
+        glass_ceramics: 3
+      requires: [first_aid_station]
+      profession_bonus: medic
+
+    - id: surgery_suite
+      name: Surgery Suite
+      tier: 3
+      description: Full surgical capabilities for serious injuries.
+      effects:
+        - Advanced healing
+        - Surgery available
+        - +80% healing speed (total)
+        - Treat critical injuries
+      costs:
+        medical_stock: 6
+        optical_components: 2
+        power_cores: 1
+        refined_alloys: 2
+      requires: [treatment_bay]
+      profession_bonus: medic
+
+    - id: medical_center
+      name: Medical Center
+      tier: 4
+      description: Hospital-grade treatment facility.
+      effects:
+        - All medical procedures available
+        - +120% healing speed (total)
+        - Automatic stabilization for downed crew
+        - Prosthetics/augmentation capable
+      costs:
+        medical_stock: 8
+        prototype_component: 1
+        power_cores: 2
+        optical_components: 3
+      requires: [surgery_suite]
+      profession_bonus: medic
+
+  side:
+    - id: quarantine_ward
+      name: Quarantine Ward
+      unlock_tier: 2
+      description: Isolated treatment area for contagious conditions.
+      effects:
+        - Contain infections, prevent spread
+        - Treat contamination safely
+      costs:
+        polymer_compounds: 4
+        medical_stock: 2
+        glass_ceramics: 2
+      requires: [first_aid_station]
+      profession_bonus: medic
+
+    - id: trauma_kit_station
+      name: Trauma Kit Station
+      unlock_tier: 2
+      description: Pre-packed field medical kits for expeditions.
+      effects:
+        - Craft trauma kits at station
+        - Kits are 30% more effective
+      costs:
+        fabric_seals: 4
+        medical_stock: 3
+      requires: [first_aid_station]
+      profession_bonus: medic
+
+    - id: cryostasis_pod
+      name: Cryostasis Pod
+      unlock_tier: 3
+      description: Suspend critically injured crew until proper treatment is possible.
+      effects:
+        - Pause death timer indefinitely
+        - Store 1 critically injured patient
+      costs:
+        power_cores: 2
+        medical_stock: 4
+        prototype_component: 1
+      requires: [treatment_bay]
+      profession_bonus: researcher
+
+# =============================================================================
+# ARMORY CAR UPGRADES
+# =============================================================================
+
+armory_car:
+  core:
+    - id: weapon_locker
+      name: Weapon Locker
+      tier: 1
+      description: Basic weapon storage and maintenance area.
+      effects:
+        - Store weapons safely
+        - Basic weapon maintenance
+      costs:
+        scrap_metal: 6
+        refined_alloys: 2
+      requires: []
+      profession_bonus: security
+
+    - id: armory_racks
+      name: Armory Racks
+      tier: 2
+      description: Organized weapon storage with maintenance station.
+      effects:
+        - Expanded weapon storage
+        - Weapon maintenance +30% faster
+        - Basic ammo crafting
+      costs:
+        refined_alloys: 4
+        machine_parts: 3
+        scrap_metal: 4
+      requires: [weapon_locker]
+      profession_bonus: security
+
+    - id: defense_station
+      name: Defense Station
+      tier: 3
+      description: Integrated defense systems and advanced armaments.
+      effects:
+        - Turret control station
+        - Advanced ammo crafting
+        - Weapon modifications available
+      costs:
+        refined_alloys: 5
+        circuit_boards: 3
+        optical_components: 2
+        power_cores: 1
+      requires: [armory_racks]
+      profession_bonus: security
+
+    - id: battle_command
+      name: Battle Command
+      tier: 4
+      description: Full tactical operations center.
+      effects:
+        - Automated turret targeting
+        - All ammo types craftable
+        - All weapon mods available
+        - Threat analysis system
+      costs:
+        prototype_component: 1
+        power_cores: 2
+        optical_components: 4
+        refined_alloys: 6
+      requires: [defense_station]
+      profession_bonus: security
+
+  side:
+    - id: mounted_turret
+      name: Mounted Turret
+      unlock_tier: 2
+      description: External defensive weapon for train protection.
+      effects:
+        - Automated defense during travel
+        - Manned for +50% damage
+        - Consumes ammo
+      costs:
+        refined_alloys: 4
+        machine_parts: 3
+        wiring: 4
+      requires: [weapon_locker]
+      profession_bonus: security
+
+    - id: armor_plating
+      name: Armor Plating
+      unlock_tier: 2
+      description: Reinforced exterior for the armory car.
+      effects:
+        - Armory car takes -30% damage
+        - Protects adjacent cars slightly
+      costs:
+        refined_alloys: 6
+        scrap_metal: 8
+      requires: [weapon_locker]
+      profession_bonus: engineer
+
+    - id: tactical_display
+      name: Tactical Display
+      unlock_tier: 3
+      description: Real-time threat tracking and team coordination.
+      effects:
+        - See enemy positions on map during defense
+        - Team waypoint system
+      costs:
+        circuit_boards: 4
+        optical_components: 2
+        relays: 2
+      requires: [armory_racks]
+      profession_bonus: signal_tech
+
+# =============================================================================
+# SIGNAL/COMMAND CAR UPGRADES
+# =============================================================================
+
+signal_car:
+  core:
+    - id: basic_radio
+      name: Basic Radio
+      tier: 1
+      description: Short-range communications. Limited but functional.
+      effects:
+        - Team communication during expeditions
+        - Basic route information
+      costs:
+        scrap_electronics: 6
+        wiring: 5
+      requires: []
+      profession_bonus: signal_tech
+
+    - id: comms_array
+      name: Comms Array
+      tier: 2
+      description: Long-range communications and signal processing.
+      effects:
+        - Extended communication range
+        - Route hazard warnings
+        - Intercept enemy signals
+      costs:
+        circuit_boards: 4
+        optical_components: 2
+        relays: 3
+      requires: [basic_radio]
+      profession_bonus: signal_tech
+
+    - id: navigation_suite
+      name: Navigation Suite
+      tier: 3
+      description: Advanced mapping and route planning systems.
+      effects:
+        - Full route intelligence
+        - Unlock hidden routes
+        - Hazard prediction
+        - Enemy density estimates
+      costs:
+        navigation_module: 1
+        circuit_boards: 4
+        optical_components: 3
+        power_cores: 1
+      requires: [comms_array]
+      profession_bonus: signal_tech
+
+    - id: command_center
+      name: Command Center
+      tier: 4
+      description: Full operational command and control.
+      effects:
+        - All route intelligence
+        - Hack remote systems
+        - Coordinate with other survivors
+        - Strategic map overlay
+      costs:
+        prototype_component: 1
+        optical_components: 5
+        power_cores: 2
+        circuit_boards: 6
+      requires: [navigation_suite]
+      profession_bonus: signal_tech
+
+  side:
+    - id: scanner_array
+      name: Scanner Array
+      unlock_tier: 2
+      description: Enhanced sensor package for detecting nearby threats.
+      effects:
+        - Early warning on approaching enemies
+        - Detect hidden containers at destinations
+      costs:
+        optical_components: 3
+        circuit_boards: 2
+        wiring: 4
+      requires: [basic_radio]
+      profession_bonus: signal_tech
+
+    - id: jammer
+      name: Signal Jammer
+      unlock_tier: 2
+      description: Disrupt enemy communications and sensors.
+      effects:
+        - Enemies slower to respond during expeditions
+        - Block distress calls (prevents reinforcements)
+      costs:
+        circuit_boards: 3
+        relays: 3
+        power_cores: 1
+      requires: [basic_radio]
+      profession_bonus: signal_tech
+
+    - id: remote_access
+      name: Remote Access Terminal
+      unlock_tier: 3
+      description: Hack into destination systems before arrival.
+      effects:
+        - Disable alarms remotely
+        - Unlock doors before entering
+        - Access destination cameras
+      costs:
+        circuit_boards: 5
+        optical_components: 2
+        prototype_component: 1
+      requires: [comms_array]
+      profession_bonus: signal_tech
+
+# =============================================================================
+# REFINERY CAR UPGRADES
+# =============================================================================
+
+refinery_car:
+  core:
+    - id: crude_processor
+      name: Crude Processor
+      tier: 1
+      description: Basic fuel refinement. Inefficient but functional.
+      effects:
+        - Convert crude fuel to processed fuel (2:1 ratio)
+        - Slow processing speed
+      costs:
+        scrap_metal: 6
+        chemicals: 5
+        machine_parts: 2
+      requires: []
+      profession_bonus: engineer
+
+    - id: refinery_stack
+      name: Refinery Stack
+      tier: 2
+      description: Improved refinement with better yields.
+      effects:
+        - Fuel conversion (1.5:1 ratio)
+        - +50% processing speed
+        - Basic material conversion
+      costs:
+        machine_parts: 4
+        chemicals: 4
+        refined_alloys: 2
+        relays: 2
+      requires: [crude_processor]
+      profession_bonus: engineer
+
+    - id: industrial_refinery
+      name: Industrial Refinery
+      tier: 3
+      description: Full-scale industrial processing.
+      effects:
+        - Fuel conversion (1.2:1 ratio)
+        - +100% processing speed (total)
+        - Advanced material conversion
+        - Byproduct recovery
+      costs:
+        machine_parts: 5
+        power_cores: 2
+        refined_alloys: 4
+        hydraulics: 3
+      requires: [refinery_stack]
+      profession_bonus: engineer
+
+    - id: synthesis_plant
+      name: Synthesis Plant
+      tier: 4
+      description: Chemical synthesis and advanced material production.
+      effects:
+        - Fuel conversion (1:1 ratio, no loss)
+        - Create chemicals from raw materials
+        - Synthesize rare materials
+      costs:
+        prototype_component: 1
+        power_cores: 2
+        chemicals: 8
+        refined_alloys: 5
+      requires: [industrial_refinery]
+      profession_bonus: researcher
+
+  side:
+    - id: fuel_storage
+      name: Fuel Storage Tanks
+      unlock_tier: 2
+      description: Expanded fuel capacity.
+      effects:
+        - +100% fuel storage capacity
+        - Safer fuel storage (less fire risk)
+      costs:
+        refined_alloys: 4
+        polymer_compounds: 3
+      requires: [crude_processor]
+      profession_bonus: engineer
+
+    - id: recycler
+      name: Material Recycler
+      unlock_tier: 2
+      description: Reclaim materials from waste and damaged goods.
+      effects:
+        - 30% material recovery from scrapping
+        - Convert waste to chemicals
+      costs:
+        machine_parts: 3
+        chemicals: 4
+      requires: [crude_processor]
+      profession_bonus: machinist
+
+    - id: biofuel_converter
+      name: Biofuel Converter
+      unlock_tier: 3
+      description: Convert organic matter to fuel.
+      effects:
+        - Process food waste into crude fuel
+        - Process plant matter into fuel
+      costs:
+        machine_parts: 4
+        chemicals: 5
+        hydraulics: 2
+      requires: [refinery_stack]
+      profession_bonus: botanist
+
+# =============================================================================
+# GREENHOUSE CAR UPGRADES
+# =============================================================================
+
+greenhouse_car:
+  core:
+    - id: basic_planters
+      name: Basic Planters
+      tier: 1
+      description: Simple growing containers. Manual maintenance required.
+      effects:
+        - Grow basic food crops
+        - Slow growth rate
+        - Manual watering required
+      costs:
+        glass_ceramics: 5
+        fabric_seals: 4
+        seeds_samples: 3
+      requires: []
+      profession_bonus: botanist
+
+    - id: hydroponics_bay
+      name: Hydroponics Bay
+      tier: 2
+      description: Water-based growing system with improved yields.
+      effects:
+        - +50% growth speed
+        - Grow medicinal plants
+        - Automated watering
+      costs:
+        glass_ceramics: 4
+        machine_parts: 3
+        polymer_compounds: 3
+        seeds_samples: 4
+      requires: [basic_planters]
+      profession_bonus: botanist
+
+    - id: climate_dome
+      name: Climate Dome
+      tier: 3
+      description: Controlled environment for optimal growing conditions.
+      effects:
+        - +100% growth speed (total)
+        - Grow rare plants
+        - Temperature and humidity control
+        - Pest resistance
+      costs:
+        glass_ceramics: 6
+        power_cores: 1
+        relays: 3
+        seeds_samples: 6
+      requires: [hydroponics_bay]
+      profession_bonus: botanist
+
+    - id: bio_lab
+      name: Bio-Lab
+      tier: 4
+      description: Advanced botanical research and genetic engineering.
+      effects:
+        - +150% growth speed (total)
+        - Breed new plant varieties
+        - Extract advanced compounds
+        - Self-sustaining food supply
+      costs:
+        prototype_component: 1
+        optical_components: 3
+        medical_stock: 4
+        seeds_samples: 8
+      requires: [climate_dome]
+      profession_bonus: researcher
+
+  side:
+    - id: herb_garden
+      name: Medicinal Herb Garden
+      unlock_tier: 2
+      description: Dedicated space for medicinal plant cultivation.
+      effects:
+        - +30% medicinal plant yield
+        - Craft basic meds from herbs
+      costs:
+        seeds_samples: 4
+        glass_ceramics: 2
+        chemicals: 2
+      requires: [basic_planters]
+      profession_bonus: medic
+
+    - id: composting_system
+      name: Composting System
+      unlock_tier: 2
+      description: Recycle organic waste into fertilizer.
+      effects:
+        - +20% all plant yields
+        - Reduce food waste
+      costs:
+        machine_parts: 2
+        chemicals: 3
+      requires: [basic_planters]
+      profession_bonus: botanist
+
+    - id: seed_vault
+      name: Seed Vault
+      unlock_tier: 3
+      description: Preserve and store seed varieties.
+      effects:
+        - Store unlimited seed types
+        - Seeds never expire
+        - Duplicate rare seeds (slowly)
+      costs:
+        polymer_compounds: 4
+        power_cores: 1
+        glass_ceramics: 3
+      requires: [hydroponics_bay]
+      profession_bonus: botanist
+
+# =============================================================================
+# LAB/RESEARCH CAR UPGRADES
+# =============================================================================
+
+lab_car:
+  core:
+    - id: analysis_bench
+      name: Analysis Bench
+      tier: 1
+      description: Basic equipment for examining found items and samples.
+      effects:
+        - Identify unknown items
+        - Basic sample analysis
+        - Slow research speed
+      costs:
+        glass_ceramics: 5
+        scrap_electronics: 6
+        chemicals: 4
+      requires: []
+      profession_bonus: researcher
+
+    - id: research_station
+      name: Research Station
+      tier: 2
+      description: Proper laboratory equipment for scientific work.
+      effects:
+        - Unlock schematics (common)
+        - +50% research speed
+        - Detailed sample analysis
+      costs:
+        optical_components: 3
+        circuit_boards: 4
+        glass_ceramics: 4
+        medical_stock: 2
+      requires: [analysis_bench]
+      profession_bonus: researcher
+
+    - id: advanced_lab
+      name: Advanced Lab
+      tier: 3
+      description: High-tech research facility for complex analysis.
+      effects:
+        - Unlock schematics (advanced)
+        - +100% research speed (total)
+        - Anomaly analysis
+        - Data decryption
+      costs:
+        optical_components: 5
+        power_cores: 2
+        prototype_component: 1
+        circuit_boards: 5
+      requires: [research_station]
+      profession_bonus: researcher
+
+    - id: prototype_facility
+      name: Prototype Facility
+      tier: 4
+      description: Cutting-edge laboratory for experimental technology.
+      effects:
+        - Unlock all schematics
+        - +150% research speed (total)
+        - Create prototype items
+        - Reverse-engineer alien tech
+      costs:
+        prototype_component: 2
+        optical_components: 6
+        power_cores: 3
+        launch_hardware: 1
+      requires: [advanced_lab]
+      profession_bonus: researcher
+
+  side:
+    - id: specimen_storage
+      name: Specimen Storage
+      unlock_tier: 2
+      description: Preserve biological and material samples.
+      effects:
+        - Store samples indefinitely
+        - Organize sample library
+        - Cross-reference findings
+      costs:
+        glass_ceramics: 4
+        chemicals: 3
+        polymer_compounds: 2
+      requires: [analysis_bench]
+      profession_bonus: researcher
+
+    - id: data_core
+      name: Data Core
+      unlock_tier: 2
+      description: Centralized data storage and processing.
+      effects:
+        - Store unlimited schematics
+        - Cross-reference colony data
+        - Search for related information
+      costs:
+        circuit_boards: 5
+        relays: 3
+        power_cores: 1
+      requires: [analysis_bench]
+      profession_bonus: signal_tech
+
+    - id: fabrication_link
+      name: Fabrication Link
+      unlock_tier: 3
+      description: Direct connection between lab and workshop.
+      effects:
+        - Research unlocks apply immediately
+        - Prototype items at -20% cost
+        - Joint research/craft projects
+      costs:
+        circuit_boards: 4
+        relays: 4
+        optical_components: 2
+      requires: [research_station]
+      profession_bonus: machinist
+
+# =============================================================================
+# UPGRADE SUMMARY
+# =============================================================================
+#
+# Total upgrades: 74
+#   - Engine: 8 (4 core + 4 side)
+#   - Cargo: 7 (4 core + 3 side)
+#   - Bunks: 6 (4 core + 2 side)
+#   - Workshop: 7 (4 core + 3 side)
+#   - Infirmary: 7 (4 core + 3 side)
+#   - Armory: 7 (4 core + 3 side)
+#   - Signal: 7 (4 core + 3 side)
+#   - Refinery: 7 (4 core + 3 side)
+#   - Greenhouse: 7 (4 core + 3 side)
+#   - Lab: 7 (4 core + 3 side)
+#
+# Core upgrades require completion in order (T1 → T2 → T3 → T4)
+# Side branches unlock at their specified tier but don't block progression

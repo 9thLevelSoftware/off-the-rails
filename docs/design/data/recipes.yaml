@@ -1,0 +1,873 @@
+# Crafting Recipes
+# All craftable items organized by category.
+#
+# Schema:
+#   id: snake_case identifier
+#   name: Display name
+#   category: consumable | ammo | medical | repair | tool | equipment | train_part | specialty
+#   station: field | workshop | armory | infirmary | refinery | greenhouse | lab
+#   inputs: Resource requirements {resource_id: quantity}
+#   output: What is produced {item_id: quantity}
+#   craft_time: Base time in seconds
+#   unlock: default | schematic_common | schematic_advanced | upgrade_t2 | upgrade_t3 | upgrade_t4 | research
+#   profession_bonus: Which profession gets -25% craft time
+#   description: What this item does
+
+# =============================================================================
+# CONSUMABLES
+# =============================================================================
+
+consumables:
+  - id: basic_bandage
+    name: Basic Bandage
+    category: consumable
+    station: field
+    inputs:
+      fabric_seals: 2
+    output:
+      bandage: 3
+    craft_time: 30
+    unlock: default
+    profession_bonus: medic
+    description: Simple bandages for minor wounds. Stops bleeding, minor healing.
+
+  - id: improvised_torch
+    name: Improvised Torch
+    category: consumable
+    station: field
+    inputs:
+      scrap_metal: 1
+      fabric_seals: 1
+      chemicals: 1
+    output:
+      torch: 2
+    craft_time: 45
+    unlock: default
+    profession_bonus: null
+    description: Handheld light source. Burns for 10 minutes.
+
+  - id: ration_pack
+    name: Ration Pack
+    category: consumable
+    station: workshop
+    inputs:
+      rations: 3
+      fabric_seals: 1
+    output:
+      ration_pack: 1
+    craft_time: 45
+    unlock: default
+    profession_bonus: null
+    description: Compact preserved meal. Restores hunger, small morale boost.
+
+  - id: stim_shot
+    name: Stim Shot
+    category: consumable
+    station: workshop
+    inputs:
+      chemicals: 2
+      basic_meds: 1
+    output:
+      stim_shot: 1
+    craft_time: 60
+    unlock: default
+    profession_bonus: medic
+    description: Adrenaline boost. Temporary stamina recovery and pain suppression.
+
+  - id: glow_stick
+    name: Glow Stick
+    category: consumable
+    station: workshop
+    inputs:
+      chemicals: 2
+      glass_ceramics: 1
+    output:
+      glow_stick: 4
+    craft_time: 30
+    unlock: default
+    profession_bonus: null
+    description: Chemical light. Lasts 30 minutes, can be thrown.
+
+  - id: flare
+    name: Signal Flare
+    category: consumable
+    station: workshop
+    inputs:
+      chemicals: 3
+      scrap_metal: 1
+    output:
+      flare: 2
+    craft_time: 45
+    unlock: default
+    profession_bonus: null
+    description: Bright signal or distraction. Visible for long distances.
+
+  - id: smoke_bomb
+    name: Smoke Bomb
+    category: consumable
+    station: armory
+    inputs:
+      chemicals: 4
+      fabric_seals: 2
+    output:
+      smoke_bomb: 2
+    craft_time: 60
+    unlock: schematic_common
+    profession_bonus: security
+    description: Creates concealing smoke cloud. Blocks line of sight.
+
+  - id: noise_maker
+    name: Noise Maker
+    category: consumable
+    station: workshop
+    inputs:
+      scrap_electronics: 2
+      wiring: 2
+    output:
+      noise_maker: 2
+    craft_time: 60
+    unlock: schematic_common
+    profession_bonus: signal_tech
+    description: Creates distraction noise. Draws enemy attention.
+
+# =============================================================================
+# AMMUNITION
+# =============================================================================
+
+ammunition:
+  - id: standard_ammo
+    name: Standard Ammo
+    category: ammo
+    station: workshop
+    inputs:
+      scrap_metal: 3
+      chemicals: 1
+    output:
+      standard_ammo: 20
+    craft_time: 60
+    unlock: default
+    profession_bonus: security
+    description: Basic pistol and SMG ammunition.
+
+  - id: rifle_ammo
+    name: Rifle Ammo
+    category: ammo
+    station: armory
+    inputs:
+      scrap_metal: 4
+      chemicals: 2
+    output:
+      rifle_ammo: 15
+    craft_time: 90
+    unlock: default
+    profession_bonus: security
+    description: Higher caliber rifle rounds.
+
+  - id: shotgun_shells
+    name: Shotgun Shells
+    category: ammo
+    station: armory
+    inputs:
+      scrap_metal: 3
+      chemicals: 2
+    output:
+      shotgun_shells: 8
+    craft_time: 75
+    unlock: default
+    profession_bonus: security
+    description: Spread ammunition for close quarters.
+
+  - id: armor_piercing
+    name: Armor-Piercing Ammo
+    category: ammo
+    station: armory
+    inputs:
+      refined_alloys: 2
+      chemicals: 2
+    output:
+      armor_piercing_ammo: 10
+    craft_time: 120
+    unlock: schematic_common
+    profession_bonus: security
+    description: Penetrates armored targets. Reduced stopping power.
+
+  - id: incendiary_ammo
+    name: Incendiary Ammo
+    category: ammo
+    station: armory
+    inputs:
+      scrap_metal: 3
+      chemicals: 4
+    output:
+      incendiary_ammo: 10
+    craft_time: 120
+    unlock: schematic_common
+    profession_bonus: security
+    description: Sets targets on fire. Damage over time.
+
+  - id: explosive_shells
+    name: Explosive Shells
+    category: ammo
+    station: armory
+    inputs:
+      refined_alloys: 3
+      chemicals: 4
+      scrap_metal: 2
+    output:
+      explosive_shells: 4
+    craft_time: 180
+    unlock: schematic_advanced
+    profession_bonus: security
+    description: High-explosive shotgun rounds. Area damage.
+
+  - id: tranq_darts
+    name: Tranquilizer Darts
+    category: ammo
+    station: infirmary
+    inputs:
+      medical_stock: 2
+      scrap_metal: 2
+    output:
+      tranq_darts: 6
+    craft_time: 90
+    unlock: schematic_common
+    profession_bonus: medic
+    description: Non-lethal takedown. Effective on some enemies.
+
+# =============================================================================
+# MEDICAL
+# =============================================================================
+
+medical:
+  - id: medical_kit
+    name: Medical Kit
+    category: medical
+    station: infirmary
+    inputs:
+      basic_meds: 2
+      fabric_seals: 1
+      chemicals: 1
+    output:
+      medical_kit: 1
+    craft_time: 90
+    unlock: default
+    profession_bonus: medic
+    description: Standard healing item. Restores moderate health.
+
+  - id: trauma_kit
+    name: Trauma Kit
+    category: medical
+    station: infirmary
+    inputs:
+      medical_stock: 2
+      fabric_seals: 2
+      basic_meds: 2
+    output:
+      trauma_kit: 1
+    craft_time: 150
+    unlock: upgrade_t2
+    profession_bonus: medic
+    description: Advanced healing for serious injuries. Large health restore.
+
+  - id: antidote
+    name: Antidote
+    category: medical
+    station: infirmary
+    inputs:
+      chemicals: 3
+      basic_meds: 1
+    output:
+      antidote: 2
+    craft_time: 60
+    unlock: default
+    profession_bonus: medic
+    description: Cures poison and toxin status effects.
+
+  - id: anti_rad
+    name: Anti-Radiation Pills
+    category: medical
+    station: infirmary
+    inputs:
+      chemicals: 4
+      medical_stock: 1
+    output:
+      anti_rad: 3
+    craft_time: 90
+    unlock: schematic_common
+    profession_bonus: medic
+    description: Reduces radiation accumulation. Treats mild radiation sickness.
+
+  - id: blood_pack
+    name: Blood Pack
+    category: medical
+    station: infirmary
+    inputs:
+      medical_stock: 3
+      chemicals: 2
+      water: 2
+    output:
+      blood_pack: 1
+    craft_time: 180
+    unlock: upgrade_t3
+    profession_bonus: medic
+    description: Blood transfusion. Required for surgery, treats blood loss.
+
+  - id: surgery_kit
+    name: Surgery Kit
+    category: medical
+    station: infirmary
+    inputs:
+      medical_stock: 4
+      refined_alloys: 1
+      chemicals: 2
+    output:
+      surgery_kit: 1
+    craft_time: 240
+    unlock: upgrade_t3
+    profession_bonus: medic
+    description: Single-use surgical supplies. Required for major procedures.
+
+  - id: stasis_syringe
+    name: Stasis Syringe
+    category: medical
+    station: lab
+    inputs:
+      medical_stock: 3
+      prototype_component: 1
+    output:
+      stasis_syringe: 1
+    craft_time: 300
+    unlock: research
+    profession_bonus: researcher
+    description: Halts all biological processes. Pauses death timer indefinitely.
+
+# =============================================================================
+# REPAIR KITS
+# =============================================================================
+
+repair_kits:
+  - id: basic_repair_kit
+    name: Basic Repair Kit
+    category: repair
+    station: workshop
+    inputs:
+      scrap_metal: 4
+      wiring: 2
+    output:
+      basic_repair_kit: 1
+    craft_time: 90
+    unlock: default
+    profession_bonus: engineer
+    description: General-purpose repair supplies. Fixes minor equipment damage.
+
+  - id: weapon_maintenance_kit
+    name: Weapon Maintenance Kit
+    category: repair
+    station: armory
+    inputs:
+      scrap_metal: 3
+      chemicals: 2
+      fabric_seals: 1
+    output:
+      weapon_maintenance_kit: 1
+    craft_time: 90
+    unlock: default
+    profession_bonus: security
+    description: Cleans and repairs weapons. Restores durability.
+
+  - id: electronics_kit
+    name: Electronics Repair Kit
+    category: repair
+    station: workshop
+    inputs:
+      wiring: 4
+      scrap_electronics: 3
+      circuit_boards: 1
+    output:
+      electronics_kit: 1
+    craft_time: 120
+    unlock: upgrade_t2
+    profession_bonus: engineer
+    description: Repairs electronic equipment and subsystems.
+
+  - id: armor_patch
+    name: Armor Patch Kit
+    category: repair
+    station: workshop
+    inputs:
+      refined_alloys: 2
+      fabric_seals: 2
+    output:
+      armor_patch_kit: 1
+    craft_time: 120
+    unlock: schematic_common
+    profession_bonus: machinist
+    description: Repairs damaged armor. Restores protection rating.
+
+  - id: subsystem_repair_kit
+    name: Subsystem Repair Kit
+    category: repair
+    station: workshop
+    inputs:
+      machine_parts: 2
+      wiring: 3
+      relays: 1
+    output:
+      subsystem_repair_kit: 1
+    craft_time: 180
+    unlock: upgrade_t2
+    profession_bonus: engineer
+    description: Repairs train subsystems in the field.
+
+# =============================================================================
+# TOOLS
+# =============================================================================
+
+tools:
+  - id: lockpick_set
+    name: Lockpick Set
+    category: tool
+    station: workshop
+    inputs:
+      scrap_metal: 3
+      wiring: 2
+    output:
+      lockpick_set: 1
+    craft_time: 120
+    unlock: default
+    profession_bonus: scavenger
+    description: Opens locked containers. Limited uses.
+
+  - id: cutting_torch
+    name: Cutting Torch
+    category: tool
+    station: workshop
+    inputs:
+      scrap_metal: 4
+      chemicals: 3
+      refined_alloys: 1
+    output:
+      cutting_torch: 1
+    craft_time: 180
+    unlock: schematic_common
+    profession_bonus: engineer
+    description: Cuts through metal barriers. Consumes fuel.
+
+  - id: scanner_upgrade
+    name: Scanner Upgrade
+    category: tool
+    station: workshop
+    inputs:
+      scrap_electronics: 4
+      circuit_boards: 2
+      optical_components: 1
+    output:
+      scanner_upgrade: 1
+    craft_time: 240
+    unlock: schematic_advanced
+    profession_bonus: signal_tech
+    description: Improves scanner range and detail. Permanent upgrade.
+
+  - id: hacking_module
+    name: Hacking Module
+    category: tool
+    station: workshop
+    inputs:
+      circuit_boards: 3
+      wiring: 4
+      relays: 2
+    output:
+      hacking_module: 1
+    craft_time: 200
+    unlock: schematic_common
+    profession_bonus: signal_tech
+    description: Bypasses electronic security. Limited uses.
+
+  - id: sample_container
+    name: Sample Container
+    category: tool
+    station: lab
+    inputs:
+      glass_ceramics: 3
+      polymer_compounds: 2
+    output:
+      sample_container: 3
+    craft_time: 90
+    unlock: default
+    profession_bonus: researcher
+    description: Safely stores biological or chemical samples.
+
+# =============================================================================
+# EQUIPMENT
+# =============================================================================
+
+equipment:
+  - id: makeshift_armor
+    name: Makeshift Armor
+    category: equipment
+    station: workshop
+    inputs:
+      scrap_metal: 8
+      fabric_seals: 4
+    output:
+      makeshift_armor: 1
+    craft_time: 300
+    unlock: default
+    profession_bonus: machinist
+    description: Basic protection. -15% damage taken.
+
+  - id: reinforced_armor
+    name: Reinforced Armor
+    category: equipment
+    station: armory
+    inputs:
+      refined_alloys: 4
+      fabric_seals: 3
+      machine_parts: 2
+    output:
+      reinforced_armor: 1
+    craft_time: 450
+    unlock: schematic_common
+    profession_bonus: machinist
+    description: Solid protection. -30% damage taken.
+
+  - id: hazmat_suit
+    name: Hazmat Suit
+    category: equipment
+    station: workshop
+    inputs:
+      polymer_compounds: 5
+      fabric_seals: 4
+      glass_ceramics: 2
+    output:
+      hazmat_suit: 1
+    craft_time: 400
+    unlock: schematic_common
+    profession_bonus: machinist
+    description: Protects against toxic and radioactive environments.
+
+  - id: basic_backpack
+    name: Basic Backpack
+    category: equipment
+    station: workshop
+    inputs:
+      fabric_seals: 6
+      scrap_metal: 2
+    output:
+      basic_backpack: 1
+    craft_time: 180
+    unlock: default
+    profession_bonus: scavenger
+    description: +5 kg carry capacity.
+
+  - id: expedition_pack
+    name: Expedition Pack
+    category: equipment
+    station: workshop
+    inputs:
+      fabric_seals: 8
+      refined_alloys: 2
+      polymer_compounds: 2
+    output:
+      expedition_pack: 1
+    craft_time: 300
+    unlock: schematic_common
+    profession_bonus: scavenger
+    description: +10 kg carry capacity. Organized compartments.
+
+  - id: cargo_frame
+    name: Cargo Frame
+    category: equipment
+    station: workshop
+    inputs:
+      refined_alloys: 4
+      machine_parts: 3
+      fabric_seals: 4
+    output:
+      cargo_frame: 1
+    craft_time: 450
+    unlock: schematic_advanced
+    profession_bonus: scavenger
+    description: +15 kg carry capacity. Bulky but effective.
+
+  - id: night_vision
+    name: Night Vision Goggles
+    category: equipment
+    station: workshop
+    inputs:
+      optical_components: 2
+      circuit_boards: 2
+      wiring: 3
+    output:
+      night_vision: 1
+    craft_time: 360
+    unlock: schematic_advanced
+    profession_bonus: signal_tech
+    description: See in darkness. Consumes power.
+
+# =============================================================================
+# TRAIN PARTS
+# =============================================================================
+
+train_parts:
+  - id: replacement_relay
+    name: Replacement Relay
+    category: train_part
+    station: workshop
+    inputs:
+      relays: 2
+      wiring: 4
+      scrap_electronics: 3
+    output:
+      replacement_relay: 1
+    craft_time: 600
+    unlock: upgrade_t2
+    profession_bonus: engineer
+    description: Replacement part for power distribution repairs.
+
+  - id: armor_plate
+    name: Train Armor Plate
+    category: train_part
+    station: workshop
+    inputs:
+      refined_alloys: 6
+      scrap_metal: 8
+    output:
+      armor_plate: 1
+    craft_time: 900
+    unlock: schematic_common
+    profession_bonus: machinist
+    description: Reinforces train car exterior. Reduces damage taken.
+
+  - id: turret_assembly
+    name: Turret Assembly
+    category: train_part
+    station: armory
+    inputs:
+      refined_alloys: 4
+      machine_parts: 4
+      circuit_boards: 2
+      wiring: 4
+    output:
+      turret_assembly: 1
+    craft_time: 1200
+    unlock: schematic_advanced
+    profession_bonus: machinist
+    description: Pre-built turret for installation on train.
+
+  - id: power_cell
+    name: Power Cell
+    category: train_part
+    station: refinery
+    inputs:
+      power_cores: 1
+      wiring: 4
+      chemicals: 3
+    output:
+      power_cell: 1
+    craft_time: 600
+    unlock: upgrade_t2
+    profession_bonus: engineer
+    description: Rechargeable power storage for train systems.
+
+  - id: filter_system
+    name: Air Filter System
+    category: train_part
+    station: workshop
+    inputs:
+      fabric_seals: 6
+      polymer_compounds: 3
+      machine_parts: 2
+    output:
+      filter_system: 1
+    craft_time: 480
+    unlock: upgrade_t2
+    profession_bonus: engineer
+    description: Replacement air filtration for climate control.
+
+# =============================================================================
+# SPECIALTY (Lab / Greenhouse)
+# =============================================================================
+
+specialty:
+  - id: herbal_remedy
+    name: Herbal Remedy
+    category: specialty
+    station: greenhouse
+    inputs:
+      seeds_samples: 2
+      water: 2
+    output:
+      herbal_remedy: 2
+    craft_time: 300
+    unlock: default
+    profession_bonus: botanist
+    description: Natural healing item. Slow but resource-efficient.
+
+  - id: nutrient_paste
+    name: Nutrient Paste
+    category: specialty
+    station: greenhouse
+    inputs:
+      rations: 2
+      water: 2
+      seeds_samples: 1
+    output:
+      nutrient_paste: 3
+    craft_time: 240
+    unlock: upgrade_t2
+    profession_bonus: botanist
+    description: Efficient nutrition. Less satisfying than real food.
+
+  - id: stimulant_compound
+    name: Stimulant Compound
+    category: specialty
+    station: lab
+    inputs:
+      chemicals: 4
+      medical_stock: 2
+    output:
+      stimulant_compound: 2
+    craft_time: 300
+    unlock: schematic_advanced
+    profession_bonus: researcher
+    description: Powerful but addictive. Major stat boost, crash afterward.
+
+  - id: prototype_cell
+    name: Prototype Power Cell
+    category: specialty
+    station: lab
+    inputs:
+      power_cores: 2
+      prototype_component: 1
+      optical_components: 2
+    output:
+      prototype_cell: 1
+    craft_time: 600
+    unlock: research
+    profession_bonus: researcher
+    description: Advanced power storage. 2x capacity of standard cells.
+
+  - id: experimental_alloy
+    name: Experimental Alloy
+    category: specialty
+    station: lab
+    inputs:
+      refined_alloys: 4
+      chemicals: 3
+      prototype_component: 1
+    output:
+      experimental_alloy: 2
+    craft_time: 480
+    unlock: research
+    profession_bonus: researcher
+    description: Superior material. Used in advanced equipment crafting.
+
+  - id: bio_scanner
+    name: Bio-Scanner
+    category: specialty
+    station: lab
+    inputs:
+      optical_components: 2
+      circuit_boards: 2
+      medical_stock: 1
+    output:
+      bio_scanner: 1
+    craft_time: 360
+    unlock: schematic_advanced
+    profession_bonus: researcher
+    description: Detects life signs. Useful for finding survivors or threats.
+
+# =============================================================================
+# MATERIAL CONVERSION (Refinery)
+# =============================================================================
+
+conversion:
+  - id: fuel_refining
+    name: Fuel Refining
+    category: conversion
+    station: refinery
+    inputs:
+      crude_fuel: 2
+    output:
+      processed_fuel: 1
+    craft_time: 60
+    unlock: default
+    profession_bonus: engineer
+    description: Converts crude fuel to usable processed fuel.
+
+  - id: alloy_smelting
+    name: Alloy Smelting
+    category: conversion
+    station: refinery
+    inputs:
+      scrap_metal: 5
+    output:
+      refined_alloys: 1
+    craft_time: 120
+    unlock: upgrade_t2
+    profession_bonus: machinist
+    description: Converts scrap metal to refined alloys.
+
+  - id: circuit_extraction
+    name: Circuit Extraction
+    category: conversion
+    station: refinery
+    inputs:
+      scrap_electronics: 4
+    output:
+      circuit_boards: 1
+    craft_time: 90
+    unlock: upgrade_t2
+    profession_bonus: engineer
+    description: Extracts usable circuits from electronic scrap.
+
+  - id: chemical_synthesis
+    name: Chemical Synthesis
+    category: conversion
+    station: refinery
+    inputs:
+      chemicals: 3
+      water: 2
+    output:
+      medical_stock: 1
+    craft_time: 150
+    unlock: upgrade_t3
+    profession_bonus: medic
+    description: Creates medical-grade chemicals from raw materials.
+
+  - id: water_purification
+    name: Water Purification
+    category: conversion
+    station: refinery
+    inputs:
+      crude_water: 3
+    output:
+      water: 2
+    craft_time: 45
+    unlock: default
+    profession_bonus: null
+    description: Purifies contaminated water for safe use.
+
+# =============================================================================
+# RECIPE SUMMARY
+# =============================================================================
+#
+# Total Recipes: 57
+#   - Consumables: 8
+#   - Ammunition: 7
+#   - Medical: 7
+#   - Repair Kits: 5
+#   - Tools: 5
+#   - Equipment: 7
+#   - Train Parts: 5
+#   - Specialty: 6
+#   - Conversion: 5
+#
+# Unlock Distribution:
+#   - Default: 22 (basic recipes available from start)
+#   - Schematic Common: 14 (found in easy-medium locations)
+#   - Schematic Advanced: 8 (found in harder locations)
+#   - Upgrade T2: 7 (unlocked by station upgrades)
+#   - Upgrade T3: 2 (unlocked by station upgrades)
+#   - Research: 4 (unlocked via Lab research)

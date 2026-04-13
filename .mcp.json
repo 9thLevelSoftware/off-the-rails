@@ -1,0 +1,24 @@
+{
+  "mcpServers": {
+    "godot-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\dasbl\\Documents\\off-the-rails\\tools\\godot-mcp\\build\\index.js"
+      ],
+      "env": {
+        "GODOT_PATH": "C:\\Users\\dasbl\\Documents\\Godot\\Godot_v4.6.2-stable_mono_win64.exe",
+        "DEBUG": "true"
+      }
+    },
+    "gdai-mcp": {
+      "command": "uv",
+      "args": [
+        "run",
+        "C:\\Users\\dasbl\\Documents\\off-the-rails\\addons\\gdai-mcp-plugin-godot\\gdai_mcp_server.py"
+      ],
+      "env": {
+        "GDAI_MCP_SERVER_PORT": "3571"
+      }
+    }
+  }
+}

@@ -1,0 +1,642 @@
+# Expedition Location Archetypes
+# Defines the 9 location types players can visit during expeditions.
+#
+# Schema:
+#   id: snake_case identifier
+#   name: Display name
+#   description: What this location is and its atmosphere
+#   theme: Visual/narrative theme keywords
+#   layout_style: How the location is structured
+#   size: small | medium | large
+#   threat_level: low | medium | high | very_high | variable
+#   escalation_profile: slow_burn | noise_sensitive | alarm_based | constant_pressure | social
+#   primary_loot: Most common resource categories
+#   rare_loot: Uncommon but possible finds
+#   primary_objectives: Common mission types here
+#   enemy_types: What threats appear here
+#   environmental_hazards: Non-enemy dangers
+#   modifier_pool: Which modifiers can apply
+#   key_areas: Authored areas that always appear
+#   profession_advantages: Which roles shine here
+
+locations:
+  - id: small_town
+    name: Small Town
+    description: >
+      Abandoned residential settlement. Houses, shops, and community buildings
+      slowly being reclaimed by nature. Relatively safe but picked over.
+    theme:
+      - suburban
+      - overgrown
+      - domestic
+      - quiet
+    layout_style: sprawling
+    size: medium
+    threat_level: low
+    escalation_profile: slow_burn
+
+    primary_loot:
+      - rations
+      - fabric_seals
+      - basic_meds
+      - scrap_metal
+    rare_loot:
+      - medical_stock
+      - scrap_electronics
+      - schematic_common
+
+    primary_objectives:
+      - recover_supplies
+      - rescue_survivor
+      - survey_area
+      - secure_cache
+
+    enemy_types:
+      - swarmers
+      - ambushers
+    enemy_density: low
+    elite_chance: 5%
+
+    environmental_hazards:
+      - collapsed_structures
+      - overgrown_paths
+      - wild_animals
+
+    modifier_pool:
+      - low_visibility
+      - weather_event
+      - salvage_rich
+      - survivor_signal
+
+    key_areas:
+      - name: Town Center
+        purpose: Central navigation hub, community board with intel
+      - name: General Store
+        purpose: Supply cache, guaranteed rations
+      - name: Medical Clinic
+        purpose: Medical supplies, possible survivor
+      - name: Residential Block
+        purpose: Scattered loot, multiple entry points
+
+    profession_advantages:
+      scavenger: +30% loot detection range
+      medic: Identify medical supplies faster
+
+  - id: rail_station
+    name: Rail Station
+    description: >
+      Transit hub where routes converge. Control rooms, platforms, and
+      maintenance bays. Key source of route intel and rail components.
+    theme:
+      - industrial
+      - transit
+      - utilitarian
+      - echoing
+    layout_style: linear_branching
+    size: medium
+    threat_level: medium
+    escalation_profile: alarm_based
+
+    primary_loot:
+      - machine_parts
+      - wiring
+      - relays
+      - processed_fuel
+    rare_loot:
+      - navigation_module
+      - route_key
+      - circuit_boards
+
+    primary_objectives:
+      - retrieve_route_intel
+      - reactivate_switchyard
+      - clear_blocked_route
+      - recover_fuel
+
+    enemy_types:
+      - swarmers
+      - blockers
+      - ranged
+    enemy_density: medium
+    elite_chance: 15%
+
+    environmental_hazards:
+      - electrified_rails
+      - moving_equipment
+      - alarm_systems
+
+    modifier_pool:
+      - power_outage
+      - alarm_triggered
+      - high_density
+      - timed
+
+    key_areas:
+      - name: Control Room
+        purpose: Route intel, system access, navigation data
+      - name: Platform Hall
+        purpose: Central area, multiple exits, combat arena
+      - name: Maintenance Bay
+        purpose: Machine parts, repair equipment
+      - name: Fuel Depot
+        purpose: Fuel storage, fire hazard
+
+    profession_advantages:
+      signal_tech: Access locked systems, +50% intel yield
+      engineer: Bypass security, disable hazards
+
+  - id: freight_yard
+    name: Freight Yard
+    description: >
+      Massive logistics center with shipping containers, loading equipment,
+      and warehouses. Excellent for bulk materials but easy to get lost.
+    theme:
+      - industrial
+      - maze-like
+      - utilitarian
+      - vast
+    layout_style: grid_maze
+    size: large
+    threat_level: medium
+    escalation_profile: slow_burn
+
+    primary_loot:
+      - scrap_metal
+      - crude_fuel
+      - fabric_seals
+      - machine_parts
+    rare_loot:
+      - refined_alloys
+      - hydraulics
+      - engine_assembly
+
+    primary_objectives:
+      - recover_fuel
+      - secure_cargo
+      - retrieve_part
+      - escort_payload
+
+    enemy_types:
+      - swarmers
+      - ambushers
+      - blockers
+    enemy_density: medium
+    elite_chance: 10%
+
+    environmental_hazards:
+      - unstable_containers
+      - heavy_machinery
+      - toxic_spills
+
+    modifier_pool:
+      - low_visibility
+      - salvage_rich
+      - toxic_air
+      - structural_damage
+
+    key_areas:
+      - name: Container Maze
+        purpose: Procedural maze, scattered loot, ambush risk
+      - name: Warehouse Alpha
+        purpose: Bulk storage, guaranteed material cache
+      - name: Loading Dock
+        purpose: Heavy equipment, vehicle access
+      - name: Fuel Storage
+        purpose: Large fuel supply, explosion risk
+
+    profession_advantages:
+      scavenger: Navigate maze faster, +50% carry capacity effect
+      engineer: Operate heavy machinery, access sealed containers
+
+  - id: industrial_facility
+    name: Industrial Facility
+    description: >
+      Factory or processing plant. Heavy machinery, production lines, and
+      hazardous materials. Rich in components but dangerous.
+    theme:
+      - factory
+      - mechanical
+      - hazardous
+      - noisy
+    layout_style: complex_multi_level
+    size: large
+    threat_level: high
+    escalation_profile: alarm_based
+
+    primary_loot:
+      - machine_parts
+      - refined_alloys
+      - power_cores
+      - chemicals
+    rare_loot:
+      - prototype_component
+      - engine_assembly
+      - hydraulics
+
+    primary_objectives:
+      - retrieve_part
+      - restore_power
+      - recover_fuel
+      - eliminate_threat
+
+    enemy_types:
+      - swarmers
+      - blockers
+      - ranged
+      - elites
+    enemy_density: high
+    elite_chance: 25%
+
+    environmental_hazards:
+      - moving_machinery
+      - toxic_chemicals
+      - electrical_hazards
+      - steam_vents
+      - unstable_structures
+
+    modifier_pool:
+      - toxic_air
+      - power_outage
+      - high_density
+      - structural_damage
+      - extreme_heat
+
+    key_areas:
+      - name: Production Floor
+        purpose: Large combat arena, machinery hazards
+      - name: Control Center
+        purpose: System control, alarm management
+      - name: Component Storage
+        purpose: High-value loot cache
+      - name: Power Plant
+        purpose: Power cores, dangerous but rewarding
+      - name: Maintenance Tunnels
+        purpose: Alternate routes, tight spaces
+
+    profession_advantages:
+      engineer: Disable hazards, operate machinery
+      machinist: Identify valuable components, +30% parts yield
+
+  - id: research_sector
+    name: Research Sector
+    description: >
+      Scientific or medical research facility. Labs, clean rooms, and data
+      centers. Source of advanced tech and schematics, but heavily guarded.
+    theme:
+      - clinical
+      - technological
+      - mysterious
+      - sterile
+    layout_style: modular_connected
+    size: medium
+    threat_level: high
+    escalation_profile: noise_sensitive
+
+    primary_loot:
+      - optical_components
+      - circuit_boards
+      - medical_stock
+      - chemicals
+    rare_loot:
+      - prototype_component
+      - schematic_advanced
+      - schematic_prototype
+      - launch_hardware
+
+    primary_objectives:
+      - scan_anomaly
+      - retrieve_schematic
+      - rescue_specialist
+      - recover_samples
+
+    enemy_types:
+      - ambushers
+      - stalkers
+      - elites
+      - guardians
+    enemy_density: medium
+    elite_chance: 35%
+
+    environmental_hazards:
+      - radiation_zones
+      - biohazards
+      - security_systems
+      - quarantine_locks
+
+    modifier_pool:
+      - toxic_air
+      - radiation_zone
+      - silent_running
+      - power_outage
+      - hunted
+
+    key_areas:
+      - name: Main Lab
+        purpose: Research data, schematics, analysis equipment
+      - name: Clean Room
+        purpose: Prototype components, contamination risk
+      - name: Data Center
+        purpose: Colony data, route intel, decryption needed
+      - name: Specimen Storage
+        purpose: Biological samples, high hazard
+      - name: Director's Office
+        purpose: Key cards, personal logs, safe
+
+    profession_advantages:
+      researcher: +50% schematic chance, analyze anomalies
+      signal_tech: Decrypt data, disable security
+      medic: Handle biohazards safely
+
+  - id: agricultural_dome
+    name: Agricultural Dome
+    description: >
+      Enclosed farming complex with greenhouses, water systems, and
+      storage silos. Relatively safe source of food and botanical resources.
+    theme:
+      - organic
+      - humid
+      - overgrown
+      - peaceful
+    layout_style: radial_hub
+    size: medium
+    threat_level: low
+    escalation_profile: slow_burn
+
+    primary_loot:
+      - rations
+      - water
+      - seeds_samples
+      - chemicals
+    rare_loot:
+      - medical_stock
+      - prototype_seeds
+      - colony_data
+
+    primary_objectives:
+      - recover_supplies
+      - collect_samples
+      - restore_water_system
+      - rescue_survivor
+
+    enemy_types:
+      - swarmers
+      - ambushers
+    enemy_density: low
+    elite_chance: 5%
+
+    environmental_hazards:
+      - overgrown_vegetation
+      - broken_irrigation
+      - pesticide_exposure
+      - structural_collapse
+
+    modifier_pool:
+      - toxic_air
+      - low_visibility
+      - weather_event
+      - salvage_rich
+
+    key_areas:
+      - name: Central Hub
+        purpose: Navigation center, water controls
+      - name: Greenhouse Alpha
+        purpose: Food crops, seeds
+      - name: Greenhouse Beta
+        purpose: Medicinal plants, samples
+      - name: Water Treatment
+        purpose: Purified water, chemicals
+      - name: Storage Silo
+        purpose: Bulk food stores, rations
+
+    profession_advantages:
+      botanist: +100% seed/plant yield, identify useful specimens
+      medic: Identify medicinal plants
+
+  - id: tunnel_maintenance
+    name: Tunnel / Maintenance
+    description: >
+      Underground service tunnels and maintenance access ways. Cramped,
+      dark, and dangerous, but can contain rare finds and route shortcuts.
+    theme:
+      - underground
+      - claustrophobic
+      - industrial
+      - dark
+    layout_style: linear_branches
+    size: medium
+    threat_level: high
+    escalation_profile: noise_sensitive
+
+    primary_loot:
+      - wiring
+      - scrap_metal
+      - machine_parts
+      - relays
+    rare_loot:
+      - route_key
+      - power_cores
+      - prototype_component
+
+    primary_objectives:
+      - clear_blocked_route
+      - retrieve_part
+      - survey_tunnel
+      - eliminate_nest
+
+    enemy_types:
+      - swarmers
+      - ambushers
+      - stalkers
+    enemy_density: high
+    elite_chance: 20%
+
+    environmental_hazards:
+      - cave_ins
+      - flooding
+      - gas_pockets
+      - electrical_hazards
+      - tight_spaces
+
+    modifier_pool:
+      - low_visibility
+      - toxic_air
+      - silent_running
+      - structural_damage
+      - hunted
+
+    key_areas:
+      - name: Access Junction
+        purpose: Entry point, route choices
+      - name: Maintenance Hub
+        purpose: Equipment cache, safe room
+      - name: Collapsed Section
+        purpose: Blocked route, clearing objective
+      - name: Deep Tunnel
+        purpose: Rare loot, high danger
+      - name: Emergency Exit
+        purpose: Alternate extraction point
+
+    profession_advantages:
+      engineer: Detect structural weakness, shore up collapse risk
+      signal_tech: Navigate darkness, detect threats
+
+  - id: crash_site
+    name: Crash Site
+    description: >
+      Wreckage of a spacecraft or large vehicle. Scattered debris, fires,
+      and extremely dangerous conditions. Source of milestone components.
+    theme:
+      - destruction
+      - technological
+      - hazardous
+      - urgent
+    layout_style: radial_debris
+    size: large
+    threat_level: very_high
+    escalation_profile: constant_pressure
+
+    primary_loot:
+      - refined_alloys
+      - power_cores
+      - optical_components
+      - circuit_boards
+    rare_loot:
+      - launch_hardware
+      - engine_assembly
+      - prototype_component
+      - navigation_module
+
+    primary_objectives:
+      - retrieve_launch_hardware
+      - scan_anomaly
+      - salvage_components
+      - recover_black_box
+
+    enemy_types:
+      - swarmers
+      - ranged
+      - elites
+      - guardians
+    enemy_density: very_high
+    elite_chance: 40%
+
+    environmental_hazards:
+      - fires
+      - radiation
+      - explosions
+      - unstable_wreckage
+      - toxic_fumes
+
+    modifier_pool:
+      - radiation_zone
+      - structural_damage
+      - extreme_heat
+      - high_density
+      - timed
+
+    key_areas:
+      - name: Outer Debris Field
+        purpose: Initial salvage, scattered components
+      - name: Hull Breach
+        purpose: Entry to interior, combat chokepoint
+      - name: Engine Section
+        purpose: Power cores, engine assembly
+      - name: Cargo Bay
+        purpose: Bulk salvage, possibly intact cargo
+      - name: Command Module
+        purpose: Navigation module, black box, high value
+
+    profession_advantages:
+      researcher: Analyze alien tech, +50% prototype chance
+      engineer: Stabilize wreckage, disable hazards
+      security: Handle constant combat pressure
+
+  - id: survivor_enclave
+    name: Survivor Enclave
+    description: >
+      Living community of other survivors. Can be friendly, hostile, or
+      cautious depending on reputation and approach. Source of trade,
+      intel, and specialist recruitment.
+    theme:
+      - social
+      - fortified
+      - varied
+      - tense
+    layout_style: fortified_compound
+    size: small
+    threat_level: variable
+    escalation_profile: social
+
+    primary_loot:
+      - rations
+      - basic_meds
+      - fabric_seals
+      - trade_goods
+    rare_loot:
+      - specialist_contract
+      - schematic_common
+      - route_key
+      - colony_data
+
+    primary_objectives:
+      - trade_resources
+      - recruit_specialist
+      - gather_intel
+      - negotiate_alliance
+      - rescue_prisoner
+
+    enemy_types:
+      - survivors (if hostile)
+      - guards (if trespassing)
+    enemy_density: variable
+    elite_chance: 10%
+
+    environmental_hazards:
+      - social_missteps
+      - traps (if hostile)
+      - betrayal_risk
+
+    modifier_pool:
+      - reputation_check
+      - trade_opportunity
+      - specialist_available
+      - trap
+
+    key_areas:
+      - name: Main Gate
+        purpose: Entry, first impression, guard checkpoint
+      - name: Trading Post
+        purpose: Resource exchange, information
+      - name: Leader's Quarters
+        purpose: Negotiation, alliance, key decisions
+      - name: Barracks
+        purpose: Specialist recruitment
+      - name: Prison/Storage
+        purpose: Rescue objectives, contraband
+
+    profession_advantages:
+      signal_tech: Gather intel, detect ambush
+      medic: Offer services, gain trust
+      scavenger: Identify trade value, better deals
+
+# =============================================================================
+# LOCATION SUMMARY
+# =============================================================================
+#
+# 9 Location Archetypes:
+#   - Small Town (Low threat, supplies)
+#   - Rail Station (Medium threat, route intel)
+#   - Freight Yard (Medium threat, bulk materials)
+#   - Industrial Facility (High threat, components)
+#   - Research Sector (High threat, tech/schematics)
+#   - Agricultural Dome (Low threat, food/seeds)
+#   - Tunnel/Maintenance (High threat, rare finds)
+#   - Crash Site (Very high threat, milestone items)
+#   - Survivor Enclave (Variable, social/trade)
+#
+# Escalation Profiles:
+#   - Slow Burn: Small Town, Agricultural Dome, Freight Yard
+#   - Noise-Sensitive: Research Sector, Tunnel
+#   - Alarm-Based: Rail Station, Industrial Facility
+#   - Constant Pressure: Crash Site
+#   - Social: Survivor Enclave

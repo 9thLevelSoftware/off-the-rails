@@ -1,0 +1,572 @@
+# Resource Definitions
+# All materials, components, consumables, and key items in the game economy.
+#
+# Schema:
+#   id: snake_case identifier
+#   name: Display name
+#   category: common | structured | milestone
+#   type: material | component | consumable | key_item | data
+#   weight: kg per unit
+#   stack_size: max per inventory slot
+#   description: What this resource is
+#   sources: Where to find it (location types)
+#   used_for: What this resource is used for
+#   rarity: common | uncommon | rare | very_rare | unique
+
+# =============================================================================
+# CARRY CAPACITY REFERENCE
+# =============================================================================
+# Base player capacity: 20 kg
+# Scavenger bonus: +8 kg (28 kg total)
+# Backpack tiers: +5 / +10 / +15 kg
+# Maximum possible: 43 kg (Scavenger + Tier 3 backpack)
+#
+# Overencumbered penalties (over capacity):
+#   1-25% over: -20% move speed
+#   26-50% over: -40% move speed, no sprint
+#   51%+ over: -60% move speed, no sprint, combat penalties
+
+# =============================================================================
+# COMMON RESOURCES - Expedition drops, frequent finds
+# =============================================================================
+
+common_resources:
+  - id: scrap_metal
+    name: Scrap Metal
+    category: common
+    type: material
+    weight: 1.5
+    stack_size: 15
+    description: Salvaged metal pieces. The backbone of basic repairs and low-tier crafting.
+    sources:
+      - industrial_facility
+      - freight_yard
+      - rail_station
+      - small_town
+    used_for:
+      - basic_repairs
+      - low_tier_crafting
+      - ammo_crafting
+    rarity: common
+
+  - id: wiring
+    name: Wiring
+    category: common
+    type: material
+    weight: 0.5
+    stack_size: 20
+    description: Electrical wiring and cables. Essential for electronics and connections.
+    sources:
+      - industrial_facility
+      - rail_station
+      - research_sector
+    used_for:
+      - electronic_repairs
+      - signal_systems
+      - power_connections
+    rarity: common
+
+  - id: chemicals
+    name: Chemicals
+    category: common
+    type: material
+    weight: 1.0
+    stack_size: 10
+    description: Industrial chemicals. Used in medical supplies and fuel processing.
+    sources:
+      - research_sector
+      - industrial_facility
+      - agricultural_dome
+    used_for:
+      - medical_crafting
+      - fuel_processing
+      - cleaning_supplies
+    rarity: common
+
+  - id: crude_fuel
+    name: Crude Fuel
+    category: common
+    type: consumable
+    weight: 2.0
+    stack_size: 10
+    description: Unrefined fuel. Needs processing before efficient use.
+    sources:
+      - freight_yard
+      - industrial_facility
+      - crash_site
+    used_for:
+      - refinery_processing
+      - emergency_fuel (inefficient)
+    rarity: common
+
+  - id: fabric_seals
+    name: Fabric & Seals
+    category: common
+    type: material
+    weight: 0.5
+    stack_size: 20
+    description: Cloth, rubber seals, and insulation materials.
+    sources:
+      - small_town
+      - freight_yard
+      - survivor_enclave
+    used_for:
+      - suit_repairs
+      - gasket_replacement
+      - insulation
+    rarity: common
+
+  - id: basic_meds
+    name: Basic Meds
+    category: common
+    type: consumable
+    weight: 0.3
+    stack_size: 15
+    description: Bandages, painkillers, basic first aid supplies.
+    sources:
+      - small_town
+      - rail_station
+      - survivor_enclave
+    used_for:
+      - minor_healing
+      - stabilization
+    rarity: common
+
+  - id: rations
+    name: Rations
+    category: common
+    type: consumable
+    weight: 0.5
+    stack_size: 20
+    description: Preserved food. Keeps the crew fed.
+    sources:
+      - small_town
+      - freight_yard
+      - agricultural_dome
+      - survivor_enclave
+    used_for:
+      - crew_sustenance
+      - morale
+    rarity: common
+
+  - id: water
+    name: Purified Water
+    category: common
+    type: consumable
+    weight: 1.0
+    stack_size: 10
+    description: Clean drinking water. Essential for survival.
+    sources:
+      - agricultural_dome
+      - survivor_enclave
+      - rail_station
+    used_for:
+      - crew_sustenance
+      - medical_procedures
+      - hydroponics
+    rarity: common
+
+  - id: scrap_electronics
+    name: Scrap Electronics
+    category: common
+    type: material
+    weight: 0.8
+    stack_size: 15
+    description: Salvaged circuit boards, chips, and electronic components.
+    sources:
+      - research_sector
+      - rail_station
+      - industrial_facility
+    used_for:
+      - electronics_crafting
+      - signal_repairs
+      - component_extraction
+    rarity: common
+
+  - id: glass_ceramics
+    name: Glass & Ceramics
+    category: common
+    type: material
+    weight: 1.2
+    stack_size: 10
+    description: Glass panels, ceramic tiles, and similar fragile materials.
+    sources:
+      - research_sector
+      - small_town
+      - agricultural_dome
+    used_for:
+      - greenhouse_repairs
+      - optical_components
+      - lab_equipment
+    rarity: uncommon
+
+# =============================================================================
+# STRUCTURED RESOURCES - Upgrade materials, rarer finds
+# =============================================================================
+
+structured_resources:
+  - id: machine_parts
+    name: Machine Parts
+    category: structured
+    type: component
+    weight: 3.0
+    stack_size: 8
+    description: Precision-manufactured mechanical components. Gears, bearings, actuators.
+    sources:
+      - industrial_facility
+      - freight_yard
+      - crash_site
+    used_for:
+      - subsystem_upgrades
+      - engine_repairs
+      - fabricator_maintenance
+    rarity: uncommon
+
+  - id: relays
+    name: Relays
+    category: structured
+    type: component
+    weight: 1.5
+    stack_size: 10
+    description: Electrical relays and switches. Control power distribution and automation.
+    sources:
+      - rail_station
+      - industrial_facility
+      - signal_tower
+    used_for:
+      - power_system_upgrades
+      - automation
+      - signal_repairs
+    rarity: uncommon
+
+  - id: power_cores
+    name: Power Cores
+    category: structured
+    type: component
+    weight: 5.0
+    stack_size: 5
+    description: High-capacity energy storage units. Critical for advanced systems.
+    sources:
+      - research_sector
+      - crash_site
+      - industrial_facility
+    used_for:
+      - engine_upgrades
+      - advanced_systems
+      - emergency_power
+    rarity: rare
+
+  - id: refined_alloys
+    name: Refined Alloys
+    category: structured
+    type: material
+    weight: 4.0
+    stack_size: 6
+    description: High-grade metal alloys. Stronger, lighter, more durable.
+    sources:
+      - industrial_facility
+      - crash_site
+      - freight_yard
+    used_for:
+      - armor_upgrades
+      - structural_reinforcement
+      - advanced_crafting
+    rarity: uncommon
+
+  - id: optical_components
+    name: Optical Components
+    category: structured
+    type: component
+    weight: 1.0
+    stack_size: 8
+    description: Lenses, sensors, and precision optical equipment.
+    sources:
+      - research_sector
+      - signal_tower
+      - crash_site
+    used_for:
+      - signal_upgrades
+      - targeting_systems
+      - research_equipment
+    rarity: rare
+
+  - id: medical_stock
+    name: Medical Stock
+    category: structured
+    type: consumable
+    weight: 0.8
+    stack_size: 10
+    description: Advanced medical supplies. Surgical tools, IV equipment, pharmaceuticals.
+    sources:
+      - research_sector
+      - survivor_enclave
+      - rail_station
+    used_for:
+      - advanced_healing
+      - surgery
+      - status_treatment
+    rarity: uncommon
+
+  - id: processed_fuel
+    name: Processed Fuel
+    category: structured
+    type: consumable
+    weight: 1.5
+    stack_size: 15
+    description: Refined, high-efficiency fuel. Powers the train.
+    sources:
+      - refinery (crafted)
+      - industrial_facility
+      - freight_yard
+    used_for:
+      - train_locomotion
+      - generator_power
+    rarity: uncommon
+
+  - id: polymer_compounds
+    name: Polymer Compounds
+    category: structured
+    type: material
+    weight: 1.2
+    stack_size: 10
+    description: Advanced plastics and synthetic materials.
+    sources:
+      - research_sector
+      - industrial_facility
+    used_for:
+      - insulation
+      - seals
+      - lightweight_components
+    rarity: uncommon
+
+  - id: circuit_boards
+    name: Circuit Boards
+    category: structured
+    type: component
+    weight: 0.5
+    stack_size: 12
+    description: Intact circuit boards for complex electronics.
+    sources:
+      - research_sector
+      - rail_station
+      - signal_tower
+    used_for:
+      - electronics_upgrades
+      - computer_repairs
+      - automation_systems
+    rarity: uncommon
+
+  - id: hydraulics
+    name: Hydraulic Components
+    category: structured
+    type: component
+    weight: 4.0
+    stack_size: 5
+    description: Hydraulic pumps, lines, and actuators.
+    sources:
+      - industrial_facility
+      - freight_yard
+      - crash_site
+    used_for:
+      - heavy_machinery
+      - train_systems
+      - doors_airlocks
+    rarity: uncommon
+
+  - id: seeds_samples
+    name: Seeds & Samples
+    category: structured
+    type: material
+    weight: 0.2
+    stack_size: 20
+    description: Viable plant seeds and biological samples for cultivation.
+    sources:
+      - agricultural_dome
+      - research_sector
+      - survivor_enclave
+    used_for:
+      - greenhouse_cultivation
+      - botanical_research
+    rarity: uncommon
+
+# =============================================================================
+# MILESTONE RESOURCES - Campaign progression gates
+# =============================================================================
+
+milestone_resources:
+  - id: engine_assembly
+    name: Engine Assembly
+    category: milestone
+    type: key_item
+    weight: 15.0
+    stack_size: 1
+    description: Critical engine components. Required for train progression milestones.
+    sources:
+      - crash_site
+      - industrial_facility
+      - freight_yard
+    used_for:
+      - train_state_upgrades
+      - engine_restoration
+    rarity: very_rare
+
+  - id: navigation_module
+    name: Navigation Module
+    category: milestone
+    type: key_item
+    weight: 8.0
+    stack_size: 1
+    description: Advanced navigation computer. Unlocks new route options.
+    sources:
+      - signal_tower
+      - research_sector
+      - rail_station
+    used_for:
+      - route_unlocks
+      - hazard_prediction
+    rarity: very_rare
+
+  - id: launch_hardware
+    name: Launch Hardware
+    category: milestone
+    type: key_item
+    weight: 20.0
+    stack_size: 1
+    description: Spacecraft components. Required for endgame escape.
+    sources:
+      - crash_site
+      - research_sector
+    used_for:
+      - ship_construction
+      - escape_preparation
+    rarity: very_rare
+
+  - id: prototype_component
+    name: Prototype Component
+    category: milestone
+    type: key_item
+    weight: 5.0
+    stack_size: 1
+    description: Experimental technology. Unlocks advanced capabilities.
+    sources:
+      - research_sector
+      - crash_site
+      - unique_locations
+    used_for:
+      - advanced_tech_unlocks
+      - prototype_crafting
+    rarity: very_rare
+
+  - id: schematic_common
+    name: Schematic (Common)
+    category: milestone
+    type: data
+    weight: 0.1
+    stack_size: 10
+    description: Technical drawings for standard equipment and upgrades.
+    sources:
+      - rail_station
+      - industrial_facility
+      - survivor_enclave
+    used_for:
+      - recipe_unlocks
+      - upgrade_unlocks
+    rarity: uncommon
+
+  - id: schematic_advanced
+    name: Schematic (Advanced)
+    category: milestone
+    type: data
+    weight: 0.1
+    stack_size: 5
+    description: Technical drawings for advanced equipment and systems.
+    sources:
+      - research_sector
+      - crash_site
+    used_for:
+      - advanced_recipe_unlocks
+      - tech_tree_progression
+    rarity: rare
+
+  - id: schematic_prototype
+    name: Schematic (Prototype)
+    category: milestone
+    type: data
+    weight: 0.1
+    stack_size: 1
+    description: Experimental designs for cutting-edge technology.
+    sources:
+      - research_sector
+      - unique_locations
+    used_for:
+      - prototype_unlocks
+      - endgame_tech
+    rarity: very_rare
+
+  - id: specialist_contract
+    name: Specialist Contract
+    category: milestone
+    type: data
+    weight: 0.0
+    stack_size: 1
+    description: Agreement securing a specialist's services. Unlocks NPC crew member.
+    sources:
+      - survivor_enclave
+      - unique_locations
+    used_for:
+      - npc_recruitment
+      - profession_coverage
+    rarity: rare
+
+  - id: route_key
+    name: Route Authorization
+    category: milestone
+    type: key_item
+    weight: 0.5
+    stack_size: 1
+    description: Access codes or physical keys for locked rail routes.
+    sources:
+      - rail_station
+      - signal_tower
+      - survivor_enclave
+    used_for:
+      - blocked_route_access
+      - shortcut_unlocks
+    rarity: rare
+
+  - id: colony_data
+    name: Colony Data Archive
+    category: milestone
+    type: data
+    weight: 0.1
+    stack_size: 5
+    description: Historical records, maps, and colony information.
+    sources:
+      - rail_station
+      - research_sector
+      - survivor_enclave
+    used_for:
+      - lore_unlocks
+      - hidden_location_reveals
+      - route_intelligence
+    rarity: uncommon
+
+# =============================================================================
+# RESOURCE SUMMARY
+# =============================================================================
+#
+# Common (10 types): Daily use, expedition staples
+#   - Scrap Metal, Wiring, Chemicals, Crude Fuel, Fabric/Seals
+#   - Basic Meds, Rations, Water, Scrap Electronics, Glass/Ceramics
+#
+# Structured (11 types): Upgrades and advanced crafting
+#   - Machine Parts, Relays, Power Cores, Refined Alloys, Optical Components
+#   - Medical Stock, Processed Fuel, Polymer Compounds, Circuit Boards
+#   - Hydraulics, Seeds/Samples
+#
+# Milestone (10 types): Campaign progression gates
+#   - Engine Assembly, Navigation Module, Launch Hardware, Prototype Component
+#   - Schematics (Common/Advanced/Prototype), Specialist Contract
+#   - Route Key, Colony Data
+#
+# Total: 31 resource types

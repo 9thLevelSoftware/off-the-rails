@@ -1,0 +1,266 @@
+# Profession Definitions
+# Each profession defines a player specialization with train and field roles.
+#
+# Schema:
+#   id: snake_case identifier
+#   name: Display name
+#   description: Core focus and fantasy
+#   primary_car: Train car this profession is stationed at
+#   secondary_cars: Other cars this profession can assist with
+#   active_abilities: List of active abilities (things only this profession can do well)
+#   passive_bonuses: Permanent efficiency improvements
+#   field_role: What this profession contributes during expeditions
+#   synergies: Professions that combine well with this one
+#   priority: Recommended priority for small crews (1 = highest)
+
+professions:
+  - id: engineer
+    name: Engineer
+    description: The train's lifeline. Keeps systems running, power flowing, and breakdowns from becoming disasters.
+    primary_car: engine_car
+    secondary_cars:
+      - refinery_car
+    active_abilities:
+      - id: emergency_repair
+        name: Emergency Repair
+        description: Fast fix under pressure. Temporary but immediate restoration of damaged subsystem.
+        cooldown: 120s
+      - id: power_reroute
+        name: Power Reroute
+        description: Redirect power from non-critical to critical systems during emergencies.
+        cooldown: 60s
+      - id: system_overclock
+        name: System Overclock
+        description: Boost a subsystem temporarily at risk of damage.
+        cooldown: 180s
+    passive_bonuses:
+      - 25% faster repair speed
+      - 15% reduced material cost for repairs
+      - Early warning on system failures
+    field_role: Restore local power, bypass security systems, salvage machinery, assess structures
+    synergies:
+      - machinist
+      - security
+    priority: 2
+
+  - id: medic
+    name: Medic
+    description: Keeps the crew alive. Handles everything from minor injuries to emergency surgery.
+    primary_car: infirmary_car
+    secondary_cars:
+      - bunks_car
+    active_abilities:
+      - id: field_surgery
+        name: Field Surgery
+        description: Perform complex medical procedures outside infirmary.
+        cooldown: 300s
+      - id: stabilize
+        name: Stabilize
+        description: Prevent downed player from dying, buying time for extraction.
+        cooldown: 30s
+      - id: purge
+        name: Purge
+        description: Remove status effects (poison, infection, radiation).
+        cooldown: 90s
+    passive_bonuses:
+      - 30% faster healing rate
+      - 20% reduced medical supply consumption
+      - Diagnose conditions faster
+    field_role: Revive downed players, cure afflictions, triage decisions, identify medical hazards
+    synergies:
+      - botanist
+      - researcher
+    priority: 1
+
+  - id: scavenger
+    name: Scavenger
+    description: The expedition's eyes and hands. Finds what others miss and carries more back.
+    primary_car: cargo_car
+    secondary_cars: []
+    active_abilities:
+      - id: loot_sense
+        name: Loot Sense
+        description: Highlight nearby items and containers through walls.
+        cooldown: 45s
+      - id: efficient_packing
+        name: Efficient Packing
+        description: Reorganize inventory for bonus capacity.
+        cooldown: 120s
+      - id: quick_grab
+        name: Quick Grab
+        description: Faster looting animation, can grab while moving.
+        cooldown: 10s
+    passive_bonuses:
+      - 40% increased carry capacity
+      - Better quality rolls on loot tables
+      - Detect hidden containers
+    field_role: Find hidden caches, optimize loot distribution, lead extraction, appraise items
+    synergies:
+      - signal_tech
+      - security
+    priority: 3
+
+  - id: security
+    name: Security
+    description: Combat specialist and threat manager. Protects the team and controls engagements.
+    primary_car: armory_car
+    secondary_cars: []
+    active_abilities:
+      - id: suppression_fire
+        name: Suppression Fire
+        description: Pin enemies, reduce their accuracy and aggression.
+        cooldown: 30s
+      - id: defensive_stance
+        name: Defensive Stance
+        description: Damage reduction and threat draw. Become the target.
+        cooldown: 60s
+      - id: threat_tag
+        name: Threat Tag
+        description: Mark priority targets for team focus fire.
+        cooldown: 15s
+    passive_bonuses:
+      - 15% weapon handling improvement
+      - 10% reduced ammo consumption
+      - Faster threat identification
+    field_role: Point defense, crowd control, combat leadership, protect vulnerable teammates
+    synergies:
+      - engineer
+      - scavenger
+    priority: 2
+
+  - id: signal_tech
+    name: Signal Tech
+    description: Information warfare and navigation. Knows where to go and what's coming.
+    primary_car: signal_car
+    secondary_cars:
+      - engine_car
+    active_abilities:
+      - id: area_scan
+        name: Area Scan
+        description: Reveal enemies, items, and hazards in radius.
+        cooldown: 60s
+      - id: comms_intercept
+        name: Comms Intercept
+        description: Gather intel from enemy communications.
+        cooldown: 120s
+      - id: route_override
+        name: Route Override
+        description: Unlock blocked paths or alternate routes.
+        cooldown: 180s
+    passive_bonuses:
+      - Better destination intel before arrival
+      - Advance warning on route hazards
+      - Faster terminal interaction
+    field_role: Hack terminals, disable alarms, call extraction, coordinate team positioning
+    synergies:
+      - scavenger
+      - researcher
+    priority: 3
+
+  - id: machinist
+    name: Machinist
+    description: The maker. Builds what the team needs, when they need it.
+    primary_car: workshop_car
+    secondary_cars:
+      - refinery_car
+    active_abilities:
+      - id: field_fabrication
+        name: Field Fabrication
+        description: Craft basic items without workshop access.
+        cooldown: 90s
+      - id: jury_rig
+        name: Jury-Rig
+        description: Create temporary solutions from available materials.
+        cooldown: 60s
+      - id: upgrade_installation
+        name: Upgrade Installation
+        description: Install upgrades faster with bonus effects.
+        cooldown: 300s
+    passive_bonuses:
+      - 25% faster crafting speed
+      - 15% reduced material costs for crafting
+      - Unlock advanced recipe variants
+    field_role: Craft consumables on-site, repair tools mid-mission, assess salvage, improvise
+    synergies:
+      - engineer
+      - researcher
+    priority: 4
+
+  - id: botanist
+    name: Botanist
+    description: Sustainability specialist. Keeps the train fed and stocked for long campaigns.
+    primary_car: greenhouse_car
+    secondary_cars:
+      - infirmary_car
+    active_abilities:
+      - id: harvest_optimization
+        name: Harvest Optimization
+        description: Extract maximum yield from plant sources.
+        cooldown: 45s
+      - id: medicinal_preparation
+        name: Medicinal Preparation
+        description: Create remedies from harvested plants.
+        cooldown: 120s
+      - id: crop_boost
+        name: Crop Boost
+        description: Accelerate greenhouse growth temporarily.
+        cooldown: 300s
+    passive_bonuses:
+      - 30% increased yield from plants
+      - Food and medicine last 20% longer
+      - Identify plant properties instantly
+    field_role: Identify useful plants, harvest samples, create natural remedies, assess toxicity
+    synergies:
+      - medic
+      - researcher
+    priority: 5
+
+  - id: researcher
+    name: Researcher
+    description: The endgame specialist. Unlocks advanced technology and understands the unknown.
+    primary_car: lab_car
+    secondary_cars:
+      - signal_car
+    active_abilities:
+      - id: schematic_analysis
+        name: Schematic Analysis
+        description: Unlock new recipes from found schematics.
+        cooldown: 180s
+      - id: anomaly_scan
+        name: Anomaly Scan
+        description: Identify and analyze unknown phenomena.
+        cooldown: 90s
+      - id: prototype_activation
+        name: Prototype Activation
+        description: Use experimental tech safely without risk of malfunction.
+        cooldown: 120s
+    passive_bonuses:
+      - 40% faster research speed
+      - Unlock advanced tech tree branches
+      - Better yields from analysis
+    field_role: Analyze artifacts, identify unknowns, collect samples, interface with alien tech
+    synergies:
+      - signal_tech
+      - machinist
+    priority: 5
+
+# Minimum viable crew recommendations
+crew_recommendations:
+  skeleton_crew_2:
+    required: [medic]
+    recommended: [engineer, security]
+    note: One person keeps people alive, one handles problems
+
+  small_crew_4:
+    required: [medic, security]
+    recommended: [engineer, scavenger, signal_tech]
+    note: Combat, healing, and either technical or logistics coverage
+
+  standard_crew_6:
+    required: [medic, security, engineer]
+    recommended: [scavenger, signal_tech, machinist]
+    note: Core coverage with production capability
+
+  full_crew_8:
+    composition: all
+    note: Full specialization, maximum efficiency
