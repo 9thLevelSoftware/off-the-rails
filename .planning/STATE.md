@@ -1,13 +1,13 @@
 # Project State
 
 ## Current Position
-- **Phase**: 2 of 7 (complete)
-- **Status**: Phase 2 complete — review passed (1 cycle)
-- **Last Activity**: Phase 2 review passed (2026-04-13)
+- **Phase**: 3 of 7 (executed)
+- **Status**: Phase 3 executed — 3 plans across 3 waves complete
+- **Last Activity**: Phase 3 execution (2026-04-13)
 
 ## Progress
 ```
-[#####               ] 24% — 5/~21 plans complete
+[########            ] 38% — 8/~21 plans complete
 ```
 
 ## Phase 1: Foundation — VERIFIED
@@ -60,6 +60,42 @@
 - Collision layers set in code (layer 1 for physics bodies)
 - Player group for specific detection (vs generic CharacterBody3D)
 
+## Phase 3: Train Core — EXECUTED
+
+| Plan | Wave | Name | Agent(s) | Status |
+|------|------|------|----------|--------|
+| 03-01 | 1 | Subsystem Architecture | engineering-senior-developer | ✓ Complete |
+| 03-02 | 2 | Car Composition & Factory | engineering-senior-developer | ✓ Complete |
+| 03-03 | 3 | Integration & Interaction System | engineering-senior-developer | ✓ Complete |
+
+**Execution Summary**:
+- Wave 1: Subsystem base class + Locomotion, PowerGrid, Fabricator implementations
+- Wave 2: TrainCar composition pattern, EngineCar/WorkshopCar scenes, TrainCarFactory
+- Wave 3: InteractionController (E-key), TrainManager (two-phase init), train scene integration
+
+**Key Outputs**:
+- `src/train/subsystems/subsystem.gd` — Abstract base with state machine
+- `src/train/subsystems/locomotion.gd` — Engine locomotion
+- `src/train/subsystems/power_grid.gd` — Power source with availability signal
+- `src/train/subsystems/fabricator.gd` — Workshop crafting with power dependency
+- `src/train/cars/train_car.gd` — Composition container base class
+- `src/train/cars/train_car_factory.gd` — Factory for car instantiation
+- `src/train/cars/engine.tscn` — Engine car with PowerGrid + Locomotion
+- `src/train/cars/workshop.tscn` — Workshop car with Fabricator
+- `src/train/interaction/interactable.gd` — Interaction interface
+- `src/train/interaction/interaction_controller.gd` — E-key interaction dispatch
+- `src/train/train_manager.gd` — Car orchestration and power flow
+
+**CRITIQUE-FIX Items Applied**:
+- Signal timing: PowerGrid connects to own state_changed for guaranteed emission
+- Null guards: Fabricator validates power_source in can_go_online() and set_power_source()
+- Deferred lookup: InteractionController uses call_deferred for player group timing
+- Two-phase init: TrainManager separates car creation from dependency wiring
+
+**Known Issues**:
+- LSP indexing delay for new class_names (resolves after editor restart)
+- Expected "no player" warning when running train.tscn standalone
+
 ## Recent Decisions
 
 | Decision | Value |
@@ -69,6 +105,7 @@
 | Cost Profile | Premium |
 | MVP Scope | Single-player core loop |
 | V1 Systems | Train (2-3 cars), Expeditions, Professions (2-3), Crafting |
+| Phase 3 Architecture | Clean Architecture (user selected) |
 
 ## Architecture Decisions (from Exploration)
 
@@ -82,4 +119,4 @@
 
 ## Next Action
 
-Run `/legion:plan 3` to plan Phase 3: Train Core
+Run `/legion:review` to review Phase 3: Train Core
