@@ -171,11 +171,11 @@
 
 | Phase | Plans | Completed | Status |
 |-------|-------|-----------|--------|
-| Phase 1: Foundation | 2-3 | 0 | Not Started |
+| Phase 1: Foundation | 3 | 3 | Complete |
 | Phase 2: Player & Movement | 2 | 0 | Not Started |
 | Phase 3: Train Core | 3 | 0 | Not Started |
 | Phase 4: Expedition Core | 4 | 0 | Not Started |
 | Phase 5: Professions | 3 | 0 | Not Started |
 | Phase 6: Crafting | 3 | 0 | Not Started |
 | Phase 7: Integration | 3 | 0 | Not Started |
-| **Total** | **~20** | **0** | **0%** |
+| **Total** | **~21** | **3** | **14%** |
