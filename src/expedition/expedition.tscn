@@ -1,9 +1,35 @@
-[gd_scene format=3 uid="uid://dau7xgl0ltra4"]
+[gd_scene load_steps=5 format=3 uid="uid://dau7xgl0ltra4"]
 
-[ext_resource type="Script" uid="uid://ba5x33qmje33m" path="res://src/expedition/expedition.gd" id="1_8rfuj"]
+[ext_resource type="Script" uid="uid://ba5x33qmje33m" path="res://src/expedition/expedition.gd" id="1_expedition"]
 
-[node name="Expedition" type="Node2D" unique_id=1522058353]
-script = ExtResource("1_8rfuj")
+[sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
+size = Vector3(20, 1, 20)
 
-[node name="PlaceholderLabel" type="Label" parent="." unique_id=1441597621]
-text = "Expedition Scene Placeholder"
+[sub_resource type="BoxMesh" id="BoxMesh_floor"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_exit"]
+size = Vector3(4, 3, 1)
+
+[node name="Expedition" type="Node3D"]
+script = ExtResource("1_expedition")
+
+[node name="PlayerSpawn" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="Floor" type="StaticBody3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Floor"]
+shape = SubResource("BoxShape3D_floor")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Floor"]
+mesh = SubResource("BoxMesh_floor")
+
+[node name="ExitTrigger" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -10)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExitTrigger"]
+shape = SubResource("BoxShape3D_exit")

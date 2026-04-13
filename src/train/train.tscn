@@ -1,9 +1,28 @@
-[gd_scene format=3 uid="uid://dx4hpiciimq5d"]
+[gd_scene load_steps=4 format=3 uid="uid://dx4hpiciimq5d"]
 
-[ext_resource type="Script" uid="uid://bqun37sn2iacm" path="res://src/train/train.gd" id="1_7riy8"]
+[ext_resource type="Script" uid="uid://bqun37sn2iacm" path="res://src/train/train.gd" id="1_train"]
 
-[node name="Train" type="Node2D" unique_id=2040623816]
-script = ExtResource("1_7riy8")
+[sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
+size = Vector3(10, 1, 10)
 
-[node name="PlaceholderLabel" type="Label" parent="." unique_id=105464925]
-text = "Train Scene Placeholder"
+[sub_resource type="BoxMesh" id="BoxMesh_floor"]
+size = Vector3(10, 1, 10)
+
+[node name="Train" type="Node3D"]
+script = ExtResource("1_train")
+
+[node name="PlayerSpawn" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="Floor" type="StaticBody3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Floor"]
+shape = SubResource("BoxShape3D_floor")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Floor"]
+mesh = SubResource("BoxMesh_floor")
+
+[node name="TrainCars" type="Node3D" parent="."]
