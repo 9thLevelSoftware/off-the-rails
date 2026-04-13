@@ -1,9 +1,9 @@
 # Project State
 
 ## Current Position
-- **Phase**: 2 of 7 (executed, pending review)
-- **Status**: Phase 2 complete — all plans executed successfully
-- **Last Activity**: Phase 2 execution (2026-04-13)
+- **Phase**: 2 of 7 (complete)
+- **Status**: Phase 2 complete — review passed (1 cycle)
+- **Last Activity**: Phase 2 review passed (2026-04-13)
 
 ## Progress
 ```
@@ -26,7 +26,7 @@
 - Main scene with additive loading pattern
 - MCP workflow verified (gdai-mcp primary)
 
-## Phase 2: Player & Movement — EXECUTED
+## Phase 2: Player & Movement — VERIFIED
 
 | Plan | Wave | Name | Agent(s) | Status |
 |------|------|------|----------|--------|
@@ -37,19 +37,28 @@
 - Wave 1: Player scene created with CharacterBody3D, movement script, input configuration
 - Wave 2: GameState extended with scene transition API, Train/Expedition scenes created
 
+**Review Summary**:
+- Reviewers: engineering-godot-developer, testing-qa-verification-specialist
+- Cycles: 1 (with fix cycle)
+- Findings: 4 warnings fixed, 5 suggestions deferred
+- Fixes: Collision layers in code, scene auto-load, exit trigger detection
+
 **Key Outputs**:
 - `src/player/player.tscn` — Player character with WASD + mouse look
-- `src/player/player.gd` — Movement controller (walk/sprint/jump)
+- `src/player/player.gd` — Movement controller (walk/sprint/jump) + collision layers
 - `src/player/camera_controller.gd` — Camera placeholder
 - `src/train/train.tscn` — Train scene with PlayerSpawn
 - `src/expedition/expedition.tscn` — Expedition scene with PlayerSpawn + ExitTrigger
 - `src/autoloads/game_state.gd` — Extended with scene transition API
+- `src/main.gd` — Auto-loads train scene on startup
 
 **Implementation Decisions**:
 - Physical keycodes for layout-independent input
 - Camera mount pattern for gimbal-lock-free mouse look
 - Node2D→Node3D conversion for scene compatibility
 - Player preserved across scene transitions (not recreated)
+- Collision layers set in code (layer 1 for physics bodies)
+- Player group for specific detection (vs generic CharacterBody3D)
 
 ## Recent Decisions
 
@@ -73,4 +82,4 @@
 
 ## Next Action
 
-Run `/legion:review` to verify Phase 2: Player & Movement
+Run `/legion:plan 3` to plan Phase 3: Train Core

@@ -3,7 +3,7 @@
 ## Phases
 
 - [ ] **Phase 1: Foundation** — Project structure, data pipeline, core autoloads
-- [ ] **Phase 2: Player & Movement** — Player character, camera, basic controls
+- [x] **Phase 2: Player & Movement** — Player character, camera, basic controls
 - [ ] **Phase 3: Train Core** — Train scene, Engine car, Workshop car, interaction
 - [ ] **Phase 4: Expedition Core** — Expedition scene, escalation, extraction
 - [ ] **Phase 5: Professions** — 2-3 professions with abilities and bonuses
@@ -172,7 +172,7 @@
 | Phase | Plans | Completed | Status |
 |-------|-------|-----------|--------|
 | Phase 1: Foundation | 3 | 3 | Verified |
-| Phase 2: Player & Movement | 2 | 2 | Complete |
+| Phase 2: Player & Movement | 2 | 2 | Verified |
 | Phase 3: Train Core | 3 | 0 | Not Started |
 | Phase 4: Expedition Core | 4 | 0 | Not Started |
 | Phase 5: Professions | 3 | 0 | Not Started |
