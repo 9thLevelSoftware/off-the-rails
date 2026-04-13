@@ -104,3 +104,15 @@ func get_status_summary() -> Dictionary:
 			"operational": subsystem.is_operational()
 		})
 	return summary
+
+
+## Called when an interactor attempts to interact with this car.
+## Emits car_interacted signal and calls _on_car_interacted for subclass override.
+func interact(interactor: Node) -> void:
+	car_interacted.emit(interactor)
+	_on_car_interacted(interactor)
+
+
+## Override in subclasses for car-specific interaction behavior.
+func _on_car_interacted(_interactor: Node) -> void:
+	pass

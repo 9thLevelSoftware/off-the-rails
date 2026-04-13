@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dx4hpiciimq5d"]
+[gd_scene format=3 uid="uid://dx4hpiciimq5d"]
 
 [ext_resource type="Script" uid="uid://bqun37sn2iacm" path="res://src/train/train.gd" id="1_train"]
+[ext_resource type="Script" path="res://src/train/train_manager.gd" id="2_x7r1g"]
+[ext_resource type="Script" path="res://src/train/interaction/interaction_controller.gd" id="3_gb7jv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
 size = Vector3(10, 1, 10)
@@ -8,21 +10,27 @@ size = Vector3(10, 1, 10)
 [sub_resource type="BoxMesh" id="BoxMesh_floor"]
 size = Vector3(10, 1, 10)
 
-[node name="Train" type="Node3D"]
+[node name="Train" type="Node3D" unique_id=883086928]
 script = ExtResource("1_train")
 
-[node name="PlayerSpawn" type="Marker3D" parent="."]
+[node name="PlayerSpawn" type="Marker3D" parent="." unique_id=891061723]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="Environment" type="Node3D" parent="."]
+[node name="Environment" type="Node3D" parent="." unique_id=364033813]
 
-[node name="Floor" type="StaticBody3D" parent="Environment"]
+[node name="Floor" type="StaticBody3D" parent="Environment" unique_id=1028523295]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Floor"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Floor" unique_id=129437043]
 shape = SubResource("BoxShape3D_floor")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Floor"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Floor" unique_id=183828899]
 mesh = SubResource("BoxMesh_floor")
 
-[node name="TrainCars" type="Node3D" parent="."]
+[node name="TrainCars" type="Node3D" parent="." unique_id=1710018524]
+
+[node name="TrainManager" type="Node" parent="." unique_id=2141549388]
+script = ExtResource("2_x7r1g")
+
+[node name="InteractionController" type="Node" parent="." unique_id=804448868]
+script = ExtResource("3_gb7jv")
