@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "refinery_stack"
+name = "Refinery Stack"
+tier = 2
+description = "Improved refinement with better yields."
+effects = ["Fuel conversion (1.5:1 ratio)", "+50% processing speed", "Basic material conversion"]
+costs = {
+  "machine_parts": 4,
+  "chemicals": 4,
+  "refined_alloys": 2,
+  "relays": 2,
+}
+requires = ["crude_processor"]
+profession_bonus = "engineer"
+car = "refinery_car"
+path = "core"

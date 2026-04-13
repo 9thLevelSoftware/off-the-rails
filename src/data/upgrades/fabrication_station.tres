@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "fabrication_station"
+name = "Fabrication Station"
+tier = 3
+description = "Automated fabrication for complex items."
+effects = ["Advanced crafting unlocked", "+60% crafting speed (total)", "-15% material costs"]
+costs = {
+  "machine_parts": 5,
+  "circuit_boards": 4,
+  "power_cores": 1,
+  "relays": 3,
+}
+requires = ["equipped_workshop"]
+profession_bonus = "machinist"
+car = "workshop_car"
+path = "core"

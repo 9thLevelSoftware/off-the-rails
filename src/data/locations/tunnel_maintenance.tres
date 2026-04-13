@@ -1,0 +1,49 @@
+[gd_resource type="Resource" script_class="LocationData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/location_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "tunnel_maintenance"
+name = "Tunnel / Maintenance"
+description = "Underground service tunnels and maintenance access ways. Cramped, dark, and dangerous, but can contain rare finds and route shortcuts.
+"
+theme = ["underground", "claustrophobic", "industrial", "dark"]
+layout_style = "linear_branches"
+size = "medium"
+threat_level = "high"
+escalation_profile = "noise_sensitive"
+primary_loot = ["wiring", "scrap_metal", "machine_parts", "relays"]
+rare_loot = ["route_key", "power_cores", "prototype_component"]
+primary_objectives = ["clear_blocked_route", "retrieve_part", "survey_tunnel", "eliminate_nest"]
+enemy_types = ["swarmers", "ambushers", "stalkers"]
+enemy_density = "high"
+elite_chance = "20%"
+environmental_hazards = ["cave_ins", "flooding", "gas_pockets", "electrical_hazards", "tight_spaces"]
+modifier_pool = ["low_visibility", "toxic_air", "silent_running", "structural_damage", "hunted"]
+key_areas = [
+  {
+    "name": "Access Junction",
+    "purpose": "Entry point, route choices",
+  },
+  {
+    "name": "Maintenance Hub",
+    "purpose": "Equipment cache, safe room",
+  },
+  {
+    "name": "Collapsed Section",
+    "purpose": "Blocked route, clearing objective",
+  },
+  {
+    "name": "Deep Tunnel",
+    "purpose": "Rare loot, high danger",
+  },
+  {
+    "name": "Emergency Exit",
+    "purpose": "Alternate extraction point",
+  },
+]
+profession_advantages = {
+  "engineer": "Detect structural weakness, shore up collapse risk",
+  "signal_tech": "Navigate darkness, detect threats",
+}

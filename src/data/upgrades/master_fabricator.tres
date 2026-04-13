@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "master_fabricator"
+name = "Master Fabricator"
+tier = 4
+description = "Precision manufacturing for the most complex items."
+effects = ["All crafting unlocked", "+100% crafting speed (total)", "-25% material costs (total)", "Prototype crafting available"]
+costs = {
+  "power_cores": 2,
+  "optical_components": 3,
+  "prototype_component": 1,
+  "refined_alloys": 5,
+}
+requires = ["fabrication_station"]
+profession_bonus = "machinist"
+car = "workshop_car"
+path = "core"

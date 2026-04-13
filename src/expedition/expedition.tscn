@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dau7xgl0ltra4"]
+
+[ext_resource type="Script" uid="uid://ba5x33qmje33m" path="res://src/expedition/expedition.gd" id="1_8rfuj"]
+
+[node name="Expedition" type="Node2D" unique_id=1522058353]
+script = ExtResource("1_8rfuj")
+
+[node name="PlaceholderLabel" type="Label" parent="." unique_id=1441597621]
+text = "Expedition Scene Placeholder"

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/resource_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "navigation_module"
+name = "Navigation Module"
+category = "milestone"
+type = "key_item"
+weight = 8.0
+stack_size = 1
+description = "Advanced navigation computer. Unlocks new route options."
+sources = ["signal_tower", "research_sector", "rail_station"]
+used_for = ["route_unlocks", "hazard_prediction"]
+rarity = "very_rare"

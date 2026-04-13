@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "fuel_refining"
+name = "Fuel Refining"
+category = "conversion"
+station = "refinery"
+inputs = {
+  "crude_fuel": 2,
+}
+output = {
+  "processed_fuel": 1,
+}
+craft_time = 60
+unlock = "default"
+profession_bonus = "engineer"
+description = "Converts crude fuel to usable processed fuel."
+recipe_category = "conversion"

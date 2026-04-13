@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "biofuel_converter"
+name = "Biofuel Converter"
+unlock_tier = 3
+description = "Convert organic matter to fuel."
+effects = ["Process food waste into crude fuel", "Process plant matter into fuel"]
+costs = {
+  "machine_parts": 4,
+  "chemicals": 5,
+  "hydraulics": 2,
+}
+requires = ["refinery_stack"]
+profession_bonus = "botanist"
+car = "refinery_car"
+path = "side"

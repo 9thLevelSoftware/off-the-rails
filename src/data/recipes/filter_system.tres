@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "filter_system"
+name = "Air Filter System"
+category = "train_part"
+station = "workshop"
+inputs = {
+  "fabric_seals": 6,
+  "polymer_compounds": 3,
+  "machine_parts": 2,
+}
+output = {
+  "filter_system": 1,
+}
+craft_time = 480
+unlock = "upgrade_t2"
+profession_bonus = "engineer"
+description = "Replacement air filtration for climate control."
+recipe_category = "train_parts"

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="TrainCarData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/train_car_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "workshop_car"
+name = "Workshop"
+description = "Crafting and fabrication station. Repairs equipment and constructs upgrades."
+category = "production"
+acquisition = "early"
+subsystems = ["fabricator", "repair_station"]
+dependencies = ["engine_car"]
+crew_station = true
+upgrade_tree = "workshop_upgrades"

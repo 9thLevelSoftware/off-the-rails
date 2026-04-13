@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "herb_garden"
+name = "Medicinal Herb Garden"
+unlock_tier = 2
+description = "Dedicated space for medicinal plant cultivation."
+effects = ["+30% medicinal plant yield", "Craft basic meds from herbs"]
+costs = {
+  "seeds_samples": 4,
+  "glass_ceramics": 2,
+  "chemicals": 2,
+}
+requires = ["basic_planters"]
+profession_bonus = "medic"
+car = "greenhouse_car"
+path = "side"

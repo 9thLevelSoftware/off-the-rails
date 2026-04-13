@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "climate_dome"
+name = "Climate Dome"
+tier = 3
+description = "Controlled environment for optimal growing conditions."
+effects = ["+100% growth speed (total)", "Grow rare plants", "Temperature and humidity control", "Pest resistance"]
+costs = {
+  "glass_ceramics": 6,
+  "power_cores": 1,
+  "relays": 3,
+  "seeds_samples": 6,
+}
+requires = ["hydroponics_bay"]
+profession_bonus = "botanist"
+car = "greenhouse_car"
+path = "core"

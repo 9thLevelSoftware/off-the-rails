@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/resource_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "route_key"
+name = "Route Authorization"
+category = "milestone"
+type = "key_item"
+weight = 0.5
+stack_size = 1
+description = "Access codes or physical keys for locked rail routes."
+sources = ["rail_station", "signal_tower", "survivor_enclave"]
+used_for = ["blocked_route_access", "shortcut_unlocks"]
+rarity = "rare"

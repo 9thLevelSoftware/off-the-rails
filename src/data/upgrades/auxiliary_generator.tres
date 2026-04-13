@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "auxiliary_generator"
+name = "Auxiliary Generator"
+unlock_tier = 3
+description = "Backup power system kicks in when main engine fails."
+effects = ["60 seconds of emergency power during engine failure", "Keeps critical systems online"]
+costs = {
+  "power_cores": 1,
+  "relays": 3,
+  "machine_parts": 3,
+}
+requires = ["reinforced_drive"]
+profession_bonus = "engineer"
+car = "engine_car"
+path = "side"

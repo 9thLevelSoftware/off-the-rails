@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "trauma_kit_station"
+name = "Trauma Kit Station"
+unlock_tier = 2
+description = "Pre-packed field medical kits for expeditions."
+effects = ["Craft trauma kits at station", "Kits are 30% more effective"]
+costs = {
+  "fabric_seals": 4,
+  "medical_stock": 3,
+}
+requires = ["first_aid_station"]
+profession_bonus = "medic"
+car = "infirmary_car"
+path = "side"

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "chemical_synthesis"
+name = "Chemical Synthesis"
+category = "conversion"
+station = "refinery"
+inputs = {
+  "chemicals": 3,
+  "water": 2,
+}
+output = {
+  "medical_stock": 1,
+}
+craft_time = 150
+unlock = "upgrade_t3"
+profession_bonus = "medic"
+description = "Creates medical-grade chemicals from raw materials."
+recipe_category = "conversion"

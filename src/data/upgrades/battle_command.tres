@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "battle_command"
+name = "Battle Command"
+tier = 4
+description = "Full tactical operations center."
+effects = ["Automated turret targeting", "All ammo types craftable", "All weapon mods available", "Threat analysis system"]
+costs = {
+  "prototype_component": 1,
+  "power_cores": 2,
+  "optical_components": 4,
+  "refined_alloys": 6,
+}
+requires = ["defense_station"]
+profession_bonus = "security"
+car = "armory_car"
+path = "core"

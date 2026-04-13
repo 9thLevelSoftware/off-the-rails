@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="ProfessionData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/profession_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "botanist"
+name = "Botanist"
+description = "Sustainability specialist. Keeps the train fed and stocked for long campaigns."
+primary_car = "greenhouse_car"
+secondary_cars = ["infirmary_car"]
+active_abilities = [
+  {
+    "id": "harvest_optimization",
+    "name": "Harvest Optimization",
+    "description": "Extract maximum yield from plant sources.",
+    "cooldown": "45s",
+  },
+  {
+    "id": "medicinal_preparation",
+    "name": "Medicinal Preparation",
+    "description": "Create remedies from harvested plants.",
+    "cooldown": "120s",
+  },
+  {
+    "id": "crop_boost",
+    "name": "Crop Boost",
+    "description": "Accelerate greenhouse growth temporarily.",
+    "cooldown": "300s",
+  },
+]
+passive_bonuses = ["30% increased yield from plants", "Food and medicine last 20% longer", "Identify plant properties instantly"]
+field_role = "Identify useful plants, harvest samples, create natural remedies, assess toxicity"
+synergies = ["medic", "researcher"]
+priority = 5

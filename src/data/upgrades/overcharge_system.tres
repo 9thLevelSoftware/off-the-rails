@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "overcharge_system"
+name = "Overcharge System"
+unlock_tier = 3
+description = "Sustained power boost for demanding situations."
+effects = [
+  {
+    "Toggle": "+30% speed at +50% fuel cost",
+  },
+  "No damage risk (unlike Emergency Boost)",
+]
+costs = {
+  "power_cores": 2,
+  "circuit_boards": 4,
+  "refined_alloys": 3,
+}
+requires = ["reinforced_drive"]
+profession_bonus = "engineer"
+car = "engine_car"
+path = "side"

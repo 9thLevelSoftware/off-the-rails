@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "prototype_cell"
+name = "Prototype Power Cell"
+category = "specialty"
+station = "lab"
+inputs = {
+  "power_cores": 2,
+  "prototype_component": 1,
+  "optical_components": 2,
+}
+output = {
+  "prototype_cell": 1,
+}
+craft_time = 600
+unlock = "research"
+profession_bonus = "researcher"
+description = "Advanced power storage. 2x capacity of standard cells."
+recipe_category = "specialty"

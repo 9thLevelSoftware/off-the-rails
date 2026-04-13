@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/resource_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "schematic_advanced"
+name = "Schematic (Advanced)"
+category = "milestone"
+type = "data"
+weight = 0.1
+stack_size = 5
+description = "Technical drawings for advanced equipment and systems."
+sources = ["research_sector", "crash_site"]
+used_for = ["advanced_recipe_unlocks", "tech_tree_progression"]
+rarity = "rare"

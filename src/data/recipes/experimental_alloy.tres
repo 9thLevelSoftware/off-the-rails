@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "experimental_alloy"
+name = "Experimental Alloy"
+category = "specialty"
+station = "lab"
+inputs = {
+  "refined_alloys": 4,
+  "chemicals": 3,
+  "prototype_component": 1,
+}
+output = {
+  "experimental_alloy": 2,
+}
+craft_time = 480
+unlock = "research"
+profession_bonus = "researcher"
+description = "Superior material. Used in advanced equipment crafting."
+recipe_category = "specialty"

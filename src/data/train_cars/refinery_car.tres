@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="TrainCarData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/train_car_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "refinery_car"
+name = "Refinery"
+description = "Fuel processing and resource conversion. Turns raw materials into usable forms."
+category = "production"
+acquisition = "mid"
+subsystems = ["refinery_stack", "material_processor"]
+dependencies = ["engine_car", "workshop_car"]
+crew_station = true
+upgrade_tree = "refinery_upgrades"

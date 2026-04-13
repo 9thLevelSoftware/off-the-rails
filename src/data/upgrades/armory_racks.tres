@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "armory_racks"
+name = "Armory Racks"
+tier = 2
+description = "Organized weapon storage with maintenance station."
+effects = ["Expanded weapon storage", "Weapon maintenance +30% faster", "Basic ammo crafting"]
+costs = {
+  "refined_alloys": 4,
+  "machine_parts": 3,
+  "scrap_metal": 4,
+}
+requires = ["weapon_locker"]
+profession_bonus = "security"
+car = "armory_car"
+path = "core"

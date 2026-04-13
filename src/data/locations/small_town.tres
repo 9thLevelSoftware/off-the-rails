@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="LocationData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/location_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "small_town"
+name = "Small Town"
+description = "Abandoned residential settlement. Houses, shops, and community buildings slowly being reclaimed by nature. Relatively safe but picked over.
+"
+theme = ["suburban", "overgrown", "domestic", "quiet"]
+layout_style = "sprawling"
+size = "medium"
+threat_level = "low"
+escalation_profile = "slow_burn"
+primary_loot = ["rations", "fabric_seals", "basic_meds", "scrap_metal"]
+rare_loot = ["medical_stock", "scrap_electronics", "schematic_common"]
+primary_objectives = ["recover_supplies", "rescue_survivor", "survey_area", "secure_cache"]
+enemy_types = ["swarmers", "ambushers"]
+enemy_density = "low"
+elite_chance = "5%"
+environmental_hazards = ["collapsed_structures", "overgrown_paths", "wild_animals"]
+modifier_pool = ["low_visibility", "weather_event", "salvage_rich", "survivor_signal"]
+key_areas = [
+  {
+    "name": "Town Center",
+    "purpose": "Central navigation hub, community board with intel",
+  },
+  {
+    "name": "General Store",
+    "purpose": "Supply cache, guaranteed rations",
+  },
+  {
+    "name": "Medical Clinic",
+    "purpose": "Medical supplies, possible survivor",
+  },
+  {
+    "name": "Residential Block",
+    "purpose": "Scattered loot, multiple entry points",
+  },
+]
+profession_advantages = {
+  "scavenger": "+30% loot detection range",
+  "medic": "Identify medical supplies faster",
+}

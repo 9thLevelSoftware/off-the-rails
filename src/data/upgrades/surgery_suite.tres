@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "surgery_suite"
+name = "Surgery Suite"
+tier = 3
+description = "Full surgical capabilities for serious injuries."
+effects = ["Advanced healing", "Surgery available", "+80% healing speed (total)", "Treat critical injuries"]
+costs = {
+  "medical_stock": 6,
+  "optical_components": 2,
+  "power_cores": 1,
+  "refined_alloys": 2,
+}
+requires = ["treatment_bay"]
+profession_bonus = "medic"
+car = "infirmary_car"
+path = "core"

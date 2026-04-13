@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "scanner_upgrade"
+name = "Scanner Upgrade"
+category = "tool"
+station = "workshop"
+inputs = {
+  "scrap_electronics": 4,
+  "circuit_boards": 2,
+  "optical_components": 1,
+}
+output = {
+  "scanner_upgrade": 1,
+}
+craft_time = 240
+unlock = "schematic_advanced"
+profession_bonus = "signal_tech"
+description = "Improves scanner range and detail. Permanent upgrade."
+recipe_category = "tools"

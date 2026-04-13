@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "analysis_bench"
+name = "Analysis Bench"
+tier = 1
+description = "Basic equipment for examining found items and samples."
+effects = ["Identify unknown items", "Basic sample analysis", "Slow research speed"]
+costs = {
+  "glass_ceramics": 5,
+  "scrap_electronics": 6,
+  "chemicals": 4,
+}
+requires = []
+profession_bonus = "researcher"
+car = "lab_car"
+path = "core"

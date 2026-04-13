@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "noise_maker"
+name = "Noise Maker"
+category = "consumable"
+station = "workshop"
+inputs = {
+  "scrap_electronics": 2,
+  "wiring": 2,
+}
+output = {
+  "noise_maker": 2,
+}
+craft_time = 60
+unlock = "schematic_common"
+profession_bonus = "signal_tech"
+description = "Creates distraction noise. Draws enemy attention."
+recipe_category = "consumables"

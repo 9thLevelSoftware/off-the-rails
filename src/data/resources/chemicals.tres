@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/resource_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "chemicals"
+name = "Chemicals"
+category = "common"
+type = "material"
+weight = 1.0
+stack_size = 10
+description = "Industrial chemicals. Used in medical supplies and fuel processing."
+sources = ["research_sector", "industrial_facility", "agricultural_dome"]
+used_for = ["medical_crafting", "fuel_processing", "cleaning_supplies"]
+rarity = "common"

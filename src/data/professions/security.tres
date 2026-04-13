@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="ProfessionData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/profession_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "security"
+name = "Security"
+description = "Combat specialist and threat manager. Protects the team and controls engagements."
+primary_car = "armory_car"
+secondary_cars = []
+active_abilities = [
+  {
+    "id": "suppression_fire",
+    "name": "Suppression Fire",
+    "description": "Pin enemies, reduce their accuracy and aggression.",
+    "cooldown": "30s",
+  },
+  {
+    "id": "defensive_stance",
+    "name": "Defensive Stance",
+    "description": "Damage reduction and threat draw. Become the target.",
+    "cooldown": "60s",
+  },
+  {
+    "id": "threat_tag",
+    "name": "Threat Tag",
+    "description": "Mark priority targets for team focus fire.",
+    "cooldown": "15s",
+  },
+]
+passive_bonuses = ["15% weapon handling improvement", "10% reduced ammo consumption", "Faster threat identification"]
+field_role = "Point defense, crowd control, combat leadership, protect vulnerable teammates"
+synergies = ["engineer", "scavenger"]
+priority = 2

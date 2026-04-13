@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "stasis_syringe"
+name = "Stasis Syringe"
+category = "medical"
+station = "lab"
+inputs = {
+  "medical_stock": 3,
+  "prototype_component": 1,
+}
+output = {
+  "stasis_syringe": 1,
+}
+craft_time = 300
+unlock = "research"
+profession_bonus = "researcher"
+description = "Halts all biological processes. Pauses death timer indefinitely."
+recipe_category = "medical"

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dx4hpiciimq5d"]
+
+[ext_resource type="Script" uid="uid://bqun37sn2iacm" path="res://src/train/train.gd" id="1_7riy8"]
+
+[node name="Train" type="Node2D" unique_id=2040623816]
+script = ExtResource("1_7riy8")
+
+[node name="PlaceholderLabel" type="Label" parent="." unique_id=105464925]
+text = "Train Scene Placeholder"

@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="ProfessionData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/profession_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "medic"
+name = "Medic"
+description = "Keeps the crew alive. Handles everything from minor injuries to emergency surgery."
+primary_car = "infirmary_car"
+secondary_cars = ["bunks_car"]
+active_abilities = [
+  {
+    "id": "field_surgery",
+    "name": "Field Surgery",
+    "description": "Perform complex medical procedures outside infirmary.",
+    "cooldown": "300s",
+  },
+  {
+    "id": "stabilize",
+    "name": "Stabilize",
+    "description": "Prevent downed player from dying, buying time for extraction.",
+    "cooldown": "30s",
+  },
+  {
+    "id": "purge",
+    "name": "Purge",
+    "description": "Remove status effects (poison, infection, radiation).",
+    "cooldown": "90s",
+  },
+]
+passive_bonuses = ["30% faster healing rate", "20% reduced medical supply consumption", "Diagnose conditions faster"]
+field_role = "Revive downed players, cure afflictions, triage decisions, identify medical hazards"
+synergies = ["botanist", "researcher"]
+priority = 1

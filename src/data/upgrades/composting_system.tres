@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "composting_system"
+name = "Composting System"
+unlock_tier = 2
+description = "Recycle organic waste into fertilizer."
+effects = ["+20% all plant yields", "Reduce food waste"]
+costs = {
+  "machine_parts": 2,
+  "chemicals": 3,
+}
+requires = ["basic_planters"]
+profession_bonus = "botanist"
+car = "greenhouse_car"
+path = "side"

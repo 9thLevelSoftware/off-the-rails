@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="LocationData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/location_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "crash_site"
+name = "Crash Site"
+description = "Wreckage of a spacecraft or large vehicle. Scattered debris, fires, and extremely dangerous conditions. Source of milestone components.
+"
+theme = ["destruction", "technological", "hazardous", "urgent"]
+layout_style = "radial_debris"
+size = "large"
+threat_level = "very_high"
+escalation_profile = "constant_pressure"
+primary_loot = ["refined_alloys", "power_cores", "optical_components", "circuit_boards"]
+rare_loot = ["launch_hardware", "engine_assembly", "prototype_component", "navigation_module"]
+primary_objectives = ["retrieve_launch_hardware", "scan_anomaly", "salvage_components", "recover_black_box"]
+enemy_types = ["swarmers", "ranged", "elites", "guardians"]
+enemy_density = "very_high"
+elite_chance = "40%"
+environmental_hazards = ["fires", "radiation", "explosions", "unstable_wreckage", "toxic_fumes"]
+modifier_pool = ["radiation_zone", "structural_damage", "extreme_heat", "high_density", "timed"]
+key_areas = [
+  {
+    "name": "Outer Debris Field",
+    "purpose": "Initial salvage, scattered components",
+  },
+  {
+    "name": "Hull Breach",
+    "purpose": "Entry to interior, combat chokepoint",
+  },
+  {
+    "name": "Engine Section",
+    "purpose": "Power cores, engine assembly",
+  },
+  {
+    "name": "Cargo Bay",
+    "purpose": "Bulk salvage, possibly intact cargo",
+  },
+  {
+    "name": "Command Module",
+    "purpose": "Navigation module, black box, high value",
+  },
+]
+profession_advantages = {
+  "researcher": "Analyze alien tech, +50% prototype chance",
+  "engineer": "Stabilize wreckage, disable hazards",
+  "security": "Handle constant combat pressure",
+}

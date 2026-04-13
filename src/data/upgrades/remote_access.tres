@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "remote_access"
+name = "Remote Access Terminal"
+unlock_tier = 3
+description = "Hack into destination systems before arrival."
+effects = ["Disable alarms remotely", "Unlock doors before entering", "Access destination cameras"]
+costs = {
+  "circuit_boards": 5,
+  "optical_components": 2,
+  "prototype_component": 1,
+}
+requires = ["comms_array"]
+profession_bonus = "signal_tech"
+car = "signal_car"
+path = "side"

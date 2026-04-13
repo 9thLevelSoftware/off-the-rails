@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "defense_station"
+name = "Defense Station"
+tier = 3
+description = "Integrated defense systems and advanced armaments."
+effects = ["Turret control station", "Advanced ammo crafting", "Weapon modifications available"]
+costs = {
+  "refined_alloys": 5,
+  "circuit_boards": 3,
+  "optical_components": 2,
+  "power_cores": 1,
+}
+requires = ["armory_racks"]
+profession_bonus = "security"
+car = "armory_car"
+path = "core"

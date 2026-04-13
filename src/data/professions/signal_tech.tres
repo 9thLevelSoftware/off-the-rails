@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="ProfessionData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/profession_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "signal_tech"
+name = "Signal Tech"
+description = "Information warfare and navigation. Knows where to go and what's coming."
+primary_car = "signal_car"
+secondary_cars = ["engine_car"]
+active_abilities = [
+  {
+    "id": "area_scan",
+    "name": "Area Scan",
+    "description": "Reveal enemies, items, and hazards in radius.",
+    "cooldown": "60s",
+  },
+  {
+    "id": "comms_intercept",
+    "name": "Comms Intercept",
+    "description": "Gather intel from enemy communications.",
+    "cooldown": "120s",
+  },
+  {
+    "id": "route_override",
+    "name": "Route Override",
+    "description": "Unlock blocked paths or alternate routes.",
+    "cooldown": "180s",
+  },
+]
+passive_bonuses = ["Better destination intel before arrival", "Advance warning on route hazards", "Faster terminal interaction"]
+field_role = "Hack terminals, disable alarms, call extraction, coordinate team positioning"
+synergies = ["scavenger", "researcher"]
+priority = 3

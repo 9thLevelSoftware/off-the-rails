@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "trauma_kit"
+name = "Trauma Kit"
+category = "medical"
+station = "infirmary"
+inputs = {
+  "medical_stock": 2,
+  "fabric_seals": 2,
+  "basic_meds": 2,
+}
+output = {
+  "trauma_kit": 1,
+}
+craft_time = 150
+unlock = "upgrade_t2"
+profession_bonus = "medic"
+description = "Advanced healing for serious injuries. Large health restore."
+recipe_category = "medical"

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "high_efficiency_engine"
+name = "High-Efficiency Engine"
+tier = 3
+description = "Rebuilt engine with optimized combustion and power delivery."
+effects = ["+40% travel speed (total)", "-25% fuel consumption (total)", "Unlocks longer routes"]
+costs = {
+  "machine_parts": 5,
+  "refined_alloys": 4,
+  "power_cores": 2,
+  "engine_assembly": 1,
+}
+requires = ["reinforced_drive"]
+profession_bonus = "engineer"
+car = "engine_car"
+path = "core"

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "bio_lab"
+name = "Bio-Lab"
+tier = 4
+description = "Advanced botanical research and genetic engineering."
+effects = ["+150% growth speed (total)", "Breed new plant varieties", "Extract advanced compounds", "Self-sustaining food supply"]
+costs = {
+  "prototype_component": 1,
+  "optical_components": 3,
+  "medical_stock": 4,
+  "seeds_samples": 8,
+}
+requires = ["climate_dome"]
+profession_bonus = "researcher"
+car = "greenhouse_car"
+path = "core"

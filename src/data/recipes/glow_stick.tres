@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "glow_stick"
+name = "Glow Stick"
+category = "consumable"
+station = "workshop"
+inputs = {
+  "chemicals": 2,
+  "glass_ceramics": 1,
+}
+output = {
+  "glow_stick": 4,
+}
+craft_time = 30
+unlock = "default"
+profession_bonus = null
+description = "Chemical light. Lasts 30 minutes, can be thrown."
+recipe_category = "consumables"

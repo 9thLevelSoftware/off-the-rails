@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/resource_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "colony_data"
+name = "Colony Data Archive"
+category = "milestone"
+type = "data"
+weight = 0.1
+stack_size = 5
+description = "Historical records, maps, and colony information."
+sources = ["rail_station", "research_sector", "survivor_enclave"]
+used_for = ["lore_unlocks", "hidden_location_reveals", "route_intelligence"]
+rarity = "uncommon"

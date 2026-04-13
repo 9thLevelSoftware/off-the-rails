@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "morale_station"
+name = "Morale Station"
+unlock_tier = 2
+description = "Recreation area to maintain crew spirits."
+effects = ["Passive morale regeneration", "Reduces stress debuffs"]
+costs = {
+  "scrap_electronics": 3,
+  "fabric_seals": 4,
+}
+requires = ["makeshift_beds"]
+profession_bonus = null
+car = "bunks_car"
+path = "side"

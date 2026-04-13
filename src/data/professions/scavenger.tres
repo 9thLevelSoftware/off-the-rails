@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="ProfessionData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/profession_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "scavenger"
+name = "Scavenger"
+description = "The expedition's eyes and hands. Finds what others miss and carries more back."
+primary_car = "cargo_car"
+secondary_cars = []
+active_abilities = [
+  {
+    "id": "loot_sense",
+    "name": "Loot Sense",
+    "description": "Highlight nearby items and containers through walls.",
+    "cooldown": "45s",
+  },
+  {
+    "id": "efficient_packing",
+    "name": "Efficient Packing",
+    "description": "Reorganize inventory for bonus capacity.",
+    "cooldown": "120s",
+  },
+  {
+    "id": "quick_grab",
+    "name": "Quick Grab",
+    "description": "Faster looting animation, can grab while moving.",
+    "cooldown": "10s",
+  },
+]
+passive_bonuses = ["40% increased carry capacity", "Better quality rolls on loot tables", "Detect hidden containers"]
+field_role = "Find hidden caches, optimize loot distribution, lead extraction, appraise items"
+synergies = ["signal_tech", "security"]
+priority = 3

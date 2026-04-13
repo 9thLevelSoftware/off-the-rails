@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="TrainCarData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/train_car_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "armory_car"
+name = "Armory"
+description = "Weapon storage, ammunition crafting, and train defense systems."
+category = "utility"
+acquisition = "mid"
+subsystems = ["weapon_racks", "ammo_fabricator", "turrets_defense"]
+dependencies = ["engine_car", "workshop_car"]
+crew_station = true
+upgrade_tree = "armory_upgrades"

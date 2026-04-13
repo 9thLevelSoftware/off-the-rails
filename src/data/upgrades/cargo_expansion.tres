@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "cargo_expansion"
+name = "Cargo Expansion"
+tier = 3
+description = "Maximized storage with efficient space utilization."
+effects = ["+100% storage capacity (200 kg)", "Item sorting system"]
+costs = {
+  "refined_alloys": 4,
+  "machine_parts": 3,
+  "circuit_boards": 2,
+}
+requires = ["organized_racks"]
+profession_bonus = "scavenger"
+car = "cargo_car"
+path = "core"

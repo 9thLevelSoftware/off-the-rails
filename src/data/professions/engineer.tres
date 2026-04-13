@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="ProfessionData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/profession_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "engineer"
+name = "Engineer"
+description = "The train's lifeline. Keeps systems running, power flowing, and breakdowns from becoming disasters."
+primary_car = "engine_car"
+secondary_cars = ["refinery_car"]
+active_abilities = [
+  {
+    "id": "emergency_repair",
+    "name": "Emergency Repair",
+    "description": "Fast fix under pressure. Temporary but immediate restoration of damaged subsystem.",
+    "cooldown": "120s",
+  },
+  {
+    "id": "power_reroute",
+    "name": "Power Reroute",
+    "description": "Redirect power from non-critical to critical systems during emergencies.",
+    "cooldown": "60s",
+  },
+  {
+    "id": "system_overclock",
+    "name": "System Overclock",
+    "description": "Boost a subsystem temporarily at risk of damage.",
+    "cooldown": "180s",
+  },
+]
+passive_bonuses = ["25% faster repair speed", "15% reduced material cost for repairs", "Early warning on system failures"]
+field_role = "Restore local power, bypass security systems, salvage machinery, assess structures"
+synergies = ["machinist", "security"]
+priority = 2

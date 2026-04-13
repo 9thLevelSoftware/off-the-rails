@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "power_cell"
+name = "Power Cell"
+category = "train_part"
+station = "refinery"
+inputs = {
+  "power_cores": 1,
+  "wiring": 4,
+  "chemicals": 3,
+}
+output = {
+  "power_cell": 1,
+}
+craft_time = 600
+unlock = "upgrade_t2"
+profession_bonus = "engineer"
+description = "Rechargeable power storage for train systems."
+recipe_category = "train_parts"

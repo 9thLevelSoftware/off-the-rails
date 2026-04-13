@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "improvised_torch"
+name = "Improvised Torch"
+category = "consumable"
+station = "field"
+inputs = {
+  "scrap_metal": 1,
+  "fabric_seals": 1,
+  "chemicals": 1,
+}
+output = {
+  "torch": 2,
+}
+craft_time = 45
+unlock = "default"
+profession_bonus = null
+description = "Handheld light source. Burns for 10 minutes."
+recipe_category = "consumables"

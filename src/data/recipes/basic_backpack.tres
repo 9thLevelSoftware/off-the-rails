@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "basic_backpack"
+name = "Basic Backpack"
+category = "equipment"
+station = "workshop"
+inputs = {
+  "fabric_seals": 6,
+  "scrap_metal": 2,
+}
+output = {
+  "basic_backpack": 1,
+}
+craft_time = 180
+unlock = "default"
+profession_bonus = "scavenger"
+description = "+5 kg carry capacity."
+recipe_category = "equipment"

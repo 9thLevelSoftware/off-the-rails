@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "lockdown_bunks"
+name = "Lockdown Bunks"
+unlock_tier = 3
+description = "Reinforced sleeping area for emergencies."
+effects = ["Bunks car takes reduced damage during attacks", "Crew can shelter during combat"]
+costs = {
+  "refined_alloys": 3,
+  "machine_parts": 2,
+}
+requires = ["proper_quarters"]
+profession_bonus = "security"
+car = "bunks_car"
+path = "side"

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "ration_pack"
+name = "Ration Pack"
+category = "consumable"
+station = "workshop"
+inputs = {
+  "rations": 3,
+  "fabric_seals": 1,
+}
+output = {
+  "ration_pack": 1,
+}
+craft_time = 45
+unlock = "default"
+profession_bonus = null
+description = "Compact preserved meal. Restores hunger, small morale boost."
+recipe_category = "consumables"

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/resource_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "wiring"
+name = "Wiring"
+category = "common"
+type = "material"
+weight = 0.5
+stack_size = 20
+description = "Electrical wiring and cables. Essential for electronics and connections."
+sources = ["industrial_facility", "rail_station", "research_sector"]
+used_for = ["electronic_repairs", "signal_systems", "power_connections"]
+rarity = "common"

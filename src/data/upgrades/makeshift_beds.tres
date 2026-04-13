@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "makeshift_beds"
+name = "Makeshift Beds"
+tier = 1
+description = "Basic sleeping arrangements. Better than the floor."
+effects = ["Crew can rest", "Slow fatigue recovery"]
+costs = {
+  "fabric_seals": 6,
+  "scrap_metal": 4,
+}
+requires = []
+profession_bonus = null
+car = "bunks_car"
+path = "core"

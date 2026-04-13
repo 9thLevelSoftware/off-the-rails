@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/resource_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "hydraulics"
+name = "Hydraulic Components"
+category = "structured"
+type = "component"
+weight = 4.0
+stack_size = 5
+description = "Hydraulic pumps, lines, and actuators."
+sources = ["industrial_facility", "freight_yard", "crash_site"]
+used_for = ["heavy_machinery", "train_systems", "doors_airlocks"]
+rarity = "uncommon"

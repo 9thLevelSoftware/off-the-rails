@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "medical_kit"
+name = "Medical Kit"
+category = "medical"
+station = "infirmary"
+inputs = {
+  "basic_meds": 2,
+  "fabric_seals": 1,
+  "chemicals": 1,
+}
+output = {
+  "medical_kit": 1,
+}
+craft_time = 90
+unlock = "default"
+profession_bonus = "medic"
+description = "Standard healing item. Restores moderate health."
+recipe_category = "medical"

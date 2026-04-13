@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "stimulant_compound"
+name = "Stimulant Compound"
+category = "specialty"
+station = "lab"
+inputs = {
+  "chemicals": 4,
+  "medical_stock": 2,
+}
+output = {
+  "stimulant_compound": 2,
+}
+craft_time = 300
+unlock = "schematic_advanced"
+profession_bonus = "researcher"
+description = "Powerful but addictive. Major stat boost, crash afterward."
+recipe_category = "specialty"

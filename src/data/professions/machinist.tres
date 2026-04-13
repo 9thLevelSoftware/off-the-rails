@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="ProfessionData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/profession_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "machinist"
+name = "Machinist"
+description = "The maker. Builds what the team needs, when they need it."
+primary_car = "workshop_car"
+secondary_cars = ["refinery_car"]
+active_abilities = [
+  {
+    "id": "field_fabrication",
+    "name": "Field Fabrication",
+    "description": "Craft basic items without workshop access.",
+    "cooldown": "90s",
+  },
+  {
+    "id": "jury_rig",
+    "name": "Jury-Rig",
+    "description": "Create temporary solutions from available materials.",
+    "cooldown": "60s",
+  },
+  {
+    "id": "upgrade_installation",
+    "name": "Upgrade Installation",
+    "description": "Install upgrades faster with bonus effects.",
+    "cooldown": "300s",
+  },
+]
+passive_bonuses = ["25% faster crafting speed", "15% reduced material costs for crafting", "Unlock advanced recipe variants"]
+field_role = "Craft consumables on-site, repair tools mid-mission, assess salvage, improvise"
+synergies = ["engineer", "researcher"]
+priority = 4

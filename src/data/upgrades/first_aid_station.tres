@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "first_aid_station"
+name = "First Aid Station"
+tier = 1
+description = "Basic medical supplies and treatment area."
+effects = ["Basic healing available", "Stabilization possible", "Slow healing rate"]
+costs = {
+  "fabric_seals": 5,
+  "basic_meds": 8,
+  "chemicals": 3,
+}
+requires = []
+profession_bonus = "medic"
+car = "infirmary_car"
+path = "core"

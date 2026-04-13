@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "anti_rad"
+name = "Anti-Radiation Pills"
+category = "medical"
+station = "infirmary"
+inputs = {
+  "chemicals": 4,
+  "medical_stock": 1,
+}
+output = {
+  "anti_rad": 3,
+}
+craft_time = 90
+unlock = "schematic_common"
+profession_bonus = "medic"
+description = "Reduces radiation accumulation. Treats mild radiation sickness."
+recipe_category = "medical"

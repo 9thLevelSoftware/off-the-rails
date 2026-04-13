@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "nutrient_paste"
+name = "Nutrient Paste"
+category = "specialty"
+station = "greenhouse"
+inputs = {
+  "rations": 2,
+  "water": 2,
+  "seeds_samples": 1,
+}
+output = {
+  "nutrient_paste": 3,
+}
+craft_time = 240
+unlock = "upgrade_t2"
+profession_bonus = "botanist"
+description = "Efficient nutrition. Less satisfying than real food."
+recipe_category = "specialty"

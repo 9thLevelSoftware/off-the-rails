@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "command_engine"
+name = "Command Engine"
+tier = 4
+description = "Peak engineering. The train becomes a precision instrument."
+effects = ["+60% travel speed (total)", "-40% fuel consumption (total)", "Unlocks endgame routes", "Reduced breakdown chance"]
+costs = {
+  "power_cores": 3,
+  "refined_alloys": 6,
+  "prototype_component": 1,
+  "engine_assembly": 1,
+}
+requires = ["high_efficiency_engine"]
+profession_bonus = "engineer"
+car = "engine_car"
+path = "core"

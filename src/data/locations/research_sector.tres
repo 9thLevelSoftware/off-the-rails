@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="LocationData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/location_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "research_sector"
+name = "Research Sector"
+description = "Scientific or medical research facility. Labs, clean rooms, and data centers. Source of advanced tech and schematics, but heavily guarded.
+"
+theme = ["clinical", "technological", "mysterious", "sterile"]
+layout_style = "modular_connected"
+size = "medium"
+threat_level = "high"
+escalation_profile = "noise_sensitive"
+primary_loot = ["optical_components", "circuit_boards", "medical_stock", "chemicals"]
+rare_loot = ["prototype_component", "schematic_advanced", "schematic_prototype", "launch_hardware"]
+primary_objectives = ["scan_anomaly", "retrieve_schematic", "rescue_specialist", "recover_samples"]
+enemy_types = ["ambushers", "stalkers", "elites", "guardians"]
+enemy_density = "medium"
+elite_chance = "35%"
+environmental_hazards = ["radiation_zones", "biohazards", "security_systems", "quarantine_locks"]
+modifier_pool = ["toxic_air", "radiation_zone", "silent_running", "power_outage", "hunted"]
+key_areas = [
+  {
+    "name": "Main Lab",
+    "purpose": "Research data, schematics, analysis equipment",
+  },
+  {
+    "name": "Clean Room",
+    "purpose": "Prototype components, contamination risk",
+  },
+  {
+    "name": "Data Center",
+    "purpose": "Colony data, route intel, decryption needed",
+  },
+  {
+    "name": "Specimen Storage",
+    "purpose": "Biological samples, high hazard",
+  },
+  {
+    "name": "Director's Office",
+    "purpose": "Key cards, personal logs, safe",
+  },
+]
+profession_advantages = {
+  "researcher": "+50% schematic chance, analyze anomalies",
+  "signal_tech": "Decrypt data, disable security",
+  "medic": "Handle biohazards safely",
+}

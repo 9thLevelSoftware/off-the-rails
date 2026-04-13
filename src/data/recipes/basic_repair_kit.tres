@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "basic_repair_kit"
+name = "Basic Repair Kit"
+category = "repair"
+station = "workshop"
+inputs = {
+  "scrap_metal": 4,
+  "wiring": 2,
+}
+output = {
+  "basic_repair_kit": 1,
+}
+craft_time = 90
+unlock = "default"
+profession_bonus = "engineer"
+description = "General-purpose repair supplies. Fixes minor equipment damage."
+recipe_category = "repair_kits"

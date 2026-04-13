@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/resource_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "seeds_samples"
+name = "Seeds & Samples"
+category = "structured"
+type = "material"
+weight = 0.2
+stack_size = 20
+description = "Viable plant seeds and biological samples for cultivation."
+sources = ["agricultural_dome", "research_sector", "survivor_enclave"]
+used_for = ["greenhouse_cultivation", "botanical_research"]
+rarity = "uncommon"

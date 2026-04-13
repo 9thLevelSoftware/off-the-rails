@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "secure_vault"
+name = "Secure Vault"
+tier = 4
+description = "Reinforced storage with preservation systems."
+effects = ["+150% storage capacity (250 kg)", "Protected from damage during attacks", "Preserves perishables longer"]
+costs = {
+  "refined_alloys": 6,
+  "power_cores": 1,
+  "prototype_component": 1,
+}
+requires = ["cargo_expansion"]
+profession_bonus = "scavenger"
+car = "cargo_car"
+path = "core"

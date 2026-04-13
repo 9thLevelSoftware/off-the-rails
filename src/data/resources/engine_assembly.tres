@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/resource_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "engine_assembly"
+name = "Engine Assembly"
+category = "milestone"
+type = "key_item"
+weight = 15.0
+stack_size = 1
+description = "Critical engine components. Required for train progression milestones."
+sources = ["crash_site", "industrial_facility", "freight_yard"]
+used_for = ["train_state_upgrades", "engine_restoration"]
+rarity = "very_rare"

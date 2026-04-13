@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/resource_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "glass_ceramics"
+name = "Glass & Ceramics"
+category = "common"
+type = "material"
+weight = 1.2
+stack_size = 10
+description = "Glass panels, ceramic tiles, and similar fragile materials."
+sources = ["research_sector", "small_town", "agricultural_dome"]
+used_for = ["greenhouse_repairs", "optical_components", "lab_equipment"]
+rarity = "uncommon"

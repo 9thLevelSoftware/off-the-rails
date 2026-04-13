@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "tool_rack"
+name = "Tool Rack"
+unlock_tier = 2
+description = "Organized tool storage for field repairs."
+effects = ["Field repair kits are 20% more effective", "Tools degrade slower"]
+costs = {
+  "scrap_metal": 3,
+  "machine_parts": 2,
+}
+requires = ["basic_workbench"]
+profession_bonus = "machinist"
+car = "workshop_car"
+path = "side"

@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "replacement_relay"
+name = "Replacement Relay"
+category = "train_part"
+station = "workshop"
+inputs = {
+  "relays": 2,
+  "wiring": 4,
+  "scrap_electronics": 3,
+}
+output = {
+  "replacement_relay": 1,
+}
+craft_time = 600
+unlock = "upgrade_t2"
+profession_bonus = "engineer"
+description = "Replacement part for power distribution repairs."
+recipe_category = "train_parts"

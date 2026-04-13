@@ -1,0 +1,49 @@
+[gd_resource type="Resource" script_class="LocationData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/location_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "agricultural_dome"
+name = "Agricultural Dome"
+description = "Enclosed farming complex with greenhouses, water systems, and storage silos. Relatively safe source of food and botanical resources.
+"
+theme = ["organic", "humid", "overgrown", "peaceful"]
+layout_style = "radial_hub"
+size = "medium"
+threat_level = "low"
+escalation_profile = "slow_burn"
+primary_loot = ["rations", "water", "seeds_samples", "chemicals"]
+rare_loot = ["medical_stock", "prototype_seeds", "colony_data"]
+primary_objectives = ["recover_supplies", "collect_samples", "restore_water_system", "rescue_survivor"]
+enemy_types = ["swarmers", "ambushers"]
+enemy_density = "low"
+elite_chance = "5%"
+environmental_hazards = ["overgrown_vegetation", "broken_irrigation", "pesticide_exposure", "structural_collapse"]
+modifier_pool = ["toxic_air", "low_visibility", "weather_event", "salvage_rich"]
+key_areas = [
+  {
+    "name": "Central Hub",
+    "purpose": "Navigation center, water controls",
+  },
+  {
+    "name": "Greenhouse Alpha",
+    "purpose": "Food crops, seeds",
+  },
+  {
+    "name": "Greenhouse Beta",
+    "purpose": "Medicinal plants, samples",
+  },
+  {
+    "name": "Water Treatment",
+    "purpose": "Purified water, chemicals",
+  },
+  {
+    "name": "Storage Silo",
+    "purpose": "Bulk food stores, rations",
+  },
+]
+profession_advantages = {
+  "botanist": "+100% seed/plant yield, identify useful specimens",
+  "medic": "Identify medicinal plants",
+}

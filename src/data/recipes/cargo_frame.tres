@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "cargo_frame"
+name = "Cargo Frame"
+category = "equipment"
+station = "workshop"
+inputs = {
+  "refined_alloys": 4,
+  "machine_parts": 3,
+  "fabric_seals": 4,
+}
+output = {
+  "cargo_frame": 1,
+}
+craft_time = 450
+unlock = "schematic_advanced"
+profession_bonus = "scavenger"
+description = "+15 kg carry capacity. Bulky but effective."
+recipe_category = "equipment"

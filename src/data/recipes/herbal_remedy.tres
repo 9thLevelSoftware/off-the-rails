@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "herbal_remedy"
+name = "Herbal Remedy"
+category = "specialty"
+station = "greenhouse"
+inputs = {
+  "seeds_samples": 2,
+  "water": 2,
+}
+output = {
+  "herbal_remedy": 2,
+}
+craft_time = 300
+unlock = "default"
+profession_bonus = "botanist"
+description = "Natural healing item. Slow but resource-efficient."
+recipe_category = "specialty"

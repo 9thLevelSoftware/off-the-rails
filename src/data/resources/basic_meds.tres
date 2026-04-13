@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/resource_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "basic_meds"
+name = "Basic Meds"
+category = "common"
+type = "consumable"
+weight = 0.3
+stack_size = 15
+description = "Bandages, painkillers, basic first aid supplies."
+sources = ["small_town", "rail_station", "survivor_enclave"]
+used_for = ["minor_healing", "stabilization"]
+rarity = "common"

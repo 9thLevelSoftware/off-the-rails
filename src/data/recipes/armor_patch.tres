@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "armor_patch"
+name = "Armor Patch Kit"
+category = "repair"
+station = "workshop"
+inputs = {
+  "refined_alloys": 2,
+  "fabric_seals": 2,
+}
+output = {
+  "armor_patch_kit": 1,
+}
+craft_time = 120
+unlock = "schematic_common"
+profession_bonus = "machinist"
+description = "Repairs damaged armor. Restores protection rating."
+recipe_category = "repair_kits"

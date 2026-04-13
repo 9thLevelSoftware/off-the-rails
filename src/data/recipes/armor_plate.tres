@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "armor_plate"
+name = "Train Armor Plate"
+category = "train_part"
+station = "workshop"
+inputs = {
+  "refined_alloys": 6,
+  "scrap_metal": 8,
+}
+output = {
+  "armor_plate": 1,
+}
+craft_time = 900
+unlock = "schematic_common"
+profession_bonus = "machinist"
+description = "Reinforces train car exterior. Reduces damage taken."
+recipe_category = "train_parts"

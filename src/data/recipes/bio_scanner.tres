@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "bio_scanner"
+name = "Bio-Scanner"
+category = "specialty"
+station = "lab"
+inputs = {
+  "optical_components": 2,
+  "circuit_boards": 2,
+  "medical_stock": 1,
+}
+output = {
+  "bio_scanner": 1,
+}
+craft_time = 360
+unlock = "schematic_advanced"
+profession_bonus = "researcher"
+description = "Detects life signs. Useful for finding survivors or threats."
+recipe_category = "specialty"

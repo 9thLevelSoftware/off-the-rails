@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="LocationData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/location_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "survivor_enclave"
+name = "Survivor Enclave"
+description = "Living community of other survivors. Can be friendly, hostile, or cautious depending on reputation and approach. Source of trade, intel, and specialist recruitment.
+"
+theme = ["social", "fortified", "varied", "tense"]
+layout_style = "fortified_compound"
+size = "small"
+threat_level = "variable"
+escalation_profile = "social"
+primary_loot = ["rations", "basic_meds", "fabric_seals", "trade_goods"]
+rare_loot = ["specialist_contract", "schematic_common", "route_key", "colony_data"]
+primary_objectives = ["trade_resources", "recruit_specialist", "gather_intel", "negotiate_alliance", "rescue_prisoner"]
+enemy_types = ["survivors (if hostile)", "guards (if trespassing)"]
+enemy_density = "variable"
+elite_chance = "10%"
+environmental_hazards = ["social_missteps", "traps (if hostile)", "betrayal_risk"]
+modifier_pool = ["reputation_check", "trade_opportunity", "specialist_available", "trap"]
+key_areas = [
+  {
+    "name": "Main Gate",
+    "purpose": "Entry, first impression, guard checkpoint",
+  },
+  {
+    "name": "Trading Post",
+    "purpose": "Resource exchange, information",
+  },
+  {
+    "name": "Leader's Quarters",
+    "purpose": "Negotiation, alliance, key decisions",
+  },
+  {
+    "name": "Barracks",
+    "purpose": "Specialist recruitment",
+  },
+  {
+    "name": "Prison/Storage",
+    "purpose": "Rescue objectives, contraband",
+  },
+]
+profession_advantages = {
+  "signal_tech": "Gather intel, detect ambush",
+  "medic": "Offer services, gain trust",
+  "scavenger": "Identify trade value, better deals",
+}

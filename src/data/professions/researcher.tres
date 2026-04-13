@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="ProfessionData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/profession_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "researcher"
+name = "Researcher"
+description = "The endgame specialist. Unlocks advanced technology and understands the unknown."
+primary_car = "lab_car"
+secondary_cars = ["signal_car"]
+active_abilities = [
+  {
+    "id": "schematic_analysis",
+    "name": "Schematic Analysis",
+    "description": "Unlock new recipes from found schematics.",
+    "cooldown": "180s",
+  },
+  {
+    "id": "anomaly_scan",
+    "name": "Anomaly Scan",
+    "description": "Identify and analyze unknown phenomena.",
+    "cooldown": "90s",
+  },
+  {
+    "id": "prototype_activation",
+    "name": "Prototype Activation",
+    "description": "Use experimental tech safely without risk of malfunction.",
+    "cooldown": "120s",
+  },
+]
+passive_bonuses = ["40% faster research speed", "Unlock advanced tech tree branches", "Better yields from analysis"]
+field_role = "Analyze artifacts, identify unknowns, collect samples, interface with alien tech"
+synergies = ["signal_tech", "machinist"]
+priority = 5

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "basic_planters"
+name = "Basic Planters"
+tier = 1
+description = "Simple growing containers. Manual maintenance required."
+effects = ["Grow basic food crops", "Slow growth rate", "Manual watering required"]
+costs = {
+  "glass_ceramics": 5,
+  "fabric_seals": 4,
+  "seeds_samples": 3,
+}
+requires = []
+profession_bonus = "botanist"
+car = "greenhouse_car"
+path = "core"

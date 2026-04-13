@@ -1,0 +1,1237 @@
+{
+  "generated_at": "2026-04-13T00:02:03.392909",
+  "source_dir": "C:\\Users\\dasbl\\Documents\\off-the-rails\\docs\\design\\data",
+  "output_dir": "C:\\Users\\dasbl\\Documents\\off-the-rails\\src\\data",
+  "files": [
+    {
+      "source": "train-cars.yaml",
+      "output": "train_cars\\engine_car.tres",
+      "id": "engine_car",
+      "type": "car"
+    },
+    {
+      "source": "train-cars.yaml",
+      "output": "train_cars\\cargo_car.tres",
+      "id": "cargo_car",
+      "type": "car"
+    },
+    {
+      "source": "train-cars.yaml",
+      "output": "train_cars\\bunks_car.tres",
+      "id": "bunks_car",
+      "type": "car"
+    },
+    {
+      "source": "train-cars.yaml",
+      "output": "train_cars\\workshop_car.tres",
+      "id": "workshop_car",
+      "type": "car"
+    },
+    {
+      "source": "train-cars.yaml",
+      "output": "train_cars\\infirmary_car.tres",
+      "id": "infirmary_car",
+      "type": "car"
+    },
+    {
+      "source": "train-cars.yaml",
+      "output": "train_cars\\armory_car.tres",
+      "id": "armory_car",
+      "type": "car"
+    },
+    {
+      "source": "train-cars.yaml",
+      "output": "train_cars\\signal_car.tres",
+      "id": "signal_car",
+      "type": "car"
+    },
+    {
+      "source": "train-cars.yaml",
+      "output": "train_cars\\refinery_car.tres",
+      "id": "refinery_car",
+      "type": "car"
+    },
+    {
+      "source": "train-cars.yaml",
+      "output": "train_cars\\greenhouse_car.tres",
+      "id": "greenhouse_car",
+      "type": "car"
+    },
+    {
+      "source": "train-cars.yaml",
+      "output": "train_cars\\lab_car.tres",
+      "id": "lab_car",
+      "type": "car"
+    },
+    {
+      "source": "train-cars.yaml",
+      "output": "train_cars\\subsystem_locomotion.tres",
+      "id": "subsystem_locomotion",
+      "type": "subsystem"
+    },
+    {
+      "source": "train-cars.yaml",
+      "output": "train_cars\\subsystem_power_grid.tres",
+      "id": "subsystem_power_grid",
+      "type": "subsystem"
+    },
+    {
+      "source": "train-cars.yaml",
+      "output": "train_cars\\subsystem_storage_racks.tres",
+      "id": "subsystem_storage_racks",
+      "type": "subsystem"
+    },
+    {
+      "source": "train-cars.yaml",
+      "output": "train_cars\\subsystem_climate_control.tres",
+      "id": "subsystem_climate_control",
+      "type": "subsystem"
+    },
+    {
+      "source": "train-cars.yaml",
+      "output": "train_cars\\subsystem_crew_quarters.tres",
+      "id": "subsystem_crew_quarters",
+      "type": "subsystem"
+    },
+    {
+      "source": "train-cars.yaml",
+      "output": "train_cars\\subsystem_fabricator.tres",
+      "id": "subsystem_fabricator",
+      "type": "subsystem"
+    },
+    {
+      "source": "train-cars.yaml",
+      "output": "train_cars\\subsystem_repair_station.tres",
+      "id": "subsystem_repair_station",
+      "type": "subsystem"
+    },
+    {
+      "source": "train-cars.yaml",
+      "output": "train_cars\\subsystem_medical_bay.tres",
+      "id": "subsystem_medical_bay",
+      "type": "subsystem"
+    },
+    {
+      "source": "train-cars.yaml",
+      "output": "train_cars\\subsystem_surgery_suite.tres",
+      "id": "subsystem_surgery_suite",
+      "type": "subsystem"
+    },
+    {
+      "source": "train-cars.yaml",
+      "output": "train_cars\\subsystem_weapon_racks.tres",
+      "id": "subsystem_weapon_racks",
+      "type": "subsystem"
+    },
+    {
+      "source": "train-cars.yaml",
+      "output": "train_cars\\subsystem_ammo_fabricator.tres",
+      "id": "subsystem_ammo_fabricator",
+      "type": "subsystem"
+    },
+    {
+      "source": "train-cars.yaml",
+      "output": "train_cars\\subsystem_turrets_defense.tres",
+      "id": "subsystem_turrets_defense",
+      "type": "subsystem"
+    },
+    {
+      "source": "train-cars.yaml",
+      "output": "train_cars\\subsystem_comms_array.tres",
+      "id": "subsystem_comms_array",
+      "type": "subsystem"
+    },
+    {
+      "source": "train-cars.yaml",
+      "output": "train_cars\\subsystem_navigation.tres",
+      "id": "subsystem_navigation",
+      "type": "subsystem"
+    },
+    {
+      "source": "train-cars.yaml",
+      "output": "train_cars\\subsystem_radar_sensors.tres",
+      "id": "subsystem_radar_sensors",
+      "type": "subsystem"
+    },
+    {
+      "source": "train-cars.yaml",
+      "output": "train_cars\\subsystem_refinery_stack.tres",
+      "id": "subsystem_refinery_stack",
+      "type": "subsystem"
+    },
+    {
+      "source": "train-cars.yaml",
+      "output": "train_cars\\subsystem_material_processor.tres",
+      "id": "subsystem_material_processor",
+      "type": "subsystem"
+    },
+    {
+      "source": "train-cars.yaml",
+      "output": "train_cars\\subsystem_hydroponics.tres",
+      "id": "subsystem_hydroponics",
+      "type": "subsystem"
+    },
+    {
+      "source": "train-cars.yaml",
+      "output": "train_cars\\subsystem_nutrient_cycling.tres",
+      "id": "subsystem_nutrient_cycling",
+      "type": "subsystem"
+    },
+    {
+      "source": "train-cars.yaml",
+      "output": "train_cars\\subsystem_research_station.tres",
+      "id": "subsystem_research_station",
+      "type": "subsystem"
+    },
+    {
+      "source": "train-cars.yaml",
+      "output": "train_cars\\subsystem_analysis_suite.tres",
+      "id": "subsystem_analysis_suite",
+      "type": "subsystem"
+    },
+    {
+      "source": "train-cars.yaml",
+      "output": "train_cars\\subsystem_prototype_fabricator.tres",
+      "id": "subsystem_prototype_fabricator",
+      "type": "subsystem"
+    },
+    {
+      "source": "professions.yaml",
+      "output": "professions\\engineer.tres",
+      "id": "engineer",
+      "type": "profession"
+    },
+    {
+      "source": "professions.yaml",
+      "output": "professions\\medic.tres",
+      "id": "medic",
+      "type": "profession"
+    },
+    {
+      "source": "professions.yaml",
+      "output": "professions\\scavenger.tres",
+      "id": "scavenger",
+      "type": "profession"
+    },
+    {
+      "source": "professions.yaml",
+      "output": "professions\\security.tres",
+      "id": "security",
+      "type": "profession"
+    },
+    {
+      "source": "professions.yaml",
+      "output": "professions\\signal_tech.tres",
+      "id": "signal_tech",
+      "type": "profession"
+    },
+    {
+      "source": "professions.yaml",
+      "output": "professions\\machinist.tres",
+      "id": "machinist",
+      "type": "profession"
+    },
+    {
+      "source": "professions.yaml",
+      "output": "professions\\botanist.tres",
+      "id": "botanist",
+      "type": "profession"
+    },
+    {
+      "source": "professions.yaml",
+      "output": "professions\\researcher.tres",
+      "id": "researcher",
+      "type": "profession"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\scrap_metal.tres",
+      "id": "scrap_metal",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\wiring.tres",
+      "id": "wiring",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\chemicals.tres",
+      "id": "chemicals",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\crude_fuel.tres",
+      "id": "crude_fuel",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\fabric_seals.tres",
+      "id": "fabric_seals",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\basic_meds.tres",
+      "id": "basic_meds",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\rations.tres",
+      "id": "rations",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\water.tres",
+      "id": "water",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\scrap_electronics.tres",
+      "id": "scrap_electronics",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\glass_ceramics.tres",
+      "id": "glass_ceramics",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\machine_parts.tres",
+      "id": "machine_parts",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\relays.tres",
+      "id": "relays",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\power_cores.tres",
+      "id": "power_cores",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\refined_alloys.tres",
+      "id": "refined_alloys",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\optical_components.tres",
+      "id": "optical_components",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\medical_stock.tres",
+      "id": "medical_stock",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\processed_fuel.tres",
+      "id": "processed_fuel",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\polymer_compounds.tres",
+      "id": "polymer_compounds",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\circuit_boards.tres",
+      "id": "circuit_boards",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\hydraulics.tres",
+      "id": "hydraulics",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\seeds_samples.tres",
+      "id": "seeds_samples",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\engine_assembly.tres",
+      "id": "engine_assembly",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\navigation_module.tres",
+      "id": "navigation_module",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\launch_hardware.tres",
+      "id": "launch_hardware",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\prototype_component.tres",
+      "id": "prototype_component",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\schematic_common.tres",
+      "id": "schematic_common",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\schematic_advanced.tres",
+      "id": "schematic_advanced",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\schematic_prototype.tres",
+      "id": "schematic_prototype",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\specialist_contract.tres",
+      "id": "specialist_contract",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\route_key.tres",
+      "id": "route_key",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\colony_data.tres",
+      "id": "colony_data",
+      "type": "resource_item"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\patched_locomotion.tres",
+      "id": "patched_locomotion",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\reinforced_drive.tres",
+      "id": "reinforced_drive",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\high_efficiency_engine.tres",
+      "id": "high_efficiency_engine",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\command_engine.tres",
+      "id": "command_engine",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\power_distributor.tres",
+      "id": "power_distributor",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\emergency_boost.tres",
+      "id": "emergency_boost",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\auxiliary_generator.tres",
+      "id": "auxiliary_generator",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\overcharge_system.tres",
+      "id": "overcharge_system",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\basic_storage.tres",
+      "id": "basic_storage",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\organized_racks.tres",
+      "id": "organized_racks",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\cargo_expansion.tres",
+      "id": "cargo_expansion",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\secure_vault.tres",
+      "id": "secure_vault",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\quick_access_bins.tres",
+      "id": "quick_access_bins",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\hazmat_containment.tres",
+      "id": "hazmat_containment",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\refrigeration_unit.tres",
+      "id": "refrigeration_unit",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\makeshift_beds.tres",
+      "id": "makeshift_beds",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\proper_quarters.tres",
+      "id": "proper_quarters",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\climate_control.tres",
+      "id": "climate_control",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\crew_quarters.tres",
+      "id": "crew_quarters",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\morale_station.tres",
+      "id": "morale_station",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\lockdown_bunks.tres",
+      "id": "lockdown_bunks",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\basic_workbench.tres",
+      "id": "basic_workbench",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\equipped_workshop.tres",
+      "id": "equipped_workshop",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\fabrication_station.tres",
+      "id": "fabrication_station",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\master_fabricator.tres",
+      "id": "master_fabricator",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\tool_rack.tres",
+      "id": "tool_rack",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\salvage_processor.tres",
+      "id": "salvage_processor",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\ammo_press.tres",
+      "id": "ammo_press",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\first_aid_station.tres",
+      "id": "first_aid_station",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\treatment_bay.tres",
+      "id": "treatment_bay",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\surgery_suite.tres",
+      "id": "surgery_suite",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\medical_center.tres",
+      "id": "medical_center",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\quarantine_ward.tres",
+      "id": "quarantine_ward",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\trauma_kit_station.tres",
+      "id": "trauma_kit_station",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\cryostasis_pod.tres",
+      "id": "cryostasis_pod",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\weapon_locker.tres",
+      "id": "weapon_locker",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\armory_racks.tres",
+      "id": "armory_racks",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\defense_station.tres",
+      "id": "defense_station",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\battle_command.tres",
+      "id": "battle_command",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\mounted_turret.tres",
+      "id": "mounted_turret",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\armor_plating.tres",
+      "id": "armor_plating",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\tactical_display.tres",
+      "id": "tactical_display",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\basic_radio.tres",
+      "id": "basic_radio",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\comms_array.tres",
+      "id": "comms_array",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\navigation_suite.tres",
+      "id": "navigation_suite",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\command_center.tres",
+      "id": "command_center",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\scanner_array.tres",
+      "id": "scanner_array",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\jammer.tres",
+      "id": "jammer",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\remote_access.tres",
+      "id": "remote_access",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\crude_processor.tres",
+      "id": "crude_processor",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\refinery_stack.tres",
+      "id": "refinery_stack",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\industrial_refinery.tres",
+      "id": "industrial_refinery",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\synthesis_plant.tres",
+      "id": "synthesis_plant",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\fuel_storage.tres",
+      "id": "fuel_storage",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\recycler.tres",
+      "id": "recycler",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\biofuel_converter.tres",
+      "id": "biofuel_converter",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\basic_planters.tres",
+      "id": "basic_planters",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\hydroponics_bay.tres",
+      "id": "hydroponics_bay",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\climate_dome.tres",
+      "id": "climate_dome",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\bio_lab.tres",
+      "id": "bio_lab",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\herb_garden.tres",
+      "id": "herb_garden",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\composting_system.tres",
+      "id": "composting_system",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\seed_vault.tres",
+      "id": "seed_vault",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\analysis_bench.tres",
+      "id": "analysis_bench",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\research_station.tres",
+      "id": "research_station",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\advanced_lab.tres",
+      "id": "advanced_lab",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\prototype_facility.tres",
+      "id": "prototype_facility",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\specimen_storage.tres",
+      "id": "specimen_storage",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\data_core.tres",
+      "id": "data_core",
+      "type": "upgrade"
+    },
+    {
+      "source": "upgrades.yaml",
+      "output": "upgrades\\fabrication_link.tres",
+      "id": "fabrication_link",
+      "type": "upgrade"
+    },
+    {
+      "source": "locations.yaml",
+      "output": "locations\\small_town.tres",
+      "id": "small_town",
+      "type": "location"
+    },
+    {
+      "source": "locations.yaml",
+      "output": "locations\\rail_station.tres",
+      "id": "rail_station",
+      "type": "location"
+    },
+    {
+      "source": "locations.yaml",
+      "output": "locations\\freight_yard.tres",
+      "id": "freight_yard",
+      "type": "location"
+    },
+    {
+      "source": "locations.yaml",
+      "output": "locations\\industrial_facility.tres",
+      "id": "industrial_facility",
+      "type": "location"
+    },
+    {
+      "source": "locations.yaml",
+      "output": "locations\\research_sector.tres",
+      "id": "research_sector",
+      "type": "location"
+    },
+    {
+      "source": "locations.yaml",
+      "output": "locations\\agricultural_dome.tres",
+      "id": "agricultural_dome",
+      "type": "location"
+    },
+    {
+      "source": "locations.yaml",
+      "output": "locations\\tunnel_maintenance.tres",
+      "id": "tunnel_maintenance",
+      "type": "location"
+    },
+    {
+      "source": "locations.yaml",
+      "output": "locations\\crash_site.tres",
+      "id": "crash_site",
+      "type": "location"
+    },
+    {
+      "source": "locations.yaml",
+      "output": "locations\\survivor_enclave.tres",
+      "id": "survivor_enclave",
+      "type": "location"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\basic_bandage.tres",
+      "id": "basic_bandage",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\improvised_torch.tres",
+      "id": "improvised_torch",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\ration_pack.tres",
+      "id": "ration_pack",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\stim_shot.tres",
+      "id": "stim_shot",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\glow_stick.tres",
+      "id": "glow_stick",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\flare.tres",
+      "id": "flare",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\smoke_bomb.tres",
+      "id": "smoke_bomb",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\noise_maker.tres",
+      "id": "noise_maker",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\standard_ammo.tres",
+      "id": "standard_ammo",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\rifle_ammo.tres",
+      "id": "rifle_ammo",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\shotgun_shells.tres",
+      "id": "shotgun_shells",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\armor_piercing.tres",
+      "id": "armor_piercing",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\incendiary_ammo.tres",
+      "id": "incendiary_ammo",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\explosive_shells.tres",
+      "id": "explosive_shells",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\tranq_darts.tres",
+      "id": "tranq_darts",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\medical_kit.tres",
+      "id": "medical_kit",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\trauma_kit.tres",
+      "id": "trauma_kit",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\antidote.tres",
+      "id": "antidote",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\anti_rad.tres",
+      "id": "anti_rad",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\blood_pack.tres",
+      "id": "blood_pack",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\surgery_kit.tres",
+      "id": "surgery_kit",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\stasis_syringe.tres",
+      "id": "stasis_syringe",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\basic_repair_kit.tres",
+      "id": "basic_repair_kit",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\weapon_maintenance_kit.tres",
+      "id": "weapon_maintenance_kit",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\electronics_kit.tres",
+      "id": "electronics_kit",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\armor_patch.tres",
+      "id": "armor_patch",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\subsystem_repair_kit.tres",
+      "id": "subsystem_repair_kit",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\lockpick_set.tres",
+      "id": "lockpick_set",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\cutting_torch.tres",
+      "id": "cutting_torch",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\scanner_upgrade.tres",
+      "id": "scanner_upgrade",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\hacking_module.tres",
+      "id": "hacking_module",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\sample_container.tres",
+      "id": "sample_container",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\makeshift_armor.tres",
+      "id": "makeshift_armor",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\reinforced_armor.tres",
+      "id": "reinforced_armor",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\hazmat_suit.tres",
+      "id": "hazmat_suit",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\basic_backpack.tres",
+      "id": "basic_backpack",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\expedition_pack.tres",
+      "id": "expedition_pack",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\cargo_frame.tres",
+      "id": "cargo_frame",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\night_vision.tres",
+      "id": "night_vision",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\replacement_relay.tres",
+      "id": "replacement_relay",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\armor_plate.tres",
+      "id": "armor_plate",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\turret_assembly.tres",
+      "id": "turret_assembly",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\power_cell.tres",
+      "id": "power_cell",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\filter_system.tres",
+      "id": "filter_system",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\herbal_remedy.tres",
+      "id": "herbal_remedy",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\nutrient_paste.tres",
+      "id": "nutrient_paste",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\stimulant_compound.tres",
+      "id": "stimulant_compound",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\prototype_cell.tres",
+      "id": "prototype_cell",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\experimental_alloy.tres",
+      "id": "experimental_alloy",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\bio_scanner.tres",
+      "id": "bio_scanner",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\fuel_refining.tres",
+      "id": "fuel_refining",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\alloy_smelting.tres",
+      "id": "alloy_smelting",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\circuit_extraction.tres",
+      "id": "circuit_extraction",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\chemical_synthesis.tres",
+      "id": "chemical_synthesis",
+      "type": "recipe"
+    },
+    {
+      "source": "recipes.yaml",
+      "output": "recipes\\water_purification.tres",
+      "id": "water_purification",
+      "type": "recipe"
+    }
+  ]
+}

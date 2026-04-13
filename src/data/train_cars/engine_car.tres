@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="TrainCarData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/train_car_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "engine_car"
+name = "Engine"
+description = "The heart of the train. Provides locomotion and power generation for all other systems."
+category = "engine"
+acquisition = "starting"
+subsystems = ["locomotion", "power_grid"]
+dependencies = []
+crew_station = true
+upgrade_tree = "engine_upgrades"

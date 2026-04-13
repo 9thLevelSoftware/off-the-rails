@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "mounted_turret"
+name = "Mounted Turret"
+unlock_tier = 2
+description = "External defensive weapon for train protection."
+effects = ["Automated defense during travel", "Manned for +50% damage", "Consumes ammo"]
+costs = {
+  "refined_alloys": 4,
+  "machine_parts": 3,
+  "wiring": 4,
+}
+requires = ["weapon_locker"]
+profession_bonus = "security"
+car = "armory_car"
+path = "side"

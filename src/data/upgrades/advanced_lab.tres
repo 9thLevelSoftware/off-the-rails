@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "advanced_lab"
+name = "Advanced Lab"
+tier = 3
+description = "High-tech research facility for complex analysis."
+effects = ["Unlock schematics (advanced)", "+100% research speed (total)", "Anomaly analysis", "Data decryption"]
+costs = {
+  "optical_components": 5,
+  "power_cores": 2,
+  "prototype_component": 1,
+  "circuit_boards": 5,
+}
+requires = ["research_station"]
+profession_bonus = "researcher"
+car = "lab_car"
+path = "core"

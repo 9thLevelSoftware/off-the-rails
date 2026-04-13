@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "crew_quarters"
+name = "Crew Quarters"
+tier = 4
+description = "Full living accommodations with personal space."
+effects = ["+150% rest efficiency (total)", "Supports 8 crew comfortably", "Morale bonus", "Fatigue immunity during short stops"]
+costs = {
+  "refined_alloys": 4,
+  "power_cores": 1,
+  "prototype_component": 1,
+}
+requires = ["climate_control"]
+profession_bonus = null
+car = "bunks_car"
+path = "core"

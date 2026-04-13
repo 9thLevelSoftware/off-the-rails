@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "antidote"
+name = "Antidote"
+category = "medical"
+station = "infirmary"
+inputs = {
+  "chemicals": 3,
+  "basic_meds": 1,
+}
+output = {
+  "antidote": 2,
+}
+craft_time = 60
+unlock = "default"
+profession_bonus = "medic"
+description = "Cures poison and toxin status effects."
+recipe_category = "medical"

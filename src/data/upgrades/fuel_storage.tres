@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "fuel_storage"
+name = "Fuel Storage Tanks"
+unlock_tier = 2
+description = "Expanded fuel capacity."
+effects = ["+100% fuel storage capacity", "Safer fuel storage (less fire risk)"]
+costs = {
+  "refined_alloys": 4,
+  "polymer_compounds": 3,
+}
+requires = ["crude_processor"]
+profession_bonus = "engineer"
+car = "refinery_car"
+path = "side"

@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "hazmat_suit"
+name = "Hazmat Suit"
+category = "equipment"
+station = "workshop"
+inputs = {
+  "polymer_compounds": 5,
+  "fabric_seals": 4,
+  "glass_ceramics": 2,
+}
+output = {
+  "hazmat_suit": 1,
+}
+craft_time = 400
+unlock = "schematic_common"
+profession_bonus = "machinist"
+description = "Protects against toxic and radioactive environments."
+recipe_category = "equipment"

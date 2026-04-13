@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/resource_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "prototype_component"
+name = "Prototype Component"
+category = "milestone"
+type = "key_item"
+weight = 5.0
+stack_size = 1
+description = "Experimental technology. Unlocks advanced capabilities."
+sources = ["research_sector", "crash_site", "unique_locations"]
+used_for = ["advanced_tech_unlocks", "prototype_crafting"]
+rarity = "very_rare"

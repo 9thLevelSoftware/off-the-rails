@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "expedition_pack"
+name = "Expedition Pack"
+category = "equipment"
+station = "workshop"
+inputs = {
+  "fabric_seals": 8,
+  "refined_alloys": 2,
+  "polymer_compounds": 2,
+}
+output = {
+  "expedition_pack": 1,
+}
+craft_time = 300
+unlock = "schematic_common"
+profession_bonus = "scavenger"
+description = "+10 kg carry capacity. Organized compartments."
+recipe_category = "equipment"

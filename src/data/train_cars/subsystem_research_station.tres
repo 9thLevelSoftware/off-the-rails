@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TrainCarData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/train_car_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "research_station"
+name = "Research Station"
+description = "Analyzes schematics and data."
+damage_effect = "Cannot research new tech"

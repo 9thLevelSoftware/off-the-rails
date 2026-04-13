@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "tranq_darts"
+name = "Tranquilizer Darts"
+category = "ammo"
+station = "infirmary"
+inputs = {
+  "medical_stock": 2,
+  "scrap_metal": 2,
+}
+output = {
+  "tranq_darts": 6,
+}
+craft_time = 90
+unlock = "schematic_common"
+profession_bonus = "medic"
+description = "Non-lethal takedown. Effective on some enemies."
+recipe_category = "ammunition"

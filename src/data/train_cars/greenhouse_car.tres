@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="TrainCarData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/train_car_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "greenhouse_car"
+name = "Greenhouse"
+description = "Hydroponics and sustainable food/medicine production for long campaigns."
+category = "production"
+acquisition = "late"
+subsystems = ["hydroponics", "nutrient_cycling"]
+dependencies = ["engine_car", "refinery_car"]
+crew_station = true
+upgrade_tree = "greenhouse_upgrades"

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "tactical_display"
+name = "Tactical Display"
+unlock_tier = 3
+description = "Real-time threat tracking and team coordination."
+effects = ["See enemy positions on map during defense", "Team waypoint system"]
+costs = {
+  "circuit_boards": 4,
+  "optical_components": 2,
+  "relays": 2,
+}
+requires = ["armory_racks"]
+profession_bonus = "signal_tech"
+car = "armory_car"
+path = "side"

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "armor_piercing"
+name = "Armor-Piercing Ammo"
+category = "ammo"
+station = "armory"
+inputs = {
+  "refined_alloys": 2,
+  "chemicals": 2,
+}
+output = {
+  "armor_piercing_ammo": 10,
+}
+craft_time = 120
+unlock = "schematic_common"
+profession_bonus = "security"
+description = "Penetrates armored targets. Reduced stopping power."
+recipe_category = "ammunition"

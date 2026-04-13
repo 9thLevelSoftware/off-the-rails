@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "quick_access_bins"
+name = "Quick-Access Bins"
+unlock_tier = 2
+description = "Rapid-retrieval storage for frequently used items."
+effects = ["10 kg dedicated quick-access storage", "Instant retrieval during expeditions"]
+costs = {
+  "scrap_metal": 3,
+  "fabric_seals": 4,
+}
+requires = ["basic_storage"]
+profession_bonus = "scavenger"
+car = "cargo_car"
+path = "side"

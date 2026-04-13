@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "sample_container"
+name = "Sample Container"
+category = "tool"
+station = "lab"
+inputs = {
+  "glass_ceramics": 3,
+  "polymer_compounds": 2,
+}
+output = {
+  "sample_container": 3,
+}
+craft_time = 90
+unlock = "default"
+profession_bonus = "researcher"
+description = "Safely stores biological or chemical samples."
+recipe_category = "tools"

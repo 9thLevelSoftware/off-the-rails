@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "research_station"
+name = "Research Station"
+tier = 2
+description = "Proper laboratory equipment for scientific work."
+effects = ["Unlock schematics (common)", "+50% research speed", "Detailed sample analysis"]
+costs = {
+  "optical_components": 3,
+  "circuit_boards": 4,
+  "glass_ceramics": 4,
+  "medical_stock": 2,
+}
+requires = ["analysis_bench"]
+profession_bonus = "researcher"
+car = "lab_car"
+path = "core"

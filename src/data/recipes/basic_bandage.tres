@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "basic_bandage"
+name = "Basic Bandage"
+category = "consumable"
+station = "field"
+inputs = {
+  "fabric_seals": 2,
+}
+output = {
+  "bandage": 3,
+}
+craft_time = 30
+unlock = "default"
+profession_bonus = "medic"
+description = "Simple bandages for minor wounds. Stops bleeding, minor healing."
+recipe_category = "consumables"

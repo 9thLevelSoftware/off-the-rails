@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/resource_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "water"
+name = "Purified Water"
+category = "common"
+type = "consumable"
+weight = 1.0
+stack_size = 10
+description = "Clean drinking water. Essential for survival."
+sources = ["agricultural_dome", "survivor_enclave", "rail_station"]
+used_for = ["crew_sustenance", "medical_procedures", "hydroponics"]
+rarity = "common"

@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="LocationData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/location_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "rail_station"
+name = "Rail Station"
+description = "Transit hub where routes converge. Control rooms, platforms, and maintenance bays. Key source of route intel and rail components.
+"
+theme = ["industrial", "transit", "utilitarian", "echoing"]
+layout_style = "linear_branching"
+size = "medium"
+threat_level = "medium"
+escalation_profile = "alarm_based"
+primary_loot = ["machine_parts", "wiring", "relays", "processed_fuel"]
+rare_loot = ["navigation_module", "route_key", "circuit_boards"]
+primary_objectives = ["retrieve_route_intel", "reactivate_switchyard", "clear_blocked_route", "recover_fuel"]
+enemy_types = ["swarmers", "blockers", "ranged"]
+enemy_density = "medium"
+elite_chance = "15%"
+environmental_hazards = ["electrified_rails", "moving_equipment", "alarm_systems"]
+modifier_pool = ["power_outage", "alarm_triggered", "high_density", "timed"]
+key_areas = [
+  {
+    "name": "Control Room",
+    "purpose": "Route intel, system access, navigation data",
+  },
+  {
+    "name": "Platform Hall",
+    "purpose": "Central area, multiple exits, combat arena",
+  },
+  {
+    "name": "Maintenance Bay",
+    "purpose": "Machine parts, repair equipment",
+  },
+  {
+    "name": "Fuel Depot",
+    "purpose": "Fuel storage, fire hazard",
+  },
+]
+profession_advantages = {
+  "signal_tech": "Access locked systems, +50% intel yield",
+  "engineer": "Bypass security, disable hazards",
+}

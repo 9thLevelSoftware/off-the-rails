@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/resource_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "launch_hardware"
+name = "Launch Hardware"
+category = "milestone"
+type = "key_item"
+weight = 20.0
+stack_size = 1
+description = "Spacecraft components. Required for endgame escape."
+sources = ["crash_site", "research_sector"]
+used_for = ["ship_construction", "escape_preparation"]
+rarity = "very_rare"

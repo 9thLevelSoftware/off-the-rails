@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "power_distributor"
+name = "Power Distributor"
+unlock_tier = 2
+description = "Expanded power grid supports more train cars."
+effects = ["Power supports +2 additional cars", "Smoother power distribution"]
+costs = {
+  "wiring": 6,
+  "relays": 4,
+  "circuit_boards": 2,
+}
+requires = ["patched_locomotion"]
+profession_bonus = "engineer"
+car = "engine_car"
+path = "side"

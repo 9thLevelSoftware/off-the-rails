@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "emergency_boost"
+name = "Emergency Boost"
+unlock_tier = 2
+description = "Overload the engine for a desperate burst of speed."
+effects = ["Activate for 2x speed for 30 seconds", "25% chance of engine damage after use"]
+costs = {
+  "machine_parts": 2,
+  "processed_fuel": 5,
+}
+requires = ["patched_locomotion"]
+profession_bonus = "engineer"
+car = "engine_car"
+path = "side"

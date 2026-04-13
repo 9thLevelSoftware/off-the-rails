@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "smoke_bomb"
+name = "Smoke Bomb"
+category = "consumable"
+station = "armory"
+inputs = {
+  "chemicals": 4,
+  "fabric_seals": 2,
+}
+output = {
+  "smoke_bomb": 2,
+}
+craft_time = 60
+unlock = "schematic_common"
+profession_bonus = "security"
+description = "Creates concealing smoke cloud. Blocks line of sight."
+recipe_category = "consumables"

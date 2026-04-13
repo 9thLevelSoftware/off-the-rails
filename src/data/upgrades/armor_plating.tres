@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "armor_plating"
+name = "Armor Plating"
+unlock_tier = 2
+description = "Reinforced exterior for the armory car."
+effects = ["Armory car takes -30% damage", "Protects adjacent cars slightly"]
+costs = {
+  "refined_alloys": 6,
+  "scrap_metal": 8,
+}
+requires = ["weapon_locker"]
+profession_bonus = "engineer"
+car = "armory_car"
+path = "side"

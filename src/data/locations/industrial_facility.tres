@@ -1,0 +1,49 @@
+[gd_resource type="Resource" script_class="LocationData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/location_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "industrial_facility"
+name = "Industrial Facility"
+description = "Factory or processing plant. Heavy machinery, production lines, and hazardous materials. Rich in components but dangerous.
+"
+theme = ["factory", "mechanical", "hazardous", "noisy"]
+layout_style = "complex_multi_level"
+size = "large"
+threat_level = "high"
+escalation_profile = "alarm_based"
+primary_loot = ["machine_parts", "refined_alloys", "power_cores", "chemicals"]
+rare_loot = ["prototype_component", "engine_assembly", "hydraulics"]
+primary_objectives = ["retrieve_part", "restore_power", "recover_fuel", "eliminate_threat"]
+enemy_types = ["swarmers", "blockers", "ranged", "elites"]
+enemy_density = "high"
+elite_chance = "25%"
+environmental_hazards = ["moving_machinery", "toxic_chemicals", "electrical_hazards", "steam_vents", "unstable_structures"]
+modifier_pool = ["toxic_air", "power_outage", "high_density", "structural_damage", "extreme_heat"]
+key_areas = [
+  {
+    "name": "Production Floor",
+    "purpose": "Large combat arena, machinery hazards",
+  },
+  {
+    "name": "Control Center",
+    "purpose": "System control, alarm management",
+  },
+  {
+    "name": "Component Storage",
+    "purpose": "High-value loot cache",
+  },
+  {
+    "name": "Power Plant",
+    "purpose": "Power cores, dangerous but rewarding",
+  },
+  {
+    "name": "Maintenance Tunnels",
+    "purpose": "Alternate routes, tight spaces",
+  },
+]
+profession_advantages = {
+  "engineer": "Disable hazards, operate machinery",
+  "machinist": "Identify valuable components, +30% parts yield",
+}

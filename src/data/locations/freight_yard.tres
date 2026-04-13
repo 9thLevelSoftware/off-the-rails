@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="LocationData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/location_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "freight_yard"
+name = "Freight Yard"
+description = "Massive logistics center with shipping containers, loading equipment, and warehouses. Excellent for bulk materials but easy to get lost.
+"
+theme = ["industrial", "maze-like", "utilitarian", "vast"]
+layout_style = "grid_maze"
+size = "large"
+threat_level = "medium"
+escalation_profile = "slow_burn"
+primary_loot = ["scrap_metal", "crude_fuel", "fabric_seals", "machine_parts"]
+rare_loot = ["refined_alloys", "hydraulics", "engine_assembly"]
+primary_objectives = ["recover_fuel", "secure_cargo", "retrieve_part", "escort_payload"]
+enemy_types = ["swarmers", "ambushers", "blockers"]
+enemy_density = "medium"
+elite_chance = "10%"
+environmental_hazards = ["unstable_containers", "heavy_machinery", "toxic_spills"]
+modifier_pool = ["low_visibility", "salvage_rich", "toxic_air", "structural_damage"]
+key_areas = [
+  {
+    "name": "Container Maze",
+    "purpose": "Procedural maze, scattered loot, ambush risk",
+  },
+  {
+    "name": "Warehouse Alpha",
+    "purpose": "Bulk storage, guaranteed material cache",
+  },
+  {
+    "name": "Loading Dock",
+    "purpose": "Heavy equipment, vehicle access",
+  },
+  {
+    "name": "Fuel Storage",
+    "purpose": "Large fuel supply, explosion risk",
+  },
+]
+profession_advantages = {
+  "scavenger": "Navigate maze faster, +50% carry capacity effect",
+  "engineer": "Operate heavy machinery, access sealed containers",
+}

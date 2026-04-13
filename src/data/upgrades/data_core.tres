@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "data_core"
+name = "Data Core"
+unlock_tier = 2
+description = "Centralized data storage and processing."
+effects = ["Store unlimited schematics", "Cross-reference colony data", "Search for related information"]
+costs = {
+  "circuit_boards": 5,
+  "relays": 3,
+  "power_cores": 1,
+}
+requires = ["analysis_bench"]
+profession_bonus = "signal_tech"
+car = "lab_car"
+path = "side"

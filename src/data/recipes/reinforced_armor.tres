@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "reinforced_armor"
+name = "Reinforced Armor"
+category = "equipment"
+station = "armory"
+inputs = {
+  "refined_alloys": 4,
+  "fabric_seals": 3,
+  "machine_parts": 2,
+}
+output = {
+  "reinforced_armor": 1,
+}
+craft_time = 450
+unlock = "schematic_common"
+profession_bonus = "machinist"
+description = "Solid protection. -30% damage taken."
+recipe_category = "equipment"

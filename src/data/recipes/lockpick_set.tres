@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "lockpick_set"
+name = "Lockpick Set"
+category = "tool"
+station = "workshop"
+inputs = {
+  "scrap_metal": 3,
+  "wiring": 2,
+}
+output = {
+  "lockpick_set": 1,
+}
+craft_time = 120
+unlock = "default"
+profession_bonus = "scavenger"
+description = "Opens locked containers. Limited uses."
+recipe_category = "tools"

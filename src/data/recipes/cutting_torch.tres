@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "cutting_torch"
+name = "Cutting Torch"
+category = "tool"
+station = "workshop"
+inputs = {
+  "scrap_metal": 4,
+  "chemicals": 3,
+  "refined_alloys": 1,
+}
+output = {
+  "cutting_torch": 1,
+}
+craft_time = 180
+unlock = "schematic_common"
+profession_bonus = "engineer"
+description = "Cuts through metal barriers. Consumes fuel."
+recipe_category = "tools"

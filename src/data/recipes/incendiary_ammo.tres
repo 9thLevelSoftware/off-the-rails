@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "incendiary_ammo"
+name = "Incendiary Ammo"
+category = "ammo"
+station = "armory"
+inputs = {
+  "scrap_metal": 3,
+  "chemicals": 4,
+}
+output = {
+  "incendiary_ammo": 10,
+}
+craft_time = 120
+unlock = "schematic_common"
+profession_bonus = "security"
+description = "Sets targets on fire. Damage over time."
+recipe_category = "ammunition"

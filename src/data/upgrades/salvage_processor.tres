@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "salvage_processor"
+name = "Salvage Processor"
+unlock_tier = 2
+description = "Break down items for component recovery."
+effects = ["Salvage items for 50% material return", "Convert between some material types"]
+costs = {
+  "machine_parts": 3,
+  "chemicals": 4,
+}
+requires = ["basic_workbench"]
+profession_bonus = "scavenger"
+car = "workshop_car"
+path = "side"

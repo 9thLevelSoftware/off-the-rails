@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "surgery_kit"
+name = "Surgery Kit"
+category = "medical"
+station = "infirmary"
+inputs = {
+  "medical_stock": 4,
+  "refined_alloys": 1,
+  "chemicals": 2,
+}
+output = {
+  "surgery_kit": 1,
+}
+craft_time = 240
+unlock = "upgrade_t3"
+profession_bonus = "medic"
+description = "Single-use surgical supplies. Required for major procedures."
+recipe_category = "medical"

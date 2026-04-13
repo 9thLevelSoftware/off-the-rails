@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/resource_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "specialist_contract"
+name = "Specialist Contract"
+category = "milestone"
+type = "data"
+weight = 0.0
+stack_size = 1
+description = "Agreement securing a specialist's services. Unlocks NPC crew member."
+sources = ["survivor_enclave", "unique_locations"]
+used_for = ["npc_recruitment", "profession_coverage"]
+rarity = "rare"

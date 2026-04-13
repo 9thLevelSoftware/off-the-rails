@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/resource_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "scrap_metal"
+name = "Scrap Metal"
+category = "common"
+type = "material"
+weight = 1.5
+stack_size = 15
+description = "Salvaged metal pieces. The backbone of basic repairs and low-tier crafting."
+sources = ["industrial_facility", "freight_yard", "rail_station", "small_town"]
+used_for = ["basic_repairs", "low_tier_crafting", "ammo_crafting"]
+rarity = "common"

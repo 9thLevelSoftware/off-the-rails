@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "electronics_kit"
+name = "Electronics Repair Kit"
+category = "repair"
+station = "workshop"
+inputs = {
+  "wiring": 4,
+  "scrap_electronics": 3,
+  "circuit_boards": 1,
+}
+output = {
+  "electronics_kit": 1,
+}
+craft_time = 120
+unlock = "upgrade_t2"
+profession_bonus = "engineer"
+description = "Repairs electronic equipment and subsystems."
+recipe_category = "repair_kits"

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/resource_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "power_cores"
+name = "Power Cores"
+category = "structured"
+type = "component"
+weight = 5.0
+stack_size = 5
+description = "High-capacity energy storage units. Critical for advanced systems."
+sources = ["research_sector", "crash_site", "industrial_facility"]
+used_for = ["engine_upgrades", "advanced_systems", "emergency_power"]
+rarity = "rare"

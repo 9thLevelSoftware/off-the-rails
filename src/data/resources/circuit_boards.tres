@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/resource_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "circuit_boards"
+name = "Circuit Boards"
+category = "structured"
+type = "component"
+weight = 0.5
+stack_size = 12
+description = "Intact circuit boards for complex electronics."
+sources = ["research_sector", "rail_station", "signal_tower"]
+used_for = ["electronics_upgrades", "computer_repairs", "automation_systems"]
+rarity = "uncommon"

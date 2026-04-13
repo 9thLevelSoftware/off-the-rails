@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "hazmat_containment"
+name = "Hazmat Containment"
+unlock_tier = 2
+description = "Sealed containers for dangerous materials."
+effects = ["Store hazardous/radioactive materials safely", "No contamination risk"]
+costs = {
+  "polymer_compounds": 4,
+  "glass_ceramics": 3,
+  "chemicals": 2,
+}
+requires = ["basic_storage"]
+profession_bonus = "researcher"
+car = "cargo_car"
+path = "side"

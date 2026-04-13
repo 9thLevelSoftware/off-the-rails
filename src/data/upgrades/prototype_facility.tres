@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "prototype_facility"
+name = "Prototype Facility"
+tier = 4
+description = "Cutting-edge laboratory for experimental technology."
+effects = ["Unlock all schematics", "+150% research speed (total)", "Create prototype items", "Reverse-engineer alien tech"]
+costs = {
+  "prototype_component": 2,
+  "optical_components": 6,
+  "power_cores": 3,
+  "launch_hardware": 1,
+}
+requires = ["advanced_lab"]
+profession_bonus = "researcher"
+car = "lab_car"
+path = "core"

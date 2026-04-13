@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "synthesis_plant"
+name = "Synthesis Plant"
+tier = 4
+description = "Chemical synthesis and advanced material production."
+effects = ["Fuel conversion (1:1 ratio, no loss)", "Create chemicals from raw materials", "Synthesize rare materials"]
+costs = {
+  "prototype_component": 1,
+  "power_cores": 2,
+  "chemicals": 8,
+  "refined_alloys": 5,
+}
+requires = ["industrial_refinery"]
+profession_bonus = "researcher"
+car = "refinery_car"
+path = "core"

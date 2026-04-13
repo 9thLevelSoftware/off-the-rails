@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "stim_shot"
+name = "Stim Shot"
+category = "consumable"
+station = "workshop"
+inputs = {
+  "chemicals": 2,
+  "basic_meds": 1,
+}
+output = {
+  "stim_shot": 1,
+}
+craft_time = 60
+unlock = "default"
+profession_bonus = "medic"
+description = "Adrenaline boost. Temporary stamina recovery and pain suppression."
+recipe_category = "consumables"

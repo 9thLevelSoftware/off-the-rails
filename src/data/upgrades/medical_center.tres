@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "medical_center"
+name = "Medical Center"
+tier = 4
+description = "Hospital-grade treatment facility."
+effects = ["All medical procedures available", "+120% healing speed (total)", "Automatic stabilization for downed crew", "Prosthetics/augmentation capable"]
+costs = {
+  "medical_stock": 8,
+  "prototype_component": 1,
+  "power_cores": 2,
+  "optical_components": 3,
+}
+requires = ["surgery_suite"]
+profession_bonus = "medic"
+car = "infirmary_car"
+path = "core"

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "ammo_press"
+name = "Ammo Press"
+unlock_tier = 3
+description = "Dedicated ammunition manufacturing."
+effects = ["Craft ammo at 2x speed", "Craft advanced ammo types"]
+costs = {
+  "machine_parts": 4,
+  "refined_alloys": 2,
+  "chemicals": 3,
+}
+requires = ["equipped_workshop"]
+profession_bonus = "security"
+car = "workshop_car"
+path = "side"

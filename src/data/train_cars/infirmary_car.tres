@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="TrainCarData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/train_car_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "infirmary_car"
+name = "Infirmary"
+description = "Medical treatment facility. Heals injuries, cures status effects, performs surgery."
+category = "crew"
+acquisition = "early"
+subsystems = ["medical_bay", "surgery_suite"]
+dependencies = ["engine_car", "workshop_car"]
+crew_station = true
+upgrade_tree = "infirmary_upgrades"

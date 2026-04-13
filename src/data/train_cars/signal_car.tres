@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="TrainCarData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/train_car_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "signal_car"
+name = "Signal/Command"
+description = "Communications, navigation, and route intelligence center."
+category = "specialist"
+acquisition = "mid"
+subsystems = ["comms_array", "navigation", "radar_sensors"]
+dependencies = ["engine_car"]
+crew_station = true
+upgrade_tree = "signal_upgrades"

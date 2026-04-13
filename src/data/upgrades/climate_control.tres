@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/upgrade_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "climate_control"
+name = "Climate Control"
+tier = 3
+description = "Temperature and air quality management."
+effects = ["+100% rest efficiency (total)", "Supports 6 crew comfortably", "Reduces illness chance"]
+costs = {
+  "relays": 3,
+  "machine_parts": 3,
+  "polymer_compounds": 4,
+}
+requires = ["proper_quarters"]
+profession_bonus = "engineer"
+car = "bunks_car"
+path = "core"

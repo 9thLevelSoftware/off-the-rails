@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="RecipeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/recipe_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "turret_assembly"
+name = "Turret Assembly"
+category = "train_part"
+station = "armory"
+inputs = {
+  "refined_alloys": 4,
+  "machine_parts": 4,
+  "circuit_boards": 2,
+  "wiring": 4,
+}
+output = {
+  "turret_assembly": 1,
+}
+craft_time = 1200
+unlock = "schematic_advanced"
+profession_bonus = "machinist"
+description = "Pre-built turret for installation on train."
+recipe_category = "train_parts"
