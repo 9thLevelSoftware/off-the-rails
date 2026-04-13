@@ -1,13 +1,13 @@
 # Project State
 
 ## Current Position
-- **Phase**: 2 of 7 (planned)
-- **Status**: Phase 2 planned — 2 plans across 2 waves
-- **Last Activity**: Phase 2 planning with auto-refine (2026-04-13)
+- **Phase**: 2 of 7 (executed, pending review)
+- **Status**: Phase 2 complete — all plans executed successfully
+- **Last Activity**: Phase 2 execution (2026-04-13)
 
 ## Progress
 ```
-[####                ] 15% — 3/~21 plans complete
+[#####               ] 24% — 5/~21 plans complete
 ```
 
 ## Phase 1: Foundation — VERIFIED
@@ -26,24 +26,30 @@
 - Main scene with additive loading pattern
 - MCP workflow verified (gdai-mcp primary)
 
-## Phase 2: Player & Movement — PLANNED
+## Phase 2: Player & Movement — EXECUTED
 
 | Plan | Wave | Name | Agent(s) | Status |
 |------|------|------|----------|--------|
-| 02-01 | 1 | Player Character & Movement | engineering-senior-developer | Pending |
-| 02-02 | 2 | Scene Integration & Transitions | engineering-senior-developer, testing-qa-verification-specialist | Pending |
+| 02-01 | 1 | Player Character & Movement | engineering-senior-developer | ✓ Complete |
+| 02-02 | 2 | Scene Integration & Transitions | engineering-senior-developer | ✓ Complete |
 
-**Plan Critique**: PASS after 1 auto-refine cycle
-- Fixed: Verification command mismatch in Plan 02-02
-- Watch: Jolt Physics compatibility with CharacterBody3D
+**Execution Summary**:
+- Wave 1: Player scene created with CharacterBody3D, movement script, input configuration
+- Wave 2: GameState extended with scene transition API, Train/Expedition scenes created
 
-**Expected Outputs**:
-- `src/player/player.tscn` — Player character scene
-- `src/player/player.gd` — Movement controller with WASD + mouse look
-- `src/player/camera_controller.gd` — Camera controller placeholder
-- `src/train/train.tscn` — Train scene with spawn point
-- `src/expedition/expedition.tscn` — Expedition scene with spawn point
-- Extended `src/autoloads/game_state.gd` with scene transitions
+**Key Outputs**:
+- `src/player/player.tscn` — Player character with WASD + mouse look
+- `src/player/player.gd` — Movement controller (walk/sprint/jump)
+- `src/player/camera_controller.gd` — Camera placeholder
+- `src/train/train.tscn` — Train scene with PlayerSpawn
+- `src/expedition/expedition.tscn` — Expedition scene with PlayerSpawn + ExitTrigger
+- `src/autoloads/game_state.gd` — Extended with scene transition API
+
+**Implementation Decisions**:
+- Physical keycodes for layout-independent input
+- Camera mount pattern for gimbal-lock-free mouse look
+- Node2D→Node3D conversion for scene compatibility
+- Player preserved across scene transitions (not recreated)
 
 ## Recent Decisions
 
@@ -67,4 +73,4 @@
 
 ## Next Action
 
-Run `/legion:build` to execute Phase 2: Player & Movement
+Run `/legion:review` to verify Phase 2: Player & Movement
