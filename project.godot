@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GDAIMCPRuntime="*uid://dcne7ryelpxmn"
+GameState="*res://src/autoloads/game_state.gd"
 
 [dotnet]
 
