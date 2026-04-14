@@ -81,7 +81,6 @@ func update(player_pos: Vector2, detector: IsometricProximityDetector) -> void:
 				exited_range.emit()
 			elif nearest != _current_target:
 				# Switched to a different interactable
-				var old_target := _current_target
 				_current_target = nearest
 				exited_range.emit()
 				entered_range.emit(nearest)

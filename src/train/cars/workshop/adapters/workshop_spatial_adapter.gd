@@ -8,7 +8,6 @@ extends Node2D
 
 const EquipmentEntityClass = preload("res://src/train/cars/workshop/domain/equipment_entity.gd")
 const FloorLayoutClass = preload("res://src/train/cars/workshop/domain/floor_layout.gd")
-const EquipmentInteractableClass = preload("res://src/train/cars/workshop/adapters/equipment_interactable.gd")
 
 ## Emitted when an equipment node has been created and added to the scene
 signal equipment_rendered(equipment_id: String)
