@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dau7xgl0ltra4"]
+[gd_scene load_steps=10 format=3 uid="uid://dau7xgl0ltra4"]
 
 [ext_resource type="Script" uid="uid://ba5x33qmje33m" path="res://src/expedition/expedition.gd" id="1_expedition"]
 [ext_resource type="Script" uid="uid://df3lc1e0d6d7p" path="res://src/expedition/escalation/escalation_manager.gd" id="2_ioi6n"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" uid="uid://powoxr7utw5y" path="res://src/expedition/loot/loot_container.gd" id="4_mjuy4"]
 [ext_resource type="Script" path="res://src/expedition/enemies/enemy_spawner.gd" id="5_spawner"]
 [ext_resource type="PackedScene" path="res://src/expedition/enemies/enemy_placeholder.tscn" id="6_enemy"]
+[ext_resource type="Resource" path="res://src/expedition/loot/items/scrap_metal_loot.tres" id="7_scrap"]
+[ext_resource type="Resource" path="res://src/expedition/loot/items/wire_loot.tres" id="8_wire"]
+[ext_resource type="Resource" path="res://src/expedition/loot/items/electronics_loot.tres" id="9_elec"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
 size = Vector3(20, 1, 20)
@@ -47,16 +50,19 @@ script = ExtResource("2_ioi6n")
 [node name="Container1" type="Node3D" parent="LootContainers" unique_id=1677214498 instance=ExtResource("3_q4k5b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 2)
 script = ExtResource("4_mjuy4")
+contents = [ExtResource("7_scrap"), ExtResource("8_wire")]
 lid_node = NodePath("Lid")
 
 [node name="Container2" type="Node3D" parent="LootContainers" unique_id=1998047027 instance=ExtResource("3_q4k5b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -3)
 script = ExtResource("4_mjuy4")
+contents = [ExtResource("8_wire"), ExtResource("9_elec")]
 lid_node = NodePath("Lid")
 
 [node name="SealedContainer" type="Node3D" parent="LootContainers" unique_id=879379687 instance=ExtResource("3_q4k5b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 script = ExtResource("4_mjuy4")
+contents = [ExtResource("7_scrap"), ExtResource("9_elec")]
 is_sealed = true
 escalation_on_open = 7.0
 lid_node = NodePath("Lid")

@@ -160,6 +160,9 @@ func _load_menus() -> void:
 func _enter_main_menu() -> void:
 	_current_mode = GameMode.MAIN_MENU
 
+	# Ensure mouse is visible for menu interaction
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
 	# Show main menu, hide others
 	if _main_menu:
 		_main_menu.show_menu()
