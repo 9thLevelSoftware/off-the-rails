@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bawvp6cf6kkik"]
+
+[ext_resource type="Script" uid="uid://crijsabmsm08f" path="res://src/isometric/scenes/isometric_level.gd" id="1_rkomo"]
+[ext_resource type="Script" uid="uid://dnnsav34ho31q" path="res://src/isometric/adapters/isometric_canvas.gd" id="2_v3185"]
+[ext_resource type="Script" uid="uid://ocjb3kxvcjfg" path="res://src/isometric/adapters/tilemap_adapter.gd" id="3_4fetv"]
+[ext_resource type="Script" uid="uid://dntdsy3t8jm8y" path="res://src/isometric/adapters/camera_2d_controller.gd" id="4_h8eyb"]
+[ext_resource type="TileSet" path="res://assets/tilesets/iso_floor.tres" id="4_x4x14"]
+
+[node name="IsoLevel" type="Node2D" unique_id=1079536266]
+script = ExtResource("1_rkomo")
+
+[node name="IsoCanvas" type="CanvasLayer" parent="." unique_id=1462997003]
+script = ExtResource("2_v3185")
+
+[node name="WorldLayer" type="Node2D" parent="IsoCanvas" unique_id=1903508740]
+y_sort_enabled = true
+
+[node name="IsoTilemapAdapter" type="Node2D" parent="IsoCanvas/WorldLayer" unique_id=926033793]
+script = ExtResource("3_4fetv")
+
+[node name="TileMap" type="TileMap" parent="IsoCanvas/WorldLayer/IsoTilemapAdapter" unique_id=418721843]
+tile_set = ExtResource("4_x4x14")
+format = 2
+
+[node name="EntityLayer" type="Node2D" parent="IsoCanvas" unique_id=1053288480]
+y_sort_enabled = true
+
+[node name="UILayer" type="CanvasLayer" parent="IsoCanvas" unique_id=2073792990]
+
+[node name="IsoCamera" type="Camera2D" parent="." unique_id=248883655]
+script = ExtResource("4_h8eyb")

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://djxqdnoa5y3f7"]
+
+[ext_resource type="Script" uid="uid://cmsg2fs2pqka3" path="res://src/isometric/test/test_isometric_level.gd" id="1_t8sn5"]
+[ext_resource type="PackedScene" uid="uid://bawvp6cf6kkik" path="res://src/isometric/scenes/isometric_level.tscn" id="2_6nqu5"]
+[ext_resource type="Script" uid="uid://crijsabmsm08f" path="res://src/isometric/scenes/isometric_level.gd" id="3_5slpg"]
+[ext_resource type="Texture2D" uid="uid://b0wx56ebe0f33" path="res://icon.svg" id="4_5slpg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6nqu5"]
+size = Vector2(32, 32)
+
+[node name="TestIsoLevel" type="Node2D" unique_id=1714697538]
+script = ExtResource("1_t8sn5")
+
+[node name="IsoLevel" type="Node2D" parent="." unique_id=1079536266 instance=ExtResource("2_6nqu5")]
+script = ExtResource("3_5slpg")
+
+[node name="TestEntity" type="CharacterBody2D" parent="." unique_id=641430801]
+
+[node name="Sprite2D" type="Sprite2D" parent="TestEntity" unique_id=830099822]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_5slpg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestEntity" unique_id=324243341]
+shape = SubResource("RectangleShape2D_6nqu5")
