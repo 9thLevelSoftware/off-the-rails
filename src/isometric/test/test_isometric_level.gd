@@ -1,12 +1,11 @@
 # Test scene for verifying isometric foundation
-# R1: TileMap + Y-sort verification
+# R1: TileMapLayer + Y-sort verification
 # R2: Camera follow + zoom verification
 
+class_name TestIsoLevel
 extends Node2D
 
-const IsoLevelScript = preload("res://src/isometric/scenes/isometric_level.gd")
-
-@onready var iso_level: IsoLevelScript = $IsoLevel
+@onready var iso_level: IsoLevel = $IsoLevel
 @onready var test_entity: CharacterBody2D = $TestEntity
 
 const MOVE_SPEED: float = 200.0
@@ -25,9 +24,9 @@ func _initialize_test() -> void:
 		return
 
 	# Wait for tilemap adapter to be ready
-	var tilemap_adapter: Node = iso_level.get_tilemap()
+	var tilemap_adapter := iso_level.get_tilemap()
 	if tilemap_adapter and not tilemap_adapter.is_ready():
-		push_warning("TileMap adapter not yet initialized, waiting...")
+		push_warning("TileMapLayer adapter not yet initialized, waiting...")
 		await get_tree().process_frame
 
 	# Connect camera to test entity
@@ -43,11 +42,13 @@ func _initialize_test() -> void:
 	print("Watch Y-sorting as entity moves")
 
 
-func _physics_process(delta: float) -> void:
-	_handle_movement(delta)
+# NOTE: delta is passed but unused — CharacterBody2D.move_and_slide() handles
+# frame-rate independence internally
+func _physics_process(_delta: float) -> void:
+	_handle_movement()
 
 
-func _handle_movement(_delta: float) -> void:
+func _handle_movement() -> void:
 	var input_dir := Vector2.ZERO
 
 	if Input.is_action_pressed("move_forward"):

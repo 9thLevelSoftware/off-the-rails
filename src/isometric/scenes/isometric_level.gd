@@ -4,13 +4,9 @@
 class_name IsoLevel
 extends Node2D
 
-const IsoCanvasScript = preload("res://src/isometric/adapters/isometric_canvas.gd")
-const IsoCameraScript = preload("res://src/isometric/adapters/camera_2d_controller.gd")
-const IsoTilemapScript = preload("res://src/isometric/adapters/tilemap_adapter.gd")
-
-@onready var canvas: IsoCanvasScript = $IsoCanvas
-@onready var camera: IsoCameraScript = $IsoCamera
-@onready var tilemap_adapter: IsoTilemapScript = $IsoCanvas/WorldLayer/IsoTilemapAdapter
+@onready var canvas: IsoCanvas = $IsoCanvas
+@onready var camera: IsoCameraController = $IsoCamera
+@onready var tilemap_adapter: IsoTilemapAdapter = $IsoCanvas/WorldLayer/IsoTilemapAdapter
 
 
 func _ready() -> void:
@@ -27,7 +23,7 @@ func _initialize_level() -> void:
 
 func _generate_test_floor() -> void:
 	if not tilemap_adapter or not tilemap_adapter.tilemap:
-		push_warning("TileMap not ready")
+		push_warning("TileMapLayer not ready")
 		return
 
 	# Fill a 5x5 area with floor tiles
@@ -42,5 +38,5 @@ func set_camera_target(target: Node2D) -> void:
 
 
 # Get the tilemap adapter for external access
-func get_tilemap() -> IsoTilemapScript:
+func get_tilemap() -> IsoTilemapAdapter:
 	return tilemap_adapter

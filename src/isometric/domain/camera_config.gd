@@ -1,5 +1,6 @@
-# Immutable camera configuration
+# Camera configuration data class
 # Used by camera_2d_controller.gd adapter
+# NOTE: Properties are mutable after construction for flexibility
 
 class_name IsoCameraConfig
 extends RefCounted

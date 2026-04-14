@@ -18,9 +18,8 @@ y_sort_enabled = true
 [node name="IsoTilemapAdapter" type="Node2D" parent="IsoCanvas/WorldLayer" unique_id=926033793]
 script = ExtResource("3_4fetv")
 
-[node name="TileMap" type="TileMap" parent="IsoCanvas/WorldLayer/IsoTilemapAdapter" unique_id=418721843]
+[node name="TileMapLayer" type="TileMapLayer" parent="IsoCanvas/WorldLayer/IsoTilemapAdapter" unique_id=418721843]
 tile_set = ExtResource("4_x4x14")
-format = 2
 
 [node name="EntityLayer" type="Node2D" parent="IsoCanvas" unique_id=1053288480]
 y_sort_enabled = true

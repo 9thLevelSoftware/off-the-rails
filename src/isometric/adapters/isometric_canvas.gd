@@ -58,6 +58,9 @@ func get_depth_at(position: Vector2) -> float:
 func is_position_visible(world_pos: Vector2, camera: Camera2D) -> bool:
 	if not camera:
 		return true
+	# Guard against zero zoom (would cause division by zero)
+	if camera.zoom.x == 0.0 or camera.zoom.y == 0.0:
+		return true
 	var viewport_rect := camera.get_viewport_rect()
 	var camera_pos := camera.global_position
 	var half_size := viewport_rect.size / (2.0 * camera.zoom)

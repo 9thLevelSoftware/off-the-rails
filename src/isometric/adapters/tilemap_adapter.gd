@@ -1,18 +1,18 @@
-# Adapter: TileMap configuration and Y-sort management
-# Wraps TileMap node with domain logic integration
+# Adapter: TileMapLayer configuration and Y-sort management
+# Wraps TileMapLayer node with domain logic integration
+# NOTE: Using TileMapLayer (Godot 4.3+) instead of deprecated TileMap
 
 class_name IsoTilemapAdapter
 extends Node2D
 
 const ViewportCalc = preload("res://src/isometric/domain/viewport_calculator.gd")
-const LayoutCalc = preload("res://src/isometric/domain/tilemap_layout_calculator.gd")
 const TilesetLoaderClass = preload("res://src/isometric/infrastructure/tileset_loader.gd")
 
 # Reference to infrastructure
 var tileset_loader: IsoTilesetLoader
 
-# The actual TileMap node (child)
-@onready var tilemap: TileMap = $TileMap
+# The actual TileMapLayer node (child)
+@onready var tilemap: TileMapLayer = $TileMapLayer
 
 # Initialization flag
 var _initialized: bool = false
@@ -20,26 +20,21 @@ var _initialized: bool = false
 
 func _ready() -> void:
 	if not tilemap:
-		push_error("IsoTilemapAdapter: TileMap child node not found. Expected child named 'TileMap'")
+		push_error("IsoTilemapAdapter: TileMapLayer child node not found. Expected child named 'TileMapLayer'")
 		return
 
 	tileset_loader = TilesetLoaderClass.new()
-
 	_configure_tilemap()
 	_initialized = true
 
 
 func _configure_tilemap() -> void:
-	if not tilemap:
-		push_error("TileMap child not found")
-		return
-
 	# Load and apply tileset
 	var tileset := tileset_loader.load_tileset()
 	if tileset:
 		tilemap.tile_set = tileset
 
-	# Enable Y-sorting on the tilemap
+	# Enable Y-sorting on the tilemap layer
 	tilemap.y_sort_enabled = true
 
 
@@ -63,15 +58,15 @@ func get_tile_screen_pos(grid_pos: Vector2i) -> Vector2:
 
 
 # Check if a tile exists at grid position
-func has_tile_at(grid_pos: Vector2i, layer: int = 0) -> bool:
-	return tilemap.get_cell_source_id(layer, grid_pos) != -1
+func has_tile_at(grid_pos: Vector2i) -> bool:
+	return tilemap.get_cell_source_id(grid_pos) != -1
 
 
 # Set a tile at grid position
-func set_tile(grid_pos: Vector2i, source_id: int, atlas_coords: Vector2i, layer: int = 0) -> void:
-	tilemap.set_cell(layer, grid_pos, source_id, atlas_coords)
+func set_tile(grid_pos: Vector2i, source_id: int, atlas_coords: Vector2i) -> void:
+	tilemap.set_cell(grid_pos, source_id, atlas_coords)
 
 
 # Clear a tile at grid position
-func clear_tile(grid_pos: Vector2i, layer: int = 0) -> void:
-	tilemap.set_cell(layer, grid_pos, -1)
+func clear_tile(grid_pos: Vector2i) -> void:
+	tilemap.erase_cell(grid_pos)

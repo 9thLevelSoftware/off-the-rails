@@ -38,7 +38,11 @@ func load_layer_data(layer_name: String) -> Dictionary:
 		push_error("Failed to parse tilemap data: " + path)
 		return {}
 
-	return json.data
+	# Validate parsed data is a Dictionary
+	if json.data is Dictionary:
+		return json.data
+	push_error("Tilemap data is not a Dictionary: " + path)
+	return {}
 
 
 # Check if saved data exists for a layer
