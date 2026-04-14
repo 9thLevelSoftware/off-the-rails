@@ -35,6 +35,48 @@ func _to_string() -> String:
 	return "[RecipeData:%s]" % id
 
 
+## Create a RecipeData instance from a dictionary.
+## Centralized factory method used by ContentRegistry and ModAPI.
+static func from_dict(data: Dictionary) -> RecipeData:
+	var id_val: String = data.get("id", "")
+	if id_val.is_empty():
+		return null
+
+	var recipe := RecipeData.new()
+	recipe.id = id_val
+	recipe.name = data.get("name", id_val)
+	recipe.description = data.get("description", "")
+	recipe.category = data.get("category", "consumable")
+	recipe.recipe_category = data.get("recipe_category", "")
+	recipe.station = data.get("station", "workshop")
+	recipe.craft_time = data.get("craft_time", 60)
+	recipe.unlock = data.get("unlock", "default")
+	recipe.profession_bonus = data.get("profession_bonus", "")
+
+	var inputs_data = data.get("inputs", {})
+	if inputs_data is Dictionary:
+		recipe.inputs = inputs_data.duplicate()
+	elif inputs_data is Array:
+		recipe.inputs = {}
+		for input_entry in inputs_data:
+			if input_entry is Dictionary:
+				var item_id: String = input_entry.get("item_id", "")
+				var quantity: int = input_entry.get("quantity", 1)
+				if not item_id.is_empty():
+					recipe.inputs[item_id] = quantity
+
+	var output_data = data.get("output", {})
+	if output_data is Dictionary:
+		if output_data.has("item_id"):
+			var item_id: String = output_data.get("item_id", "")
+			var quantity: int = output_data.get("quantity", 1)
+			recipe.output = {item_id: quantity}
+		else:
+			recipe.output = output_data.duplicate()
+
+	return recipe
+
+
 ## Check if this recipe is available by default
 func is_default_unlocked() -> bool:
 	return unlock == "default"

@@ -25,7 +25,9 @@ var _fade_tween: Tween = null
 
 
 func _ready() -> void:
-	# Render above equipment sprites (z_index 100 ensures visibility)
+	# UI prompt should always be visible above game world elements.
+	# Using z_index 100 intentionally bypasses Y-sort layering since this is
+	# a UI element, not a world object that participates in depth sorting.
 	z_index = 100
 
 	# Start hidden

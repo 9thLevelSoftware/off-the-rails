@@ -29,6 +29,9 @@ const STATION_TYPE := "workshop"
 ## Maximum queue slots for workshop
 const MAX_QUEUE_SLOTS := 3
 
+## Equipment ID for the workbench this adapter manages
+var _workbench_equipment_id: String = ""
+
 
 func _ready() -> void:
 	# Initialize crafting infrastructure
@@ -173,6 +176,35 @@ func get_job_count() -> int:
 ## Get maximum queue slots.
 func get_max_slots() -> int:
 	return MAX_QUEUE_SLOTS
+
+
+## Connect to a workbench's interaction signal.
+## Call this after the workbench is spawned to wire up interaction.
+func connect_to_workbench(workbench_interactable: EquipmentInteractable) -> void:
+	if workbench_interactable == null:
+		push_error("WorkshopAdapter: Cannot connect to null workbench interactable")
+		return
+
+	_workbench_equipment_id = workbench_interactable.equipment_id
+
+	# Disconnect any existing connection
+	if workbench_interactable.interaction_triggered.is_connected(_on_workbench_interacted):
+		workbench_interactable.interaction_triggered.disconnect(_on_workbench_interacted)
+
+	# Connect to interaction signal
+	workbench_interactable.interaction_triggered.connect(_on_workbench_interacted)
+	print("[WorkshopAdapter] Connected to workbench: %s" % _workbench_equipment_id)
+
+
+## Handle workbench interaction from isometric system.
+func _on_workbench_interacted(equipment_id: String, equipment_type: String) -> void:
+	if equipment_type != "Workbench" and equipment_type != "workbench":
+		return  # Only handle workbench interactions
+
+	print("[WorkshopAdapter] Workbench interaction: %s" % equipment_id)
+
+	# Emit signal for UI to open crafting panel
+	CraftingEventBus.get_instance().emit_crafting_ui_requested(self)
 
 
 func _exit_tree() -> void:

@@ -16,7 +16,8 @@ func _mod_init(api: ModAPI) -> void:
 		"id": "debug_tool",
 		"name": "Debug Tool",
 		"description": "A developer tool for testing. Added via script.",
-		"category": "tool",
+		"category": "common",
+		"type": "tool",
 		"stack_size": 1
 	}
 

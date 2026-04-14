@@ -14,19 +14,38 @@ signal script_executed(mod_id: String, script_path: String)
 
 var _content_registry: ContentRegistry
 var _current_mod_id: String = ""
+var _bound_mod_id: String = ""  # If set, this API instance is bound to a specific mod
 
 
-func _init(content_registry: ContentRegistry) -> void:
+func _init(content_registry: ContentRegistry, bound_mod_id: String = "") -> void:
 	_content_registry = content_registry
+	_bound_mod_id = bound_mod_id
+
+
+## Create a bound API instance for a specific mod.
+## The returned instance will always use the specified mod_id for registration,
+## preventing context issues when callbacks are invoked later.
+func create_bound_api(mod_id: String) -> ModAPI:
+	return ModAPI.new(_content_registry, mod_id)
 
 
 ## Set the current mod context for ID prefixing.
+## NOTE: Prefer using create_bound_api() for callbacks to avoid context issues.
 func set_current_mod(mod_id: String) -> void:
 	_current_mod_id = mod_id
 
 
-## Get the current mod ID.
+## Get the current mod ID (returns bound ID if this is a bound instance).
 func get_current_mod() -> String:
+	if not _bound_mod_id.is_empty():
+		return _bound_mod_id
+	return _current_mod_id
+
+
+## Get the effective mod ID for registration operations.
+func _get_effective_mod_id() -> String:
+	if not _bound_mod_id.is_empty():
+		return _bound_mod_id
 	return _current_mod_id
 
 
@@ -36,7 +55,8 @@ func get_current_mod() -> String:
 ## Item ID is automatically prefixed with mod_id to avoid collisions.
 ## Returns true on success, false on validation failure.
 func register_item(item_data: Dictionary) -> bool:
-	if _current_mod_id.is_empty():
+	var mod_id := _get_effective_mod_id()
+	if mod_id.is_empty():
 		push_error("[ModAPI] Cannot register item: no mod context set")
 		return false
 
@@ -45,7 +65,7 @@ func register_item(item_data: Dictionary) -> bool:
 
 	# Prefix ID with mod_id to avoid collisions
 	var original_id: String = item_data.get("id", "")
-	var prefixed_id := "%s:%s" % [_current_mod_id, original_id]
+	var prefixed_id := "%s:%s" % [mod_id, original_id]
 
 	var prefixed_data := item_data.duplicate(true)
 	prefixed_data["id"] = prefixed_id
@@ -55,12 +75,12 @@ func register_item(item_data: Dictionary) -> bool:
 	if item == null:
 		return false
 
-	_content_registry.items.register_item(item, _current_mod_id)
-	content_registered.emit(_current_mod_id, "item", prefixed_id)
+	_content_registry.items.register_item(item, mod_id)
+	content_registered.emit(mod_id, "item", prefixed_id)
 
 	# Emit to EventHooks if available
-	if is_instance_valid(EventHooks):
-		EventHooks.item_registered.emit(prefixed_id, _current_mod_id)
+	if EventHooks:
+		EventHooks.item_registered.emit(prefixed_id, mod_id)
 
 	print("[ModAPI] Registered item: %s" % prefixed_id)
 	return true
@@ -70,7 +90,8 @@ func register_item(item_data: Dictionary) -> bool:
 ## Recipe ID is automatically prefixed with mod_id.
 ## Returns true on success, false on validation failure.
 func register_recipe(recipe_data: Dictionary) -> bool:
-	if _current_mod_id.is_empty():
+	var mod_id := _get_effective_mod_id()
+	if mod_id.is_empty():
 		push_error("[ModAPI] Cannot register recipe: no mod context set")
 		return false
 
@@ -78,7 +99,7 @@ func register_recipe(recipe_data: Dictionary) -> bool:
 		return false
 
 	var original_id: String = recipe_data.get("id", "")
-	var prefixed_id := "%s:%s" % [_current_mod_id, original_id]
+	var prefixed_id := "%s:%s" % [mod_id, original_id]
 
 	var prefixed_data := recipe_data.duplicate(true)
 	prefixed_data["id"] = prefixed_id
@@ -87,11 +108,11 @@ func register_recipe(recipe_data: Dictionary) -> bool:
 	if recipe == null:
 		return false
 
-	_content_registry.recipes.register_recipe(recipe, _current_mod_id)
-	content_registered.emit(_current_mod_id, "recipe", prefixed_id)
+	_content_registry.recipes.register_recipe(recipe, mod_id)
+	content_registered.emit(mod_id, "recipe", prefixed_id)
 
-	if is_instance_valid(EventHooks):
-		EventHooks.recipe_registered.emit(prefixed_id, _current_mod_id)
+	if EventHooks:
+		EventHooks.recipe_registered.emit(prefixed_id, mod_id)
 
 	print("[ModAPI] Registered recipe: %s" % prefixed_id)
 	return true
@@ -101,7 +122,8 @@ func register_recipe(recipe_data: Dictionary) -> bool:
 ## Profession ID is automatically prefixed with mod_id.
 ## Returns true on success, false on validation failure.
 func register_profession(profession_data: Dictionary) -> bool:
-	if _current_mod_id.is_empty():
+	var mod_id := _get_effective_mod_id()
+	if mod_id.is_empty():
 		push_error("[ModAPI] Cannot register profession: no mod context set")
 		return false
 
@@ -109,7 +131,7 @@ func register_profession(profession_data: Dictionary) -> bool:
 		return false
 
 	var original_id: String = profession_data.get("id", "")
-	var prefixed_id := "%s:%s" % [_current_mod_id, original_id]
+	var prefixed_id := "%s:%s" % [mod_id, original_id]
 
 	var prefixed_data := profession_data.duplicate(true)
 	prefixed_data["id"] = prefixed_id
@@ -118,8 +140,8 @@ func register_profession(profession_data: Dictionary) -> bool:
 	if profession == null:
 		return false
 
-	_content_registry.professions.register_profession(profession, _current_mod_id)
-	content_registered.emit(_current_mod_id, "profession", prefixed_id)
+	_content_registry.professions.register_profession(profession, mod_id)
+	content_registered.emit(mod_id, "profession", prefixed_id)
 
 	print("[ModAPI] Registered profession: %s" % prefixed_id)
 	return true
@@ -129,7 +151,8 @@ func register_profession(profession_data: Dictionary) -> bool:
 ## Train car ID is automatically prefixed with mod_id.
 ## Returns true on success, false on validation failure.
 func register_train_car(car_data: Dictionary) -> bool:
-	if _current_mod_id.is_empty():
+	var mod_id := _get_effective_mod_id()
+	if mod_id.is_empty():
 		push_error("[ModAPI] Cannot register train car: no mod context set")
 		return false
 
@@ -137,7 +160,7 @@ func register_train_car(car_data: Dictionary) -> bool:
 		return false
 
 	var original_id: String = car_data.get("id", "")
-	var prefixed_id := "%s:%s" % [_current_mod_id, original_id]
+	var prefixed_id := "%s:%s" % [mod_id, original_id]
 
 	var prefixed_data := car_data.duplicate(true)
 	prefixed_data["id"] = prefixed_id
@@ -146,8 +169,8 @@ func register_train_car(car_data: Dictionary) -> bool:
 	if train_car == null:
 		return false
 
-	_content_registry.train_cars.register_train_car(train_car, _current_mod_id)
-	content_registered.emit(_current_mod_id, "train_car", prefixed_id)
+	_content_registry.train_cars.register_train_car(train_car, mod_id)
+	content_registered.emit(mod_id, "train_car", prefixed_id)
 
 	print("[ModAPI] Registered train car: %s" % prefixed_id)
 	return true
@@ -340,144 +363,19 @@ func _train_car_to_dict(train_car: TrainCarData) -> Dictionary:
 
 
 # --- Factory Methods (Dictionary -> Resource) ---
+# These delegate to static factory methods on the data classes.
 
 func _create_item_from_dict(data: Dictionary) -> ResourceItemData:
-	var id: String = data.get("id", "")
-	if id.is_empty():
-		return null
-
-	var item := ResourceItemData.new()
-	item.id = id
-	item.name = data.get("name", id)
-	item.description = data.get("description", "")
-	item.category = data.get("category", "common")
-	item.type = data.get("type", "material")
-	item.rarity = data.get("rarity", "common")
-	item.weight = data.get("weight", 1.0)
-	item.stack_size = data.get("stack_size", 10)
-
-	var sources = data.get("sources", [])
-	if sources is Array:
-		item.sources = []
-		for s in sources:
-			item.sources.append(str(s))
-
-	var used_for = data.get("used_for", [])
-	if used_for is Array:
-		item.used_for = []
-		for u in used_for:
-			item.used_for.append(str(u))
-
-	return item
+	return ResourceItemData.from_dict(data)
 
 
 func _create_recipe_from_dict(data: Dictionary) -> RecipeData:
-	var id: String = data.get("id", "")
-	if id.is_empty():
-		return null
-
-	var recipe := RecipeData.new()
-	recipe.id = id
-	recipe.name = data.get("name", id)
-	recipe.description = data.get("description", "")
-	recipe.category = data.get("category", "consumable")
-	recipe.recipe_category = data.get("recipe_category", "")
-	recipe.station = data.get("station", "workshop")
-	recipe.craft_time = data.get("craft_time", 60)
-	recipe.unlock = data.get("unlock", "default")
-	recipe.profession_bonus = data.get("profession_bonus", "")
-
-	var inputs_data = data.get("inputs", {})
-	if inputs_data is Dictionary:
-		recipe.inputs = inputs_data.duplicate()
-	elif inputs_data is Array:
-		recipe.inputs = {}
-		for input_entry in inputs_data:
-			if input_entry is Dictionary:
-				var item_id: String = input_entry.get("item_id", "")
-				var quantity: int = input_entry.get("quantity", 1)
-				if not item_id.is_empty():
-					recipe.inputs[item_id] = quantity
-
-	var output_data = data.get("output", {})
-	if output_data is Dictionary:
-		if output_data.has("item_id"):
-			var item_id: String = output_data.get("item_id", "")
-			var quantity: int = output_data.get("quantity", 1)
-			recipe.output = {item_id: quantity}
-		else:
-			recipe.output = output_data.duplicate()
-
-	return recipe
+	return RecipeData.from_dict(data)
 
 
 func _create_profession_from_dict(data: Dictionary) -> ProfessionData:
-	var id: String = data.get("id", "")
-	if id.is_empty():
-		return null
-
-	var profession := ProfessionData.new()
-	profession.id = id
-	profession.name = data.get("name", id)
-	profession.description = data.get("description", "")
-	profession.primary_car = data.get("primary_car", "")
-	profession.field_role = data.get("field_role", "")
-	profession.priority = data.get("priority", 3)
-
-	var secondary = data.get("secondary_cars", [])
-	if secondary is Array:
-		profession.secondary_cars = []
-		for car in secondary:
-			profession.secondary_cars.append(str(car))
-
-	var synergies = data.get("synergies", [])
-	if synergies is Array:
-		profession.synergies = []
-		for syn in synergies:
-			profession.synergies.append(str(syn))
-
-	var bonuses = data.get("passive_bonuses", [])
-	if bonuses is Array:
-		profession.passive_bonuses = []
-		for bonus in bonuses:
-			profession.passive_bonuses.append(str(bonus))
-
-	var abilities = data.get("active_abilities", [])
-	if abilities is Array:
-		profession.active_abilities = []
-		for ability in abilities:
-			if ability is Dictionary:
-				profession.active_abilities.append(ability.duplicate())
-
-	return profession
+	return ProfessionData.from_dict(data)
 
 
 func _create_train_car_from_dict(data: Dictionary) -> TrainCarData:
-	var id: String = data.get("id", "")
-	if id.is_empty():
-		return null
-
-	var train_car := TrainCarData.new()
-	train_car.id = id
-	train_car.name = data.get("name", id)
-	train_car.description = data.get("description", "")
-	train_car.type = data.get("type", "car")
-	train_car.category = data.get("category", "utility")
-	train_car.acquisition = data.get("acquisition", "starting")
-	train_car.crew_station = data.get("crew_station", false)
-	train_car.upgrade_tree = data.get("upgrade_tree", "")
-	train_car.damage_effect = data.get("damage_effect", "")
-
-	var subsystems = data.get("subsystems", [])
-	if subsystems is Array:
-		train_car.subsystems = []
-		for sub in subsystems:
-			train_car.subsystems.append(str(sub))
-
-	var dependencies = data.get("dependencies", [])
-	if dependencies is Array:
-		train_car.dependencies = []
-		for dep in dependencies:
-			train_car.dependencies.append(str(dep))
-
-	return train_car
+	return TrainCarData.from_dict(data)

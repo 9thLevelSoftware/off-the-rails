@@ -31,6 +31,49 @@ func _to_string() -> String:
 	return "[ProfessionData:%s]" % id
 
 
+## Create a ProfessionData instance from a dictionary.
+## Centralized factory method used by ContentRegistry and ModAPI.
+static func from_dict(data: Dictionary) -> ProfessionData:
+	var id_val: String = data.get("id", "")
+	if id_val.is_empty():
+		return null
+
+	var profession := ProfessionData.new()
+	profession.id = id_val
+	profession.name = data.get("name", id_val)
+	profession.description = data.get("description", "")
+	profession.primary_car = data.get("primary_car", "")
+	profession.field_role = data.get("field_role", "")
+	profession.priority = data.get("priority", 3)
+
+	var secondary = data.get("secondary_cars", [])
+	if secondary is Array:
+		profession.secondary_cars = []
+		for car in secondary:
+			profession.secondary_cars.append(str(car))
+
+	var synergies = data.get("synergies", [])
+	if synergies is Array:
+		profession.synergies = []
+		for syn in synergies:
+			profession.synergies.append(str(syn))
+
+	var bonuses = data.get("passive_bonuses", [])
+	if bonuses is Array:
+		profession.passive_bonuses = []
+		for bonus in bonuses:
+			profession.passive_bonuses.append(str(bonus))
+
+	var abilities = data.get("active_abilities", [])
+	if abilities is Array:
+		profession.active_abilities = []
+		for ability in abilities:
+			if ability is Dictionary:
+				profession.active_abilities.append(ability.duplicate())
+
+	return profession
+
+
 ## Get an ability by ID
 func get_ability(ability_id: String) -> Dictionary:
 	for ability in active_abilities:

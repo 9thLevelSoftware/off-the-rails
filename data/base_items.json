@@ -95,6 +95,38 @@
       "stack_size": 15,
       "sources": ["small_town", "military_base", "greenhouse_car"],
       "used_for": ["nutrition", "morale"]
+    },
+    {
+      "id": "crude_water",
+      "name": "Crude Water",
+      "description": "Unfiltered water collected from the environment. Needs purification.",
+      "category": "resource",
+      "weight": 1.0,
+      "stack_size": 20
+    },
+    {
+      "id": "bandage",
+      "name": "Bandage",
+      "description": "Basic wound dressing for minor injuries.",
+      "category": "consumable",
+      "weight": 0.1,
+      "stack_size": 20
+    },
+    {
+      "id": "ration_pack",
+      "name": "Ration Pack",
+      "description": "Preserved food supplies for long expeditions.",
+      "category": "consumable",
+      "weight": 0.5,
+      "stack_size": 10
+    },
+    {
+      "id": "electronics_kit",
+      "name": "Electronics Kit",
+      "description": "A set of tools and components for electrical repairs.",
+      "category": "crafted",
+      "weight": 2.0,
+      "stack_size": 5
     }
   ]
 }

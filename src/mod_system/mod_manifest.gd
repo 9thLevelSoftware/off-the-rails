@@ -11,7 +11,7 @@ extends RefCounted
 ##   "description": "...",          // Optional
 ##   "author": "Author Name",       // Optional
 ##   "dependencies": ["other_mod"], // Optional - list of required mod IDs
-##   "content_files": ["data/items.yaml"], // Optional - data files to load
+##   "content_files": ["data/items.json"], // Optional - data files to load
 ##   "scripts": ["scripts/on_init.gd"]     // Optional - GDScript files to execute
 ## }
 
@@ -37,6 +37,22 @@ var validation_errors: Array[String] = []
 # Regex patterns for validation
 const ID_PATTERN := "^[a-z][a-z0-9_]*$"
 const VERSION_PATTERN := "^\\d+\\.\\d+\\.\\d+$"
+
+# Pre-compiled regex instances (shared across all ModManifest instances)
+static var _id_regex: RegEx
+static var _version_regex: RegEx
+static var _regex_initialized: bool = false
+
+
+## Initialize shared regex instances (called once per session).
+static func _ensure_regex_initialized() -> void:
+	if _regex_initialized:
+		return
+	_id_regex = RegEx.new()
+	_id_regex.compile(ID_PATTERN)
+	_version_regex = RegEx.new()
+	_version_regex.compile(VERSION_PATTERN)
+	_regex_initialized = true
 
 
 ## Parse a JSON string into a ModManifest.
@@ -124,9 +140,8 @@ func _validate_id() -> bool:
 		validation_errors.append("Required field 'id' is missing or empty")
 		return false
 
-	var regex := RegEx.new()
-	regex.compile(ID_PATTERN)
-	if not regex.search(id):
+	_ensure_regex_initialized()
+	if not _id_regex.search(id):
 		validation_errors.append("Invalid 'id' format: must start with lowercase letter and contain only lowercase letters, numbers, and underscores. Got: '%s'" % id)
 		return false
 
@@ -139,9 +154,8 @@ func _validate_version() -> bool:
 		validation_errors.append("Required field 'version' is missing or empty")
 		return false
 
-	var regex := RegEx.new()
-	regex.compile(VERSION_PATTERN)
-	if not regex.search(version):
+	_ensure_regex_initialized()
+	if not _version_regex.search(version):
 		validation_errors.append("Invalid 'version' format: must be semver (X.Y.Z). Got: '%s'" % version)
 		return false
 
@@ -158,15 +172,14 @@ func _validate_name() -> bool:
 
 ## Validate dependencies array format.
 func _validate_dependencies() -> bool:
-	var regex := RegEx.new()
-	regex.compile(ID_PATTERN)
+	_ensure_regex_initialized()
 
 	for i in range(dependencies.size()):
 		var dep: String = dependencies[i]
 		if dep.is_empty():
 			validation_errors.append("Dependency at index %d is empty" % i)
 			return false
-		if not regex.search(dep):
+		if not _id_regex.search(dep):
 			validation_errors.append("Invalid dependency ID format at index %d: '%s'" % [i, dep])
 			return false
 

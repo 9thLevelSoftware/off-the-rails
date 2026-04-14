@@ -76,8 +76,8 @@ func _physics_process(delta: float) -> void:
 	# Update prompt position if visible and we have a target
 	if _prompt and _state_machine.current_target != "":
 		var data := _interactables.get(_state_machine.current_target, {}) as Dictionary
-		if data.has("node") and is_instance_valid(data.node):
-			var target_node: Node2D = data.node
+		if data.has("node") and is_instance_valid(data["node"]):
+			var target_node: Node2D = data["node"]
 			# Get interaction position if available, otherwise use global_position
 			var target_pos: Vector2
 			if target_node.has_method("get_interaction_position"):
@@ -147,8 +147,8 @@ func _on_entered_range(interactable_id: String) -> void:
 	if _prompt:
 		var data := _interactables.get(interactable_id, {}) as Dictionary
 		if data.has("config") and data.has("node"):
-			var config: InteractableConfig = data.config
-			var node: Node2D = data.node
+			var config: InteractableConfig = data["config"]
+			var node: Node2D = data["node"]
 			var pos: Vector2
 			if node.has_method("get_interaction_position"):
 				pos = node.get_interaction_position()
@@ -173,12 +173,12 @@ func _on_interaction_started(interactable_id: String) -> void:
 	# Apply config cooldown duration before ending interaction
 	var data := _interactables.get(interactable_id, {}) as Dictionary
 	if data.has("config"):
-		var config: InteractableConfig = data.config
+		var config: InteractableConfig = data["config"]
 		_state_machine.set_cooldown_duration(config.interaction_cooldown)
 
 	# Call on_interact on the interactable node if it has the method
-	if data.has("node") and is_instance_valid(data.node):
-		var node: Node2D = data.node
+	if data.has("node") and is_instance_valid(data["node"]):
+		var node: Node2D = data["node"]
 		if node.has_method("on_interact"):
 			node.on_interact()
 

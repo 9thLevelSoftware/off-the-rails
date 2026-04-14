@@ -12,10 +12,12 @@ extends Node
 # --- Constants ---
 const DEFAULT_PROFESSION_PATH := "res://src/data/professions/engineer.tres"
 
-# --- Scene paths ---
-const TRAIN_SCENE := "res://src/train/train.tscn"
-const EXPEDITION_SCENE := "res://src/expedition/expedition.tscn"
-const PLAYER_SCENE := "res://src/player/player.tscn"
+# --- Scene paths (V2 isometric) ---
+# These paths were updated from V1 3D scenes to V2 isometric scenes.
+# Workshop serves as the initial train car in V2 scope.
+const TRAIN_SCENE := "res://src/train/cars/workshop/scenes/workshop.tscn"
+const EXPEDITION_SCENE := "res://src/isometric/scenes/isometric_level.tscn"
+const PLAYER_SCENE := "res://src/isometric/player/player.tscn"
 
 # --- Signals ---
 ## Emitted when a game session starts
@@ -29,7 +31,7 @@ signal scene_transition_started(from_scene: GameScene, to_scene: GameScene)
 ## Emitted when a scene transition completes
 signal scene_transition_completed(new_scene: GameScene)
 ## Emitted when the player is spawned in a scene
-signal player_spawned(player: CharacterBody3D)
+signal player_spawned(player: CharacterBody2D)
 ## Emitted when a profession is selected
 signal profession_selected(profession: ProfessionData)
 ## Emitted when inventory quantity changes for an item
@@ -41,7 +43,7 @@ var inventory: Dictionary = {}  # {item_id: quantity}
 # --- Scene state ---
 enum GameScene { TRAIN, EXPEDITION }
 var current_scene: GameScene = GameScene.TRAIN
-var player_instance: CharacterBody3D = null
+var player_instance: CharacterBody2D = null
 
 # --- Scene references ---
 var train_scene_root: Node = null
@@ -57,6 +59,40 @@ var campaign_phase: int = 0
 var current_location: String = ""
 ## Whether a game session is currently active
 var session_active: bool = false
+
+# --- Content Registry ---
+var _content_registry: ContentRegistry = null
+
+
+## Initialize the content registry. Call once at game startup.
+func init_content_registry() -> bool:
+	if _content_registry != null:
+		return true
+	_content_registry = ContentRegistry.new()
+	return _content_registry.load_base_content()
+
+
+## Get the content registry. Initializes lazily if not yet loaded.
+func get_content_registry() -> ContentRegistry:
+	if _content_registry == null:
+		init_content_registry()
+	return _content_registry
+
+
+## Get an item definition by ID.
+func get_item_data(item_id: String) -> ResourceItemData:
+	return get_content_registry().get_item(item_id)
+
+
+## Get a recipe definition by ID.
+func get_recipe_data(recipe_id: String) -> RecipeData:
+	return get_content_registry().get_recipe(recipe_id)
+
+
+## Check if an item ID is valid (exists in registry).
+func is_valid_item(item_id: String) -> bool:
+	return get_content_registry().items.has_item(item_id)
+
 
 # --- Methods ---
 
@@ -173,11 +209,11 @@ func _spawn_player_at_scene(scene_root: Node) -> void:
 			player_instance.get_parent().remove_child(player_instance)
 		scene_root.add_child(player_instance)
 
-	# Position at spawn point using local transform (safe before tree is ready)
-	var spawn_point := scene_root.get_node_or_null("PlayerSpawn") as Node3D
+	# V2: Uses Node2D spawn points with simple position assignment.
+	# V1 used Node3D with Transform3D.
+	var spawn_point := scene_root.get_node_or_null("PlayerSpawn") as Node2D
 	if spawn_point:
-		# Use transform (local) instead of global_transform to avoid tree errors
-		player_instance.transform = spawn_point.transform
+		player_instance.position = spawn_point.position
 
 	player_spawned.emit(player_instance)
 

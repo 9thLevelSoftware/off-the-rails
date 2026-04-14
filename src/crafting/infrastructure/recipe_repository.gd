@@ -13,6 +13,9 @@ var _recipes: Dictionary = {}  # {recipe_id: RecipeData}
 ## Flag indicating if recipes have been loaded
 var _loaded: bool = false
 
+## If true, prefer ContentRegistry over .tres files
+var _use_content_registry: bool = true
+
 
 ## Load all recipes from the recipes directory.
 ## Call this once during initialization.
@@ -47,17 +50,38 @@ func load_all_recipes() -> void:
 
 ## Get a recipe by ID.
 ## Returns null if recipe not found.
+## Prefers ContentRegistry if available, falls back to .tres cache.
 func get_recipe(recipe_id: String) -> RecipeData:
+	# Prefer ContentRegistry if available
+	if _use_content_registry and GameState and GameState.get_content_registry():
+		var registry_recipe := GameState.get_content_registry().get_recipe(recipe_id)
+		if registry_recipe:
+			return registry_recipe
+
+	# Fall back to local .tres cache
 	_ensure_loaded()
 	return _recipes.get(recipe_id, null)
 
 
 ## Get all loaded recipes.
+## Merges ContentRegistry (higher priority) with .tres files.
 func get_all_recipes() -> Array[RecipeData]:
-	_ensure_loaded()
 	var result: Array[RecipeData] = []
-	for recipe in _recipes.values():
-		result.append(recipe)
+	var seen_ids: Dictionary = {}
+
+	# ContentRegistry recipes first (higher priority)
+	if _use_content_registry and GameState and GameState.get_content_registry():
+		var registry := GameState.get_content_registry()
+		for recipe in registry.recipes.get_all():
+			result.append(recipe)
+			seen_ids[recipe.id] = true
+
+	# Add .tres recipes not already in ContentRegistry
+	_ensure_loaded()
+	for recipe_id in _recipes:
+		if recipe_id not in seen_ids:
+			result.append(_recipes[recipe_id])
+
 	return result
 
 
@@ -186,3 +210,13 @@ func has_recipe(recipe_id: String) -> bool:
 func clear_cache() -> void:
 	_recipes.clear()
 	_loaded = false
+
+
+## Set whether to prefer ContentRegistry over .tres files.
+func set_use_content_registry(enabled: bool) -> void:
+	_use_content_registry = enabled
+
+
+## Check if ContentRegistry is being used.
+func is_using_content_registry() -> bool:
+	return _use_content_registry and GameState and GameState.get_content_registry() != null

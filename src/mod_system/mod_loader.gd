@@ -17,6 +17,8 @@ const MODS_DIR := "user://mods/"
 
 var _discovered_mods: Dictionary = {}  # mod_id -> ModManifest
 var _loaded_mods: Array[String] = []
+var _failed_mods: Dictionary = {}  # mod_id -> true for mods that failed to load
+var _script_instances: Dictionary = {}  # mod_id -> Array[RefCounted]
 var _error_handler: ModErrorHandler
 var _content_registry: ContentRegistry
 var _mod_api: ModAPI
@@ -35,8 +37,8 @@ func _initialize() -> void:
 		push_warning("[ModLoader] Already initialized")
 		return
 
-	# CRITICAL: Verify EventHooks is available
-	if not is_instance_valid(EventHooks):
+	# CRITICAL: Verify EventHooks is available (autoloads are always valid once loaded)
+	if not EventHooks:
 		push_error("[ModLoader] FATAL: EventHooks not available. Check autoload order.")
 		return
 
@@ -141,7 +143,7 @@ func _try_load_manifest(dir_name: String, manifest_path: String) -> ModManifest:
 	var manifest := ModManifest.from_file(manifest_path)
 
 	# Check for parse errors (stored in validation_errors before validate() is called)
-	if not manifest.validation_errors.is_empty() and not manifest.is_valid:
+	if manifest.validation_errors.size() > 0 and not manifest.is_valid:
 		# Check if this is a parse error vs validation error
 		var first_error: String = manifest.validation_errors[0]
 		if first_error.begins_with("JSON parse error") or first_error.begins_with("File not found") or first_error.begins_with("Failed to open"):
@@ -197,7 +199,7 @@ func load_mod(mod_id: String) -> bool:
 	var manifest: ModManifest = _discovered_mods[mod_id]
 
 	# Emit mod loading signal
-	if is_instance_valid(EventHooks):
+	if EventHooks:
 		EventHooks.mod_loading.emit(mod_id)
 
 	# Check dependencies first
@@ -216,7 +218,7 @@ func load_mod(mod_id: String) -> bool:
 	mod_loaded.emit(mod_id)
 
 	# Emit mod loaded signal
-	if is_instance_valid(EventHooks):
+	if EventHooks:
 		EventHooks.mod_loaded.emit(mod_id)
 
 	print("[ModLoader] Loaded mod: %s" % mod_id)
@@ -224,14 +226,25 @@ func load_mod(mod_id: String) -> bool:
 	return true
 
 
-## Check if all dependencies are available.
+## Check if all dependencies are available and loaded successfully.
 func _check_dependencies(manifest: ModManifest) -> bool:
 	for dep_id in manifest.dependencies:
+		# First check if dependency was discovered
 		if dep_id not in _discovered_mods:
 			var error := _error_handler.handle_error(
 				manifest.id,
 				ModErrorHandler.ErrorType.DEPENDENCY_MISSING,
 				"Required dependency not found: %s" % dep_id,
+				{"dependency": dep_id}
+			)
+			mod_load_failed.emit(manifest.id, error)
+			return false
+		# Then check if dependency loaded successfully (not failed)
+		if dep_id in _failed_mods:
+			var error := _error_handler.handle_error(
+				manifest.id,
+				ModErrorHandler.ErrorType.DEPENDENCY_MISSING,
+				"Required dependency failed to load: %s" % dep_id,
 				{"dependency": dep_id}
 			)
 			mod_load_failed.emit(manifest.id, error)
@@ -289,6 +302,7 @@ func _load_scripts(manifest: ModManifest) -> bool:
 
 
 ## Execute a mod script with ModAPI context.
+## Uses FileAccess + GDScript.new() to load scripts from user:// paths.
 func _execute_mod_script(mod_id: String, script_path: String, full_path: String) -> bool:
 	# CRITICAL: Validate .gd extension
 	if not full_path.ends_with(".gd"):
@@ -301,23 +315,30 @@ func _execute_mod_script(mod_id: String, script_path: String, full_path: String)
 		mod_load_failed.emit(mod_id, error)
 		return false
 
-	# Load the script
-	var script = load(full_path)
-	if script == null:
+	# Load the script using FileAccess (works for user:// paths)
+	var file := FileAccess.open(full_path, FileAccess.READ)
+	if not file:
 		var error := _error_handler.handle_error(
 			mod_id,
 			ModErrorHandler.ErrorType.SCRIPT_LOAD_FAILED,
-			"Failed to load script: %s" % script_path,
+			"Cannot open script: %s (error %d)" % [script_path, FileAccess.get_open_error()],
 			{"path": full_path}
 		)
 		mod_load_failed.emit(mod_id, error)
 		return false
 
-	if not script is GDScript:
+	var source_code := file.get_as_text()
+	file.close()
+
+	# Create GDScript from source
+	var script := GDScript.new()
+	script.source_code = source_code
+	var err := script.reload()
+	if err != OK:
 		var error := _error_handler.handle_error(
 			mod_id,
-			ModErrorHandler.ErrorType.SCRIPT_INVALID,
-			"File is not a valid GDScript: %s" % script_path,
+			ModErrorHandler.ErrorType.SCRIPT_LOAD_FAILED,
+			"Compile error in script: %s (error %d)" % [script_path, err],
 			{"path": full_path}
 		)
 		mod_load_failed.emit(mod_id, error)
@@ -335,13 +356,18 @@ func _execute_mod_script(mod_id: String, script_path: String, full_path: String)
 		mod_load_failed.emit(mod_id, error)
 		return false
 
-	# Set mod context for API calls
-	_mod_api.set_current_mod(mod_id)
+	# Create a bound API instance for this mod to prevent context issues in callbacks
+	var bound_api := _mod_api.create_bound_api(mod_id)
 
 	# Call _mod_init if the script has it
 	if instance.has_method("_mod_init"):
 		print("[ModLoader] Executing _mod_init for: %s" % full_path)
-		instance.call("_mod_init", _mod_api)
+		instance.call("_mod_init", bound_api)
+
+	# Store instance to prevent memory leaks (especially if it connects signals)
+	if not _script_instances.has(mod_id):
+		_script_instances[mod_id] = []
+	_script_instances[mod_id].append(instance)
 
 	_mod_api.script_executed.emit(mod_id, script_path)
 	print("[ModLoader] Executed script: %s" % full_path)
@@ -367,45 +393,63 @@ func load_all_mods() -> int:
 
 
 ## Compute a load order that respects dependencies.
-## Uses topological sort.
+## Uses topological sort. Mods with cycles are excluded and marked as failed.
 func _compute_load_order() -> Array[String]:
 	var order: Array[String] = []
 	var visited: Dictionary = {}
 	var in_progress: Dictionary = {}
 
 	for mod_id in _discovered_mods:
-		if mod_id not in visited:
+		if mod_id not in visited and mod_id not in _failed_mods:
 			_visit_for_sort(mod_id, visited, in_progress, order)
 
 	return order
 
 
 ## Recursive helper for topological sort.
-func _visit_for_sort(mod_id: String, visited: Dictionary, in_progress: Dictionary, order: Array[String]) -> void:
+## Returns true if the mod can be added to order, false if it's part of a cycle.
+func _visit_for_sort(mod_id: String, visited: Dictionary, in_progress: Dictionary, order: Array[String]) -> bool:
+	if mod_id in _failed_mods:
+		return false
+
 	if mod_id in visited:
-		return
+		return true
 
 	if mod_id in in_progress:
-		# Circular dependency detected
-		_error_handler.handle_error(
+		# Circular dependency detected - mark as failed
+		var error := _error_handler.handle_error(
 			mod_id,
-			ModErrorHandler.ErrorType.DEPENDENCY_MISSING,
+			ModErrorHandler.ErrorType.DEPENDENCY_CYCLE,
 			"Circular dependency detected"
 		)
-		return
+		_failed_mods[mod_id] = true
+		mod_load_failed.emit(mod_id, error)
+		return false
 
 	if mod_id not in _discovered_mods:
-		return
+		return false
 
 	in_progress[mod_id] = true
 
 	var manifest: ModManifest = _discovered_mods[mod_id]
 	for dep_id in manifest.dependencies:
-		_visit_for_sort(dep_id, visited, in_progress, order)
+		if not _visit_for_sort(dep_id, visited, in_progress, order):
+			# Dependency failed (cycle or other error) - this mod fails too
+			in_progress.erase(mod_id)
+			_failed_mods[mod_id] = true
+			var error := _error_handler.handle_error(
+				mod_id,
+				ModErrorHandler.ErrorType.DEPENDENCY_MISSING,
+				"Dependency '%s' is part of a cycle or failed to load" % dep_id,
+				{"dependency": dep_id}
+			)
+			mod_load_failed.emit(mod_id, error)
+			return false
 
 	in_progress.erase(mod_id)
 	visited[mod_id] = true
 	order.append(mod_id)
+	return true
 
 
 ## Get a mod's manifest by ID.
@@ -443,13 +487,18 @@ func get_error_handler() -> ModErrorHandler:
 
 ## Reload all mods (clears state and rediscovers).
 func reload_mods() -> int:
+	# Cleanup script instances for all loaded mods
+	for mod_id in _loaded_mods:
+		_cleanup_mod_scripts(mod_id)
+
 	# Emit unload signals for all currently loaded mods
-	if is_instance_valid(EventHooks):
+	if EventHooks:
 		for mod_id in _loaded_mods:
 			EventHooks.mod_unloaded.emit(mod_id)
 
 	_discovered_mods.clear()
 	_loaded_mods.clear()
+	_failed_mods.clear()
 	_error_handler.clear()
 
 	# Clear and reload content registry
@@ -459,3 +508,15 @@ func reload_mods() -> int:
 
 	discover_mods()
 	return load_all_mods()
+
+
+## Cleanup script instances for a mod, calling _mod_exit if available.
+func _cleanup_mod_scripts(mod_id: String) -> void:
+	if not _script_instances.has(mod_id):
+		return
+
+	for instance in _script_instances[mod_id]:
+		if is_instance_valid(instance) and instance.has_method("_mod_exit"):
+			instance.call("_mod_exit")
+
+	_script_instances.erase(mod_id)
