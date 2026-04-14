@@ -25,6 +25,7 @@ config/icon="res://icon.svg"
 
 GDAIMCPRuntime="*uid://dcne7ryelpxmn"
 GameState="*res://src/autoloads/game_state.gd"
+ModLoader="*res://src/mod_system/mod_loader.gd"
 
 [dotnet]
 
