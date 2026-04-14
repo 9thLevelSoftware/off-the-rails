@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bxqr7k2mwphcw"]
+[gd_scene format=3 uid="uid://bxqr7k2mwphcw"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_player"]
+[ext_resource type="Script" path="res://src/professions/ability_manager.gd" id="2_ability_manager"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_collision"]
 radius = 0.3
@@ -29,3 +30,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 mesh = SubResource("CapsuleMesh_visual")
 surface_material_override/0 = SubResource("StandardMaterial3D_placeholder")
+
+[node name="AbilityManager" type="Node" parent="."]
+script = ExtResource("2_ability_manager")

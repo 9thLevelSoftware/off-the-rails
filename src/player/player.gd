@@ -14,6 +14,7 @@ extends CharacterBody3D
 # Node references
 @onready var camera_mount: Node3D = $CameraMount
 @onready var camera: Camera3D = $CameraMount/Camera3D
+@onready var ability_manager: AbilityManager = $AbilityManager
 
 # Gravity from project settings
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity", 9.8)
@@ -75,3 +76,11 @@ func _physics_process(delta: float) -> void:
 
 	# Move the character using Jolt-compatible move_and_slide
 	move_and_slide()
+
+
+func set_profession(profession: ProfessionData) -> void:
+	if ability_manager:
+		ability_manager.set_profession(profession)
+		print("[Player] Profession set: %s" % profession.name)
+	else:
+		push_error("Player: AbilityManager not found")
