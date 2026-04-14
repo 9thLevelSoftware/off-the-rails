@@ -63,6 +63,12 @@ signal queue_job_removed(job)
 signal queue_reordered()
 
 
+# --- UI Signals ---
+
+## Emitted when crafting UI should be opened (requester: Object)
+signal crafting_ui_requested(requester)
+
+
 # --- Emission Methods ---
 # These provide a clean API for emitting signals from other systems
 
@@ -110,3 +116,7 @@ func emit_queue_job_removed(job) -> void:
 
 func emit_queue_reordered() -> void:
 	queue_reordered.emit()
+
+
+func emit_crafting_ui_requested(requester) -> void:
+	crafting_ui_requested.emit(requester)

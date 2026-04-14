@@ -60,6 +60,40 @@ var current_location: String = ""
 ## Whether a game session is currently active
 var session_active: bool = false
 
+# --- Content Registry ---
+var _content_registry: ContentRegistry = null
+
+
+## Initialize the content registry. Call once at game startup.
+func init_content_registry() -> bool:
+	if _content_registry != null:
+		return true
+	_content_registry = ContentRegistry.new()
+	return _content_registry.load_base_content()
+
+
+## Get the content registry. Initializes lazily if not yet loaded.
+func get_content_registry() -> ContentRegistry:
+	if _content_registry == null:
+		init_content_registry()
+	return _content_registry
+
+
+## Get an item definition by ID.
+func get_item_data(item_id: String) -> ResourceItemData:
+	return get_content_registry().get_item(item_id)
+
+
+## Get a recipe definition by ID.
+func get_recipe_data(recipe_id: String) -> RecipeData:
+	return get_content_registry().get_recipe(recipe_id)
+
+
+## Check if an item ID is valid (exists in registry).
+func is_valid_item(item_id: String) -> bool:
+	return get_content_registry().items.has_item(item_id)
+
+
 # --- Methods ---
 
 ## Starts a new game session.
