@@ -12,10 +12,12 @@ extends Node
 # --- Constants ---
 const DEFAULT_PROFESSION_PATH := "res://src/data/professions/engineer.tres"
 
-# --- Scene paths ---
-const TRAIN_SCENE := "res://src/train/train.tscn"
-const EXPEDITION_SCENE := "res://src/expedition/expedition.tscn"
-const PLAYER_SCENE := "res://src/player/player.tscn"
+# --- Scene paths (V2 isometric) ---
+# These paths were updated from V1 3D scenes to V2 isometric scenes.
+# Workshop serves as the initial train car in V2 scope.
+const TRAIN_SCENE := "res://src/train/cars/workshop/scenes/workshop.tscn"
+const EXPEDITION_SCENE := "res://src/isometric/scenes/isometric_level.tscn"
+const PLAYER_SCENE := "res://src/isometric/player/player.tscn"
 
 # --- Signals ---
 ## Emitted when a game session starts
@@ -29,7 +31,7 @@ signal scene_transition_started(from_scene: GameScene, to_scene: GameScene)
 ## Emitted when a scene transition completes
 signal scene_transition_completed(new_scene: GameScene)
 ## Emitted when the player is spawned in a scene
-signal player_spawned(player: CharacterBody3D)
+signal player_spawned(player: CharacterBody2D)
 ## Emitted when a profession is selected
 signal profession_selected(profession: ProfessionData)
 ## Emitted when inventory quantity changes for an item
@@ -41,7 +43,7 @@ var inventory: Dictionary = {}  # {item_id: quantity}
 # --- Scene state ---
 enum GameScene { TRAIN, EXPEDITION }
 var current_scene: GameScene = GameScene.TRAIN
-var player_instance: CharacterBody3D = null
+var player_instance: CharacterBody2D = null
 
 # --- Scene references ---
 var train_scene_root: Node = null
@@ -173,11 +175,11 @@ func _spawn_player_at_scene(scene_root: Node) -> void:
 			player_instance.get_parent().remove_child(player_instance)
 		scene_root.add_child(player_instance)
 
-	# Position at spawn point using local transform (safe before tree is ready)
-	var spawn_point := scene_root.get_node_or_null("PlayerSpawn") as Node3D
+	# V2: Uses Node2D spawn points with simple position assignment.
+	# V1 used Node3D with Transform3D.
+	var spawn_point := scene_root.get_node_or_null("PlayerSpawn") as Node2D
 	if spawn_point:
-		# Use transform (local) instead of global_transform to avoid tree errors
-		player_instance.transform = spawn_point.transform
+		player_instance.position = spawn_point.position
 
 	player_spawned.emit(player_instance)
 
