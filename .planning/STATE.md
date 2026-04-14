@@ -1,9 +1,9 @@
 # Project State
 
 ## Current Position
-- **Phase**: 5 of 7 (executed, pending review)
-- **Status**: Phase 5 complete — all 3 plans executed successfully
-- **Last Activity**: Phase 5 execution (2026-04-13)
+- **Phase**: 5 of 7 (verified)
+- **Status**: Phase 5 verified — review passed with 5 warnings fixed
+- **Last Activity**: Phase 5 review complete (2026-04-13)
 
 ## Progress
 ```
@@ -61,19 +61,19 @@
 - `src/expedition/enemies/enemy_spawner.gd` — Threshold-based spawner
 - `src/train/interaction/interaction_controller.gd` — Extended for expedition
 
-## Phase 5: Professions — EXECUTED
+## Phase 5: Professions — VERIFIED
 
 | Plan | Wave | Name | Agent | Status |
 |------|------|------|-------|--------|
-| 05-01 | 1 | Profession Data Architecture | engineering-senior-developer | ✓ Complete |
-| 05-02 | 2 | Ability System Implementation | engineering-godot-developer | ✓ Complete |
-| 05-03 | 3 | Passive Bonuses & Selection | engineering-senior-developer | ✓ Complete |
+| 05-01 | 1 | Profession Data Architecture | engineering-senior-developer | ✓ Verified |
+| 05-02 | 2 | Ability System Implementation | engineering-godot-developer | ✓ Verified |
+| 05-03 | 3 | Passive Bonuses & Selection | engineering-senior-developer | ✓ Verified |
 
-**Execution Notes**:
-- All 3 plans executed successfully across 3 waves
-- Brownfield integration: preserved existing ProfessionData schema
-- Created wrapper layer: AbilityData, PassiveBonusMapping, ProfessionUtils
-- Reused existing ProfessionData.can_work_at() for station assignment
+**Review Summary**:
+- Reviewers: testing-reality-checker, engineering-godot-developer, engineering-senior-developer
+- Cycles: 2
+- Findings: 0 blockers, 6 warnings fixed
+- Fixes: Input handling conditional, null manager early return, Phase 7 docs added, UID files tracked
 
 **Key Outputs**:
 - `src/professions/ability_data.gd` — Typed wrapper for ability dictionaries
@@ -106,4 +106,4 @@
 
 ## Next Action
 
-Run `/legion:review` to verify Phase 5: Professions
+Run `/legion:plan 6` to plan Phase 6: Crafting
