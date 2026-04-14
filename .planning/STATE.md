@@ -45,7 +45,7 @@
 |------|--------|--------|
 | Phase 1 Issue | #1 | Open |
 | Phase 2 Issue | #2 | Closed |
-| Phase 3 Issue | #3 | Open |
+| Phase 3 Issue | #3 | Closed |
 
 ## Next Action
 
