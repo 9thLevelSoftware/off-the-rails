@@ -1,13 +1,13 @@
 # Project State
 
 ## Current Position
-- **Phase**: 4 of 7 (complete)
-- **Status**: Phase 4 complete — review passed (2 cycles)
-- **Last Activity**: Phase 4 review passed (2026-04-13)
+- **Phase**: 5 of 7 (executed, pending review)
+- **Status**: Phase 5 complete — all 3 plans executed successfully
+- **Last Activity**: Phase 5 execution (2026-04-13)
 
 ## Progress
 ```
-[############        ] 57% — 12/~21 plans complete
+[###############     ] 71% — 15/~21 plans complete
 ```
 
 ## Phase 1: Foundation — VERIFIED
@@ -61,6 +61,28 @@
 - `src/expedition/enemies/enemy_spawner.gd` — Threshold-based spawner
 - `src/train/interaction/interaction_controller.gd` — Extended for expedition
 
+## Phase 5: Professions — EXECUTED
+
+| Plan | Wave | Name | Agent | Status |
+|------|------|------|-------|--------|
+| 05-01 | 1 | Profession Data Architecture | engineering-senior-developer | ✓ Complete |
+| 05-02 | 2 | Ability System Implementation | engineering-godot-developer | ✓ Complete |
+| 05-03 | 3 | Passive Bonuses & Selection | engineering-senior-developer | ✓ Complete |
+
+**Execution Notes**:
+- All 3 plans executed successfully across 3 waves
+- Brownfield integration: preserved existing ProfessionData schema
+- Created wrapper layer: AbilityData, PassiveBonusMapping, ProfessionUtils
+- Reused existing ProfessionData.can_work_at() for station assignment
+
+**Key Outputs**:
+- `src/professions/ability_data.gd` — Typed wrapper for ability dictionaries
+- `src/professions/profession_utils.gd` — Cooldown parsing utilities
+- `src/professions/passive_bonus_mapping.gd` — Bonus description → struct mapping
+- `src/professions/ability_manager.gd` — Ability activation with cooldowns
+- `src/professions/ability_effects.gd` — Signal-based effect handlers
+- `src/professions/passive_bonus_manager.gd` — Passive bonus application
+
 ## Recent Decisions
 
 | Decision | Value |
@@ -84,4 +106,4 @@
 
 ## Next Action
 
-Run `/legion:plan 5` to plan Phase 5: Professions
+Run `/legion:review` to verify Phase 5: Professions
