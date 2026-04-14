@@ -47,6 +47,7 @@
 | Phase 2 Issue | #2 | Closed |
 | Phase 3 Issue | #3 | Closed |
 | Phase 4 Issue | #4 | Open |
+| Phase 4 PR | #5 | Open |
 
 ## Next Action
 
