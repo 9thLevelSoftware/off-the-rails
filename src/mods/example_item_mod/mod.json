@@ -1,0 +1,15 @@
+{
+  "id": "example_item_mod",
+  "version": "1.0.0",
+  "name": "Example Item Mod",
+  "description": "Demonstrates how to add custom items and recipes via the mod system.",
+  "author": "Off The Rails Team",
+  "dependencies": [],
+  "content_files": [
+    "data/items.json",
+    "data/recipes.json"
+  ],
+  "scripts": [
+    "scripts/on_init.gd"
+  ]
+}
