@@ -32,6 +32,11 @@ signal scene_transition_completed(new_scene: GameScene)
 signal player_spawned(player: CharacterBody3D)
 ## Emitted when a profession is selected
 signal profession_selected(profession: ProfessionData)
+## Emitted when inventory quantity changes for an item
+signal inventory_changed(item_id: String, old_quantity: int, new_quantity: int)
+
+# --- Inventory state ---
+var inventory: Dictionary = {}  # {item_id: quantity}
 
 # --- Scene state ---
 enum GameScene { TRAIN, EXPEDITION }
@@ -188,3 +193,92 @@ func register_scene(scene_type: GameScene, scene_root: Node) -> void:
 			train_scene_root = scene_root
 		GameScene.EXPEDITION:
 			expedition_scene_root = scene_root
+
+
+# --- Inventory Methods ---
+
+## Add quantity to inventory for an item.
+## Returns the new quantity.
+func add_to_inventory(item_id: String, quantity: int) -> int:
+	var old_qty: int = inventory.get(item_id, 0)
+	var new_qty: int = old_qty + quantity
+	inventory[item_id] = new_qty
+	inventory_changed.emit(item_id, old_qty, new_qty)
+	return new_qty
+
+
+## Remove quantity from inventory for an item.
+## Returns true if removal was successful (had enough), false otherwise.
+func remove_from_inventory(item_id: String, quantity: int) -> bool:
+	var current: int = inventory.get(item_id, 0)
+	if current < quantity:
+		return false
+	var new_qty: int = current - quantity
+	if new_qty == 0:
+		inventory.erase(item_id)
+	else:
+		inventory[item_id] = new_qty
+	inventory_changed.emit(item_id, current, new_qty)
+	return true
+
+
+## Get current quantity of an item in inventory.
+func get_inventory_quantity(item_id: String) -> int:
+	return inventory.get(item_id, 0)
+
+
+## Check if inventory has at least the specified quantity of an item.
+func has_inventory_quantity(item_id: String, quantity: int) -> bool:
+	return inventory.get(item_id, 0) >= quantity
+
+
+## Check if inventory has all specified items in required quantities.
+## items_dict: {item_id: quantity_needed}
+func has_all_inventory(items_dict: Dictionary) -> bool:
+	for item_id in items_dict:
+		var needed: int = items_dict[item_id]
+		if inventory.get(item_id, 0) < needed:
+			return false
+	return true
+
+
+## Consume multiple items from inventory atomically.
+## Returns true if all items were consumed, false if any were missing (no partial consumption).
+func consume_inventory(items_dict: Dictionary) -> bool:
+	# First check if we have everything
+	if not has_all_inventory(items_dict):
+		return false
+	# Then consume all
+	for item_id in items_dict:
+		var quantity: int = items_dict[item_id]
+		var old_qty: int = inventory.get(item_id, 0)
+		var new_qty: int = old_qty - quantity
+		if new_qty == 0:
+			inventory.erase(item_id)
+		else:
+			inventory[item_id] = new_qty
+		inventory_changed.emit(item_id, old_qty, new_qty)
+	return true
+
+
+## Add multiple items to inventory.
+func add_all_inventory(items_dict: Dictionary) -> void:
+	for item_id in items_dict:
+		var quantity: int = items_dict[item_id]
+		add_to_inventory(item_id, quantity)
+
+
+## Debug method to set inventory directly (for testing).
+func debug_set_inventory(new_inventory: Dictionary) -> void:
+	var old_inventory := inventory.duplicate()
+	inventory = new_inventory.duplicate()
+	# Emit changes for removed items
+	for item_id in old_inventory:
+		if item_id not in inventory:
+			inventory_changed.emit(item_id, old_inventory[item_id], 0)
+	# Emit changes for added/modified items
+	for item_id in inventory:
+		var old_qty: int = old_inventory.get(item_id, 0)
+		var new_qty: int = inventory[item_id]
+		if old_qty != new_qty:
+			inventory_changed.emit(item_id, old_qty, new_qty)
