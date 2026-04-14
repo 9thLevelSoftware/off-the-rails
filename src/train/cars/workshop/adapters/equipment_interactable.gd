@@ -58,31 +58,11 @@ func _register_with_controller() -> void:
 		push_warning("EquipmentInteractable: No IsometricInteractionController found for %s" % equipment_id)
 
 
-## Find IsometricInteractionController in the scene tree.
+## Find IsometricInteractionController via group lookup (O(1) instead of tree traversal).
 func _find_controller() -> IsometricInteractionController:
-	# Search up the tree first
-	var node := get_parent()
-	while node:
-		if node is IsometricInteractionController:
-			return node
-		# Check children of each ancestor
-		var controller := _find_controller_in_children(node)
-		if controller:
-			return controller
-		node = node.get_parent()
-
-	# Fall back to searching from root
-	return _find_controller_in_children(get_tree().root)
-
-
-## Recursively search for controller in children.
-func _find_controller_in_children(node: Node) -> IsometricInteractionController:
-	for child in node.get_children():
-		if child is IsometricInteractionController:
-			return child
-		var found := _find_controller_in_children(child)
-		if found:
-			return found
+	var controllers := get_tree().get_nodes_in_group("interaction_controller")
+	if controllers.size() > 0:
+		return controllers[0] as IsometricInteractionController
 	return null
 
 
@@ -102,8 +82,9 @@ func on_interact() -> void:
 	# Emit signal for external handlers
 	interaction_triggered.emit(equipment_id, type_name)
 
-	# Print placeholder feedback
-	print("Interacted with %s" % equipment_id)
+	# Print placeholder feedback (debug only)
+	if OS.is_debug_build():
+		print("Interacted with %s" % equipment_id)
 
 
 func _exit_tree() -> void:

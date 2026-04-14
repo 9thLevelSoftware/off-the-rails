@@ -43,6 +43,10 @@ func _ready() -> void:
 	_state_machine.exited_range.connect(_on_exited_range)
 	_state_machine.interaction_started.connect(_on_interaction_started)
 	_state_machine.interaction_ended.connect(_on_interaction_ended)
+	_state_machine.cooldown_ended.connect(_on_cooldown_ended)
+
+	# Add to group for efficient lookup by interactables
+	add_to_group("interaction_controller")
 
 	# Instantiate prompt if scene is set
 	if prompt_scene:
@@ -166,8 +170,13 @@ func _on_exited_range() -> void:
 func _on_interaction_started(interactable_id: String) -> void:
 	interaction_requested.emit(interactable_id)
 
-	# Call on_interact on the interactable node if it has the method
+	# Apply config cooldown duration before ending interaction
 	var data := _interactables.get(interactable_id, {}) as Dictionary
+	if data.has("config"):
+		var config: InteractableConfig = data.config
+		_state_machine.set_cooldown_duration(config.interaction_cooldown)
+
+	# Call on_interact on the interactable node if it has the method
 	if data.has("node") and is_instance_valid(data.node):
 		var node: Node2D = data.node
 		if node.has_method("on_interact"):
@@ -182,3 +191,10 @@ func _on_interaction_started(interactable_id: String) -> void:
 func _on_interaction_ended(_interactable_id: String) -> void:
 	# Prompt remains hidden during cooldown, will reshow if still in range
 	pass
+
+
+## Called when cooldown ends.
+## Re-check proximity immediately to show prompt if player is still in range.
+func _on_cooldown_ended() -> void:
+	if _player and is_instance_valid(_player):
+		_state_machine.update(_player.global_position, _detector)

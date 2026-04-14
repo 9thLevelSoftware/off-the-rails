@@ -28,6 +28,9 @@ signal interaction_started(interactable_id: String)
 ## Emitted when interaction ends
 signal interaction_ended(interactable_id: String)
 
+## Emitted when cooldown ends (COOLDOWN -> IDLE transition)
+signal cooldown_ended()
+
 ## Current state (readonly externally, use getter)
 var _current_state: State = State.IDLE
 
@@ -92,6 +95,7 @@ func tick(delta: float) -> void:
 		if _cooldown_remaining <= 0.0:
 			_cooldown_remaining = 0.0
 			_transition_to(State.IDLE)
+			cooldown_ended.emit()
 
 
 ## Attempt to start an interaction with the current target.
