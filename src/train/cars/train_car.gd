@@ -66,9 +66,9 @@ func get_subsystem(subsystem_type: GDScript) -> Subsystem:
 
 
 ## Returns subsystem by class name or display_name, or null.
-func get_subsystem_by_name(class_name_str: String) -> Subsystem:
+func get_subsystem_by_name(subsystem_name: String) -> Subsystem:
 	for subsystem in _subsystems:
-		if subsystem.get_class() == class_name_str or subsystem.display_name == class_name_str:
+		if subsystem.get_class() == subsystem_name or subsystem.display_name == subsystem_name:
 			return subsystem
 	return null
 

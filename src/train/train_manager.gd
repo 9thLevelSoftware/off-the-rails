@@ -46,21 +46,18 @@ func _create_starting_cars() -> void:
 	if not train_cars_container:
 		return
 
-	# Create engine car at origin
-	var engine = _factory.create_car("engine")
-	if engine:
-		engine.add_to_group("train_car")
-		train_cars_container.add_child(engine)
-		engine.global_position = Vector3.ZERO
-		_cars.append(engine)
+	# Load starting car configurations from CarData resources
+	var starting_car_data := _factory.get_starting_car_data()
 
-	# Create workshop car behind engine
-	var workshop = _factory.create_car("workshop")
-	if workshop:
-		workshop.add_to_group("train_car")
-		train_cars_container.add_child(workshop)
-		workshop.global_position = Vector3(0, 0, 10)
-		_cars.append(workshop)
+	# Create cars using data-driven configuration
+	for car_data in starting_car_data:
+		var car = _factory.create_car(car_data.car_id)
+		if car:
+			car.add_to_group("train_car")
+			train_cars_container.add_child(car)
+			# Use default_position from CarData (position index along Z axis)
+			car.global_position = Vector3(0, 0, car_data.default_position * 10.0)
+			_cars.append(car)
 
 	cars_ready.emit()
 
