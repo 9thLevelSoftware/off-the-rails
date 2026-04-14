@@ -8,7 +8,7 @@
 - [x] **Phase 4: Expedition Core** — Expedition scene, escalation, extraction
 - [x] **Phase 5: Professions** — 2-3 professions with abilities and bonuses
 - [x] **Phase 6: Crafting** — Workshop station, queue system, basic recipes
-- [-] **Phase 7: Integration** — System connections, basic UI, playtest loop
+- [x] **Phase 7: Integration** — System connections, basic UI, playtest loop
 
 ## Phase Details
 
@@ -177,5 +177,5 @@
 | Phase 4: Expedition Core | 4 | 4 | Verified |
 | Phase 5: Professions | 3 | 3 | Verified |
 | Phase 6: Crafting | 3 | 3 | Verified |
-| Phase 7: Integration | 3 | 3 | Executed |
+| Phase 7: Integration | 3 | 3 | Verified |
 | **Total** | **21** | **21** | **100%** |

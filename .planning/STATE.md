@@ -1,9 +1,9 @@
 # Project State
 
 ## Current Position
-- **Phase**: 7 of 7 (executed, pending review)
-- **Status**: Phase 7 executed — 3/3 plans complete
-- **Last Activity**: Phase 7 execution (2026-04-14)
+- **Phase**: 7 of 7 (complete)
+- **Status**: Phase 7 complete — review passed (2 cycles)
+- **Last Activity**: Phase 7 review passed (2026-04-14)
 
 ## Progress
 ```
@@ -127,25 +127,34 @@
 - `src/crafting/ui/` — RecipeSelectionPanel, QueueDisplay, CraftingUI
 - `src/autoloads/game_state.gd` — Inventory API (8 methods)
 
-## Phase 7: Integration — EXECUTED
+## Phase 7: Integration — VERIFIED
 
 | Plan | Wave | Name | Agent | Status |
 |------|------|------|-------|--------|
-| 07-01 | 1 | System Wiring & Signal Connections | engineering-senior-developer | ✓ Complete |
-| 07-02 | 2 | HUD & Status Display | engineering-godot-developer | ✓ Complete |
-| 07-03 | 3 | Menus, Pause & Loop Verification | engineering-senior-developer | ✓ Complete |
+| 07-01 | 1 | System Wiring & Signal Connections | engineering-senior-developer | ✓ Verified |
+| 07-02 | 2 | HUD & Status Display | engineering-godot-developer | ✓ Verified |
+| 07-03 | 3 | Menus, Pause & Loop Verification | engineering-senior-developer | ✓ Verified |
 
 **Critique**: 2 cycles (CAUTION → PASS after refinement)
 - Cycle 1: Fixed LootContainer signal mismatch, added ui_pause input action task
 - Cycle 2: All issues resolved
 
-**Execution Results**:
-- 07-01: System wiring verified, loot→inventory integration added
-- 07-02: HUD with escalation meter, inventory display, health bar
-- 07-03: Main menu, profession selection, pause menu, full loop verified
+**Review Summary**:
+- Reviewers: testing-reality-checker
+- Cycles: 2
+- Findings: 0 blockers fixed, 2 warnings fixed
+- Fixes: Mouse mode visibility, sample loot item resources
 
 ## Next Action
 
-Run `/legion:review` to verify Phase 7: Integration
+**ALL PHASES COMPLETE!**
 
-**V1 COMPLETE** — All 21 plans across 7 phases executed successfully!
+Off The Rails V1 is finished. The game loop is playable:
+- Main Menu → Profession Select → Train → Expedition → Extract → Train
+- HUD with escalation, inventory, health
+- Pause menu at any time
+
+Options:
+- Run `/legion:quick <task>` for ad-hoc improvements
+- Run `/legion:retro` to review the development process
+- Run `/legion:ship` to prepare for release
