@@ -7,6 +7,9 @@ extends TrainCar
 @onready var power_grid: PowerGrid = $PowerGrid
 @onready var locomotion: Locomotion = $Locomotion
 
+## Interaction layer constant (layer 2)
+const INTERACTION_LAYER: int = 2
+
 
 func _on_car_ready() -> void:
 	car_id = "engine"
@@ -14,6 +17,14 @@ func _on_car_ready() -> void:
 	car_position = 0
 	if locomotion and power_grid:
 		power_grid.power_availability_changed.connect(_on_power_changed)
+
+
+func _setup_interaction_area() -> void:
+	if interaction_area:
+		# Clear all layers, then set only the interaction layer
+		interaction_area.collision_layer = 0
+		interaction_area.set_collision_layer_value(INTERACTION_LAYER, true)
+		interaction_area.collision_mask = 0
 
 
 func _on_power_changed(power_available: bool) -> void:

@@ -4,7 +4,7 @@ extends Node
 ## Handles player interaction input and delegates to nearby TrainCars.
 ## Uses deferred initialization to avoid timing issues with player group lookup.
 
-var _player: Node = null
+var _player: Node3D = null
 var _current_target: TrainCar = null
 
 
@@ -67,5 +67,5 @@ func get_current_target() -> TrainCar:
 
 
 ## Manually set the player reference (useful for testing).
-func set_player(player: Node) -> void:
+func set_player(player: Node3D) -> void:
 	_player = player

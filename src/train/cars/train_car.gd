@@ -8,6 +8,7 @@ extends Node3D
 @export var car_name: String = "Train Car"
 @export var car_position: int = 0
 
+## Interaction area for collision-based detection. Configured in _setup_interaction_area().
 @onready var interaction_area: Area3D = $InteractionArea
 
 var _subsystems: Array[Subsystem] = []

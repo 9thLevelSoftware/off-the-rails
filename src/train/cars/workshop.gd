@@ -6,7 +6,8 @@ extends TrainCar
 
 @onready var fabricator: Fabricator = $Fabricator
 
-var engine_car: EngineCar = null
+## Interaction layer constant (layer 2)
+const INTERACTION_LAYER: int = 2
 
 
 func _on_car_ready() -> void:
@@ -15,11 +16,26 @@ func _on_car_ready() -> void:
 	car_position = 1
 
 
-## Connect this workshop to an engine car for power.
-func connect_to_engine(engine: EngineCar) -> void:
-	engine_car = engine
-	if fabricator and engine and engine.power_grid:
-		fabricator.set_power_source(engine.power_grid)
+func _setup_interaction_area() -> void:
+	if interaction_area:
+		# Clear all layers, then set only the interaction layer
+		interaction_area.collision_layer = 0
+		interaction_area.set_collision_layer_value(INTERACTION_LAYER, true)
+		interaction_area.collision_mask = 0
+
+
+## Connect this workshop to a power provider car.
+## Queries the car for a PowerSource subsystem rather than requiring a specific car type.
+func connect_to_power_provider(car: TrainCar) -> void:
+	if not fabricator:
+		push_warning("WorkshopCar: No fabricator to connect")
+		return
+
+	var power_subsystem = car.get_subsystem_by_name("Power Grid")
+	if power_subsystem and power_subsystem is PowerSource:
+		fabricator.set_power_source(power_subsystem)
+	else:
+		push_warning("WorkshopCar: Car '%s' does not provide power" % car.car_name)
 
 
 ## Returns true if fabricator is ready for crafting.

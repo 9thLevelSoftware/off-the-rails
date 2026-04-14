@@ -1,13 +1,10 @@
 class_name PowerGrid
-extends Subsystem
+extends PowerSource
 
 ## Power Grid subsystem for the Engine car.
 ## Provides power to all other subsystems on the train.
 
 @export var power_output: float = 100.0
-
-## Emitted when power availability changes
-signal power_availability_changed(is_available: bool)
 
 
 func _initialize_subsystem() -> void:

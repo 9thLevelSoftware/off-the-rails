@@ -4,7 +4,7 @@ extends Subsystem
 ## Fabricator subsystem for the Workshop car.
 ## Handles crafting station functionality (queue system deferred to Phase 6).
 
-var power_source: PowerGrid = null
+var power_source: PowerSource = null
 
 @export var crafting_speed: float = 1.0
 
@@ -16,18 +16,18 @@ func _initialize_subsystem() -> void:
 	requires_power = true
 
 
-## CRITIQUE-FIX: Validates power_grid is not null before storing
-func set_power_source(power_grid: PowerGrid) -> void:
-	if power_grid == null:
+## Sets the power source for this fabricator. Accepts any PowerSource implementation.
+func set_power_source(source: PowerSource) -> void:
+	if source == null:
 		push_warning("Fabricator: Attempted to set null power source")
 		return
-	
+
 	# Disconnect from old power source if exists
 	if power_source and is_instance_valid(power_source) and power_source.power_availability_changed.is_connected(_on_power_changed):
 		power_source.power_availability_changed.disconnect(_on_power_changed)
-	
-	power_source = power_grid
-	
+
+	power_source = source
+
 	# Connect to new power source
 	if power_source:
 		power_source.power_availability_changed.connect(_on_power_changed)

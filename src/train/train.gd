@@ -7,6 +7,5 @@ extends Node3D
 
 
 func _ready() -> void:
-	if GameState:
-		GameState.register_scene(GameState.GameScene.TRAIN, self)
+	GameState.register_scene(GameState.GameScene.TRAIN, self)
 	print("Train: Scene initialized")
