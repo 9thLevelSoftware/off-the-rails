@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bw8x2p5q3m1kd"]
+
+[ext_resource type="Script" path="res://src/train/cars/workshop/adapters/workshop_layout_controller.gd" id="1_controller"]
+[ext_resource type="Script" path="res://src/train/cars/workshop/adapters/workshop_spatial_adapter.gd" id="2_adapter"]
+[ext_resource type="TileSet" path="res://assets/tilesets/iso_floor.tres" id="3_tileset"]
+
+[node name="Workshop" type="Node2D"]
+script = ExtResource("1_controller")
+layout_resource_path = "res://src/train/cars/workshop/data/workshop_floor_layout.tres"
+
+[node name="FloorTileMap" type="TileMapLayer" parent="."]
+y_sort_enabled = true
+tile_set = ExtResource("3_tileset")
+
+[node name="WorkshopSpatialAdapter" type="Node2D" parent="."]
+script = ExtResource("2_adapter")
+
+[node name="EquipmentContainer" type="Node2D" parent="WorkshopSpatialAdapter"]
+y_sort_enabled = true
