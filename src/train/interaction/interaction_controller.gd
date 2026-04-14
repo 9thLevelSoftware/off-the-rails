@@ -9,7 +9,6 @@ extends Node
 const INTERACTION_RANGE_SQ := 25.0  # ~5 units
 
 var _player: Node3D = null
-var _current_target: TrainCar = null
 
 
 func _ready() -> void:
@@ -87,14 +86,10 @@ func _find_nearest_interactable() -> Node:
 	for interactable in interactables:
 		if not interactable.has_method("interact"):
 			continue
-		# Support both Node3D and Node2D positions
-		var interactable_pos: Vector3
-		if interactable is Node3D:
-			interactable_pos = interactable.global_position
-		elif interactable is Node2D:
-			interactable_pos = Vector3(interactable.global_position.x, interactable.global_position.y, 0.0)
-		else:
+		# Only support Node3D interactables
+		if not interactable is Node3D:
 			continue
+		var interactable_pos: Vector3 = interactable.global_position
 
 		var distance := player_pos.distance_squared_to(interactable_pos)
 		if distance < nearest_distance:
@@ -104,11 +99,6 @@ func _find_nearest_interactable() -> Node:
 	if nearest and nearest_distance < INTERACTION_RANGE_SQ:
 		return nearest
 	return null
-
-
-## Returns the currently targeted train car, if any.
-func get_current_target() -> TrainCar:
-	return _current_target
 
 
 ## Manually set the player reference (useful for testing).

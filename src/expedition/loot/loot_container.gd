@@ -33,43 +33,12 @@ func _ready() -> void:
 
 
 ## Safely caches the EscalationManager reference via deferred call.
+## Uses group-based lookup as the primary discovery method.
 func _cache_escalation_manager() -> void:
-	# Try expedition group first
-	var expedition_nodes := get_tree().get_nodes_in_group("expedition")
-	for node in expedition_nodes:
-		if node.has_method("get") and node.get("escalation_manager") != null:
-			_escalation_manager = node.escalation_manager
-			return
-		# Also check children of expedition root
-		for child in node.get_children():
-			if child is EscalationManager:
-				_escalation_manager = child
-				return
-
-	# Fallback: find any EscalationManager in tree
 	_escalation_manager = get_tree().get_first_node_in_group("escalation_manager") as EscalationManager
 
-	if not _escalation_manager:
-		# Last resort: search by class type
-		var root := get_tree().current_scene
-		if root:
-			var found := _find_escalation_manager_recursive(root)
-			if found:
-				_escalation_manager = found as EscalationManager
-
 	if not _escalation_manager and is_sealed:
-		push_warning("LootContainer: No EscalationManager found - sealed container won't trigger escalation")
-
-
-## Recursively searches for EscalationManager in node tree.
-func _find_escalation_manager_recursive(node: Node) -> Node:
-	if node is EscalationManager:
-		return node
-	for child in node.get_children():
-		var result: Node = _find_escalation_manager_recursive(child)
-		if result:
-			return result
-	return null
+		push_warning("LootContainer: No EscalationManager found in 'escalation_manager' group - sealed container won't trigger escalation")
 
 
 ## Called by InteractionController when player interacts with this container.

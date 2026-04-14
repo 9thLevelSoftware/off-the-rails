@@ -24,6 +24,8 @@ func _ready() -> void:
 		exit_trigger.set_collision_layer_value(1, false)  # Area doesn't need to be on layer 1
 		exit_trigger.set_collision_mask_value(1, true)    # Detect layer 1 bodies
 		exit_trigger.body_entered.connect(_on_exit_trigger_body_entered)
+	else:
+		push_error("Expedition: ExitTrigger not found - players will be trapped in expedition")
 	print("Expedition: Scene initialized")
 
 
@@ -53,6 +55,12 @@ func _end_expedition() -> void:
 	if escalation_manager:
 		escalation_manager.end_expedition()
 	print("Expedition: Ended")
+
+
+## Disconnects signals when the expedition scene is removed from the tree.
+func _exit_tree() -> void:
+	if GameState and GameState.scene_transition_completed.is_connected(_on_scene_transition_completed):
+		GameState.scene_transition_completed.disconnect(_on_scene_transition_completed)
 
 
 ## Auto-discovers EscalationManager if not explicitly set via @export.

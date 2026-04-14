@@ -134,7 +134,7 @@ func spawn_enemy() -> Node3D:
 		spawn_pos = global_position
 	else:
 		# Random spawn point selection
-		spawn_marker = spawn_points[randi() % spawn_points.size()]
+		spawn_marker = spawn_points.pick_random()
 		spawn_pos = spawn_marker.global_position
 
 	# Instantiate and position enemy
