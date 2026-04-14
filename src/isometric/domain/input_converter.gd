@@ -4,11 +4,12 @@
 class_name InputConverter
 extends RefCounted
 
-const DEAD_ZONE_SQUARED := 0.01
+const DEAD_ZONE_SQUARED := 0.01  # Matches IsometricDirection.DEAD_ZONE squared (0.1² = 0.01)
 
 
 static func wasd_to_isometric(input: Vector2) -> Vector2:
 	if input.length_squared() < DEAD_ZONE_SQUARED:
 		return Vector2.ZERO
+	# Assumes 2:1 isometric ratio (64x32 tiles). Must match IsoViewportCalculator.TILE_WIDTH/TILE_HEIGHT.
 	var iso := Vector2(input.x - input.y, (input.x + input.y) * 0.5)
 	return iso.normalized()

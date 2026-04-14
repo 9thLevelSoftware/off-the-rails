@@ -21,16 +21,19 @@ const _DIRECTION_TO_ANIM_SUFFIX := {
 	IsometricDirection.Direction.NW: "n",
 }
 
-var sprite: AnimatedSprite2D
+@export var sprite: AnimatedSprite2D
 var current_direction: int = IsometricDirection.Direction.S
 
 
 func _ready() -> void:
-	var parent := get_parent()
-	if parent:
-		sprite = parent.get_node_or_null("AnimatedSprite2D")
 	if not sprite:
-		push_warning("PlayerAnimationController: No AnimatedSprite2D sibling found")
+		# Fallback: try to find sibling
+		var parent := get_parent()
+		if parent:
+			sprite = parent.get_node_or_null("AnimatedSprite2D")
+	if not sprite:
+		push_warning("PlayerAnimationController: No AnimatedSprite2D found")
+	# Note: Placeholder sprites use icon.svg at 0.15 scale (~19px). Replace with proper assets.
 
 
 func update_animation(velocity: Vector2, moving: bool) -> void:

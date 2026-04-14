@@ -2,6 +2,8 @@
 # Pure domain logic — no node dependencies
 
 class_name IsometricDirection
+# Static-only utility class. Extends RefCounted as GDScript namespace convention
+# (no abstract/static class keyword available).
 extends RefCounted
 
 enum Direction {
@@ -22,7 +24,7 @@ const DEAD_ZONE := 0.1
 const _DIRECTION_VECTORS := {
 	Direction.NONE: Vector2.ZERO,
 	Direction.N: Vector2(0.0, -1.0),
-	Direction.NE: Vector2(0.707107, -0.707107),
+	Direction.NE: Vector2(0.707107, -0.707107),  # sqrt(2)/2 ≈ 0.707107
 	Direction.E: Vector2(1.0, 0.0),
 	Direction.SE: Vector2(0.707107, 0.707107),
 	Direction.S: Vector2(0.0, 1.0),
@@ -31,20 +33,7 @@ const _DIRECTION_VECTORS := {
 	Direction.NW: Vector2(-0.707107, -0.707107),
 }
 
-const _ANIMATION_SUFFIXES := {
-	Direction.NONE: "",
-	Direction.N: "n",
-	Direction.NE: "ne",
-	Direction.E: "e",
-	Direction.SE: "se",
-	Direction.S: "s",
-	Direction.SW: "sw",
-	Direction.W: "w",
-	Direction.NW: "nw",
-}
-
-
-static func from_vector(input: Vector2) -> int:
+static func from_vector(input: Vector2) -> Direction:
 	if input.length() < DEAD_ZONE:
 		return Direction.NONE
 
@@ -67,9 +56,5 @@ static func from_vector(input: Vector2) -> int:
 		_: return Direction.NONE
 
 
-static func to_vector(dir: int) -> Vector2:
+static func to_vector(dir: Direction) -> Vector2:
 	return _DIRECTION_VECTORS.get(dir, Vector2.ZERO)
-
-
-static func to_animation_suffix(dir: int) -> String:
-	return _ANIMATION_SUFFIXES.get(dir, "")

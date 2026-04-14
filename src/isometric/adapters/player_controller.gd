@@ -6,6 +6,8 @@ extends CharacterBody2D
 
 @export var movement_config: MovementConfig
 
+# NOTE: Coupled to PlayerAnimationController. For NPC reuse, consider extracting
+# an AnimationHandler interface or using duck-typed has_method() check.
 var _animation_controller: PlayerAnimationController
 
 
@@ -27,7 +29,7 @@ func _physics_process(delta: float) -> void:
 
 	# Apply acceleration/friction for smooth movement
 	var target_velocity := iso_direction * movement_config.walk_speed
-	if iso_direction.length() > 0.1:
+	if iso_direction != Vector2.ZERO:
 		velocity = velocity.move_toward(target_velocity, movement_config.acceleration * delta)
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, movement_config.friction * delta)
