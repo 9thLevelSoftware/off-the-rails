@@ -1,13 +1,13 @@
 # Project State
 
 ## Current Position
-- **Phase**: 5 of 7 (verified)
-- **Status**: Phase 5 verified — review passed with 5 warnings fixed
-- **Last Activity**: Phase 5 review complete (2026-04-13)
+- **Phase**: 6 of 7 (executed)
+- **Status**: Phase 6 executed — all 3 plans complete, pending review
+- **Last Activity**: Phase 6 execution complete (2026-04-14)
 
 ## Progress
 ```
-[###############     ] 71% — 15/~21 plans complete
+[##################  ] 86% — 18/~21 plans complete
 ```
 
 ## Phase 1: Foundation — VERIFIED
@@ -104,6 +104,28 @@
 | Data Pipeline | Build-time YAML → .tres |
 | Workflow | Full MCP-driven development |
 
+## Phase 6: Crafting — EXECUTED
+
+| Plan | Wave | Name | Agent | Status |
+|------|------|------|-------|--------|
+| 06-01 | 1 | Domain & Data Foundation | engineering-senior-developer | ✓ Complete |
+| 06-02 | 2 | Infrastructure & Scheduling | engineering-senior-developer | ✓ Complete |
+| 06-03 | 3 | Adapters, Integration & UI | engineering-godot-developer | ✓ Complete |
+
+**Architecture**: Clean Architecture (domain/infrastructure/adapters separation)
+
+**Execution Summary**:
+- Wave 1: 64 files, domain layer + 43 crafted items
+- Wave 2: 8 files, 52 tests passing, GameState inventory
+- Wave 3: 18 files, UI components + integration
+
+**Key Outputs**:
+- `src/crafting/domain/` — RecipeData, CraftJob, CraftQueue, RecipeValidator
+- `src/crafting/infrastructure/` — JobScheduler, EventBus, InventoryRepository, RecipeRepository
+- `src/crafting/adapters/` — WorkshopAdapter, WorkshopInteractable
+- `src/crafting/ui/` — RecipeSelectionPanel, QueueDisplay, CraftingUI
+- `src/autoloads/game_state.gd` — Inventory API (8 methods)
+
 ## Next Action
 
-Run `/legion:plan 6` to plan Phase 6: Crafting
+Run `/legion:review` to verify Phase 6: Crafting

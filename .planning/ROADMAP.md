@@ -176,6 +176,6 @@
 | Phase 3: Train Core | 3 | 3 | Verified |
 | Phase 4: Expedition Core | 4 | 4 | Verified |
 | Phase 5: Professions | 3 | 3 | Verified |
-| Phase 6: Crafting | 3 | 0 | Not Started |
+| Phase 6: Crafting | 3 | 3 | Executed |
 | Phase 7: Integration | 3 | 0 | Not Started |
-| **Total** | **~21** | **15** | **71%** |
+| **Total** | **~21** | **18** | **86%** |
