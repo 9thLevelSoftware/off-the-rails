@@ -12,6 +12,9 @@ var _animation_controller: PlayerAnimationController
 
 
 func _ready() -> void:
+	if not is_in_group("player"):
+		add_to_group("player")
+
 	if not movement_config:
 		movement_config = MovementConfig.new()
 

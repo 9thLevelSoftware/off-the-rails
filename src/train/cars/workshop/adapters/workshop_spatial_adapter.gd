@@ -3,10 +3,12 @@ extends Node2D
 
 ## Adapter that bridges FloorLayout domain objects to Godot scene nodes.
 ## Renders EquipmentEntity instances as Sprite2D + StaticBody2D nodes.
+## Creates EquipmentInteractable children for interaction system integration.
 ## Follows Clean Architecture: domain layer has no knowledge of this adapter.
 
 const EquipmentEntityClass = preload("res://src/train/cars/workshop/domain/equipment_entity.gd")
 const FloorLayoutClass = preload("res://src/train/cars/workshop/domain/floor_layout.gd")
+const EquipmentInteractableClass = preload("res://src/train/cars/workshop/adapters/equipment_interactable.gd")
 
 ## Emitted when an equipment node has been created and added to the scene
 signal equipment_rendered(equipment_id: String)
@@ -16,6 +18,9 @@ var _floor_layout: FloorLayout = null
 
 ## Maps equipment_id -> Node2D for quick lookup
 var _equipment_nodes: Dictionary = {}
+
+## Maps equipment_id -> EquipmentInteractable for cleanup
+var _equipment_interactables: Dictionary = {}
 
 ## Container for all equipment nodes (enables Y-sorting)
 @onready var _equipment_container: Node2D = $EquipmentContainer
@@ -52,13 +57,14 @@ func setup(layout: FloorLayout) -> void:
 	_render_equipment()
 
 
-## Clear all existing equipment nodes
+## Clear all existing equipment nodes and interactables
 func _clear_equipment() -> void:
 	for equipment_id in _equipment_nodes.keys():
 		var node: Node2D = _equipment_nodes[equipment_id]
 		if is_instance_valid(node):
 			node.queue_free()
 	_equipment_nodes.clear()
+	_equipment_interactables.clear()
 
 
 ## Render all equipment from the FloorLayout as scene nodes
@@ -75,6 +81,12 @@ func _render_equipment() -> void:
 		if node:
 			_equipment_container.add_child(node)
 			_equipment_nodes[equipment.equipment_id] = node
+
+			# Create and attach EquipmentInteractable as child
+			var interactable := _create_equipment_interactable(equipment, node)
+			if interactable:
+				_equipment_interactables[equipment.equipment_id] = interactable
+
 			equipment_rendered.emit(equipment.equipment_id)
 
 
@@ -147,6 +159,21 @@ func _create_placeholder_texture(equipment_type: int, size: Vector2 = Vector2(64
 		image.set_pixel(width - 1, y, border_color)
 
 	return ImageTexture.create_from_image(image)
+
+
+## Create an EquipmentInteractable for the given equipment and add as child.
+func _create_equipment_interactable(equipment: EquipmentEntity, parent_node: Node2D) -> EquipmentInteractable:
+	if equipment == null or parent_node == null:
+		return null
+
+	var interactable := EquipmentInteractable.new()
+	interactable.name = "Interactable"
+	parent_node.add_child(interactable)
+
+	# Setup after adding to tree (required for deferred registration)
+	interactable.setup(equipment)
+
+	return interactable
 
 
 ## Get equipment node by ID
