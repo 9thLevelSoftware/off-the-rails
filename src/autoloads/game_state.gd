@@ -167,15 +167,17 @@ func _spawn_player_at_scene(scene_root: Node) -> void:
 		var player_packed := load(PLAYER_SCENE) as PackedScene
 		player_instance = player_packed.instantiate()
 
-	var spawn_point := scene_root.get_node_or_null("PlayerSpawn") as Node3D
-	if spawn_point:
-		player_instance.global_position = spawn_point.global_position
-		player_instance.global_rotation = spawn_point.global_rotation
-
+	# Reparent player to scene if needed
 	if player_instance.get_parent() != scene_root:
 		if player_instance.get_parent():
 			player_instance.get_parent().remove_child(player_instance)
 		scene_root.add_child(player_instance)
+
+	# Position at spawn point using local transform (safe before tree is ready)
+	var spawn_point := scene_root.get_node_or_null("PlayerSpawn") as Node3D
+	if spawn_point:
+		# Use transform (local) instead of global_transform to avoid tree errors
+		player_instance.transform = spawn_point.transform
 
 	player_spawned.emit(player_instance)
 
@@ -187,12 +189,20 @@ func _spawn_player_at_scene(scene_root: Node) -> void:
 
 ## Registers a scene root for scene transition management.
 ## Call this from each scene's _ready() method.
+## If session is active and this is the current scene type, spawns player.
 func register_scene(scene_type: GameScene, scene_root: Node) -> void:
 	match scene_type:
 		GameScene.TRAIN:
 			train_scene_root = scene_root
 		GameScene.EXPEDITION:
 			expedition_scene_root = scene_root
+
+	# If session is active and this scene matches current scene, spawn player
+	# This handles initial load when transition_to_scene is skipped
+	# Use call_deferred to ensure scene is fully in tree before accessing global transforms
+	if session_active and scene_type == current_scene:
+		call_deferred("_spawn_player_at_scene", scene_root)
+		call_deferred("emit_signal", "scene_transition_completed", current_scene)
 
 
 # --- Inventory Methods ---

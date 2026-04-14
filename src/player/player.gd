@@ -43,11 +43,11 @@ func _input(event: InputEvent) -> void:
 		camera_mount.rotate_x(-event.relative.y * mouse_sensitivity)
 		camera_mount.rotation.x = clamp(camera_mount.rotation.x, min_pitch, max_pitch)
 
-	# Toggle mouse capture with Escape
-	if event.is_action_pressed("ui_cancel"):
-		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		else:
+	# Note: Mouse capture is now handled by pause menu. When paused, mouse is visible.
+	# When unpaused, we re-capture automatically.
+	# Clicking in the game window will also re-capture the mouse.
+	if event is InputEventMouseButton and event.pressed and not get_tree().paused:
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
