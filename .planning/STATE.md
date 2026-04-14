@@ -1,9 +1,9 @@
 # Project State
 
 ## Current Position
-- **Phase**: 1 of 7 (complete)
-- **Status**: Phase 1 complete — review passed (1 cycle)
-- **Last Activity**: Phase 1 review passed (2026-04-14)
+- **Phase**: 2 of 7 (planned)
+- **Status**: Phase 2 planned — 2 plans across 2 waves (critique passed, 1 refine cycle)
+- **Last Activity**: Phase 2 planning (2026-04-14)
 
 ## Progress
 ```
@@ -44,7 +44,8 @@
 | Item | Number | Status |
 |------|--------|--------|
 | Phase 1 Issue | #1 | Open |
+| Phase 2 Issue | #2 | Open |
 
 ## Next Action
 
-Run `/legion:plan 2` to plan Phase 2: Player & Movement
+Run `/legion:build` to execute Phase 2: Player & Movement

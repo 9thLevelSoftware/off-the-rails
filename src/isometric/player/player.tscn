@@ -1,0 +1,25 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" uid="uid://da2rjjj7pvlff" path="res://src/isometric/adapters/player_controller.gd" id="1_ctrl"]
+[ext_resource type="SpriteFrames" uid="uid://c45qvayd1v033" path="res://assets/player/placeholder_frames.tres" id="2_frames"]
+[ext_resource type="Resource" uid="uid://8h2hsey7pfxp" path="res://assets/player/default_movement.tres" id="3_config"]
+[ext_resource type="Script" uid="uid://do01dxkl1sjgd" path="res://src/isometric/player/animation_controller.gd" id="4_anim"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
+size = Vector2(16, 16)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_ctrl")
+movement_config = ExtResource("3_config")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+sprite_frames = ExtResource("2_frames")
+animation = &"idle_s"
+autoplay = "idle_s"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_player")
+
+[node name="AnimationController" type="Node" parent="."]
+script = ExtResource("4_anim")
