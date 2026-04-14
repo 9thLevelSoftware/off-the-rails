@@ -1,8 +1,9 @@
 # Adapter: Manages the isometric rendering canvas
 # Coordinates viewport, layers, and depth ordering
+# NOTE: Extends Node2D (not CanvasLayer) so world content scrolls with camera
 
 class_name IsoCanvas
-extends CanvasLayer
+extends Node2D
 
 const ViewportCalc = preload("res://src/isometric/domain/viewport_calculator.gd")
 

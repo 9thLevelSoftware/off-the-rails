@@ -9,7 +9,7 @@
 [node name="IsoLevel" type="Node2D" unique_id=1079536266]
 script = ExtResource("1_rkomo")
 
-[node name="IsoCanvas" type="CanvasLayer" parent="." unique_id=1462997003]
+[node name="IsoCanvas" type="Node2D" parent="." unique_id=1462997003]
 script = ExtResource("2_v3185")
 
 [node name="WorldLayer" type="Node2D" parent="IsoCanvas" unique_id=1903508740]
