@@ -62,6 +62,10 @@ func interact(interactor: Node) -> void:
 	# Emit signal with contents
 	container_opened.emit(contents)
 
+	# Add loot to inventory via GameState
+	for item in contents:
+		GameState.add_to_inventory(item.item_name, item.quantity)
+
 	# Debug output
 	print("LootContainer: Opened by %s" % interactor.name)
 	if contents.is_empty():
