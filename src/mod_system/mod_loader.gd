@@ -5,6 +5,8 @@ extends Node
 ##
 ## Discovers mods in user://mods/, validates manifests, initializes mod content.
 ## Handles all errors gracefully — never crashes on malformed mods.
+##
+## CRITICAL: EventHooks autoload MUST load before ModLoader in project.godot.
 
 signal mod_discovered(mod_id: String, manifest: ModManifest)
 signal mod_loaded(mod_id: String)
@@ -16,15 +18,66 @@ const MODS_DIR := "user://mods/"
 var _discovered_mods: Dictionary = {}  # mod_id -> ModManifest
 var _loaded_mods: Array[String] = []
 var _error_handler: ModErrorHandler
+var _content_registry: ContentRegistry
+var _mod_api: ModAPI
+var _initialized: bool = false  # CRITICAL: initialization guard
 
 
 func _ready() -> void:
+	# CRITICAL: Use call_deferred to ensure EventHooks is ready
+	call_deferred("_initialize")
+
+
+## Initialize the mod system after autoloads are ready.
+func _initialize() -> void:
+	# Guard against multiple initialization
+	if _initialized:
+		push_warning("[ModLoader] Already initialized")
+		return
+
+	# CRITICAL: Verify EventHooks is available
+	if not is_instance_valid(EventHooks):
+		push_error("[ModLoader] FATAL: EventHooks not available. Check autoload order.")
+		return
+
 	_error_handler = ModErrorHandler.new()
 	_error_handler.name = "ModErrorHandler"
 	add_child(_error_handler)
 
+	# Initialize content registry and mod API
+	_content_registry = ContentRegistry.new()
+	_mod_api = ModAPI.new(_content_registry)
+
 	# Ensure mods directory exists
 	_ensure_mods_directory()
+
+	# Load base game content first
+	if not _content_registry.load_base_content():
+		push_error("[ModLoader] Failed to load base game content")
+		# Continue anyway - mods might not need base content
+
+	# Discover and load all mods
+	var _manifests := discover_mods()
+	var loaded := load_all_mods()
+
+	_initialized = true
+	print("[ModLoader] Initialization complete - %d mods loaded" % loaded)
+	EventHooks.game_ready.emit()
+
+
+## Check if ModLoader has completed initialization.
+func is_ready() -> bool:
+	return _initialized
+
+
+## Get the content registry.
+func get_content_registry() -> ContentRegistry:
+	return _content_registry
+
+
+## Get the mod API for external access.
+func get_mod_api() -> ModAPI:
+	return _mod_api
 
 
 ## Ensure the mods directory exists, creating it if necessary.
@@ -143,6 +196,10 @@ func load_mod(mod_id: String) -> bool:
 
 	var manifest: ModManifest = _discovered_mods[mod_id]
 
+	# Emit mod loading signal
+	if is_instance_valid(EventHooks):
+		EventHooks.mod_loading.emit(mod_id)
+
 	# Check dependencies first
 	if not _check_dependencies(manifest):
 		return false
@@ -157,6 +214,11 @@ func load_mod(mod_id: String) -> bool:
 
 	_loaded_mods.append(mod_id)
 	mod_loaded.emit(mod_id)
+
+	# Emit mod loaded signal
+	if is_instance_valid(EventHooks):
+		EventHooks.mod_loaded.emit(mod_id)
+
 	print("[ModLoader] Loaded mod: %s" % mod_id)
 
 	return true
@@ -177,7 +239,7 @@ func _check_dependencies(manifest: ModManifest) -> bool:
 	return true
 
 
-## Load content files for a mod (placeholder for future implementation).
+## Load content files for a mod and merge into ContentRegistry.
 func _load_content_files(manifest: ModManifest) -> bool:
 	for content_file in manifest.content_files:
 		var full_path := manifest.get_content_file_path(content_file)
@@ -193,14 +255,17 @@ func _load_content_files(manifest: ModManifest) -> bool:
 			mod_load_failed.emit(manifest.id, error)
 			return false
 
-		# TODO: Actually load and register content based on file type
-		# This will be implemented in future phases
-		print("[ModLoader] Found content file: %s" % full_path)
+		print("[ModLoader] Loading content file: %s" % full_path)
+
+	# Merge all content from this mod into the registry
+	if _content_registry and manifest.content_files.size() > 0:
+		var merged_count := _content_registry.merge_mod_content(manifest.id, manifest)
+		print("[ModLoader] Merged %d content items from mod: %s" % [merged_count, manifest.id])
 
 	return true
 
 
-## Load and validate scripts for a mod (placeholder for future implementation).
+## Load and execute scripts for a mod with ModAPI context.
 func _load_scripts(manifest: ModManifest) -> bool:
 	for script_path in manifest.scripts:
 		var full_path := manifest.get_script_path(script_path)
@@ -216,9 +281,70 @@ func _load_scripts(manifest: ModManifest) -> bool:
 			mod_load_failed.emit(manifest.id, error)
 			return false
 
-		# TODO: Actually load and execute scripts
-		# This will be implemented in future phases with sandboxing
-		print("[ModLoader] Found script: %s" % full_path)
+		# Execute the mod script
+		if not _execute_mod_script(manifest.id, script_path, full_path):
+			return false
+
+	return true
+
+
+## Execute a mod script with ModAPI context.
+func _execute_mod_script(mod_id: String, script_path: String, full_path: String) -> bool:
+	# CRITICAL: Validate .gd extension
+	if not full_path.ends_with(".gd"):
+		var error := _error_handler.handle_error(
+			mod_id,
+			ModErrorHandler.ErrorType.SCRIPT_INVALID,
+			"Script must have .gd extension: %s" % script_path,
+			{"path": full_path}
+		)
+		mod_load_failed.emit(mod_id, error)
+		return false
+
+	# Load the script
+	var script = load(full_path)
+	if script == null:
+		var error := _error_handler.handle_error(
+			mod_id,
+			ModErrorHandler.ErrorType.SCRIPT_LOAD_FAILED,
+			"Failed to load script: %s" % script_path,
+			{"path": full_path}
+		)
+		mod_load_failed.emit(mod_id, error)
+		return false
+
+	if not script is GDScript:
+		var error := _error_handler.handle_error(
+			mod_id,
+			ModErrorHandler.ErrorType.SCRIPT_INVALID,
+			"File is not a valid GDScript: %s" % script_path,
+			{"path": full_path}
+		)
+		mod_load_failed.emit(mod_id, error)
+		return false
+
+	# Create instance and call _mod_init if available
+	var instance = script.new()
+	if instance == null:
+		var error := _error_handler.handle_error(
+			mod_id,
+			ModErrorHandler.ErrorType.SCRIPT_EXECUTION_ERROR,
+			"Failed to instantiate script: %s" % script_path,
+			{"path": full_path}
+		)
+		mod_load_failed.emit(mod_id, error)
+		return false
+
+	# Set mod context for API calls
+	_mod_api.set_current_mod(mod_id)
+
+	# Call _mod_init if the script has it
+	if instance.has_method("_mod_init"):
+		print("[ModLoader] Executing _mod_init for: %s" % full_path)
+		instance.call("_mod_init", _mod_api)
+
+	_mod_api.script_executed.emit(mod_id, script_path)
+	print("[ModLoader] Executed script: %s" % full_path)
 
 	return true
 
@@ -317,9 +443,19 @@ func get_error_handler() -> ModErrorHandler:
 
 ## Reload all mods (clears state and rediscovers).
 func reload_mods() -> int:
+	# Emit unload signals for all currently loaded mods
+	if is_instance_valid(EventHooks):
+		for mod_id in _loaded_mods:
+			EventHooks.mod_unloaded.emit(mod_id)
+
 	_discovered_mods.clear()
 	_loaded_mods.clear()
 	_error_handler.clear()
+
+	# Clear and reload content registry
+	if _content_registry:
+		_content_registry.clear_all()
+		_content_registry.load_base_content()
 
 	discover_mods()
 	return load_all_mods()
