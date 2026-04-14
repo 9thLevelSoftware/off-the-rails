@@ -20,6 +20,13 @@
       "description": "A damaged AI core that might still contain useful data.",
       "category": "quest_item",
       "stack_size": 1
+    },
+    {
+      "id": "advanced_repair_kit",
+      "name": "Advanced Repair Kit",
+      "description": "Repairs systems faster and more thoroughly than standard kits.",
+      "category": "crafted",
+      "stack_size": 5
     }
   ]
 }

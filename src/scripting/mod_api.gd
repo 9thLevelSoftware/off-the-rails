@@ -340,144 +340,19 @@ func _train_car_to_dict(train_car: TrainCarData) -> Dictionary:
 
 
 # --- Factory Methods (Dictionary -> Resource) ---
+# These delegate to static factory methods on the data classes.
 
 func _create_item_from_dict(data: Dictionary) -> ResourceItemData:
-	var id: String = data.get("id", "")
-	if id.is_empty():
-		return null
-
-	var item := ResourceItemData.new()
-	item.id = id
-	item.name = data.get("name", id)
-	item.description = data.get("description", "")
-	item.category = data.get("category", "common")
-	item.type = data.get("type", "material")
-	item.rarity = data.get("rarity", "common")
-	item.weight = data.get("weight", 1.0)
-	item.stack_size = data.get("stack_size", 10)
-
-	var sources = data.get("sources", [])
-	if sources is Array:
-		item.sources = []
-		for s in sources:
-			item.sources.append(str(s))
-
-	var used_for = data.get("used_for", [])
-	if used_for is Array:
-		item.used_for = []
-		for u in used_for:
-			item.used_for.append(str(u))
-
-	return item
+	return ResourceItemData.from_dict(data)
 
 
 func _create_recipe_from_dict(data: Dictionary) -> RecipeData:
-	var id: String = data.get("id", "")
-	if id.is_empty():
-		return null
-
-	var recipe := RecipeData.new()
-	recipe.id = id
-	recipe.name = data.get("name", id)
-	recipe.description = data.get("description", "")
-	recipe.category = data.get("category", "consumable")
-	recipe.recipe_category = data.get("recipe_category", "")
-	recipe.station = data.get("station", "workshop")
-	recipe.craft_time = data.get("craft_time", 60)
-	recipe.unlock = data.get("unlock", "default")
-	recipe.profession_bonus = data.get("profession_bonus", "")
-
-	var inputs_data = data.get("inputs", {})
-	if inputs_data is Dictionary:
-		recipe.inputs = inputs_data.duplicate()
-	elif inputs_data is Array:
-		recipe.inputs = {}
-		for input_entry in inputs_data:
-			if input_entry is Dictionary:
-				var item_id: String = input_entry.get("item_id", "")
-				var quantity: int = input_entry.get("quantity", 1)
-				if not item_id.is_empty():
-					recipe.inputs[item_id] = quantity
-
-	var output_data = data.get("output", {})
-	if output_data is Dictionary:
-		if output_data.has("item_id"):
-			var item_id: String = output_data.get("item_id", "")
-			var quantity: int = output_data.get("quantity", 1)
-			recipe.output = {item_id: quantity}
-		else:
-			recipe.output = output_data.duplicate()
-
-	return recipe
+	return RecipeData.from_dict(data)
 
 
 func _create_profession_from_dict(data: Dictionary) -> ProfessionData:
-	var id: String = data.get("id", "")
-	if id.is_empty():
-		return null
-
-	var profession := ProfessionData.new()
-	profession.id = id
-	profession.name = data.get("name", id)
-	profession.description = data.get("description", "")
-	profession.primary_car = data.get("primary_car", "")
-	profession.field_role = data.get("field_role", "")
-	profession.priority = data.get("priority", 3)
-
-	var secondary = data.get("secondary_cars", [])
-	if secondary is Array:
-		profession.secondary_cars = []
-		for car in secondary:
-			profession.secondary_cars.append(str(car))
-
-	var synergies = data.get("synergies", [])
-	if synergies is Array:
-		profession.synergies = []
-		for syn in synergies:
-			profession.synergies.append(str(syn))
-
-	var bonuses = data.get("passive_bonuses", [])
-	if bonuses is Array:
-		profession.passive_bonuses = []
-		for bonus in bonuses:
-			profession.passive_bonuses.append(str(bonus))
-
-	var abilities = data.get("active_abilities", [])
-	if abilities is Array:
-		profession.active_abilities = []
-		for ability in abilities:
-			if ability is Dictionary:
-				profession.active_abilities.append(ability.duplicate())
-
-	return profession
+	return ProfessionData.from_dict(data)
 
 
 func _create_train_car_from_dict(data: Dictionary) -> TrainCarData:
-	var id: String = data.get("id", "")
-	if id.is_empty():
-		return null
-
-	var train_car := TrainCarData.new()
-	train_car.id = id
-	train_car.name = data.get("name", id)
-	train_car.description = data.get("description", "")
-	train_car.type = data.get("type", "car")
-	train_car.category = data.get("category", "utility")
-	train_car.acquisition = data.get("acquisition", "starting")
-	train_car.crew_station = data.get("crew_station", false)
-	train_car.upgrade_tree = data.get("upgrade_tree", "")
-	train_car.damage_effect = data.get("damage_effect", "")
-
-	var subsystems = data.get("subsystems", [])
-	if subsystems is Array:
-		train_car.subsystems = []
-		for sub in subsystems:
-			train_car.subsystems.append(str(sub))
-
-	var dependencies = data.get("dependencies", [])
-	if dependencies is Array:
-		train_car.dependencies = []
-		for dep in dependencies:
-			train_car.dependencies.append(str(dep))
-
-	return train_car
+	return TrainCarData.from_dict(data)

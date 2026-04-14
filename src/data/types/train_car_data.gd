@@ -27,6 +27,39 @@ func _to_string() -> String:
 	return "[TrainCarData:%s]" % id
 
 
+## Create a TrainCarData instance from a dictionary.
+## Centralized factory method used by ContentRegistry and ModAPI.
+static func from_dict(data: Dictionary) -> TrainCarData:
+	var id_val: String = data.get("id", "")
+	if id_val.is_empty():
+		return null
+
+	var train_car := TrainCarData.new()
+	train_car.id = id_val
+	train_car.name = data.get("name", id_val)
+	train_car.description = data.get("description", "")
+	train_car.type = data.get("type", "car")
+	train_car.category = data.get("category", "utility")
+	train_car.acquisition = data.get("acquisition", "starting")
+	train_car.crew_station = data.get("crew_station", false)
+	train_car.upgrade_tree = data.get("upgrade_tree", "")
+	train_car.damage_effect = data.get("damage_effect", "")
+
+	var subsystems = data.get("subsystems", [])
+	if subsystems is Array:
+		train_car.subsystems = []
+		for sub in subsystems:
+			train_car.subsystems.append(str(sub))
+
+	var dependencies = data.get("dependencies", [])
+	if dependencies is Array:
+		train_car.dependencies = []
+		for dep in dependencies:
+			train_car.dependencies.append(str(dep))
+
+	return train_car
+
+
 ## Check if this is a car definition (not a subsystem)
 func is_car() -> bool:
 	return type == "car"

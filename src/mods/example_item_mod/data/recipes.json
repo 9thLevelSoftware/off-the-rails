@@ -7,10 +7,10 @@
       "station": "workbench",
       "inputs": [
         {"item_id": "scrap_metal", "quantity": 5},
-        {"item_id": "quantum_capacitor", "quantity": 1},
-        {"item_id": "nano_repair_gel", "quantity": 1}
+        {"item_id": "example_item_mod:quantum_capacitor", "quantity": 1},
+        {"item_id": "example_item_mod:nano_repair_gel", "quantity": 1}
       ],
-      "output": {"item_id": "advanced_repair_kit", "quantity": 1},
+      "output": {"item_id": "example_item_mod:advanced_repair_kit", "quantity": 1},
       "craft_time": 8.0
     }
   ]

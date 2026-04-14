@@ -17,6 +17,7 @@ const MODS_DIR := "user://mods/"
 
 var _discovered_mods: Dictionary = {}  # mod_id -> ModManifest
 var _loaded_mods: Array[String] = []
+var _script_instances: Dictionary = {}  # mod_id -> Array[RefCounted]
 var _error_handler: ModErrorHandler
 var _content_registry: ContentRegistry
 var _mod_api: ModAPI
@@ -289,6 +290,7 @@ func _load_scripts(manifest: ModManifest) -> bool:
 
 
 ## Execute a mod script with ModAPI context.
+## Uses FileAccess + GDScript.new() to load scripts from user:// paths.
 func _execute_mod_script(mod_id: String, script_path: String, full_path: String) -> bool:
 	# CRITICAL: Validate .gd extension
 	if not full_path.ends_with(".gd"):
@@ -301,23 +303,30 @@ func _execute_mod_script(mod_id: String, script_path: String, full_path: String)
 		mod_load_failed.emit(mod_id, error)
 		return false
 
-	# Load the script
-	var script = load(full_path)
-	if script == null:
+	# Load the script using FileAccess (works for user:// paths)
+	var file := FileAccess.open(full_path, FileAccess.READ)
+	if not file:
 		var error := _error_handler.handle_error(
 			mod_id,
 			ModErrorHandler.ErrorType.SCRIPT_LOAD_FAILED,
-			"Failed to load script: %s" % script_path,
+			"Cannot open script: %s (error %d)" % [script_path, FileAccess.get_open_error()],
 			{"path": full_path}
 		)
 		mod_load_failed.emit(mod_id, error)
 		return false
 
-	if not script is GDScript:
+	var source_code := file.get_as_text()
+	file.close()
+
+	# Create GDScript from source
+	var script := GDScript.new()
+	script.source_code = source_code
+	var err := script.reload()
+	if err != OK:
 		var error := _error_handler.handle_error(
 			mod_id,
-			ModErrorHandler.ErrorType.SCRIPT_INVALID,
-			"File is not a valid GDScript: %s" % script_path,
+			ModErrorHandler.ErrorType.SCRIPT_LOAD_FAILED,
+			"Compile error in script: %s (error %d)" % [script_path, err],
 			{"path": full_path}
 		)
 		mod_load_failed.emit(mod_id, error)
@@ -342,6 +351,11 @@ func _execute_mod_script(mod_id: String, script_path: String, full_path: String)
 	if instance.has_method("_mod_init"):
 		print("[ModLoader] Executing _mod_init for: %s" % full_path)
 		instance.call("_mod_init", _mod_api)
+
+	# Store instance to prevent memory leaks (especially if it connects signals)
+	if not _script_instances.has(mod_id):
+		_script_instances[mod_id] = []
+	_script_instances[mod_id].append(instance)
 
 	_mod_api.script_executed.emit(mod_id, script_path)
 	print("[ModLoader] Executed script: %s" % full_path)
@@ -443,6 +457,10 @@ func get_error_handler() -> ModErrorHandler:
 
 ## Reload all mods (clears state and rediscovers).
 func reload_mods() -> int:
+	# Cleanup script instances for all loaded mods
+	for mod_id in _loaded_mods:
+		_cleanup_mod_scripts(mod_id)
+
 	# Emit unload signals for all currently loaded mods
 	if is_instance_valid(EventHooks):
 		for mod_id in _loaded_mods:
@@ -459,3 +477,15 @@ func reload_mods() -> int:
 
 	discover_mods()
 	return load_all_mods()
+
+
+## Cleanup script instances for a mod, calling _mod_exit if available.
+func _cleanup_mod_scripts(mod_id: String) -> void:
+	if not _script_instances.has(mod_id):
+		return
+
+	for instance in _script_instances[mod_id]:
+		if is_instance_valid(instance) and instance.has_method("_mod_exit"):
+			instance.call("_mod_exit")
+
+	_script_instances.erase(mod_id)

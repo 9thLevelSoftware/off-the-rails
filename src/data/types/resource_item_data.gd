@@ -26,6 +26,38 @@ func _to_string() -> String:
 	return "[ResourceItemData:%s]" % id
 
 
+## Create a ResourceItemData instance from a dictionary.
+## Centralized factory method used by ContentRegistry and ModAPI.
+static func from_dict(data: Dictionary) -> ResourceItemData:
+	var id_val: String = data.get("id", "")
+	if id_val.is_empty():
+		return null
+
+	var item := ResourceItemData.new()
+	item.id = id_val
+	item.name = data.get("name", id_val)
+	item.description = data.get("description", "")
+	item.category = data.get("category", "common")
+	item.type = data.get("type", "material")
+	item.rarity = data.get("rarity", "common")
+	item.weight = data.get("weight", 1.0)
+	item.stack_size = data.get("stack_size", 10)
+
+	var sources = data.get("sources", [])
+	if sources is Array:
+		item.sources = []
+		for s in sources:
+			item.sources.append(str(s))
+
+	var used_for = data.get("used_for", [])
+	if used_for is Array:
+		item.used_for = []
+		for u in used_for:
+			item.used_for.append(str(u))
+
+	return item
+
+
 ## Check if this resource can be found at a location type
 func found_at(location_type: String) -> bool:
 	return location_type in sources
