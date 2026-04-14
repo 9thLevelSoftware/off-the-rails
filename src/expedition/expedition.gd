@@ -9,6 +9,7 @@ extends Node3D
 
 
 func _ready() -> void:
+	add_to_group("expedition")
 	_discover_escalation_manager()
 	if GameState:
 		GameState.register_scene(GameState.GameScene.EXPEDITION, self)
