@@ -1,0 +1,100 @@
+{
+  "items": [
+    {
+      "id": "scrap_metal",
+      "name": "Scrap Metal",
+      "description": "Salvaged metal pieces. The backbone of basic repairs and low-tier crafting.",
+      "category": "common",
+      "type": "material",
+      "rarity": "common",
+      "weight": 1.5,
+      "stack_size": 15,
+      "sources": ["industrial_facility", "freight_yard", "rail_station", "small_town"],
+      "used_for": ["basic_repairs", "low_tier_crafting", "ammo_crafting"]
+    },
+    {
+      "id": "circuit_board",
+      "name": "Circuit Board",
+      "description": "Salvaged electronic circuits. Essential for advanced crafting and repairs.",
+      "category": "common",
+      "type": "component",
+      "rarity": "uncommon",
+      "weight": 0.5,
+      "stack_size": 20,
+      "sources": ["research_facility", "industrial_facility", "military_base"],
+      "used_for": ["electronics_crafting", "signal_repairs", "upgrades"]
+    },
+    {
+      "id": "medical_supplies",
+      "name": "Medical Supplies",
+      "description": "Basic medical supplies for treating injuries and illness.",
+      "category": "common",
+      "type": "consumable",
+      "rarity": "common",
+      "weight": 1.0,
+      "stack_size": 10,
+      "sources": ["hospital", "pharmacy", "small_town"],
+      "used_for": ["healing", "medical_crafting"]
+    },
+    {
+      "id": "repair_kit",
+      "name": "Repair Kit",
+      "description": "Standard repair kit containing tools and materials for train system maintenance.",
+      "category": "crafted",
+      "type": "tool",
+      "rarity": "common",
+      "weight": 2.0,
+      "stack_size": 5,
+      "sources": [],
+      "used_for": ["train_repairs", "subsystem_maintenance"]
+    },
+    {
+      "id": "processed_fuel",
+      "name": "Processed Fuel",
+      "description": "Refined fuel suitable for the train's engine. Burns cleaner than crude fuel.",
+      "category": "structured",
+      "type": "material",
+      "rarity": "uncommon",
+      "weight": 2.5,
+      "stack_size": 10,
+      "sources": ["refinery_car"],
+      "used_for": ["train_fuel", "engine_operations"]
+    },
+    {
+      "id": "crude_fuel",
+      "name": "Crude Fuel",
+      "description": "Unrefined fuel gathered from various sources. Needs processing before use.",
+      "category": "common",
+      "type": "material",
+      "rarity": "common",
+      "weight": 3.0,
+      "stack_size": 8,
+      "sources": ["fuel_depot", "industrial_facility", "abandoned_vehicles"],
+      "used_for": ["fuel_refining", "emergency_fuel"]
+    },
+    {
+      "id": "water",
+      "name": "Water",
+      "description": "Purified water. Essential for crew survival and some crafting processes.",
+      "category": "common",
+      "type": "consumable",
+      "rarity": "common",
+      "weight": 1.0,
+      "stack_size": 20,
+      "sources": ["water_source", "small_town", "greenhouse_car"],
+      "used_for": ["hydration", "medical_crafting", "greenhouse"]
+    },
+    {
+      "id": "rations",
+      "name": "Rations",
+      "description": "Preserved food supplies. Keeps the crew fed during long journeys.",
+      "category": "common",
+      "type": "consumable",
+      "rarity": "common",
+      "weight": 0.8,
+      "stack_size": 15,
+      "sources": ["small_town", "military_base", "greenhouse_car"],
+      "used_for": ["nutrition", "morale"]
+    }
+  ]
+}
