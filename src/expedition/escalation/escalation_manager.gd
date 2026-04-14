@@ -42,6 +42,8 @@ signal threshold_crossed(old_threshold: EscalationThreshold, new_threshold: Esca
 var _escalation_timer: float = 0.0
 ## Whether escalation is currently paused
 var _is_paused: bool = false
+## Tracks last emitted threshold to prevent duplicate emissions (CRITIQUE FIX: Task 8)
+var _last_emitted_threshold: EscalationThreshold = EscalationThreshold.NORMAL
 
 ## Read-only accessor for pause state
 var is_paused: bool:
@@ -61,7 +63,10 @@ var escalation_level: float = 0.0:
 
 		escalation_changed.emit(old_level, escalation_level)
 
-		if old_threshold != new_threshold:
+		# CRITIQUE FIX (Task 8): Only emit threshold_crossed when threshold actually changes
+		# AND differs from the last emitted threshold (prevents duplicate emissions)
+		if old_threshold != new_threshold and new_threshold != _last_emitted_threshold:
+			_last_emitted_threshold = new_threshold
 			threshold_crossed.emit(old_threshold, new_threshold)
 
 ## Current threshold computed from escalation_level
@@ -110,6 +115,7 @@ func get_threshold_for_level(level: float) -> EscalationThreshold:
 func reset_escalation() -> void:
 	escalation_level = 0.0
 	_escalation_timer = 0.0
+	_last_emitted_threshold = EscalationThreshold.NORMAL
 
 
 ## Adds escalation from an action or event.

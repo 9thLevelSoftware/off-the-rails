@@ -10,6 +10,9 @@ size = Vector3(10, 1, 10)
 [sub_resource type="BoxMesh" id="BoxMesh_floor"]
 size = Vector3(10, 1, 10)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_expedition"]
+size = Vector3(2, 3, 2)
+
 [node name="Train" type="Node3D" unique_id=883086928]
 script = ExtResource("1_train")
 
@@ -34,3 +37,9 @@ script = ExtResource("2_x7r1g")
 
 [node name="InteractionController" type="Node" parent="." unique_id=804448868]
 script = ExtResource("3_gb7jv")
+
+[node name="ExpeditionTrigger" type="Area3D" parent="." unique_id=1892033571]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExpeditionTrigger"]
+shape = SubResource("BoxShape3D_expedition")
