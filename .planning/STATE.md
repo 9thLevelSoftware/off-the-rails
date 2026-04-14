@@ -47,9 +47,9 @@
 | Phase 2 Issue | #2 | Closed |
 | Phase 3 Issue | #3 | Closed |
 | Phase 4 Issue | #4 | Closed |
-| Phase 4 PR | #5 | Open |
-| Phase 5 Issue | #6 | Open |
-| Phase 5 PR | #7 | Open |
+| Phase 4 PR | #5 | Merged |
+| Phase 5 Issue | #6 | Closed |
+| Phase 5 PR | #7 | Merged |
 | Phase 6 Issue | #8 | Open |
 | Phase 6 PR | #9 | Open |
 

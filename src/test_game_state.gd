@@ -97,7 +97,7 @@ func test_item_data_lookup() -> void:
 		return
 
 	# Get all items and test lookup with first one (if any exist)
-	var all_items := registry.items.get_all_items()
+	var all_items := registry.items.get_all()
 	if all_items.is_empty():
 		print("SKIP: No items in registry (expected if base_items.json empty)")
 		return
