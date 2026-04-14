@@ -2,6 +2,18 @@ class_name PassiveBonusManager
 extends Node
 
 ## Manages passive bonus application from profession data.
+##
+## PHASE 7 INTEGRATION: Game systems should call apply_modifier() to get
+## profession-adjusted values. Example usage:
+##   var repair_time = passive_bonus_manager.apply_modifier("repair_speed", base_time)
+##   var heal_amount = passive_bonus_manager.apply_modifier("healing_rate", base_heal)
+##
+## Available stats (from PassiveBonusMapping):
+## - repair_speed: Engineer 1.25x multiplier
+## - crafting_speed: Machinist 1.15x multiplier
+## - healing_rate: Medic 1.30x multiplier
+## - diagnosis_speed: Medic 1.50x multiplier
+## - failure_warning: Engineer flag (use has_flag() to check)
 
 signal bonuses_changed
 

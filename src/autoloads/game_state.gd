@@ -1,7 +1,16 @@
 ## GameState Autoload
 ## Central state management for campaign progression and session lifecycle.
 ## Emits signals for session and location changes that other systems can subscribe to.
+##
+## PROFESSION SELECTION (V1):
+## Currently defaults to Engineer profession on session start. A profession selection
+## UI will be added in Phase 7 integration. For testing other professions, call:
+##   GameState.select_profession(load("res://src/data/professions/medic.tres"))
+## before starting the session.
 extends Node
+
+# --- Constants ---
+const DEFAULT_PROFESSION_PATH := "res://src/data/professions/engineer.tres"
 
 # --- Scene paths ---
 const TRAIN_SCENE := "res://src/train/train.tscn"
@@ -55,10 +64,12 @@ func start_session() -> void:
 
 	# Default to Engineer profession for V1 testing if none selected
 	if player_profession == null:
-		var default_prof := load("res://src/data/professions/engineer.tres") as ProfessionData
+		var default_prof := load(DEFAULT_PROFESSION_PATH) as ProfessionData
 		if default_prof:
 			select_profession(default_prof)
 			print("[GameState] Defaulted to Engineer profession for V1 testing")
+		else:
+			push_error("GameState: Failed to load default profession from %s" % DEFAULT_PROFESSION_PATH)
 
 	session_active = true
 	session_started.emit()

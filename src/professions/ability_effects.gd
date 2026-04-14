@@ -2,6 +2,18 @@ class_name AbilityEffects
 extends Node
 
 ## Handles ability effect execution with signals for system integration.
+##
+## PHASE 7 INTEGRATION: These effect methods emit signals that train subsystems,
+## health components, and other game systems should connect to. Current implementations
+## are stubs that print and emit - actual gameplay effects are wired in Phase 7.
+##
+## Signal consumers (to be implemented):
+## - emergency_repair_activated -> TrainSubsystem.on_emergency_repair()
+## - power_reroute_activated -> PowerSource.on_power_reroute()
+## - system_overclock_activated -> TrainSubsystem.on_overclock()
+## - field_surgery_activated -> HealthComponent.on_field_surgery()
+## - stabilize_activated -> HealthComponent.on_stabilize()
+## - purge_activated -> StatusEffectManager.on_purge()
 
 signal emergency_repair_activated(caster: Node)
 signal power_reroute_activated(caster: Node)

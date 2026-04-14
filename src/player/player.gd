@@ -83,17 +83,17 @@ func _physics_process(delta: float) -> void:
 
 
 func set_profession(profession: ProfessionData) -> void:
+	if ability_manager == null:
+		push_error("Player: AbilityManager not found - cannot set profession")
+		return
+
+	if passive_bonus_manager == null:
+		push_error("Player: PassiveBonusManager not found - cannot set profession")
+		return
+
 	_profession = profession
-
-	if ability_manager:
-		ability_manager.set_profession(profession)
-	else:
-		push_error("Player: AbilityManager not found")
-
-	if passive_bonus_manager:
-		passive_bonus_manager.set_profession(profession)
-	else:
-		push_error("Player: PassiveBonusManager not found")
+	ability_manager.set_profession(profession)
+	passive_bonus_manager.set_profession(profession)
 
 	if profession:
 		print("[Player] Profession set: %s" % profession.name)

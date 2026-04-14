@@ -47,15 +47,20 @@ func _update_cooldowns(delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	# Don't consume input if no abilities are loaded
+	if _abilities.is_empty():
+		return
+
+	# Only consume input if ability activation succeeds or is on cooldown
 	if event.is_action_pressed("ability_1"):
-		_try_activate_slot(0)
-		get_viewport().set_input_as_handled()
+		if _try_activate_slot(0):
+			get_viewport().set_input_as_handled()
 	elif event.is_action_pressed("ability_2"):
-		_try_activate_slot(1)
-		get_viewport().set_input_as_handled()
+		if _try_activate_slot(1):
+			get_viewport().set_input_as_handled()
 	elif event.is_action_pressed("ability_3"):
-		_try_activate_slot(2)
-		get_viewport().set_input_as_handled()
+		if _try_activate_slot(2):
+			get_viewport().set_input_as_handled()
 
 
 func _try_activate_slot(slot_index: int) -> bool:
