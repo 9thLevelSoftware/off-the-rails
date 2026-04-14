@@ -165,13 +165,13 @@
 | Phase | Plans | Completed | Status |
 |-------|-------|-----------|--------|
 | Phase 1: Isometric Foundation | 4 | 4 | Complete |
-| Phase 2: Player & Movement | 2 | 0 | Pending |
+| Phase 2: Player & Movement | 2 | 2 | Complete |
 | Phase 3: Train Car Prototype | 2 | 0 | Pending |
 | Phase 4: Interaction System | 2 | 0 | Pending |
 | Phase 5: Mod Architecture | 4 | 0 | Pending |
 | Phase 6: V1 Logic Port | 3 | 0 | Pending |
 | Phase 7: Integration | 2 | 0 | Pending |
-| **Total** | **19** | **4** | **21%** |
+| **Total** | **19** | **6** | **32%** |
 
 ## V1 Archive
 
