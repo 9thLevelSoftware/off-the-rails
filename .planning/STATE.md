@@ -51,6 +51,7 @@
 | Phase 5 Issue | #6 | Open |
 | Phase 5 PR | #7 | Open |
 | Phase 6 Issue | #8 | Open |
+| Phase 6 PR | #9 | Open |
 
 ## Next Action
 
