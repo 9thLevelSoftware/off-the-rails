@@ -1,102 +1,131 @@
-# Off The Rails
+# Off The Rails V2
 
 ## What This Is
 
-A 2-8 player co-op PvE expedition game built in Godot 4.6 where survivors restore a derelict train into a mobile home and battle platform, crossing the overgrown ruins of a rail-built colony world to scavenge, upgrade, and eventually escape the planet.
+A 2-8 player co-op PvE expedition game rebuilt in **isometric pixel art** using Godot 4.6. Players restore a derelict train into a mobile fortress, crossing the overgrown ruins of a rail-built colony world to scavenge, craft, upgrade, and escape.
 
-**Pacing reference**: "Barotrauma meets Project Zomboid on rails."
+**V2 Focus**: Isometric foundation and mod-friendly architecture. Content restoration and multiplayer come later.
+
+**Pacing reference**: "Project Zomboid meets FTL on rails."
 
 ## Core Value
 
-The train is not just transport — it's your workshop, infirmary, armory, and fortress. You push deeper into a dead colony's rail network, stopping to scavenge what you need, fighting what you disturb, and returning to your moving home before things get worse. Every expedition has stakes, every upgrade feels earned, and the train's visible state is your campaign progress bar.
+The train is your workshop, infirmary, armory, and fortress — now visualized as an **isometric cross-section** where you see the entire layout, your crew's positions, and systems at a glance. The shift from 3D FPS to isometric enables:
+
+- Better co-op coordination (see where everyone is)
+- Spatial equipment layouts (not single-dimension corridors)
+- Achievable solo-dev art pipeline (pixel art vs 3D models)
+- Mod-friendly architecture from the ground up
 
 ## Who It's For
 
-- Co-op gamers who enjoy survival management games (Project Zomboid, Barotrauma)
+- Co-op survival gamers (Project Zomboid, Barotrauma, FTL fans)
+- Modding communities (total conversion support planned)
 - Players who value team coordination and role specialization
-- Fans of tense extraction gameplay with meaningful resource management
-- Groups of 2-8 friends looking for a campaign-style experience
+- Solo dev building for eventual 2-8 player multiplayer
 
 ## Requirements
 
 ### Validated
-(None yet — ship to validate)
+(From V1 — architecture patterns that worked)
+- Signal-driven state management
+- Clean Architecture for complex domains (crafting)
+- YAML → .tres data pipeline
+- Additive scene architecture
 
-### Active (V1 Scope)
+### Active (V2 Scope)
 
-**Core Loop:**
-- R1: Single-player gameplay (networking deferred to V2)
-- R2: Train hub with 2-3 functional cars (Engine, Workshop, +1)
-- R3: Expedition system with escalation meter and extraction mechanics
-- R4: 2-3 professions with distinct abilities and train station roles
-- R5: Basic crafting at workshop station
+**Isometric Foundation:**
+- R1: Isometric tilemap rendering with Y-sorting
+- R2: Isometric camera system (follow player, zoom)
+- R3: Isometric player movement (4/8-direction, input conversion)
+- R4: One train car (Workshop) with spatial floor layout
+- R5: Isometric interaction system (approach + interact)
 
-**Technical Foundation:**
-- R6: Directory structure matching architectural sketch
-- R7: YAML → .tres build pipeline for design data
-- R8: Core autoloads (GameState)
-- R9: Additive scene architecture (Train + Expedition coexist)
-- R10: MCP-driven development workflow
+**Mod Architecture:**
+- R6: Data-driven content architecture (all game content in data files)
+- R7: Mod discovery and loading system
+- R8: Mod validation and error handling
+- R9: Scripting API foundation (expose core systems)
+- R10: Example mod demonstrating extensibility
 
-### Out of Scope (V1)
+**V1 Logic Port:**
+- R11: Port GameState autoload (adapt for isometric)
+- R12: Port crafting domain logic (perspective-agnostic)
+- R13: Port data pipeline (YAML → .tres)
+- R14: Port signal architecture patterns
 
-- Multiplayer networking and RPC layer
-- All 10 train cars (start with 2-3)
-- All 8 professions (start with 2-3)
-- Campaign progression, route map, milestones
-- Endgame and escape sequence
-- Full art assets and polish
+### Out of Scope (V2)
+
+- Content parity with V1 (2 cars, 2 professions, 55 recipes) — V2.1
+- Multiplayer networking — V3
+- Full pixel art assets (placeholder-first)
 - Audio system
+- Campaign, route map, progression
+- Steam Workshop integration
+- All 10 train cars / 8 professions
 
 ## Constraints
 
-- **Solo developer** — one person implementing all code
-- **No paid assets** — free/open assets only
-- **MCP-driven** — leverage godot-mcp + GDAI for rapid iteration
-- **Hybrid language** — GDScript for gameplay/UI, C# for networking (later)
+- **Solo developer** — achievable scope, pixel art pipeline
+- **Godot 4.6** — leverage isometric TileMap, Y-sorting
+- **Pixel art at PZ-tier detail** — 48-64px characters, not 8-bit retro
+- **Mod-first architecture** — total conversion support from day one
+- **V1 architecture carries forward** — don't reinvent working patterns
 
 ## Key Decisions
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| Single-player first | Validate core loop before networking complexity | No RPC code in V1 |
-| Listen Server architecture | Simple MVP, train's centralized state fits single authority | Architect for later |
-| Hybrid GDScript + C# | GDScript for iteration speed, C# for networking performance | Clear boundaries per system |
-| Additive scenes | Enable split-team play, real-time train state during expeditions | Train + Expedition coexist |
-| Build-time YAML → .tres | Fast runtime, editor integration, human-readable source | Build script required |
-| Full MCP-driven | Rapid scaffolding, AI review/iterate cycle | Human polish pass |
+| Isometric perspective | Train needs spatial depth; co-op needs visibility | Project Zomboid style, not Barotrauma side-view |
+| Pixel art (PZ-tier) | Achievable solo, can still do horror/atmosphere | 48-64px characters, detailed environments |
+| Mod-first architecture | Community extends the game; total conversion viable | Data-driven everything, scripting API |
+| Foundation before content | Get isometric + modding right first | Content restoration is V2.1 |
+| Port V1 logic | Architecture was sound, just presentation was wrong | GameState, crafting domain, signals transfer |
 | Guided execution | Solo dev wants learning and control | Agent proposes, user approves |
 | Deep analysis planning | Comprehensive specs before implementation | More planning upfront |
 | Premium agent usage | Maximize parallelism for speed | Spawn specialists freely |
 
 ## Architecture Influences
 
-See `.planning/exploration-technical-architecture.md` for full architecture decisions.
-
-**Key patterns:**
+**From V1 (proven patterns):**
 ```
 Main (persistent)
-├── Autoloads (GameState)
-├── TrainScene (always loaded)
-├── ExpeditionScene (loaded when in field)
+├── Autoloads (GameState — adapted for isometric)
+├── TrainScene (isometric tilemap)
+├── ExpeditionScene (isometric exploration)
 └── UI (persistent overlay)
 ```
 
-**Data flow:**
+**New for V2:**
 ```
-docs/design/data/*.yaml → build script → res://data/*.tres → runtime
+Mod System:
+├── ModLoader (autoload)
+│   ├── Discovers mods in user://mods/
+│   ├── Validates mod.json manifests
+│   └── Loads content packs and scripts
+├── ModAPI (exposed interfaces)
+│   ├── ContentRegistry (items, recipes, professions)
+│   ├── TrainCarRegistry (custom cars)
+│   └── EventHooks (gameplay events for scripts)
+└── Data Architecture
+    ├── Base game data in res://data/
+    ├── Mods override/extend in user://mods/{mod}/data/
+    └── Runtime merges base + mod data
 ```
 
-**Source layout:**
+**Isometric rendering:**
 ```
-src/
-├── autoloads/         # GameState, later NetworkManager
-├── train/             # Train hub scenes and scripts
-├── expedition/        # Field gameplay
-├── player/            # Player character
-├── ui/                # UI scenes
-└── data/              # Generated .tres resources
+TileMap (isometric mode, 64x32 tiles)
+├── Y-sort enabled for depth ordering
+├── Collision shapes for walls/objects
+└── Navigation regions for pathfinding
+
+Character (CharacterBody2D)
+├── AnimatedSprite2D (4/8 direction frames)
+├── Isometric input conversion
+└── Y-sort based on position.y
 ```
 
 ---
-*Last updated: 2026-04-12 after initialization*
+*Last updated: 2026-04-14 — V2 initialization*

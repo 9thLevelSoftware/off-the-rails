@@ -1,169 +1,162 @@
-# Off The Rails — Roadmap
+# Off The Rails V2 — Roadmap
 
 ## Phases
 
-- [x] **Phase 1: Foundation** — Project structure, data pipeline, core autoloads
-- [x] **Phase 2: Player & Movement** — Player character, camera, basic controls
-- [x] **Phase 3: Train Core** — Train scene, Engine car, Workshop car, interaction
-- [x] **Phase 4: Expedition Core** — Expedition scene, escalation, extraction
-- [x] **Phase 5: Professions** — 2-3 professions with abilities and bonuses
-- [x] **Phase 6: Crafting** — Workshop station, queue system, basic recipes
-- [x] **Phase 7: Integration** — System connections, basic UI, playtest loop
+- [ ] **Phase 1: Isometric Foundation** — Tilemap, camera, basic rendering
+- [ ] **Phase 2: Player & Movement** — Isometric character controller
+- [ ] **Phase 3: Train Car Prototype** — Workshop in isometric with spatial layout
+- [ ] **Phase 4: Interaction System** — Spatial approach + interact
+- [ ] **Phase 5: Mod Architecture** — Data-driven content, mod loading
+- [ ] **Phase 6: V1 Logic Port** — GameState, crafting, signals
+- [ ] **Phase 7: Integration** — Wire systems, playable prototype
 
 ## Phase Details
 
-### Phase 1: Foundation
-**Goal**: Establish project structure and development infrastructure
+### Phase 1: Isometric Foundation
+**Goal**: Establish isometric rendering infrastructure in Godot
 
-**Requirements**: R6, R7, R8, R10
-
-**Recommended Agents**:
-- Godot Developer (scene/script scaffolding)
-- Senior Developer (architecture implementation)
-- DevOps Automator (build scripts)
-
-**Success Criteria**:
-- [ ] Directory structure matches architectural sketch
-- [ ] YAML → .tres build script runs successfully
-- [ ] GameState autoload configured and functional
-- [ ] Main scene with additive scene loading works
-- [ ] MCP tools can create/modify scenes
-
-**Plans**: 2-3
-
----
-
-### Phase 2: Player & Movement
-**Goal**: Playable character with smooth movement and camera
-
-**Requirements**: R1 (foundation for single-player)
+**Requirements**: R1, R2
 
 **Recommended Agents**:
-- Godot Developer (character controller)
-- Frontend Developer (input handling)
-- QA Verification Specialist (movement feel)
+- Godot Developer (isometric tilemap setup)
+- Senior Developer (architecture patterns)
 
 **Success Criteria**:
-- [ ] Player character moves with WASD + mouse
-- [ ] Camera follows player appropriately
-- [ ] Player can transition between Train and Expedition scenes
-- [ ] Basic collision and physics work with Jolt
+- [ ] Isometric TileMap configured (64x32 tile size, 2:1 ratio)
+- [ ] Y-sorting enabled and working correctly
+- [ ] Camera follows a test object smoothly
+- [ ] Basic floor tileset renders without visual artifacts
+- [ ] Collision shapes align with isometric tiles
 
 **Plans**: 2
 
 ---
 
-### Phase 3: Train Core
-**Goal**: Functional train hub with 2-3 interactable cars
-
-**Requirements**: R2
-
-**Recommended Agents**:
-- Godot Developer (train scenes, car scripts)
-- Senior Developer (subsystem architecture)
-- UI Designer (interaction prompts)
-- QA Verification Specialist (interaction testing)
-
-**Success Criteria**:
-- [ ] Train scene with Engine and Workshop cars
-- [ ] Player can enter/exit train
-- [ ] Basic subsystem states (Offline, Operational)
-- [ ] Car-specific interactions work
-- [ ] Visual representation of train state
-
-**Plans**: 3
-
----
-
-### Phase 4: Expedition Core
-**Goal**: Complete expedition loop with escalation and extraction
+### Phase 2: Player & Movement
+**Goal**: Isometric character with natural-feeling movement
 
 **Requirements**: R3
 
 **Recommended Agents**:
-- Godot Developer (expedition scenes, escalation)
-- Senior Developer (escalation algorithm)
-- Godot Developer (enemy spawning)
-- QA Verification Specialist (escalation balance)
+- Godot Developer (character controller)
+- Frontend Developer (input handling)
 
 **Success Criteria**:
-- [ ] Expedition scene loads additively with train
-- [ ] Escalation meter increases over time and with actions
-- [ ] Threshold effects (patrol increase, reinforcements)
-- [ ] Extraction triggers return to train
-- [ ] Basic enemy presence (placeholder)
-- [ ] Loot containers with basic items
+- [ ] CharacterBody2D with isometric movement
+- [ ] WASD converts to isometric directions correctly
+- [ ] 4-direction sprite animation (idle + walk)
+- [ ] Y-sort positions player correctly relative to objects
+- [ ] Movement feels responsive and natural
+
+**Plans**: 2
+
+---
+
+### Phase 3: Train Car Prototype
+**Goal**: One train car (Workshop) with spatial floor layout
+
+**Requirements**: R4
+
+**Recommended Agents**:
+- Godot Developer (scene composition)
+- UI Designer (spatial layout)
+- Senior Developer (architecture)
+
+**Success Criteria**:
+- [ ] Workshop car as isometric tilemap scene
+- [ ] 3-4 equipment objects placed spatially (workbench, locker, crate)
+- [ ] Player can walk around objects (not through)
+- [ ] Clear visual distinction between floor, walls, equipment
+- [ ] Car feels like a real space, not a flat corridor
+
+**Plans**: 2
+
+---
+
+### Phase 4: Interaction System
+**Goal**: Spatial approach-and-interact for isometric perspective
+
+**Requirements**: R5
+
+**Recommended Agents**:
+- Godot Developer (interaction detection)
+- Senior Developer (system design)
+
+**Success Criteria**:
+- [ ] Interactable base class for equipment
+- [ ] Proximity detection in isometric space
+- [ ] Visual prompt when in range ("Press E")
+- [ ] Interaction triggers feedback (placeholder for now)
+- [ ] Works correctly with Y-sorting (prompt above objects)
+
+**Plans**: 2
+
+---
+
+### Phase 5: Mod Architecture
+**Goal**: Data-driven content system with mod loading
+
+**Requirements**: R6, R7, R8, R9, R10
+
+**Recommended Agents**:
+- Senior Developer (mod system architecture)
+- Backend Architect (data loading, validation)
+- Godot Developer (Godot-specific integration)
+- Technical Writer (mod API documentation)
+
+**Success Criteria**:
+- [ ] All base game content in data files (not hardcoded)
+- [ ] ModLoader autoload discovers mods in user://mods/
+- [ ] mod.json manifest format defined and validated
+- [ ] Content registry merges base + mod data at runtime
+- [ ] Example mod adds one custom item successfully
+- [ ] Mod loading errors handled gracefully (don't crash)
+- [ ] Basic scripting API exposes key systems
 
 **Plans**: 4
 
 ---
 
-### Phase 5: Professions
-**Goal**: 2-3 distinct professions with abilities
+### Phase 6: V1 Logic Port
+**Goal**: Bring forward working V1 systems adapted for isometric
 
-**Requirements**: R4
-
-**Recommended Agents**:
-- Godot Developer (profession system)
-- Senior Developer (ability architecture)
-- UI Designer (profession selection, ability UI)
-- QA Verification Specialist (ability testing)
-
-**Success Criteria**:
-- [ ] Engineer profession with 3 abilities + passives
-- [ ] Medic profession with 3 abilities + passives
-- [ ] Profession selection at game start
-- [ ] Abilities trigger correctly with cooldowns
-- [ ] Passive bonuses apply (repair speed, healing rate)
-- [ ] Train station assignment per profession
-
-**Plans**: 3
-
----
-
-### Phase 6: Crafting
-**Goal**: Functional workshop with queue-based crafting
-
-**Requirements**: R5
+**Requirements**: R11, R12, R13, R14
 
 **Recommended Agents**:
-- Godot Developer (crafting system)
-- Senior Developer (queue architecture)
-- UI Designer (crafting UI)
-- QA Verification Specialist (recipe testing)
+- Senior Developer (architecture adaptation)
+- Godot Developer (implementation)
 
 **Success Criteria**:
-- [ ] Workshop station interaction
-- [ ] Recipe selection UI
-- [ ] Queue system with time progression
-- [ ] 5-10 basic recipes functional
-- [ ] Resource consumption and output
-- [ ] Crafting continues during expedition (train-side)
+- [ ] GameState autoload ported and functional
+- [ ] Crafting domain logic (CraftJob, CraftQueue, RecipeValidator) ported
+- [ ] YAML → .tres pipeline works for V2 data
+- [ ] Signal architecture preserved
+- [ ] Inventory API functional
+- [ ] No regression from V1 logic behavior
 
 **Plans**: 3
 
 ---
 
 ### Phase 7: Integration
-**Goal**: All systems connected, playable loop, basic UI
+**Goal**: Wire all systems into playable prototype
 
-**Requirements**: All V1 requirements validated
+**Requirements**: All V2 requirements verified together
 
 **Recommended Agents**:
 - Senior Developer (system integration)
-- UI Designer (HUD, menus)
-- QA Verification Specialist (full loop testing)
-- Frontend Developer (polish, feedback)
+- QA Verification Specialist (testing)
+- Godot Developer (scene wiring)
 
 **Success Criteria**:
-- [ ] Complete loop: Train → Expedition → Extract → Train
-- [ ] Profession abilities work during expedition
-- [ ] Crafted items usable during expedition
-- [ ] Basic HUD (health, escalation, inventory)
-- [ ] Main menu and pause
-- [ ] No critical bugs in core loop
+- [ ] Player can walk around Workshop car
+- [ ] Player can interact with workbench (opens crafting)
+- [ ] Crafting queue functional
+- [ ] At least one mod loads and adds content
+- [ ] No critical bugs in prototype loop
+- [ ] Foundation ready for content expansion (V2.1)
 
-**Plans**: 3
+**Plans**: 2
 
 ---
 
@@ -171,17 +164,18 @@
 
 | Phase | Plans | Completed | Status |
 |-------|-------|-----------|--------|
-| Phase 1: Foundation | 3 | 3 | ✅ Shipped |
-| Phase 2: Player & Movement | 2 | 2 | ✅ Shipped |
-| Phase 3: Train Core | 3 | 3 | ✅ Shipped |
-| Phase 4: Expedition Core | 4 | 4 | ✅ Shipped |
-| Phase 5: Professions | 3 | 3 | ✅ Shipped |
-| Phase 6: Crafting | 3 | 3 | ✅ Shipped |
-| Phase 7: Integration | 3 | 3 | ✅ Shipped |
-| **Total** | **21** | **21** | **V1 SHIPPED** |
+| Phase 1: Isometric Foundation | 2 | 0 | Pending |
+| Phase 2: Player & Movement | 2 | 0 | Pending |
+| Phase 3: Train Car Prototype | 2 | 0 | Pending |
+| Phase 4: Interaction System | 2 | 0 | Pending |
+| Phase 5: Mod Architecture | 4 | 0 | Pending |
+| Phase 6: V1 Logic Port | 3 | 0 | Pending |
+| Phase 7: Integration | 2 | 0 | Pending |
+| **Total** | **17** | **0** | **0%** |
 
-## Ship Record
+## V1 Archive
 
-**V1 Shipped**: 2026-04-14  
-**Repository**: https://github.com/9thLevelSoftware/off-the-rails  
-**Commit**: fa6cd3f (master)
+V1 (3D FPS) was completed and shipped on 2026-04-14:
+- Repository: https://github.com/9thLevelSoftware/off-the-rails
+- 21 plans across 7 phases
+- V1 planning files archived to `.planning/archive/v1/`
