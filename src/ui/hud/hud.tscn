@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://djxkv27l8r5ma"]
+
+[ext_resource type="Script" path="res://src/ui/hud/hud.gd" id="1_hud"]
+[ext_resource type="PackedScene" path="res://src/ui/hud/escalation_meter.tscn" id="2_esc"]
+[ext_resource type="PackedScene" path="res://src/ui/hud/health_bar.tscn" id="3_health"]
+[ext_resource type="PackedScene" path="res://src/ui/hud/inventory_display.tscn" id="4_inv"]
+
+[node name="HUD" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_hud")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TopBar" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="HealthContainer" type="Control" parent="MarginContainer/VBoxContainer/TopBar"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="HealthBar" parent="MarginContainer/VBoxContainer/TopBar/HealthContainer" instance=ExtResource("3_health")]
+layout_mode = 1
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="EscalationContainer" type="Control" parent="MarginContainer/VBoxContainer/TopBar"]
+custom_minimum_size = Vector2(250, 30)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="EscalationMeter" parent="MarginContainer/VBoxContainer/TopBar/EscalationContainer" instance=ExtResource("2_esc")]
+layout_mode = 1
+
+[node name="MiddleSpacer" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BottomBar" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="InventoryDisplay" parent="MarginContainer/VBoxContainer/BottomBar" instance=ExtResource("4_inv")]
+layout_mode = 2
