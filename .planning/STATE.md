@@ -1,9 +1,9 @@
 # Project State
 
 ## Current Position
-- **Phase**: 1 of 7 (executed, pending review)
-- **Status**: Phase 1 complete — all 4 plans executed successfully
-- **Last Activity**: Phase 1 execution (2026-04-14)
+- **Phase**: 1 of 7 (complete)
+- **Status**: Phase 1 complete — review passed (1 cycle)
+- **Last Activity**: Phase 1 review passed (2026-04-14)
 
 ## Progress
 ```
@@ -47,4 +47,4 @@
 
 ## Next Action
 
-Run `/legion:review` to verify Phase 1: Isometric Foundation
+Run `/legion:plan 2` to plan Phase 2: Player & Movement
