@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwk8m5vxnqyp7"]
+
+[ext_resource type="Script" path="res://src/crafting/test/crafting_test_scene.gd" id="1_test_scene"]
+
+[node name="CraftingTestScene" type="Node"]
+script = ExtResource("1_test_scene")

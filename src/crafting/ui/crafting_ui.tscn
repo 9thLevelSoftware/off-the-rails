@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2kp7wvk5yxmq"]
+
+[ext_resource type="Script" path="res://src/crafting/ui/crafting_ui.gd" id="1_crafting_ui"]
+[ext_resource type="PackedScene" uid="uid://bhqjl9wk5yxkm" path="res://src/crafting/ui/recipe_selection_panel.tscn" id="2_recipe_panel"]
+[ext_resource type="PackedScene" uid="uid://c3pqm6wvk8yxn" path="res://src/crafting/ui/queue_display.tscn" id="3_queue_display"]
+
+[node name="CraftingUI" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_crafting_ui")
+
+[node name="DimBackground" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.5)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="MainPanel" type="PanelContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(900, 600)
+layout_mode = 2
+
+[node name="HSplit" type="HSplitContainer" parent="CenterContainer/MainPanel"]
+layout_mode = 2
+split_offset = 500
+
+[node name="RecipeSelectionPanel" parent="CenterContainer/MainPanel/HSplit" instance=ExtResource("2_recipe_panel")]
+layout_mode = 2
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="QueueDisplay" parent="CenterContainer/MainPanel/HSplit" instance=ExtResource("3_queue_display")]
+layout_mode = 2

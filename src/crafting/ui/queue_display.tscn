@@ -1,0 +1,76 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3pqm6wvk8yxn"]
+
+[ext_resource type="Script" path="res://src/crafting/ui/queue_display.gd" id="1_queue_display"]
+
+[node name="QueueDisplay" type="PanelContainer"]
+custom_minimum_size = Vector2(300, 200)
+anchors_preset = 0
+offset_right = 300.0
+offset_bottom = 200.0
+script = ExtResource("1_queue_display")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Crafting Queue"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBox"]
+layout_mode = 2
+
+[node name="PauseIndicator" type="Label" parent="VBox"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8, 0.2, 1)
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="EmptyLabel" type="Label" parent="VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
+text = "No jobs in queue"
+horizontal_alignment = 1
+
+[node name="ActiveJobPanel" type="PanelContainer" parent="VBox"]
+visible = false
+layout_mode = 2
+
+[node name="ActiveVBox" type="VBoxContainer" parent="VBox/ActiveJobPanel"]
+layout_mode = 2
+
+[node name="ActiveLabel" type="Label" parent="VBox/ActiveJobPanel/ActiveVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Currently Crafting:"
+
+[node name="ActiveJobName" type="Label" parent="VBox/ActiveJobPanel/ActiveVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "---"
+
+[node name="ProgressBar" type="ProgressBar" parent="VBox/ActiveJobPanel/ActiveVBox"]
+layout_mode = 2
+value = 50.0
+
+[node name="TimeRemainingLabel" type="Label" parent="VBox/ActiveJobPanel/ActiveVBox"]
+layout_mode = 2
+text = "Time remaining: --"
+
+[node name="HSeparator2" type="HSeparator" parent="VBox"]
+layout_mode = 2
+
+[node name="QueuedLabel" type="Label" parent="VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Queued Jobs:"
+
+[node name="QueuedJobsScroll" type="ScrollContainer" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="QueuedList" type="VBoxContainer" parent="VBox/QueuedJobsScroll"]
+layout_mode = 2
+size_flags_horizontal = 3

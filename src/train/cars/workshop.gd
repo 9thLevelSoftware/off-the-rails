@@ -3,8 +3,15 @@ extends TrainCar
 
 ## Workshop car containing the Fabricator subsystem.
 ## Provides crafting capabilities when connected to engine power.
+## Integrates with crafting system via WorkshopAdapter.
 
 @onready var fabricator: Fabricator = $Fabricator
+
+## Crafting system adapter (manages queue and scheduling)
+var _workshop_adapter: WorkshopAdapter = null
+
+## Interaction component for opening crafting UI
+var _workshop_interactable: WorkshopInteractable = null
 
 ## Interaction layer constant (layer 2)
 const INTERACTION_LAYER: int = 2
@@ -14,6 +21,9 @@ func _on_car_ready() -> void:
 	car_id = "workshop"
 	car_name = "Workshop"
 	car_position = 1
+
+	# Initialize crafting adapter
+	_setup_crafting_adapter()
 
 
 func _setup_interaction_area() -> void:
@@ -58,3 +68,35 @@ func activate_workshop() -> void:
 func deactivate_workshop() -> void:
 	if fabricator:
 		fabricator.take_offline()
+
+
+## Setup the crafting adapter and interactable.
+func _setup_crafting_adapter() -> void:
+	# Create and add workshop adapter
+	_workshop_adapter = WorkshopAdapter.new()
+	_workshop_adapter.name = "WorkshopAdapter"
+	add_child(_workshop_adapter)
+
+	# Connect adapter to fabricator
+	_workshop_adapter.set_fabricator(fabricator)
+
+	# Create and add interactable component
+	_workshop_interactable = WorkshopInteractable.new()
+	_workshop_interactable.name = "WorkshopInteractable"
+	add_child(_workshop_interactable)
+
+	# Connect interactable to adapter
+	_workshop_interactable.set_adapter(_workshop_adapter)
+
+	print("[WorkshopCar] Crafting system initialized")
+
+
+## Handle car interaction to open crafting UI.
+func _on_car_interacted(interactor: Node) -> void:
+	if _workshop_interactable:
+		_workshop_interactable.interact(interactor)
+
+
+## Get the workshop adapter for external access.
+func get_workshop_adapter() -> WorkshopAdapter:
+	return _workshop_adapter
