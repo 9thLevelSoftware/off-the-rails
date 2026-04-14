@@ -4,7 +4,7 @@
 
 - [ ] **Phase 1: Foundation** — Project structure, data pipeline, core autoloads
 - [x] **Phase 2: Player & Movement** — Player character, camera, basic controls
-- [ ] **Phase 3: Train Core** — Train scene, Engine car, Workshop car, interaction
+- [x] **Phase 3: Train Core** — Train scene, Engine car, Workshop car, interaction
 - [ ] **Phase 4: Expedition Core** — Expedition scene, escalation, extraction
 - [ ] **Phase 5: Professions** — 2-3 professions with abilities and bonuses
 - [ ] **Phase 6: Crafting** — Workshop station, queue system, basic recipes
@@ -173,9 +173,9 @@
 |-------|-------|-----------|--------|
 | Phase 1: Foundation | 3 | 3 | Verified |
 | Phase 2: Player & Movement | 2 | 2 | Verified |
-| Phase 3: Train Core | 3 | 0 | Not Started |
+| Phase 3: Train Core | 3 | 3 | Verified |
 | Phase 4: Expedition Core | 4 | 0 | Not Started |
 | Phase 5: Professions | 3 | 0 | Not Started |
 | Phase 6: Crafting | 3 | 0 | Not Started |
 | Phase 7: Integration | 3 | 0 | Not Started |
-| **Total** | **~21** | **5** | **24%** |
+| **Total** | **~21** | **8** | **38%** |
