@@ -28,7 +28,7 @@
 - [ ] Basic floor tileset renders without visual artifacts
 - [ ] Collision shapes align with isometric tiles
 
-**Plans**: 2
+**Plans**: 4 (Clean Architecture)
 
 ---
 
@@ -164,14 +164,14 @@
 
 | Phase | Plans | Completed | Status |
 |-------|-------|-----------|--------|
-| Phase 1: Isometric Foundation | 2 | 0 | Pending |
+| Phase 1: Isometric Foundation | 4 | 4 | Complete |
 | Phase 2: Player & Movement | 2 | 0 | Pending |
 | Phase 3: Train Car Prototype | 2 | 0 | Pending |
 | Phase 4: Interaction System | 2 | 0 | Pending |
 | Phase 5: Mod Architecture | 4 | 0 | Pending |
 | Phase 6: V1 Logic Port | 3 | 0 | Pending |
 | Phase 7: Integration | 2 | 0 | Pending |
-| **Total** | **17** | **0** | **0%** |
+| **Total** | **19** | **4** | **21%** |
 
 ## V1 Archive
 
