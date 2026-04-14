@@ -68,6 +68,7 @@ func load_base_content() -> bool:
 		content_loaded.emit("items", count)
 	elif FileAccess.file_exists(BASE_ITEMS_PATH):
 		push_error("ContentRegistry: Failed to parse %s" % BASE_ITEMS_PATH)
+		content_loaded.emit("items", 0)
 		success = false
 
 	# Load recipes
@@ -78,21 +79,24 @@ func load_base_content() -> bool:
 		content_loaded.emit("recipes", count)
 	elif FileAccess.file_exists(BASE_RECIPES_PATH):
 		push_error("ContentRegistry: Failed to parse %s" % BASE_RECIPES_PATH)
+		content_loaded.emit("recipes", 0)
 		success = false
 
 	# Load professions (optional - may not exist yet)
-	var professions_data := _data_loader.load_json(BASE_PROFESSIONS_PATH)
-	if not professions_data.is_empty():
-		var count := professions.load_from_data(professions_data, "base")
-		total_loaded += count
-		content_loaded.emit("professions", count)
+	if FileAccess.file_exists(BASE_PROFESSIONS_PATH):
+		var professions_data := _data_loader.load_json(BASE_PROFESSIONS_PATH)
+		if not professions_data.is_empty():
+			var count := professions.load_from_data(professions_data, "base")
+			total_loaded += count
+			content_loaded.emit("professions", count)
 
 	# Load train cars (optional - may not exist yet)
-	var train_cars_data := _data_loader.load_json(BASE_TRAIN_CARS_PATH)
-	if not train_cars_data.is_empty():
-		var count := train_cars.load_from_data(train_cars_data, "base")
-		total_loaded += count
-		content_loaded.emit("train_cars", count)
+	if FileAccess.file_exists(BASE_TRAIN_CARS_PATH):
+		var train_cars_data := _data_loader.load_json(BASE_TRAIN_CARS_PATH)
+		if not train_cars_data.is_empty():
+			var count := train_cars.load_from_data(train_cars_data, "base")
+			total_loaded += count
+			content_loaded.emit("train_cars", count)
 
 	_base_loaded = success
 	print("ContentRegistry: Base content loaded - %d total items" % total_loaded)

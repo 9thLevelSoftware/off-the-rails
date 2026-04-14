@@ -19,7 +19,7 @@ Mods are stored in the `user://mods/` directory. The actual location depends on 
 | Platform | Location |
 |----------|----------|
 | Windows | `%APPDATA%\Godot\app_userdata\Off The Rails\mods\` |
-| Linux | `~/.local/share/godot/app_userdata/Off The Rails/mods\` |
+| Linux | `~/.local/share/godot/app_userdata/Off The Rails/mods/` |
 | macOS | `~/Library/Application Support/Godot/app_userdata/Off The Rails/mods/` |
 
 Create a new folder for your mod. The folder name should match your mod's ID:
