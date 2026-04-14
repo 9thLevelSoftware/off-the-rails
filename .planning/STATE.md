@@ -1,9 +1,9 @@
 # Project State
 
 ## Current Position
-- **Phase**: 6 of 7 (executed)
-- **Status**: Phase 6 executed — all 3 plans complete, pending review
-- **Last Activity**: Phase 6 execution complete (2026-04-14)
+- **Phase**: 6 of 7 (complete)
+- **Status**: Phase 6 review passed (2 cycles)
+- **Last Activity**: Phase 6 review passed (2026-04-14)
 
 ## Progress
 ```
@@ -104,28 +104,29 @@
 | Data Pipeline | Build-time YAML → .tres |
 | Workflow | Full MCP-driven development |
 
-## Phase 6: Crafting — EXECUTED
+## Phase 6: Crafting — VERIFIED
 
 | Plan | Wave | Name | Agent | Status |
 |------|------|------|-------|--------|
-| 06-01 | 1 | Domain & Data Foundation | engineering-senior-developer | ✓ Complete |
-| 06-02 | 2 | Infrastructure & Scheduling | engineering-senior-developer | ✓ Complete |
-| 06-03 | 3 | Adapters, Integration & UI | engineering-godot-developer | ✓ Complete |
+| 06-01 | 1 | Domain & Data Foundation | engineering-senior-developer | ✓ Verified |
+| 06-02 | 2 | Infrastructure & Scheduling | engineering-senior-developer | ✓ Verified |
+| 06-03 | 3 | Adapters, Integration & UI | engineering-godot-developer | ✓ Verified |
+
+**Review Summary**:
+- Reviewers: testing-reality-checker, engineering-godot-developer, engineering-senior-developer
+- Cycles: 2
+- Findings: 3 blockers fixed, 6 warnings fixed
+- Fixes: ExpeditionPauseHandler wiring, duplicate job_started emission, signal lifecycle cleanup
 
 **Architecture**: Clean Architecture (domain/infrastructure/adapters separation)
 
-**Execution Summary**:
-- Wave 1: 64 files, domain layer + 43 crafted items
-- Wave 2: 8 files, 52 tests passing, GameState inventory
-- Wave 3: 18 files, UI components + integration
-
 **Key Outputs**:
-- `src/crafting/domain/` — RecipeData, CraftJob, CraftQueue, RecipeValidator
+- `src/crafting/domain/` — CraftJob, CraftQueue, RecipeValidator (pure RefCounted)
 - `src/crafting/infrastructure/` — JobScheduler, EventBus, InventoryRepository, RecipeRepository
-- `src/crafting/adapters/` — WorkshopAdapter, WorkshopInteractable
+- `src/crafting/adapters/` — WorkshopAdapter (with ExpeditionPauseHandler), WorkshopInteractable
 - `src/crafting/ui/` — RecipeSelectionPanel, QueueDisplay, CraftingUI
 - `src/autoloads/game_state.gd` — Inventory API (8 methods)
 
 ## Next Action
 
-Run `/legion:review` to verify Phase 6: Crafting
+Run `/legion:plan 7` to plan Phase 7: Integration
