@@ -171,11 +171,17 @@
 
 | Phase | Plans | Completed | Status |
 |-------|-------|-----------|--------|
-| Phase 1: Foundation | 3 | 3 | Verified |
-| Phase 2: Player & Movement | 2 | 2 | Verified |
-| Phase 3: Train Core | 3 | 3 | Verified |
-| Phase 4: Expedition Core | 4 | 4 | Verified |
-| Phase 5: Professions | 3 | 3 | Verified |
-| Phase 6: Crafting | 3 | 3 | Verified |
-| Phase 7: Integration | 3 | 3 | Verified |
-| **Total** | **21** | **21** | **100%** |
+| Phase 1: Foundation | 3 | 3 | ✅ Shipped |
+| Phase 2: Player & Movement | 2 | 2 | ✅ Shipped |
+| Phase 3: Train Core | 3 | 3 | ✅ Shipped |
+| Phase 4: Expedition Core | 4 | 4 | ✅ Shipped |
+| Phase 5: Professions | 3 | 3 | ✅ Shipped |
+| Phase 6: Crafting | 3 | 3 | ✅ Shipped |
+| Phase 7: Integration | 3 | 3 | ✅ Shipped |
+| **Total** | **21** | **21** | **V1 SHIPPED** |
+
+## Ship Record
+
+**V1 Shipped**: 2026-04-14  
+**Repository**: https://github.com/9thLevelSoftware/off-the-rails  
+**Commit**: fa6cd3f (master)

@@ -1,9 +1,10 @@
 # Project State
 
 ## Current Position
-- **Phase**: 7 of 7 (complete)
-- **Status**: Phase 7 complete — review passed (2 cycles)
-- **Last Activity**: Phase 7 review passed (2026-04-14)
+- **Phase**: 7 of 7 (shipped)
+- **Status**: V1 SHIPPED 🚀
+- **Last Activity**: V1 shipped to GitHub (2026-04-14)
+- **Repository**: https://github.com/9thLevelSoftware/off-the-rails
 
 ## Progress
 ```
@@ -147,9 +148,11 @@
 
 ## Next Action
 
-**ALL PHASES COMPLETE!**
+**V1 SHIPPED!** 🎮
 
-Off The Rails V1 is finished. The game loop is playable:
+Off The Rails V1 is live at: https://github.com/9thLevelSoftware/off-the-rails
+
+The game loop is playable:
 - Main Menu → Profession Select → Train → Expedition → Extract → Train
 - HUD with escalation, inventory, health
 - Pause menu at any time
@@ -157,4 +160,4 @@ Off The Rails V1 is finished. The game loop is playable:
 Options:
 - Run `/legion:quick <task>` for ad-hoc improvements
 - Run `/legion:retro` to review the development process
-- Run `/legion:ship` to prepare for release
+- Start V2 planning with `/legion:start` for new features
