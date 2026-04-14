@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5test_infrastructure"]
+
+[ext_resource type="Script" path="res://src/crafting/infrastructure/test_infrastructure.gd" id="1"]
+
+[node name="TestInfrastructure" type="Node"]
+script = ExtResource("1")
