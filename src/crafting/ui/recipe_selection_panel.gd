@@ -256,3 +256,15 @@ func _on_craft_pressed() -> void:
 ## Handle close button press.
 func _on_close_pressed() -> void:
 	panel_closed.emit()
+
+
+func _exit_tree() -> void:
+	# Disconnect UI signals (good practice even for child nodes)
+	if category_filter and category_filter.item_selected.is_connected(_on_category_selected):
+		category_filter.item_selected.disconnect(_on_category_selected)
+	if recipe_list and recipe_list.item_selected.is_connected(_on_recipe_item_selected):
+		recipe_list.item_selected.disconnect(_on_recipe_item_selected)
+	if craft_button and craft_button.pressed.is_connected(_on_craft_pressed):
+		craft_button.pressed.disconnect(_on_craft_pressed)
+	if close_button and close_button.pressed.is_connected(_on_close_pressed):
+		close_button.pressed.disconnect(_on_close_pressed)

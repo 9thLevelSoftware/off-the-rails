@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2kp7wvk5yxmq"]
+[gd_scene format=3 uid="uid://d2kp7wvk5yxmq"]
 
 [ext_resource type="Script" path="res://src/crafting/ui/crafting_ui.gd" id="1_crafting_ui"]
 [ext_resource type="PackedScene" uid="uid://bhqjl9wk5yxkm" path="res://src/crafting/ui/recipe_selection_panel.tscn" id="2_recipe_panel"]

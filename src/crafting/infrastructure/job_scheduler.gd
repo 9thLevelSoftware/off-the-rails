@@ -27,13 +27,13 @@ class Result extends RefCounted:
 
 # --- Dependencies ---
 ## CraftQueue instance for job management
-var _queue  # CraftQueue
+var _queue: CraftQueue
 ## RecipeValidator instance (uses static methods)
-var _validator  # RecipeValidator
+var _validator: RecipeValidator
 ## InventoryRepository instance for resource operations
-var _inventory  # InventoryRepository
+var _inventory: InventoryRepository
 ## Event bus singleton for emitting signals
-var _event_bus  # CraftingEventBus
+var _event_bus: CraftingEventBus
 
 # --- State ---
 var _paused: bool = false
@@ -109,22 +109,8 @@ func tick(delta: float) -> void:
 	if active_job == null:
 		return
 
-	# Track if this was the start of a new job
-	var was_queued: bool = active_job.is_queued()
-
-	# Store job info BEFORE advancing (for completion handling)
-	var _job_id: int = active_job.job_id
-	var _job_recipe: RecipeData = active_job.recipe
-	var _job_outputs: Dictionary = active_job.recipe.output.duplicate()
-
 	# Advance queue time - this may complete and remove the job
 	var completed_jobs: Array[CraftJob] = _queue.advance_time(delta)
-
-	# If job just started, emit started event
-	if was_queued:
-		var current_active: CraftJob = _queue.get_active_job()
-		if current_active and current_active.is_in_progress():
-			_event_bus.emit_job_started(current_active)
 
 	# Emit progress for current active job (if not completed)
 	var current_job: CraftJob = _queue.get_active_job()

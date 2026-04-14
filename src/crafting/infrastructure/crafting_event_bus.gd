@@ -15,6 +15,11 @@ static func get_instance() -> CraftingEventBus:
 	return _instance
 
 
+## Reset the singleton instance (for test isolation).
+static func reset_instance() -> void:
+	_instance = null
+
+
 # --- Job Lifecycle Signals ---
 # Note: Using untyped signals to avoid class_name resolution issues with preload
 

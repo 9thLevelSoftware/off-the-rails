@@ -11,6 +11,9 @@ var _fabricator: Fabricator = null
 ## JobScheduler instance for queue management
 var _scheduler: JobScheduler = null
 
+## ExpeditionPauseHandler for auto-pausing during expeditions
+var _pause_handler: ExpeditionPauseHandler = null
+
 ## RecipeRepository for loading recipes
 var _recipe_repository: RecipeRepository = null
 
@@ -37,6 +40,10 @@ func _ready() -> void:
 	# Create scheduler with queue and inventory
 	var validator := RecipeValidator.new()
 	_scheduler = JobScheduler.new(_queue, validator, _inventory)
+
+	# Create pause handler and connect to GameState
+	_pause_handler = ExpeditionPauseHandler.new(_scheduler)
+	_pause_handler.connect_signals()
 
 	print("[WorkshopAdapter] Initialized with %d-slot queue" % MAX_QUEUE_SLOTS)
 
@@ -173,3 +180,7 @@ func _exit_tree() -> void:
 	if _fabricator and is_instance_valid(_fabricator):
 		if _fabricator.fabricator_ready_changed.is_connected(_on_fabricator_ready_changed):
 			_fabricator.fabricator_ready_changed.disconnect(_on_fabricator_ready_changed)
+
+	# Disconnect pause handler from GameState
+	if _pause_handler:
+		_pause_handler.disconnect_signals()
