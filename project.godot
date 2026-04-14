@@ -17,9 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-
-
-
+# CRITICAL: EventHooks MUST load before ModLoader
+EventHooks="*res://src/scripting/event_hooks.gd"
 
 
 
