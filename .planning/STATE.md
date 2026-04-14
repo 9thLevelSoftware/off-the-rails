@@ -1,9 +1,9 @@
 # Project State
 
 ## Current Position
-- **Phase**: 4 of 7 (executed, pending review)
-- **Status**: Phase 4 complete — all plans executed successfully
-- **Last Activity**: Phase 4 execution (2026-04-13)
+- **Phase**: 4 of 7 (complete)
+- **Status**: Phase 4 complete — review passed (2 cycles)
+- **Last Activity**: Phase 4 review passed (2026-04-13)
 
 ## Progress
 ```
@@ -39,38 +39,27 @@
 
 **Review Summary**: 2 cycles, 11 warnings fixed
 
-## Phase 4: Expedition Core — EXECUTED (Pending Review)
+## Phase 4: Expedition Core — VERIFIED
 
 | Plan | Wave | Name | Agent(s) | Status |
 |------|------|------|----------|--------|
-| 04-01 | 1 | Escalation System Architecture | engineering-senior-developer | ✓ Complete |
-| 04-02 | 2 | Escalation Triggers & Thresholds | engineering-godot-developer | ✓ Complete |
-| 04-03 | 2 | Loot System | engineering-godot-developer | ✓ Complete |
-| 04-04 | 3 | Enemy Presence & Integration | engineering-senior-developer | ✓ Complete |
+| 04-01 | 1 | Escalation System Architecture | engineering-senior-developer | ✓ Verified |
+| 04-02 | 2 | Escalation Triggers & Thresholds | engineering-godot-developer | ✓ Verified |
+| 04-03 | 2 | Loot System | engineering-godot-developer | ✓ Verified |
+| 04-04 | 3 | Enemy Presence & Integration | engineering-senior-developer | ✓ Verified |
 
-**Execution Summary**:
-- Wave 1: Escalation system architecture (state machine, signals, thresholds)
-- Wave 2: Triggers (time-based, action-based) + Loot (containers, InteractionController fix)
-- Wave 3: Enemy spawning + full loop integration
+**Review Summary**:
+- Reviewers: testing-reality-checker, engineering-godot-developer, engineering-senior-developer
+- Cycles: 2
+- Findings: 1 blocker fixed, 6 warnings fixed
+- Fixes: ExitTrigger error logging, signal lifecycle, simplified discovery, removed dead code
 
 **Key Outputs**:
 - `src/expedition/escalation/escalation_manager.gd` — Escalation with 5-tier thresholds
 - `src/expedition/loot/loot_item.gd` — Item resource
 - `src/expedition/loot/loot_container.gd` — Interactable container
-- `src/expedition/loot/loot_container.tscn` — Container prefab
-- `src/expedition/enemies/enemy_placeholder.gd` — Placeholder enemy
-- `src/expedition/enemies/enemy_placeholder.tscn` — Red capsule prefab
 - `src/expedition/enemies/enemy_spawner.gd` — Threshold-based spawner
 - `src/train/interaction/interaction_controller.gd` — Extended for expedition
-
-**Critique Fixes Applied**:
-- InteractionController extended for "interactable" group (not just train_car)
-- Deferred signal connection pattern for EnemySpawner
-- Dual threshold debounce (manager + spawner levels)
-- Spawn point validation with fallback
-
-**Known Issues**:
-- LSP cache errors for TrainCar, LootItem, EscalationManager (not actual compilation errors)
 
 ## Recent Decisions
 
@@ -81,8 +70,7 @@
 | Cost Profile | Premium |
 | MVP Scope | Single-player core loop |
 | V1 Systems | Train (2-3 cars), Expeditions, Professions (2-3), Crafting |
-| Phase 3 Architecture | Clean Architecture |
-| Phase 4 Architecture | Clean Architecture (consistent) |
+| Phase 3-4 Architecture | Clean Architecture |
 
 ## Architecture Decisions (from Exploration)
 
@@ -96,4 +84,4 @@
 
 ## Next Action
 
-Run `/legion:review` to verify Phase 4: Expedition Core
+Run `/legion:plan 5` to plan Phase 5: Professions
