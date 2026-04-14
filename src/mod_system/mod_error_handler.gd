@@ -17,8 +17,6 @@ enum ErrorType {
 	DEPENDENCY_MISSING,
 	CONTENT_LOAD_FAILED,
 	SCRIPT_LOAD_FAILED,
-	SCRIPT_INVALID,
-	SCRIPT_EXECUTION_ERROR,
 }
 
 enum WarningType {
@@ -126,10 +124,6 @@ func _get_error_type_name(error_type: ErrorType) -> String:
 			return "CONTENT_LOAD_FAILED"
 		ErrorType.SCRIPT_LOAD_FAILED:
 			return "SCRIPT_LOAD_FAILED"
-		ErrorType.SCRIPT_INVALID:
-			return "SCRIPT_INVALID"
-		ErrorType.SCRIPT_EXECUTION_ERROR:
-			return "SCRIPT_EXECUTION_ERROR"
 		_:
 			return "UNKNOWN_ERROR"
 
