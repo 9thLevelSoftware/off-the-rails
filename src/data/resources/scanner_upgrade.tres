@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/resource_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "scanner_upgrade"
+name = "Scanner Upgrade"
+category = "crafted"
+type = "tool"
+weight = 0.5
+stack_size = 1
+description = "Improves scanner range and detail. Permanent upgrade."
+sources = ["crafted"]
+used_for = ["scanner_improvement"]
+rarity = "rare"

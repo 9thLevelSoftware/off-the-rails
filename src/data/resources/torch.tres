@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/resource_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "torch"
+name = "Improvised Torch"
+category = "crafted"
+type = "consumable"
+weight = 0.5
+stack_size = 10
+description = "Handheld light source. Burns for 10 minutes."
+sources = ["crafted"]
+used_for = ["illumination", "fire_starting"]
+rarity = "common"

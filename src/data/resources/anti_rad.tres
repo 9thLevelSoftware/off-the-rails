@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/resource_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "anti_rad"
+name = "Anti-Radiation Pills"
+category = "crafted"
+type = "consumable"
+weight = 0.1
+stack_size = 15
+description = "Reduces radiation accumulation. Treats mild radiation sickness."
+sources = ["crafted"]
+used_for = ["radiation_protection", "radiation_treatment"]
+rarity = "uncommon"

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/resource_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "subsystem_repair_kit"
+name = "Subsystem Repair Kit"
+category = "crafted"
+type = "tool"
+weight = 1.5
+stack_size = 3
+description = "Repairs train subsystems in the field."
+sources = ["crafted"]
+used_for = ["train_subsystem_repair", "field_repair"]
+rarity = "uncommon"

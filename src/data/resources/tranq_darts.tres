@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/resource_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "tranq_darts"
+name = "Tranquilizer Darts"
+category = "crafted"
+type = "ammo"
+weight = 0.05
+stack_size = 30
+description = "Non-lethal takedown. Effective on some enemies."
+sources = ["crafted"]
+used_for = ["non_lethal_takedown"]
+rarity = "uncommon"

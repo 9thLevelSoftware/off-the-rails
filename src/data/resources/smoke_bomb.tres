@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/resource_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "smoke_bomb"
+name = "Smoke Bomb"
+category = "crafted"
+type = "consumable"
+weight = 0.4
+stack_size = 8
+description = "Creates concealing smoke cloud. Blocks line of sight."
+sources = ["crafted"]
+used_for = ["concealment", "escape"]
+rarity = "uncommon"

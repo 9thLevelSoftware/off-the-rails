@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/resource_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "surgery_kit"
+name = "Surgery Kit"
+category = "crafted"
+type = "consumable"
+weight = 1.0
+stack_size = 2
+description = "Single-use surgical supplies. Required for major procedures."
+sources = ["crafted"]
+used_for = ["surgery", "major_injury_repair"]
+rarity = "rare"

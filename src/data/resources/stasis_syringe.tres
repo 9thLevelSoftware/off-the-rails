@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/resource_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "stasis_syringe"
+name = "Stasis Syringe"
+category = "crafted"
+type = "consumable"
+weight = 0.3
+stack_size = 3
+description = "Halts all biological processes. Pauses death timer indefinitely."
+sources = ["crafted"]
+used_for = ["death_prevention", "critical_stabilization"]
+rarity = "very_rare"

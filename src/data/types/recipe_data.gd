@@ -87,3 +87,24 @@ func can_craft_with(available_resources: Dictionary) -> bool:
 		if have < needed:
 			return false
 	return true
+
+
+## Check if this recipe has a profession bonus
+func has_profession_bonus() -> bool:
+	return profession_bonus != "" and profession_bonus != null
+
+
+## Get total input cost (sum of all input quantities)
+func get_total_input_cost() -> int:
+	var total: int = 0
+	for resource_id in inputs:
+		total += inputs[resource_id]
+	return total
+
+
+## Get total output quantity (sum of all output quantities)
+func get_total_output_quantity() -> int:
+	var total: int = 0
+	for item_id in output:
+		total += output[item_id]
+	return total

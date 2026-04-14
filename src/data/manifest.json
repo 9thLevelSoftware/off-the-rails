@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-13T00:12:54.396157",
+  "generated_at": "2026-04-13T23:23:46.848316",
   "source_dir": "C:\\Users\\dasbl\\Documents\\off-the-rails\\docs\\design\\data",
   "output_dir": "C:\\Users\\dasbl\\Documents\\off-the-rails\\src\\data",
   "files": [
@@ -427,6 +427,306 @@
       "source": "resources.yaml",
       "output": "resources\\colony_data.tres",
       "id": "colony_data",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\bandage.tres",
+      "id": "bandage",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\torch.tres",
+      "id": "torch",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\ration_pack.tres",
+      "id": "ration_pack",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\stim_shot.tres",
+      "id": "stim_shot",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\glow_stick.tres",
+      "id": "glow_stick",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\flare.tres",
+      "id": "flare",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\smoke_bomb.tres",
+      "id": "smoke_bomb",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\noise_maker.tres",
+      "id": "noise_maker",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\standard_ammo.tres",
+      "id": "standard_ammo",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\rifle_ammo.tres",
+      "id": "rifle_ammo",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\shotgun_shells.tres",
+      "id": "shotgun_shells",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\armor_piercing_ammo.tres",
+      "id": "armor_piercing_ammo",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\incendiary_ammo.tres",
+      "id": "incendiary_ammo",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\explosive_shells.tres",
+      "id": "explosive_shells",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\tranq_darts.tres",
+      "id": "tranq_darts",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\medical_kit.tres",
+      "id": "medical_kit",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\trauma_kit.tres",
+      "id": "trauma_kit",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\antidote.tres",
+      "id": "antidote",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\anti_rad.tres",
+      "id": "anti_rad",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\blood_pack.tres",
+      "id": "blood_pack",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\surgery_kit.tres",
+      "id": "surgery_kit",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\stasis_syringe.tres",
+      "id": "stasis_syringe",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\basic_repair_kit.tres",
+      "id": "basic_repair_kit",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\weapon_maintenance_kit.tres",
+      "id": "weapon_maintenance_kit",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\electronics_kit.tres",
+      "id": "electronics_kit",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\armor_patch_kit.tres",
+      "id": "armor_patch_kit",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\subsystem_repair_kit.tres",
+      "id": "subsystem_repair_kit",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\lockpick_set.tres",
+      "id": "lockpick_set",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\cutting_torch.tres",
+      "id": "cutting_torch",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\scanner_upgrade.tres",
+      "id": "scanner_upgrade",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\hacking_module.tres",
+      "id": "hacking_module",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\sample_container.tres",
+      "id": "sample_container",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\makeshift_armor.tres",
+      "id": "makeshift_armor",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\reinforced_armor.tres",
+      "id": "reinforced_armor",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\hazmat_suit.tres",
+      "id": "hazmat_suit",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\basic_backpack.tres",
+      "id": "basic_backpack",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\expedition_pack.tres",
+      "id": "expedition_pack",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\cargo_frame.tres",
+      "id": "cargo_frame",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\night_vision.tres",
+      "id": "night_vision",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\replacement_relay.tres",
+      "id": "replacement_relay",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\armor_plate.tres",
+      "id": "armor_plate",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\turret_assembly.tres",
+      "id": "turret_assembly",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\power_cell.tres",
+      "id": "power_cell",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\filter_system.tres",
+      "id": "filter_system",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\herbal_remedy.tres",
+      "id": "herbal_remedy",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\nutrient_paste.tres",
+      "id": "nutrient_paste",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\stimulant_compound.tres",
+      "id": "stimulant_compound",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\prototype_cell.tres",
+      "id": "prototype_cell",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\experimental_alloy.tres",
+      "id": "experimental_alloy",
+      "type": "resource_item"
+    },
+    {
+      "source": "resources.yaml",
+      "output": "resources\\bio_scanner.tres",
+      "id": "bio_scanner",
       "type": "resource_item"
     },
     {

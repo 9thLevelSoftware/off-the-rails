@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/resource_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "stim_shot"
+name = "Stim Shot"
+category = "crafted"
+type = "consumable"
+weight = 0.2
+stack_size = 10
+description = "Adrenaline boost. Temporary stamina recovery and pain suppression."
+sources = ["crafted"]
+used_for = ["stamina_boost", "pain_suppression"]
+rarity = "uncommon"

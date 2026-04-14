@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/resource_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "filter_system"
+name = "Air Filter System"
+category = "crafted"
+type = "component"
+weight = 4.0
+stack_size = 2
+description = "Replacement air filtration for climate control."
+sources = ["crafted"]
+used_for = ["climate_control"]
+rarity = "uncommon"

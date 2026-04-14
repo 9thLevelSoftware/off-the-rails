@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/resource_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "ration_pack"
+name = "Ration Pack"
+category = "crafted"
+type = "consumable"
+weight = 0.8
+stack_size = 10
+description = "Compact preserved meal. Restores hunger, small morale boost."
+sources = ["crafted"]
+used_for = ["crew_sustenance", "morale"]
+rarity = "common"

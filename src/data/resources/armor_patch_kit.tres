@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/resource_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "armor_patch_kit"
+name = "Armor Patch Kit"
+category = "crafted"
+type = "tool"
+weight = 1.2
+stack_size = 3
+description = "Repairs damaged armor. Restores protection rating."
+sources = ["crafted"]
+used_for = ["armor_repair"]
+rarity = "uncommon"

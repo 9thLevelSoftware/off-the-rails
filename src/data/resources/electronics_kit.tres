@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/resource_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "electronics_kit"
+name = "Electronics Repair Kit"
+category = "crafted"
+type = "tool"
+weight = 0.6
+stack_size = 5
+description = "Repairs electronic equipment and subsystems."
+sources = ["crafted"]
+used_for = ["electronics_repair", "subsystem_repair"]
+rarity = "uncommon"

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/resource_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "explosive_shells"
+name = "Explosive Shells"
+category = "crafted"
+type = "ammo"
+weight = 0.15
+stack_size = 20
+description = "High-explosive shotgun rounds. Area damage."
+sources = ["crafted"]
+used_for = ["area_damage"]
+rarity = "rare"

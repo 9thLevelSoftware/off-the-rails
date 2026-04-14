@@ -9,8 +9,8 @@ extends Resource
 @export var description: String = ""
 
 # Classification
-@export_enum("common", "structured", "milestone") var category: String = "common"
-@export_enum("material", "component", "consumable", "key_item", "data") var type: String = "material"
+@export_enum("common", "structured", "milestone", "crafted") var category: String = "common"
+@export_enum("material", "component", "consumable", "key_item", "data", "ammo", "equipment", "tool") var type: String = "material"
 @export_enum("common", "uncommon", "rare", "very_rare", "unique") var rarity: String = "common"
 
 # Physical properties
@@ -54,3 +54,23 @@ func is_milestone() -> bool:
 ## Check if this is a basic common resource
 func is_common() -> bool:
 	return category == "common"
+
+
+## Check if this is a crafted item
+func is_crafted() -> bool:
+	return category == "crafted"
+
+
+## Check if this is ammunition
+func is_ammo() -> bool:
+	return type == "ammo"
+
+
+## Check if this is equipment (wearable)
+func is_equipment() -> bool:
+	return type == "equipment"
+
+
+## Check if this is a tool
+func is_tool() -> bool:
+	return type == "tool"

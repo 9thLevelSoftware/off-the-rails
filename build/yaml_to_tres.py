@@ -179,7 +179,21 @@ class TresConverter:
     def convert_resources(self, yaml_data: Dict) -> List[Dict]:
         """Convert resources YAML to individual resources."""
         resources = []
+        # Base resources
         for category_key in ['common_resources', 'structured_resources', 'milestone_resources']:
+            for item in yaml_data.get(category_key, []):
+                resources.append({
+                    'id': item['id'],
+                    'data': item,
+                    'type': 'resource_item'
+                })
+        # Crafted items
+        crafted_categories = [
+            'crafted_consumables', 'crafted_ammunition', 'crafted_medical',
+            'crafted_repair', 'crafted_tools', 'crafted_equipment',
+            'crafted_train_parts', 'crafted_specialty'
+        ]
+        for category_key in crafted_categories:
             for item in yaml_data.get(category_key, []):
                 resources.append({
                     'id': item['id'],

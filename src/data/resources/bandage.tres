@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/resource_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "bandage"
+name = "Bandage"
+category = "crafted"
+type = "consumable"
+weight = 0.1
+stack_size = 20
+description = "Simple bandages for minor wounds. Stops bleeding, minor healing."
+sources = ["crafted"]
+used_for = ["minor_healing", "bleeding_stop"]
+rarity = "common"

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/resource_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "prototype_cell"
+name = "Prototype Power Cell"
+category = "crafted"
+type = "component"
+weight = 4.0
+stack_size = 2
+description = "Advanced power storage. 2x capacity of standard cells."
+sources = ["crafted"]
+used_for = ["advanced_power_storage"]
+rarity = "very_rare"

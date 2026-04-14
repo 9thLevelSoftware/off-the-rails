@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResourceItemData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/data/types/resource_item_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "basic_backpack"
+name = "Basic Backpack"
+category = "crafted"
+type = "equipment"
+weight = 1.0
+stack_size = 1
+description = "+5 kg carry capacity."
+sources = ["crafted"]
+used_for = ["carry_capacity"]
+rarity = "common"

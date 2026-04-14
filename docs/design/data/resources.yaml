@@ -552,6 +552,720 @@ milestone_resources:
     rarity: uncommon
 
 # =============================================================================
+# CRAFTED ITEMS - Consumables
+# =============================================================================
+
+crafted_consumables:
+  - id: bandage
+    name: Bandage
+    category: crafted
+    type: consumable
+    weight: 0.1
+    stack_size: 20
+    description: Simple bandages for minor wounds. Stops bleeding, minor healing.
+    sources:
+      - crafted
+    used_for:
+      - minor_healing
+      - bleeding_stop
+    rarity: common
+
+  - id: torch
+    name: Improvised Torch
+    category: crafted
+    type: consumable
+    weight: 0.5
+    stack_size: 10
+    description: Handheld light source. Burns for 10 minutes.
+    sources:
+      - crafted
+    used_for:
+      - illumination
+      - fire_starting
+    rarity: common
+
+  - id: ration_pack
+    name: Ration Pack
+    category: crafted
+    type: consumable
+    weight: 0.8
+    stack_size: 10
+    description: Compact preserved meal. Restores hunger, small morale boost.
+    sources:
+      - crafted
+    used_for:
+      - crew_sustenance
+      - morale
+    rarity: common
+
+  - id: stim_shot
+    name: Stim Shot
+    category: crafted
+    type: consumable
+    weight: 0.2
+    stack_size: 10
+    description: Adrenaline boost. Temporary stamina recovery and pain suppression.
+    sources:
+      - crafted
+    used_for:
+      - stamina_boost
+      - pain_suppression
+    rarity: uncommon
+
+  - id: glow_stick
+    name: Glow Stick
+    category: crafted
+    type: consumable
+    weight: 0.1
+    stack_size: 20
+    description: Chemical light. Lasts 30 minutes, can be thrown.
+    sources:
+      - crafted
+    used_for:
+      - illumination
+      - marker
+    rarity: common
+
+  - id: flare
+    name: Signal Flare
+    category: crafted
+    type: consumable
+    weight: 0.3
+    stack_size: 10
+    description: Bright signal or distraction. Visible for long distances.
+    sources:
+      - crafted
+    used_for:
+      - signaling
+      - distraction
+    rarity: common
+
+  - id: smoke_bomb
+    name: Smoke Bomb
+    category: crafted
+    type: consumable
+    weight: 0.4
+    stack_size: 8
+    description: Creates concealing smoke cloud. Blocks line of sight.
+    sources:
+      - crafted
+    used_for:
+      - concealment
+      - escape
+    rarity: uncommon
+
+  - id: noise_maker
+    name: Noise Maker
+    category: crafted
+    type: consumable
+    weight: 0.3
+    stack_size: 10
+    description: Creates distraction noise. Draws enemy attention.
+    sources:
+      - crafted
+    used_for:
+      - distraction
+      - luring
+    rarity: uncommon
+
+# =============================================================================
+# CRAFTED ITEMS - Ammunition
+# =============================================================================
+
+crafted_ammunition:
+  - id: standard_ammo
+    name: Standard Ammo
+    category: crafted
+    type: ammo
+    weight: 0.05
+    stack_size: 100
+    description: Basic pistol and SMG ammunition.
+    sources:
+      - crafted
+    used_for:
+      - pistol_reload
+      - smg_reload
+    rarity: common
+
+  - id: rifle_ammo
+    name: Rifle Ammo
+    category: crafted
+    type: ammo
+    weight: 0.08
+    stack_size: 60
+    description: Higher caliber rifle rounds.
+    sources:
+      - crafted
+    used_for:
+      - rifle_reload
+    rarity: common
+
+  - id: shotgun_shells
+    name: Shotgun Shells
+    category: crafted
+    type: ammo
+    weight: 0.1
+    stack_size: 40
+    description: Spread ammunition for close quarters.
+    sources:
+      - crafted
+    used_for:
+      - shotgun_reload
+    rarity: common
+
+  - id: armor_piercing_ammo
+    name: Armor-Piercing Ammo
+    category: crafted
+    type: ammo
+    weight: 0.06
+    stack_size: 50
+    description: Penetrates armored targets. Reduced stopping power.
+    sources:
+      - crafted
+    used_for:
+      - armor_penetration
+    rarity: uncommon
+
+  - id: incendiary_ammo
+    name: Incendiary Ammo
+    category: crafted
+    type: ammo
+    weight: 0.06
+    stack_size: 50
+    description: Sets targets on fire. Damage over time.
+    sources:
+      - crafted
+    used_for:
+      - fire_damage
+    rarity: uncommon
+
+  - id: explosive_shells
+    name: Explosive Shells
+    category: crafted
+    type: ammo
+    weight: 0.15
+    stack_size: 20
+    description: High-explosive shotgun rounds. Area damage.
+    sources:
+      - crafted
+    used_for:
+      - area_damage
+    rarity: rare
+
+  - id: tranq_darts
+    name: Tranquilizer Darts
+    category: crafted
+    type: ammo
+    weight: 0.05
+    stack_size: 30
+    description: Non-lethal takedown. Effective on some enemies.
+    sources:
+      - crafted
+    used_for:
+      - non_lethal_takedown
+    rarity: uncommon
+
+# =============================================================================
+# CRAFTED ITEMS - Medical
+# =============================================================================
+
+crafted_medical:
+  - id: medical_kit
+    name: Medical Kit
+    category: crafted
+    type: consumable
+    weight: 0.5
+    stack_size: 5
+    description: Standard healing item. Restores moderate health.
+    sources:
+      - crafted
+    used_for:
+      - moderate_healing
+    rarity: uncommon
+
+  - id: trauma_kit
+    name: Trauma Kit
+    category: crafted
+    type: consumable
+    weight: 0.8
+    stack_size: 3
+    description: Advanced healing for serious injuries. Large health restore.
+    sources:
+      - crafted
+    used_for:
+      - major_healing
+      - injury_treatment
+    rarity: rare
+
+  - id: antidote
+    name: Antidote
+    category: crafted
+    type: consumable
+    weight: 0.2
+    stack_size: 10
+    description: Cures poison and toxin status effects.
+    sources:
+      - crafted
+    used_for:
+      - poison_cure
+      - toxin_cure
+    rarity: uncommon
+
+  - id: anti_rad
+    name: Anti-Radiation Pills
+    category: crafted
+    type: consumable
+    weight: 0.1
+    stack_size: 15
+    description: Reduces radiation accumulation. Treats mild radiation sickness.
+    sources:
+      - crafted
+    used_for:
+      - radiation_protection
+      - radiation_treatment
+    rarity: uncommon
+
+  - id: blood_pack
+    name: Blood Pack
+    category: crafted
+    type: consumable
+    weight: 0.5
+    stack_size: 5
+    description: Blood transfusion. Required for surgery, treats blood loss.
+    sources:
+      - crafted
+    used_for:
+      - blood_transfusion
+      - surgery_supply
+    rarity: rare
+
+  - id: surgery_kit
+    name: Surgery Kit
+    category: crafted
+    type: consumable
+    weight: 1.0
+    stack_size: 2
+    description: Single-use surgical supplies. Required for major procedures.
+    sources:
+      - crafted
+    used_for:
+      - surgery
+      - major_injury_repair
+    rarity: rare
+
+  - id: stasis_syringe
+    name: Stasis Syringe
+    category: crafted
+    type: consumable
+    weight: 0.3
+    stack_size: 3
+    description: Halts all biological processes. Pauses death timer indefinitely.
+    sources:
+      - crafted
+    used_for:
+      - death_prevention
+      - critical_stabilization
+    rarity: very_rare
+
+# =============================================================================
+# CRAFTED ITEMS - Repair Kits
+# =============================================================================
+
+crafted_repair:
+  - id: basic_repair_kit
+    name: Basic Repair Kit
+    category: crafted
+    type: tool
+    weight: 1.0
+    stack_size: 5
+    description: General-purpose repair supplies. Fixes minor equipment damage.
+    sources:
+      - crafted
+    used_for:
+      - minor_repair
+      - equipment_maintenance
+    rarity: common
+
+  - id: weapon_maintenance_kit
+    name: Weapon Maintenance Kit
+    category: crafted
+    type: tool
+    weight: 0.8
+    stack_size: 5
+    description: Cleans and repairs weapons. Restores durability.
+    sources:
+      - crafted
+    used_for:
+      - weapon_repair
+      - weapon_maintenance
+    rarity: common
+
+  - id: electronics_kit
+    name: Electronics Repair Kit
+    category: crafted
+    type: tool
+    weight: 0.6
+    stack_size: 5
+    description: Repairs electronic equipment and subsystems.
+    sources:
+      - crafted
+    used_for:
+      - electronics_repair
+      - subsystem_repair
+    rarity: uncommon
+
+  - id: armor_patch_kit
+    name: Armor Patch Kit
+    category: crafted
+    type: tool
+    weight: 1.2
+    stack_size: 3
+    description: Repairs damaged armor. Restores protection rating.
+    sources:
+      - crafted
+    used_for:
+      - armor_repair
+    rarity: uncommon
+
+  - id: subsystem_repair_kit
+    name: Subsystem Repair Kit
+    category: crafted
+    type: tool
+    weight: 1.5
+    stack_size: 3
+    description: Repairs train subsystems in the field.
+    sources:
+      - crafted
+    used_for:
+      - train_subsystem_repair
+      - field_repair
+    rarity: uncommon
+
+# =============================================================================
+# CRAFTED ITEMS - Tools
+# =============================================================================
+
+crafted_tools:
+  - id: lockpick_set
+    name: Lockpick Set
+    category: crafted
+    type: tool
+    weight: 0.3
+    stack_size: 5
+    description: Opens locked containers. Limited uses.
+    sources:
+      - crafted
+    used_for:
+      - lock_bypass
+      - container_access
+    rarity: uncommon
+
+  - id: cutting_torch
+    name: Cutting Torch
+    category: crafted
+    type: tool
+    weight: 2.0
+    stack_size: 2
+    description: Cuts through metal barriers. Consumes fuel.
+    sources:
+      - crafted
+    used_for:
+      - metal_cutting
+      - barrier_bypass
+    rarity: uncommon
+
+  - id: scanner_upgrade
+    name: Scanner Upgrade
+    category: crafted
+    type: tool
+    weight: 0.5
+    stack_size: 1
+    description: Improves scanner range and detail. Permanent upgrade.
+    sources:
+      - crafted
+    used_for:
+      - scanner_improvement
+    rarity: rare
+
+  - id: hacking_module
+    name: Hacking Module
+    category: crafted
+    type: tool
+    weight: 0.3
+    stack_size: 3
+    description: Bypasses electronic security. Limited uses.
+    sources:
+      - crafted
+    used_for:
+      - security_bypass
+      - system_access
+    rarity: uncommon
+
+  - id: sample_container
+    name: Sample Container
+    category: crafted
+    type: tool
+    weight: 0.4
+    stack_size: 10
+    description: Safely stores biological or chemical samples.
+    sources:
+      - crafted
+    used_for:
+      - sample_storage
+      - research_collection
+    rarity: common
+
+# =============================================================================
+# CRAFTED ITEMS - Equipment
+# =============================================================================
+
+crafted_equipment:
+  - id: makeshift_armor
+    name: Makeshift Armor
+    category: crafted
+    type: equipment
+    weight: 5.0
+    stack_size: 1
+    description: Basic protection. -15% damage taken.
+    sources:
+      - crafted
+    used_for:
+      - damage_reduction
+    rarity: common
+
+  - id: reinforced_armor
+    name: Reinforced Armor
+    category: crafted
+    type: equipment
+    weight: 7.0
+    stack_size: 1
+    description: Solid protection. -30% damage taken.
+    sources:
+      - crafted
+    used_for:
+      - damage_reduction
+    rarity: uncommon
+
+  - id: hazmat_suit
+    name: Hazmat Suit
+    category: crafted
+    type: equipment
+    weight: 4.0
+    stack_size: 1
+    description: Protects against toxic and radioactive environments.
+    sources:
+      - crafted
+    used_for:
+      - hazard_protection
+      - radiation_protection
+    rarity: uncommon
+
+  - id: basic_backpack
+    name: Basic Backpack
+    category: crafted
+    type: equipment
+    weight: 1.0
+    stack_size: 1
+    description: +5 kg carry capacity.
+    sources:
+      - crafted
+    used_for:
+      - carry_capacity
+    rarity: common
+
+  - id: expedition_pack
+    name: Expedition Pack
+    category: crafted
+    type: equipment
+    weight: 1.5
+    stack_size: 1
+    description: +10 kg carry capacity. Organized compartments.
+    sources:
+      - crafted
+    used_for:
+      - carry_capacity
+    rarity: uncommon
+
+  - id: cargo_frame
+    name: Cargo Frame
+    category: crafted
+    type: equipment
+    weight: 3.0
+    stack_size: 1
+    description: +15 kg carry capacity. Bulky but effective.
+    sources:
+      - crafted
+    used_for:
+      - carry_capacity
+    rarity: rare
+
+  - id: night_vision
+    name: Night Vision Goggles
+    category: crafted
+    type: equipment
+    weight: 0.8
+    stack_size: 1
+    description: See in darkness. Consumes power.
+    sources:
+      - crafted
+    used_for:
+      - dark_vision
+    rarity: rare
+
+# =============================================================================
+# CRAFTED ITEMS - Train Parts
+# =============================================================================
+
+crafted_train_parts:
+  - id: replacement_relay
+    name: Replacement Relay
+    category: crafted
+    type: component
+    weight: 2.0
+    stack_size: 3
+    description: Replacement part for power distribution repairs.
+    sources:
+      - crafted
+    used_for:
+      - power_system_repair
+    rarity: uncommon
+
+  - id: armor_plate
+    name: Train Armor Plate
+    category: crafted
+    type: component
+    weight: 10.0
+    stack_size: 1
+    description: Reinforces train car exterior. Reduces damage taken.
+    sources:
+      - crafted
+    used_for:
+      - train_armor
+    rarity: uncommon
+
+  - id: turret_assembly
+    name: Turret Assembly
+    category: crafted
+    type: component
+    weight: 15.0
+    stack_size: 1
+    description: Pre-built turret for installation on train.
+    sources:
+      - crafted
+    used_for:
+      - train_defense
+    rarity: rare
+
+  - id: power_cell
+    name: Power Cell
+    category: crafted
+    type: component
+    weight: 3.0
+    stack_size: 3
+    description: Rechargeable power storage for train systems.
+    sources:
+      - crafted
+    used_for:
+      - power_storage
+    rarity: uncommon
+
+  - id: filter_system
+    name: Air Filter System
+    category: crafted
+    type: component
+    weight: 4.0
+    stack_size: 2
+    description: Replacement air filtration for climate control.
+    sources:
+      - crafted
+    used_for:
+      - climate_control
+    rarity: uncommon
+
+# =============================================================================
+# CRAFTED ITEMS - Specialty
+# =============================================================================
+
+crafted_specialty:
+  - id: herbal_remedy
+    name: Herbal Remedy
+    category: crafted
+    type: consumable
+    weight: 0.2
+    stack_size: 10
+    description: Natural healing item. Slow but resource-efficient.
+    sources:
+      - crafted
+    used_for:
+      - slow_healing
+    rarity: common
+
+  - id: nutrient_paste
+    name: Nutrient Paste
+    category: crafted
+    type: consumable
+    weight: 0.3
+    stack_size: 15
+    description: Efficient nutrition. Less satisfying than real food.
+    sources:
+      - crafted
+    used_for:
+      - crew_sustenance
+    rarity: common
+
+  - id: stimulant_compound
+    name: Stimulant Compound
+    category: crafted
+    type: consumable
+    weight: 0.2
+    stack_size: 5
+    description: Powerful but addictive. Major stat boost, crash afterward.
+    sources:
+      - crafted
+    used_for:
+      - stat_boost
+    rarity: rare
+
+  - id: prototype_cell
+    name: Prototype Power Cell
+    category: crafted
+    type: component
+    weight: 4.0
+    stack_size: 2
+    description: Advanced power storage. 2x capacity of standard cells.
+    sources:
+      - crafted
+    used_for:
+      - advanced_power_storage
+    rarity: very_rare
+
+  - id: experimental_alloy
+    name: Experimental Alloy
+    category: crafted
+    type: material
+    weight: 3.0
+    stack_size: 5
+    description: Superior material. Used in advanced equipment crafting.
+    sources:
+      - crafted
+    used_for:
+      - advanced_crafting
+    rarity: rare
+
+  - id: bio_scanner
+    name: Bio-Scanner
+    category: crafted
+    type: tool
+    weight: 0.6
+    stack_size: 1
+    description: Detects life signs. Useful for finding survivors or threats.
+    sources:
+      - crafted
+    used_for:
+      - life_detection
+    rarity: rare
+
+# =============================================================================
 # RESOURCE SUMMARY
 # =============================================================================
 #
@@ -569,4 +1283,14 @@ milestone_resources:
 #   - Schematics (Common/Advanced/Prototype), Specialist Contract
 #   - Route Key, Colony Data
 #
-# Total: 31 resource types
+# Crafted Items (43 types): Produced via crafting system
+#   - Consumables (8): bandage, torch, ration_pack, stim_shot, glow_stick, flare, smoke_bomb, noise_maker
+#   - Ammunition (7): standard_ammo, rifle_ammo, shotgun_shells, armor_piercing_ammo, incendiary_ammo, explosive_shells, tranq_darts
+#   - Medical (7): medical_kit, trauma_kit, antidote, anti_rad, blood_pack, surgery_kit, stasis_syringe
+#   - Repair Kits (5): basic_repair_kit, weapon_maintenance_kit, electronics_kit, armor_patch_kit, subsystem_repair_kit
+#   - Tools (5): lockpick_set, cutting_torch, scanner_upgrade, hacking_module, sample_container
+#   - Equipment (7): makeshift_armor, reinforced_armor, hazmat_suit, basic_backpack, expedition_pack, cargo_frame, night_vision
+#   - Train Parts (5): replacement_relay, armor_plate, turret_assembly, power_cell, filter_system
+#   - Specialty (6): herbal_remedy, nutrient_paste, stimulant_compound, prototype_cell, experimental_alloy, bio_scanner
+#
+# Total: 74 resource types (31 base + 43 crafted)
