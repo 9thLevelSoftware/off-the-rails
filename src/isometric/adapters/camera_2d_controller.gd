@@ -1,4 +1,5 @@
-# Adapter: Camera2D with follow and zoom behavior
+# Adapter: Camera2D with fixed isometric view and zoom (Project Zomboid style)
+# Camera snaps to target position — no smooth chase, just zoom control
 # Consumes IsoCameraConfig from domain layer
 
 class_name IsoCameraController
@@ -35,11 +36,11 @@ func _input(event: InputEvent) -> void:
 		_handle_zoom_input(event)
 
 
-# Follow target with lerp smoothing
-func _update_follow(delta: float) -> void:
+# Follow target with snap positioning (Project Zomboid style)
+# Camera stays centered on target — no lerp chase delay
+func _update_follow(_delta: float) -> void:
 	if follow_target:
-		var target_pos := follow_target.global_position + config.follow_offset
-		global_position = global_position.lerp(target_pos, config.follow_speed * delta)
+		global_position = follow_target.global_position + config.follow_offset
 
 
 # Smoothly interpolate zoom
