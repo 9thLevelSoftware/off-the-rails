@@ -1,0 +1,25 @@
+{
+  "items": [
+    {
+      "id": "quantum_capacitor",
+      "name": "Quantum Capacitor",
+      "description": "An advanced energy storage component from experimental tech.",
+      "category": "resource",
+      "stack_size": 10
+    },
+    {
+      "id": "nano_repair_gel",
+      "name": "Nano Repair Gel",
+      "description": "Self-replicating nanobots that can repair damaged systems.",
+      "category": "consumable",
+      "stack_size": 5
+    },
+    {
+      "id": "salvaged_ai_core",
+      "name": "Salvaged AI Core",
+      "description": "A damaged AI core that might still contain useful data.",
+      "category": "quest_item",
+      "stack_size": 1
+    }
+  ]
+}

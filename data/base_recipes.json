@@ -1,0 +1,91 @@
+{
+  "recipes": [
+    {
+      "id": "basic_repair_kit",
+      "name": "Basic Repair Kit",
+      "description": "A simple toolkit for minor repairs.",
+      "category": "repair",
+      "station": "workshop",
+      "inputs": [
+        {"item_id": "scrap_metal", "quantity": 3},
+        {"item_id": "circuit_board", "quantity": 1}
+      ],
+      "output": {"item_id": "repair_kit", "quantity": 1},
+      "craft_time": 60,
+      "unlock": "default",
+      "profession_bonus": "engineer"
+    },
+    {
+      "id": "fuel_refining",
+      "name": "Fuel Refining",
+      "description": "Process crude fuel into clean, efficient fuel.",
+      "category": "conversion",
+      "station": "refinery",
+      "inputs": [
+        {"item_id": "crude_fuel", "quantity": 2}
+      ],
+      "output": {"item_id": "processed_fuel", "quantity": 1},
+      "craft_time": 120,
+      "unlock": "default",
+      "profession_bonus": "engineer"
+    },
+    {
+      "id": "bandage",
+      "name": "Bandage",
+      "description": "A basic bandage for treating minor wounds.",
+      "category": "medical",
+      "station": "infirmary",
+      "inputs": [
+        {"item_id": "medical_supplies", "quantity": 1}
+      ],
+      "output": {"item_id": "bandage", "quantity": 2},
+      "craft_time": 30,
+      "unlock": "default",
+      "profession_bonus": "medic"
+    },
+    {
+      "id": "water_purification",
+      "name": "Water Purification",
+      "description": "Purify contaminated water for safe consumption.",
+      "category": "conversion",
+      "station": "greenhouse",
+      "inputs": [
+        {"item_id": "crude_water", "quantity": 2}
+      ],
+      "output": {"item_id": "water", "quantity": 1},
+      "craft_time": 90,
+      "unlock": "default",
+      "profession_bonus": "botanist"
+    },
+    {
+      "id": "ration_pack",
+      "name": "Ration Pack",
+      "description": "Combine supplies into a compact, nutritious meal pack.",
+      "category": "consumable",
+      "station": "field",
+      "inputs": [
+        {"item_id": "rations", "quantity": 2},
+        {"item_id": "water", "quantity": 1}
+      ],
+      "output": {"item_id": "ration_pack", "quantity": 1},
+      "craft_time": 45,
+      "unlock": "default",
+      "profession_bonus": ""
+    },
+    {
+      "id": "electronics_kit",
+      "name": "Electronics Kit",
+      "description": "A specialized kit for repairing electronic systems.",
+      "category": "repair",
+      "station": "workshop",
+      "inputs": [
+        {"item_id": "circuit_board", "quantity": 2},
+        {"item_id": "scrap_metal", "quantity": 1}
+      ],
+      "output": {"item_id": "electronics_kit", "quantity": 1},
+      "craft_time": 90,
+      "unlock": "schematic_common",
+      "profession_bonus": "technician"
+    }
+  ]
+}

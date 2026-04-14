@@ -1,0 +1,483 @@
+class_name ModAPI
+extends RefCounted
+
+## Typed API for mod scripts to interact with game systems.
+##
+## Mods call these methods to register content — no direct registry access.
+## Design principles:
+## - Mods can ADD content, not mutate or delete existing content
+## - ID prefixing prevents collisions between mods
+## - Read methods return copies (Dictionaries), not references
+
+signal content_registered(mod_id: String, content_type: String, content_id: String)
+signal script_executed(mod_id: String, script_path: String)
+
+var _content_registry: ContentRegistry
+var _current_mod_id: String = ""
+
+
+func _init(content_registry: ContentRegistry) -> void:
+	_content_registry = content_registry
+
+
+## Set the current mod context for ID prefixing.
+func set_current_mod(mod_id: String) -> void:
+	_current_mod_id = mod_id
+
+
+## Get the current mod ID.
+func get_current_mod() -> String:
+	return _current_mod_id
+
+
+# --- Content Registration Methods ---
+
+## Register a new item from mod.
+## Item ID is automatically prefixed with mod_id to avoid collisions.
+## Returns true on success, false on validation failure.
+func register_item(item_data: Dictionary) -> bool:
+	if _current_mod_id.is_empty():
+		push_error("[ModAPI] Cannot register item: no mod context set")
+		return false
+
+	if not _validate_item_data(item_data):
+		return false
+
+	# Prefix ID with mod_id to avoid collisions
+	var original_id: String = item_data.get("id", "")
+	var prefixed_id := "%s:%s" % [_current_mod_id, original_id]
+
+	var prefixed_data := item_data.duplicate(true)
+	prefixed_data["id"] = prefixed_id
+
+	# Create item from data and register
+	var item := _create_item_from_dict(prefixed_data)
+	if item == null:
+		return false
+
+	_content_registry.items.register_item(item, _current_mod_id)
+	content_registered.emit(_current_mod_id, "item", prefixed_id)
+
+	# Emit to EventHooks if available
+	if is_instance_valid(EventHooks):
+		EventHooks.item_registered.emit(prefixed_id, _current_mod_id)
+
+	print("[ModAPI] Registered item: %s" % prefixed_id)
+	return true
+
+
+## Register a new recipe from mod.
+## Recipe ID is automatically prefixed with mod_id.
+## Returns true on success, false on validation failure.
+func register_recipe(recipe_data: Dictionary) -> bool:
+	if _current_mod_id.is_empty():
+		push_error("[ModAPI] Cannot register recipe: no mod context set")
+		return false
+
+	if not _validate_recipe_data(recipe_data):
+		return false
+
+	var original_id: String = recipe_data.get("id", "")
+	var prefixed_id := "%s:%s" % [_current_mod_id, original_id]
+
+	var prefixed_data := recipe_data.duplicate(true)
+	prefixed_data["id"] = prefixed_id
+
+	var recipe := _create_recipe_from_dict(prefixed_data)
+	if recipe == null:
+		return false
+
+	_content_registry.recipes.register_recipe(recipe, _current_mod_id)
+	content_registered.emit(_current_mod_id, "recipe", prefixed_id)
+
+	if is_instance_valid(EventHooks):
+		EventHooks.recipe_registered.emit(prefixed_id, _current_mod_id)
+
+	print("[ModAPI] Registered recipe: %s" % prefixed_id)
+	return true
+
+
+## Register a new profession from mod.
+## Profession ID is automatically prefixed with mod_id.
+## Returns true on success, false on validation failure.
+func register_profession(profession_data: Dictionary) -> bool:
+	if _current_mod_id.is_empty():
+		push_error("[ModAPI] Cannot register profession: no mod context set")
+		return false
+
+	if not _validate_profession_data(profession_data):
+		return false
+
+	var original_id: String = profession_data.get("id", "")
+	var prefixed_id := "%s:%s" % [_current_mod_id, original_id]
+
+	var prefixed_data := profession_data.duplicate(true)
+	prefixed_data["id"] = prefixed_id
+
+	var profession := _create_profession_from_dict(prefixed_data)
+	if profession == null:
+		return false
+
+	_content_registry.professions.register_profession(profession, _current_mod_id)
+	content_registered.emit(_current_mod_id, "profession", prefixed_id)
+
+	print("[ModAPI] Registered profession: %s" % prefixed_id)
+	return true
+
+
+## Register a new train car from mod.
+## Train car ID is automatically prefixed with mod_id.
+## Returns true on success, false on validation failure.
+func register_train_car(car_data: Dictionary) -> bool:
+	if _current_mod_id.is_empty():
+		push_error("[ModAPI] Cannot register train car: no mod context set")
+		return false
+
+	if not _validate_train_car_data(car_data):
+		return false
+
+	var original_id: String = car_data.get("id", "")
+	var prefixed_id := "%s:%s" % [_current_mod_id, original_id]
+
+	var prefixed_data := car_data.duplicate(true)
+	prefixed_data["id"] = prefixed_id
+
+	var train_car := _create_train_car_from_dict(prefixed_data)
+	if train_car == null:
+		return false
+
+	_content_registry.train_cars.register_train_car(train_car, _current_mod_id)
+	content_registered.emit(_current_mod_id, "train_car", prefixed_id)
+
+	print("[ModAPI] Registered train car: %s" % prefixed_id)
+	return true
+
+
+# --- Read-Only Query Methods (return COPIES, not references) ---
+
+## Get an item by ID as a Dictionary copy.
+## Returns empty Dictionary if not found.
+func get_item(id: String) -> Dictionary:
+	var item := _content_registry.get_item(id)
+	return _item_to_dict(item) if item else {}
+
+
+## Get all item IDs.
+func get_all_item_ids() -> Array[String]:
+	var ids: Array[String] = []
+	for item in _content_registry.items.get_all():
+		ids.append(item.id)
+	return ids
+
+
+## Check if an item exists by ID.
+func item_exists(id: String) -> bool:
+	return _content_registry.items.has_item(id)
+
+
+## Get a recipe by ID as a Dictionary copy.
+func get_recipe(id: String) -> Dictionary:
+	var recipe := _content_registry.get_recipe(id)
+	return _recipe_to_dict(recipe) if recipe else {}
+
+
+## Get all recipe IDs.
+func get_all_recipe_ids() -> Array[String]:
+	var ids: Array[String] = []
+	for recipe in _content_registry.recipes.get_all():
+		ids.append(recipe.id)
+	return ids
+
+
+## Check if a recipe exists by ID.
+func recipe_exists(id: String) -> bool:
+	return _content_registry.recipes.has_recipe(id)
+
+
+## Get a profession by ID as a Dictionary copy.
+func get_profession(id: String) -> Dictionary:
+	var profession := _content_registry.get_profession(id)
+	return _profession_to_dict(profession) if profession else {}
+
+
+## Get all profession IDs.
+func get_all_profession_ids() -> Array[String]:
+	var ids: Array[String] = []
+	for profession in _content_registry.professions.get_all():
+		ids.append(profession.id)
+	return ids
+
+
+## Check if a profession exists by ID.
+func profession_exists(id: String) -> bool:
+	return _content_registry.professions.has_profession(id)
+
+
+## Get a train car by ID as a Dictionary copy.
+func get_train_car(id: String) -> Dictionary:
+	var train_car := _content_registry.get_train_car(id)
+	return _train_car_to_dict(train_car) if train_car else {}
+
+
+## Get all train car IDs.
+func get_all_train_car_ids() -> Array[String]:
+	var ids: Array[String] = []
+	for car in _content_registry.train_cars.get_all():
+		ids.append(car.id)
+	return ids
+
+
+## Check if a train car exists by ID.
+func train_car_exists(id: String) -> bool:
+	return _content_registry.train_cars.has_train_car(id)
+
+
+## Get a summary of all registered content.
+func get_content_summary() -> Dictionary:
+	return _content_registry.get_summary()
+
+
+# --- Validation Methods ---
+
+func _validate_item_data(data: Dictionary) -> bool:
+	if not data.has("id") or data.get("id", "").is_empty():
+		push_error("[ModAPI] Item data missing required 'id' field")
+		return false
+	return true
+
+
+func _validate_recipe_data(data: Dictionary) -> bool:
+	if not data.has("id") or data.get("id", "").is_empty():
+		push_error("[ModAPI] Recipe data missing required 'id' field")
+		return false
+	return true
+
+
+func _validate_profession_data(data: Dictionary) -> bool:
+	if not data.has("id") or data.get("id", "").is_empty():
+		push_error("[ModAPI] Profession data missing required 'id' field")
+		return false
+	return true
+
+
+func _validate_train_car_data(data: Dictionary) -> bool:
+	if not data.has("id") or data.get("id", "").is_empty():
+		push_error("[ModAPI] Train car data missing required 'id' field")
+		return false
+	return true
+
+
+# --- Serialization Methods (Resource -> Dictionary) ---
+
+func _item_to_dict(item: ResourceItemData) -> Dictionary:
+	if not item:
+		return {}
+	return {
+		"id": item.id,
+		"name": item.name,
+		"description": item.description,
+		"category": item.category,
+		"type": item.type,
+		"rarity": item.rarity,
+		"weight": item.weight,
+		"stack_size": item.stack_size,
+		"sources": item.sources.duplicate(),
+		"used_for": item.used_for.duplicate()
+	}
+
+
+func _recipe_to_dict(recipe: RecipeData) -> Dictionary:
+	if not recipe:
+		return {}
+	return {
+		"id": recipe.id,
+		"name": recipe.name,
+		"description": recipe.description,
+		"category": recipe.category,
+		"recipe_category": recipe.recipe_category,
+		"station": recipe.station,
+		"craft_time": recipe.craft_time,
+		"unlock": recipe.unlock,
+		"profession_bonus": recipe.profession_bonus,
+		"inputs": recipe.inputs.duplicate(true),
+		"output": recipe.output.duplicate(true)
+	}
+
+
+func _profession_to_dict(profession: ProfessionData) -> Dictionary:
+	if not profession:
+		return {}
+	return {
+		"id": profession.id,
+		"name": profession.name,
+		"description": profession.description,
+		"primary_car": profession.primary_car,
+		"field_role": profession.field_role,
+		"priority": profession.priority,
+		"secondary_cars": profession.secondary_cars.duplicate(),
+		"synergies": profession.synergies.duplicate(),
+		"passive_bonuses": profession.passive_bonuses.duplicate(),
+		"active_abilities": profession.active_abilities.duplicate(true)
+	}
+
+
+func _train_car_to_dict(train_car: TrainCarData) -> Dictionary:
+	if not train_car:
+		return {}
+	return {
+		"id": train_car.id,
+		"name": train_car.name,
+		"description": train_car.description,
+		"type": train_car.type,
+		"category": train_car.category,
+		"acquisition": train_car.acquisition,
+		"crew_station": train_car.crew_station,
+		"upgrade_tree": train_car.upgrade_tree,
+		"damage_effect": train_car.damage_effect,
+		"subsystems": train_car.subsystems.duplicate(),
+		"dependencies": train_car.dependencies.duplicate()
+	}
+
+
+# --- Factory Methods (Dictionary -> Resource) ---
+
+func _create_item_from_dict(data: Dictionary) -> ResourceItemData:
+	var id: String = data.get("id", "")
+	if id.is_empty():
+		return null
+
+	var item := ResourceItemData.new()
+	item.id = id
+	item.name = data.get("name", id)
+	item.description = data.get("description", "")
+	item.category = data.get("category", "common")
+	item.type = data.get("type", "material")
+	item.rarity = data.get("rarity", "common")
+	item.weight = data.get("weight", 1.0)
+	item.stack_size = data.get("stack_size", 10)
+
+	var sources = data.get("sources", [])
+	if sources is Array:
+		item.sources = []
+		for s in sources:
+			item.sources.append(str(s))
+
+	var used_for = data.get("used_for", [])
+	if used_for is Array:
+		item.used_for = []
+		for u in used_for:
+			item.used_for.append(str(u))
+
+	return item
+
+
+func _create_recipe_from_dict(data: Dictionary) -> RecipeData:
+	var id: String = data.get("id", "")
+	if id.is_empty():
+		return null
+
+	var recipe := RecipeData.new()
+	recipe.id = id
+	recipe.name = data.get("name", id)
+	recipe.description = data.get("description", "")
+	recipe.category = data.get("category", "consumable")
+	recipe.recipe_category = data.get("recipe_category", "")
+	recipe.station = data.get("station", "workshop")
+	recipe.craft_time = data.get("craft_time", 60)
+	recipe.unlock = data.get("unlock", "default")
+	recipe.profession_bonus = data.get("profession_bonus", "")
+
+	var inputs_data = data.get("inputs", {})
+	if inputs_data is Dictionary:
+		recipe.inputs = inputs_data.duplicate()
+	elif inputs_data is Array:
+		recipe.inputs = {}
+		for input_entry in inputs_data:
+			if input_entry is Dictionary:
+				var item_id: String = input_entry.get("item_id", "")
+				var quantity: int = input_entry.get("quantity", 1)
+				if not item_id.is_empty():
+					recipe.inputs[item_id] = quantity
+
+	var output_data = data.get("output", {})
+	if output_data is Dictionary:
+		if output_data.has("item_id"):
+			var item_id: String = output_data.get("item_id", "")
+			var quantity: int = output_data.get("quantity", 1)
+			recipe.output = {item_id: quantity}
+		else:
+			recipe.output = output_data.duplicate()
+
+	return recipe
+
+
+func _create_profession_from_dict(data: Dictionary) -> ProfessionData:
+	var id: String = data.get("id", "")
+	if id.is_empty():
+		return null
+
+	var profession := ProfessionData.new()
+	profession.id = id
+	profession.name = data.get("name", id)
+	profession.description = data.get("description", "")
+	profession.primary_car = data.get("primary_car", "")
+	profession.field_role = data.get("field_role", "")
+	profession.priority = data.get("priority", 3)
+
+	var secondary = data.get("secondary_cars", [])
+	if secondary is Array:
+		profession.secondary_cars = []
+		for car in secondary:
+			profession.secondary_cars.append(str(car))
+
+	var synergies = data.get("synergies", [])
+	if synergies is Array:
+		profession.synergies = []
+		for syn in synergies:
+			profession.synergies.append(str(syn))
+
+	var bonuses = data.get("passive_bonuses", [])
+	if bonuses is Array:
+		profession.passive_bonuses = []
+		for bonus in bonuses:
+			profession.passive_bonuses.append(str(bonus))
+
+	var abilities = data.get("active_abilities", [])
+	if abilities is Array:
+		profession.active_abilities = []
+		for ability in abilities:
+			if ability is Dictionary:
+				profession.active_abilities.append(ability.duplicate())
+
+	return profession
+
+
+func _create_train_car_from_dict(data: Dictionary) -> TrainCarData:
+	var id: String = data.get("id", "")
+	if id.is_empty():
+		return null
+
+	var train_car := TrainCarData.new()
+	train_car.id = id
+	train_car.name = data.get("name", id)
+	train_car.description = data.get("description", "")
+	train_car.type = data.get("type", "car")
+	train_car.category = data.get("category", "utility")
+	train_car.acquisition = data.get("acquisition", "starting")
+	train_car.crew_station = data.get("crew_station", false)
+	train_car.upgrade_tree = data.get("upgrade_tree", "")
+	train_car.damage_effect = data.get("damage_effect", "")
+
+	var subsystems = data.get("subsystems", [])
+	if subsystems is Array:
+		train_car.subsystems = []
+		for sub in subsystems:
+			train_car.subsystems.append(str(sub))
+
+	var dependencies = data.get("dependencies", [])
+	if dependencies is Array:
+		train_car.dependencies = []
+		for dep in dependencies:
+			train_car.dependencies.append(str(dep))
+
+	return train_car
