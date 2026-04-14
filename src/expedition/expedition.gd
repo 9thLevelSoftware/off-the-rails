@@ -4,8 +4,12 @@ extends Node3D
 
 @onready var exit_trigger: Area3D = $ExitTrigger
 
+## Reference to the escalation manager. Set in editor or auto-discovered from children.
+@export var escalation_manager: EscalationManager
+
 
 func _ready() -> void:
+	_discover_escalation_manager()
 	if GameState:
 		GameState.register_scene(GameState.GameScene.EXPEDITION, self)
 	if exit_trigger:
@@ -19,3 +23,15 @@ func _ready() -> void:
 func _on_exit_trigger_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		GameState.transition_to_train()
+
+
+## Auto-discovers EscalationManager if not explicitly set via @export.
+func _discover_escalation_manager() -> void:
+	if escalation_manager:
+		return
+	for child in get_children():
+		if child is EscalationManager:
+			escalation_manager = child
+			break
+	if not escalation_manager:
+		push_warning("Expedition: No EscalationManager found as child node")
