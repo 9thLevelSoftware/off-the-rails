@@ -88,9 +88,8 @@ func get_all_recipes() -> Array[RecipeData]:
 ## Get recipes filtered by station type.
 ## station_type: "field", "workshop", "armory", "infirmary", etc.
 func get_recipes_by_station(station_type: String) -> Array[RecipeData]:
-	_ensure_loaded()
 	var result: Array[RecipeData] = []
-	for recipe: RecipeData in _recipes.values():
+	for recipe: RecipeData in get_all_recipes():
 		if recipe.station == station_type:
 			result.append(recipe)
 	return result
@@ -99,9 +98,8 @@ func get_recipes_by_station(station_type: String) -> Array[RecipeData]:
 ## Get recipes filtered by category.
 ## category: "consumable", "ammo", "medical", "repair", "tool", etc.
 func get_recipes_by_category(category: String) -> Array[RecipeData]:
-	_ensure_loaded()
 	var result: Array[RecipeData] = []
-	for recipe: RecipeData in _recipes.values():
+	for recipe: RecipeData in get_all_recipes():
 		if recipe.category == category:
 			result.append(recipe)
 	return result
@@ -109,9 +107,8 @@ func get_recipes_by_category(category: String) -> Array[RecipeData]:
 
 ## Get recipes filtered by recipe_category (YAML source category).
 func get_recipes_by_recipe_category(recipe_category: String) -> Array[RecipeData]:
-	_ensure_loaded()
 	var result: Array[RecipeData] = []
-	for recipe: RecipeData in _recipes.values():
+	for recipe: RecipeData in get_all_recipes():
 		if recipe.recipe_category == recipe_category:
 			result.append(recipe)
 	return result
@@ -122,10 +119,9 @@ func get_recipes_by_recipe_category(recipe_category: String) -> Array[RecipeData
 ## unlock_status: Current unlock status {"schematics": [], "upgrades": [], "research": []}
 ## Returns only recipes that match station AND are unlocked.
 func get_available_recipes(station_type: String, unlock_status: Dictionary = {}) -> Array[RecipeData]:
-	_ensure_loaded()
 	var result: Array[RecipeData] = []
 
-	for recipe: RecipeData in _recipes.values():
+	for recipe: RecipeData in get_all_recipes():
 		# Filter by station
 		if recipe.station != station_type:
 			continue

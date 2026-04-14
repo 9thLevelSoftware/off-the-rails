@@ -75,7 +75,8 @@ func init_content_registry() -> bool:
 ## Get the content registry. Initializes lazily if not yet loaded.
 func get_content_registry() -> ContentRegistry:
 	if _content_registry == null:
-		init_content_registry()
+		if not init_content_registry():
+			push_warning("GameState: ContentRegistry failed to load base content")
 	return _content_registry
 
 
@@ -201,6 +202,9 @@ func _transition_to_scene(target: GameScene) -> void:
 func _spawn_player_at_scene(scene_root: Node) -> void:
 	if not player_instance:
 		var player_packed := load(PLAYER_SCENE) as PackedScene
+		if player_packed == null:
+			push_error("GameState: Failed to load player scene from %s" % PLAYER_SCENE)
+			return
 		player_instance = player_packed.instantiate()
 
 	# Reparent player to scene if needed

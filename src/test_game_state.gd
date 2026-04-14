@@ -4,6 +4,19 @@
 extends Node
 
 
+## Reset GameState to clean state for test isolation.
+## Called at the start and end of each test that modifies state to ensure
+## tests do not pollute each other, even if assertions fail mid-test.
+func _cleanup_gamestate() -> void:
+	# Clear inventory
+	GameState.debug_set_inventory({})
+	# End any active session
+	if GameState.session_active:
+		GameState.end_session()
+	# Reset location
+	GameState.current_location = ""
+
+
 func _ready() -> void:
 	print("\n=== GameState Integration Tests ===\n")
 
@@ -12,6 +25,9 @@ func _ready() -> void:
 		push_error("FAIL: GameState autoload is null")
 		return
 	print("PASS: GameState autoload exists")
+
+	# Clean starting state for all tests
+	_cleanup_gamestate()
 
 	# Run all test functions
 	test_player_instance_type()
@@ -120,6 +136,7 @@ func test_item_data_lookup() -> void:
 ## Test 4: Verify inventory operations with signal verification
 func test_inventory_with_signals() -> void:
 	print("--- Testing inventory operations with signals ---")
+	_cleanup_gamestate()  # Clean start for test isolation
 
 	var signal_received := false
 	var received_item_id := ""
@@ -133,10 +150,7 @@ func test_inventory_with_signals() -> void:
 		received_new_qty = new_qty
 
 	GameState.inventory_changed.connect(callback)
-
-	# Clear inventory for clean test
-	GameState.debug_set_inventory({})
-	signal_received = false  # Reset after clear
+	signal_received = false  # Reset after any cleanup signal
 
 	# Test add
 	var test_item := "test_signal_item"
@@ -175,24 +189,19 @@ func test_inventory_with_signals() -> void:
 		push_error("FAIL: has_inventory_quantity(4) should return false")
 
 	GameState.inventory_changed.disconnect(callback)
-
-	# Clean up
-	GameState.debug_set_inventory({})
+	_cleanup_gamestate()  # Clean end for test isolation
 
 
 ## Test 5: Verify session signal propagation
 func test_session_signals() -> void:
 	print("--- Testing session signal propagation ---")
+	_cleanup_gamestate()  # Clean start for test isolation
 
 	var started_received := false
 	var ended_received := false
 
 	var on_started := func(): started_received = true
 	var on_ended := func(): ended_received = true
-
-	# Ensure clean state
-	if GameState.session_active:
-		GameState.end_session()
 
 	GameState.session_started.connect(on_started)
 	GameState.session_ended.connect(on_ended)
@@ -213,11 +222,13 @@ func test_session_signals() -> void:
 
 	GameState.session_started.disconnect(on_started)
 	GameState.session_ended.disconnect(on_ended)
+	_cleanup_gamestate()  # Clean end for test isolation
 
 
 ## Test 6: Verify location change signal
 func test_location_change() -> void:
 	print("--- Testing location change ---")
+	_cleanup_gamestate()  # Clean start for test isolation
 
 	var location_received := ""
 	var callback := func(new_location: String): location_received = new_location
@@ -247,6 +258,4 @@ func test_location_change() -> void:
 		push_error("FAIL: location_changed not emitted for new location")
 
 	GameState.location_changed.disconnect(callback)
-
-	# Clean up
-	GameState.change_location("")
+	_cleanup_gamestate()  # Clean end for test isolation

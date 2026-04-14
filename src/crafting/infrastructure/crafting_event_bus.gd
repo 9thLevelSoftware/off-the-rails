@@ -6,6 +6,12 @@ extends RefCounted
 ## Stateless - only routes signals, no state management.
 
 # --- Singleton ---
+# LIFECYCLE WARNING: Objects that call get_instance() cache the reference.
+# If reset_instance() is called (e.g., during test teardown), those objects
+# will hold stale references and emit signals to a disconnected bus.
+# CONSTRAINT: All dependent objects (WorkshopAdapter, CraftQueueManager, etc.)
+# MUST be destroyed BEFORE calling reset_instance(). In tests, ensure proper
+# teardown order: destroy adapters -> reset_instance() -> create new test fixtures.
 static var _instance: CraftingEventBus = null
 
 
@@ -16,6 +22,8 @@ static func get_instance() -> CraftingEventBus:
 
 
 ## Reset the singleton instance (for test isolation).
+## WARNING: All objects holding references to the old instance will be orphaned.
+## Ensure all dependent objects are destroyed before calling this method.
 static func reset_instance() -> void:
 	_instance = null
 
