@@ -15,6 +15,10 @@ extends CharacterBody3D
 @onready var camera_mount: Node3D = $CameraMount
 @onready var camera: Camera3D = $CameraMount/Camera3D
 @onready var ability_manager: AbilityManager = $AbilityManager
+@onready var passive_bonus_manager: PassiveBonusManager = $PassiveBonusManager
+
+# Current profession data
+var _profession: ProfessionData = null
 
 # Gravity from project settings
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity", 9.8)
@@ -79,8 +83,37 @@ func _physics_process(delta: float) -> void:
 
 
 func set_profession(profession: ProfessionData) -> void:
+	_profession = profession
+
 	if ability_manager:
 		ability_manager.set_profession(profession)
-		print("[Player] Profession set: %s" % profession.name)
 	else:
 		push_error("Player: AbilityManager not found")
+
+	if passive_bonus_manager:
+		passive_bonus_manager.set_profession(profession)
+	else:
+		push_error("Player: PassiveBonusManager not found")
+
+	if profession:
+		print("[Player] Profession set: %s" % profession.name)
+
+
+## Check if player's profession can work at a specific car.
+## Uses ProfessionData.can_work_at() for the check.
+func can_work_at_car(car_id: String) -> bool:
+	if _profession == null:
+		return false
+	return _profession.can_work_at(car_id)
+
+
+## Get the player's primary station (car) ID.
+func get_primary_station() -> String:
+	if _profession == null:
+		return ""
+	return _profession.primary_car
+
+
+## Get the current profession data.
+func get_profession() -> ProfessionData:
+	return _profession

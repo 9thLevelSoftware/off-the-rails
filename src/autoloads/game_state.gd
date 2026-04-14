@@ -21,6 +21,8 @@ signal scene_transition_started(from_scene: GameScene, to_scene: GameScene)
 signal scene_transition_completed(new_scene: GameScene)
 ## Emitted when the player is spawned in a scene
 signal player_spawned(player: CharacterBody3D)
+## Emitted when a profession is selected
+signal profession_selected(profession: ProfessionData)
 
 # --- Scene state ---
 enum GameScene { TRAIN, EXPEDITION }
@@ -30,6 +32,9 @@ var player_instance: CharacterBody3D = null
 # --- Scene references ---
 var train_scene_root: Node = null
 var expedition_scene_root: Node = null
+
+# --- Profession state ---
+var player_profession: ProfessionData = null
 
 # --- Properties ---
 ## Current campaign phase (0 = not started, 1+ = phase number)
@@ -47,6 +52,14 @@ func start_session() -> void:
 	if session_active:
 		push_warning("GameState: start_session() called while session already active")
 		return
+
+	# Default to Engineer profession for V1 testing if none selected
+	if player_profession == null:
+		var default_prof := load("res://src/data/professions/engineer.tres") as ProfessionData
+		if default_prof:
+			select_profession(default_prof)
+			print("[GameState] Defaulted to Engineer profession for V1 testing")
+
 	session_active = true
 	session_started.emit()
 
@@ -68,6 +81,19 @@ func change_location(new_location: String) -> void:
 		return
 	current_location = new_location
 	location_changed.emit(new_location)
+
+
+## Selects a profession for the player.
+## If player is already spawned, applies immediately. Otherwise, deferred until spawn.
+func select_profession(profession: ProfessionData) -> void:
+	player_profession = profession
+	profession_selected.emit(profession)
+
+	if player_instance and player_instance.has_method("set_profession"):
+		player_instance.set_profession(profession)
+		print("[GameState] Profession applied: %s" % profession.name)
+	else:
+		print("[GameState] Profession selected: %s (will apply on spawn)" % profession.name)
 
 
 # --- Scene Transition Methods ---
@@ -136,6 +162,11 @@ func _spawn_player_at_scene(scene_root: Node) -> void:
 		scene_root.add_child(player_instance)
 
 	player_spawned.emit(player_instance)
+
+	# Apply deferred profession after spawn
+	if player_profession and player_instance.has_method("set_profession"):
+		player_instance.set_profession(player_profession)
+		print("[GameState] Deferred profession applied: %s" % player_profession.name)
 
 
 ## Registers a scene root for scene transition management.

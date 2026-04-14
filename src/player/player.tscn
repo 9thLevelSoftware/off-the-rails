@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_player"]
 [ext_resource type="Script" path="res://src/professions/ability_manager.gd" id="2_ability_manager"]
+[ext_resource type="Script" path="res://src/professions/passive_bonus_manager.gd" id="3_passive_bonus_manager"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_collision"]
 radius = 0.3
@@ -33,3 +34,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_placeholder")
 
 [node name="AbilityManager" type="Node" parent="."]
 script = ExtResource("2_ability_manager")
+
+[node name="PassiveBonusManager" type="Node" parent="."]
+script = ExtResource("3_passive_bonus_manager")
