@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="32" viewBox="0 0 64 32">
+  <!-- Isometric diamond tile - 64x32 (2:1 ratio) -->
+  <!-- Top face of the tile (visible surface) -->
+  <polygon points="32,0 64,16 32,32 0,16" fill="#4a5568" stroke="#2d3748" stroke-width="1"/>
+  <!-- Subtle highlight on top-left edge -->
+  <line x1="0" y1="16" x2="32" y2="0" stroke="#718096" stroke-width="1"/>
+  <!-- Subtle shadow on bottom-right edge -->
+  <line x1="32" y1="32" x2="64" y2="16" stroke="#1a202c" stroke-width="1"/>
+</svg>
