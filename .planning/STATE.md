@@ -1,13 +1,13 @@
 # Project State
 
 ## Current Position
-- **Phase**: 3 of 7 (complete)
-- **Status**: Phase 3 complete — review passed (2 cycles)
-- **Last Activity**: Phase 3 review passed (2026-04-13)
+- **Phase**: 4 of 7 (executed, pending review)
+- **Status**: Phase 4 complete — all plans executed successfully
+- **Last Activity**: Phase 4 execution (2026-04-13)
 
 ## Progress
 ```
-[########            ] 38% — 8/~21 plans complete
+[############        ] 57% — 12/~21 plans complete
 ```
 
 ## Phase 1: Foundation — VERIFIED
@@ -19,46 +19,15 @@
 | 01-03 | 2 | Scene Architecture | Godot Developer | ✓ Verified |
 
 **Review**: 2 blockers found and fixed (cycle 1), verified (cycle 2)
-**Key Outputs**:
-- `src/` directory structure (6 subdirectories)
-- GameState autoload with signals and methods
-- Build pipeline: 205 .tres resources from YAML (fixed)
-- Main scene with additive loading pattern
-- MCP workflow verified (gdai-mcp primary)
 
 ## Phase 2: Player & Movement — VERIFIED
 
 | Plan | Wave | Name | Agent(s) | Status |
 |------|------|------|----------|--------|
-| 02-01 | 1 | Player Character & Movement | engineering-senior-developer | ✓ Complete |
-| 02-02 | 2 | Scene Integration & Transitions | engineering-senior-developer | ✓ Complete |
+| 02-01 | 1 | Player Character & Movement | engineering-senior-developer | ✓ Verified |
+| 02-02 | 2 | Scene Integration & Transitions | engineering-senior-developer | ✓ Verified |
 
-**Execution Summary**:
-- Wave 1: Player scene created with CharacterBody3D, movement script, input configuration
-- Wave 2: GameState extended with scene transition API, Train/Expedition scenes created
-
-**Review Summary**:
-- Reviewers: engineering-godot-developer, testing-qa-verification-specialist
-- Cycles: 1 (with fix cycle)
-- Findings: 4 warnings fixed, 5 suggestions deferred
-- Fixes: Collision layers in code, scene auto-load, exit trigger detection
-
-**Key Outputs**:
-- `src/player/player.tscn` — Player character with WASD + mouse look
-- `src/player/player.gd` — Movement controller (walk/sprint/jump) + collision layers
-- `src/player/camera_controller.gd` — Camera placeholder
-- `src/train/train.tscn` — Train scene with PlayerSpawn
-- `src/expedition/expedition.tscn` — Expedition scene with PlayerSpawn + ExitTrigger
-- `src/autoloads/game_state.gd` — Extended with scene transition API
-- `src/main.gd` — Auto-loads train scene on startup
-
-**Implementation Decisions**:
-- Physical keycodes for layout-independent input
-- Camera mount pattern for gimbal-lock-free mouse look
-- Node2D→Node3D conversion for scene compatibility
-- Player preserved across scene transitions (not recreated)
-- Collision layers set in code (layer 1 for physics bodies)
-- Player group for specific detection (vs generic CharacterBody3D)
+**Review Summary**: 1 cycle with fixes, 4 warnings fixed
 
 ## Phase 3: Train Core — VERIFIED
 
@@ -68,39 +37,40 @@
 | 03-02 | 2 | Car Composition & Factory | engineering-senior-developer | ✓ Verified |
 | 03-03 | 3 | Integration & Interaction System | engineering-senior-developer | ✓ Verified |
 
+**Review Summary**: 2 cycles, 11 warnings fixed
+
+## Phase 4: Expedition Core — EXECUTED (Pending Review)
+
+| Plan | Wave | Name | Agent(s) | Status |
+|------|------|------|----------|--------|
+| 04-01 | 1 | Escalation System Architecture | engineering-senior-developer | ✓ Complete |
+| 04-02 | 2 | Escalation Triggers & Thresholds | engineering-godot-developer | ✓ Complete |
+| 04-03 | 2 | Loot System | engineering-godot-developer | ✓ Complete |
+| 04-04 | 3 | Enemy Presence & Integration | engineering-senior-developer | ✓ Complete |
+
 **Execution Summary**:
-- Wave 1: Subsystem base class + Locomotion, PowerGrid, Fabricator implementations
-- Wave 2: TrainCar composition pattern, EngineCar/WorkshopCar scenes, TrainCarFactory
-- Wave 3: InteractionController (E-key), TrainManager (two-phase init), train scene integration
+- Wave 1: Escalation system architecture (state machine, signals, thresholds)
+- Wave 2: Triggers (time-based, action-based) + Loot (containers, InteractionController fix)
+- Wave 3: Enemy spawning + full loop integration
 
 **Key Outputs**:
-- `src/train/subsystems/subsystem.gd` — Abstract base with state machine
-- `src/train/subsystems/locomotion.gd` — Engine locomotion
-- `src/train/subsystems/power_grid.gd` — Power source with availability signal
-- `src/train/subsystems/fabricator.gd` — Workshop crafting with power dependency
-- `src/train/cars/train_car.gd` — Composition container base class
-- `src/train/cars/train_car_factory.gd` — Factory for car instantiation
-- `src/train/cars/engine.tscn` — Engine car with PowerGrid + Locomotion
-- `src/train/cars/workshop.tscn` — Workshop car with Fabricator
-- `src/train/interaction/interactable.gd` — Interaction interface
-- `src/train/interaction/interaction_controller.gd` — E-key interaction dispatch
-- `src/train/train_manager.gd` — Car orchestration and power flow
+- `src/expedition/escalation/escalation_manager.gd` — Escalation with 5-tier thresholds
+- `src/expedition/loot/loot_item.gd` — Item resource
+- `src/expedition/loot/loot_container.gd` — Interactable container
+- `src/expedition/loot/loot_container.tscn` — Container prefab
+- `src/expedition/enemies/enemy_placeholder.gd` — Placeholder enemy
+- `src/expedition/enemies/enemy_placeholder.tscn` — Red capsule prefab
+- `src/expedition/enemies/enemy_spawner.gd` — Threshold-based spawner
+- `src/train/interaction/interaction_controller.gd` — Extended for expedition
 
-**CRITIQUE-FIX Items Applied**:
-- Signal timing: PowerGrid connects to own state_changed for guaranteed emission
-- Null guards: Fabricator validates power_source in can_go_online() and set_power_source()
-- Deferred lookup: InteractionController uses call_deferred for player group timing
-- Two-phase init: TrainManager separates car creation from dependency wiring
-
-**Review Summary**:
-- Reviewers: Godot Developer, QA Verification Specialist, Senior Developer
-- Cycles: 2
-- Findings: 11 warnings fixed, 0 blockers
-- Key improvements: PowerSource interface (DIP fix), data-driven car creation
+**Critique Fixes Applied**:
+- InteractionController extended for "interactable" group (not just train_car)
+- Deferred signal connection pattern for EnemySpawner
+- Dual threshold debounce (manager + spawner levels)
+- Spawn point validation with fallback
 
 **Known Issues**:
-- LSP indexing delay for new class_names (resolves after editor restart)
-- Expected "no player" warning when running train.tscn standalone
+- LSP cache errors for TrainCar, LootItem, EscalationManager (not actual compilation errors)
 
 ## Recent Decisions
 
@@ -111,7 +81,8 @@
 | Cost Profile | Premium |
 | MVP Scope | Single-player core loop |
 | V1 Systems | Train (2-3 cars), Expeditions, Professions (2-3), Crafting |
-| Phase 3 Architecture | Clean Architecture (user selected) |
+| Phase 3 Architecture | Clean Architecture |
+| Phase 4 Architecture | Clean Architecture (consistent) |
 
 ## Architecture Decisions (from Exploration)
 
@@ -125,4 +96,4 @@
 
 ## Next Action
 
-Run `/legion:plan 4` to plan Phase 4: Expedition Core
+Run `/legion:review` to verify Phase 4: Expedition Core
