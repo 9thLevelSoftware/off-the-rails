@@ -1,5 +1,6 @@
-class_name EventHooks
 extends Node
+## EventHooks autoload — access via the autoload name, not class_name.
+## (class_name removed to avoid shadowing the autoload singleton)
 
 ## Signal bus for mod scripts to listen to game events.
 ##
