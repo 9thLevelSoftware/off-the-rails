@@ -188,3 +188,12 @@ func get_equipment_ids() -> Array:
 ## Check if an equipment node exists
 func has_equipment_node(equipment_id: String) -> bool:
 	return _equipment_nodes.has(equipment_id)
+
+
+## Get an EquipmentInteractable by equipment type (e.g., "WORKBENCH")
+func get_interactable_by_type(equipment_type: String) -> EquipmentInteractable:
+	for interactable in _equipment_interactables.values():
+		# Use public getter to avoid accessing private _entity member
+		if interactable.get_equipment_type().to_upper() == equipment_type.to_upper():
+			return interactable
+	return null

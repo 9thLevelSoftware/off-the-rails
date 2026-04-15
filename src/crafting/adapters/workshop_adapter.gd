@@ -76,11 +76,12 @@ func _process(delta: float) -> void:
 	if _scheduler == null:
 		return
 
-	# Only tick scheduler when fabricator is ready for crafting
+	# V2 PROTOTYPE: Tick scheduler without Fabricator requirement
+	# TODO (V2.1): Re-enable Fabricator check when subsystems are implemented
+	var speed := 1.0
 	if _fabricator and _fabricator.is_ready_for_crafting():
-		# Apply crafting speed multiplier from fabricator
-		var speed := _fabricator.get_crafting_speed()
-		_scheduler.tick(delta * speed)
+		speed = _fabricator.get_crafting_speed()
+	_scheduler.tick(delta * speed)
 
 
 ## Handle fabricator ready state changes.
@@ -198,7 +199,7 @@ func connect_to_workbench(workbench_interactable: EquipmentInteractable) -> void
 
 ## Handle workbench interaction from isometric system.
 func _on_workbench_interacted(equipment_id: String, equipment_type: String) -> void:
-	if equipment_type != "Workbench" and equipment_type != "workbench":
+	if equipment_type.to_upper() != "WORKBENCH":
 		return  # Only handle workbench interactions
 
 	print("[WorkshopAdapter] Workbench interaction: %s" % equipment_id)

@@ -20,6 +20,7 @@ var _collision_grid: FloorCollisionGrid = null
 ## Child node references
 @onready var _spatial_adapter: WorkshopSpatialAdapter = $WorkshopSpatialAdapter
 @onready var _floor_tilemap: TileMapLayer = $FloorTileMap
+@onready var _workshop_adapter: WorkshopAdapter = $WorkshopAdapter
 
 ## Emitted when the workshop is fully initialized and ready
 signal workshop_ready
@@ -32,6 +33,12 @@ func _ready() -> void:
 	_render_equipment()
 	workshop_ready.emit()
 
+	# Register with GameState so player spawning works when session is active
+	GameState.register_scene(GameState.GameScene.TRAIN, self)
+
+	# Wire WorkshopAdapter to workbench after equipment is rendered
+	call_deferred("_wire_workshop_adapter")
+
 
 ## Validate that required child nodes exist
 func _validate_children() -> void:
@@ -39,6 +46,8 @@ func _validate_children() -> void:
 		push_error("WorkshopLayoutController: WorkshopSpatialAdapter child not found")
 	if not _floor_tilemap:
 		push_error("WorkshopLayoutController: FloorTileMap child not found")
+	if not _workshop_adapter:
+		push_error("WorkshopLayoutController: WorkshopAdapter child not found")
 
 
 ## Load layout from resource and create collision grid
@@ -136,3 +145,18 @@ func is_tile_in_bounds(tile_pos: Vector2i) -> bool:
 		return false
 	return tile_pos.x >= 0 and tile_pos.x < _floor_layout.width_tiles \
 		and tile_pos.y >= 0 and tile_pos.y < _floor_layout.height_tiles
+
+
+## Wire WorkshopAdapter to the workbench equipment.
+## Called deferred to ensure equipment interactables are ready.
+func _wire_workshop_adapter() -> void:
+	if not _workshop_adapter:
+		push_warning("[WorkshopLayoutController] No WorkshopAdapter found to wire")
+		return
+
+	var workbench := _spatial_adapter.get_interactable_by_type("WORKBENCH")
+	if workbench:
+		_workshop_adapter.connect_to_workbench(workbench)
+		print("[WorkshopLayoutController] Wired WorkshopAdapter to workbench")
+	else:
+		push_warning("[WorkshopLayoutController] No workbench found to wire")

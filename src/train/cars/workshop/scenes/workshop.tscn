@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bw8x2p5q3m1kd"]
+[gd_scene load_steps=7 format=3 uid="uid://bw8x2p5q3m1kd"]
 
 [ext_resource type="Script" path="res://src/train/cars/workshop/adapters/workshop_layout_controller.gd" id="1_controller"]
 [ext_resource type="Script" path="res://src/train/cars/workshop/adapters/workshop_spatial_adapter.gd" id="2_adapter"]
 [ext_resource type="TileSet" path="res://assets/tilesets/iso_floor.tres" id="3_tileset"]
 [ext_resource type="Script" path="res://src/interaction/adapters/isometric_interaction_controller.gd" id="4_interaction"]
 [ext_resource type="PackedScene" uid="uid://c4vq8jnwxmb2r" path="res://src/interaction/scenes/interaction_prompt.tscn" id="5_prompt"]
+[ext_resource type="Script" path="res://src/crafting/adapters/workshop_adapter.gd" id="6_workshop_adapter"]
 
 [node name="Workshop" type="Node2D"]
 script = ExtResource("1_controller")
@@ -23,3 +24,9 @@ y_sort_enabled = true
 [node name="IsometricInteractionController" type="Node" parent="."]
 script = ExtResource("4_interaction")
 prompt_scene = ExtResource("5_prompt")
+
+[node name="WorkshopAdapter" type="Node" parent="."]
+script = ExtResource("6_workshop_adapter")
+
+[node name="PlayerSpawn" type="Node2D" parent="."]
+position = Vector2(200, 150)

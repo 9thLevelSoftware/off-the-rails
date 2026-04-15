@@ -73,7 +73,12 @@ func init_content_registry() -> bool:
 
 
 ## Get the content registry. Initializes lazily if not yet loaded.
+## Uses ModLoader's registry when available (single source of truth for all content including mods).
 func get_content_registry() -> ContentRegistry:
+	# Use ModLoader's registry (single source of truth for all content including mods)
+	if ModLoader and ModLoader.is_ready():
+		return ModLoader.get_content_registry()
+	# Fallback for tests or if ModLoader not ready
 	if _content_registry == null:
 		if not init_content_registry():
 			push_warning("GameState: ContentRegistry failed to load base content")
