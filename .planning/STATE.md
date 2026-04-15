@@ -1,9 +1,10 @@
 # Project State
 
 ## Current Position
-- **Phase**: 7 of 7 (complete)
-- **Status**: Phase 7 complete — review passed (1 cycle)
-- **Last Activity**: Phase 7 review passed (2026-04-14)
+- **Phase**: 7 of 7 (shipped)
+- **Status**: V2.0.0 released — all phases complete
+- **Last Activity**: V2.0.0 release tagged (2026-04-14)
+- **Release**: https://github.com/9thLevelSoftware/off-the-rails/releases/tag/v2.0.0
 
 ## Progress
 ```
@@ -57,9 +58,9 @@
 
 ## Next Action
 
-🎉 **V2 Foundation Complete!** All 7 phases finished.
+🎉 **V2.0.0 Shipped!**
 
 Next steps:
 - Run game to verify full gameplay loop
-- Plan V2.1 for content expansion
-- Consider `/legion:ship` for release preparation
+- Plan V2.1 for content expansion (`/legion:start`)
+- Share the release!
