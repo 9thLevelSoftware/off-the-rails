@@ -53,6 +53,7 @@
 | Phase 6 Issue | #8 | Closed |
 | Phase 6 PR | #9 | Merged |
 | Phase 7 Issue | #10 | Open |
+| Phase 7 PR | #11 | Open |
 
 ## Next Action
 
