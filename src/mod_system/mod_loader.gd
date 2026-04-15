@@ -1,5 +1,6 @@
-class_name ModLoader
 extends Node
+## ModLoader autoload — access via the autoload name, not class_name.
+## (class_name removed to avoid shadowing the autoload singleton)
 
 ## Mod discovery and loading autoload.
 ##
