@@ -208,7 +208,7 @@ func _merge_items(mod_id: String, items_array) -> int:
 			print("ContentRegistry: Item '%s' overwritten by mod '%s' (was: %s)" % [prefixed_id, mod_id, old_source])
 
 		# Create prefixed data and use static factory method
-		var prefixed_data := item_data.duplicate(true)
+		var prefixed_data: Dictionary = item_data.duplicate(true)
 		prefixed_data["id"] = prefixed_id
 		var item := ResourceItemData.from_dict(prefixed_data)
 		if item:
@@ -243,7 +243,7 @@ func _merge_recipes(mod_id: String, recipes_array) -> int:
 			print("ContentRegistry: Recipe '%s' overwritten by mod '%s' (was: %s)" % [prefixed_id, mod_id, old_source])
 
 		# Create prefixed data and use static factory method
-		var prefixed_data := recipe_data.duplicate(true)
+		var prefixed_data: Dictionary = recipe_data.duplicate(true)
 		prefixed_data["id"] = prefixed_id
 		var recipe := RecipeData.from_dict(prefixed_data)
 		if recipe:
@@ -278,7 +278,7 @@ func _merge_professions(mod_id: String, professions_array) -> int:
 			print("ContentRegistry: Profession '%s' overwritten by mod '%s' (was: %s)" % [prefixed_id, mod_id, old_source])
 
 		# Create prefixed data and use static factory method
-		var prefixed_data := profession_data.duplicate(true)
+		var prefixed_data: Dictionary = profession_data.duplicate(true)
 		prefixed_data["id"] = prefixed_id
 		var profession := ProfessionData.from_dict(prefixed_data)
 		if profession:
@@ -313,7 +313,7 @@ func _merge_train_cars(mod_id: String, train_cars_array) -> int:
 			print("ContentRegistry: TrainCar '%s' overwritten by mod '%s' (was: %s)" % [prefixed_id, mod_id, old_source])
 
 		# Create prefixed data and use static factory method
-		var prefixed_data := car_data.duplicate(true)
+		var prefixed_data: Dictionary = car_data.duplicate(true)
 		prefixed_data["id"] = prefixed_id
 		var train_car := TrainCarData.from_dict(prefixed_data)
 		if train_car:

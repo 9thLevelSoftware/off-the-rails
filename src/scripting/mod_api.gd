@@ -67,7 +67,7 @@ func register_item(item_data: Dictionary) -> bool:
 	var original_id: String = item_data.get("id", "")
 	var prefixed_id := "%s:%s" % [mod_id, original_id]
 
-	var prefixed_data := item_data.duplicate(true)
+	var prefixed_data: Dictionary = item_data.duplicate(true)
 	prefixed_data["id"] = prefixed_id
 
 	# Create item from data and register
@@ -101,7 +101,7 @@ func register_recipe(recipe_data: Dictionary) -> bool:
 	var original_id: String = recipe_data.get("id", "")
 	var prefixed_id := "%s:%s" % [mod_id, original_id]
 
-	var prefixed_data := recipe_data.duplicate(true)
+	var prefixed_data: Dictionary = recipe_data.duplicate(true)
 	prefixed_data["id"] = prefixed_id
 
 	var recipe := _create_recipe_from_dict(prefixed_data)
@@ -133,7 +133,7 @@ func register_profession(profession_data: Dictionary) -> bool:
 	var original_id: String = profession_data.get("id", "")
 	var prefixed_id := "%s:%s" % [mod_id, original_id]
 
-	var prefixed_data := profession_data.duplicate(true)
+	var prefixed_data: Dictionary = profession_data.duplicate(true)
 	prefixed_data["id"] = prefixed_id
 
 	var profession := _create_profession_from_dict(prefixed_data)
@@ -162,7 +162,7 @@ func register_train_car(car_data: Dictionary) -> bool:
 	var original_id: String = car_data.get("id", "")
 	var prefixed_id := "%s:%s" % [mod_id, original_id]
 
-	var prefixed_data := car_data.duplicate(true)
+	var prefixed_data: Dictionary = car_data.duplicate(true)
 	prefixed_data["id"] = prefixed_id
 
 	var train_car := _create_train_car_from_dict(prefixed_data)
