@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://48g13lcmfdvq"]
+[gd_scene load_steps=4 format=3 uid="uid://48g13lcmfdvq"]
 
 [ext_resource type="Script" uid="uid://cahcvk5a843cm" path="res://src/main.gd" id="1_eewff"]
 [ext_resource type="PackedScene" uid="uid://djxkv27l8r5ma" path="res://src/ui/hud/hud.tscn" id="2_hud"]
+[ext_resource type="PackedScene" uid="uid://d2kp7wvk5yxmq" path="res://src/crafting/ui/crafting_ui.tscn" id="3_crafting_ui"]
 
 [node name="Main" type="Node" unique_id=55002290]
 script = ExtResource("1_eewff")
@@ -9,5 +10,7 @@ script = ExtResource("1_eewff")
 [node name="SceneContainer" type="Node" parent="." unique_id=1224867597]
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=1608314522]
+
+[node name="CraftingUI" parent="UILayer" instance=ExtResource("3_crafting_ui")]
 
 [node name="HUD" parent="." instance=ExtResource("2_hud")]

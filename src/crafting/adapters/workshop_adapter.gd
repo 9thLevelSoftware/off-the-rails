@@ -76,11 +76,12 @@ func _process(delta: float) -> void:
 	if _scheduler == null:
 		return
 
-	# Only tick scheduler when fabricator is ready for crafting
+	# V2 PROTOTYPE: Tick scheduler without Fabricator requirement
+	# TODO (V2.1): Re-enable Fabricator check when subsystems are implemented
+	var speed := 1.0
 	if _fabricator and _fabricator.is_ready_for_crafting():
-		# Apply crafting speed multiplier from fabricator
-		var speed := _fabricator.get_crafting_speed()
-		_scheduler.tick(delta * speed)
+		speed = _fabricator.get_crafting_speed()
+	_scheduler.tick(delta * speed)
 
 
 ## Handle fabricator ready state changes.

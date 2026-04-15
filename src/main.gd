@@ -18,6 +18,7 @@ enum GameMode { MAIN_MENU, PROFESSION_SELECT, PLAYING }
 @onready var scene_container: Node = $SceneContainer
 @onready var ui_layer: CanvasLayer = $UILayer
 @onready var hud: CanvasLayer = $HUD
+@onready var _crafting_ui: CraftingUI = $UILayer/CraftingUI
 
 # --- State ---
 var _train_instance: Node = null
@@ -40,6 +41,9 @@ func _ready() -> void:
 	# Connect to GameState signals
 	GameState.session_started.connect(_on_session_started)
 	GameState.session_ended.connect(_on_session_ended)
+
+	# Connect crafting UI signal
+	CraftingEventBus.get_instance().crafting_ui_requested.connect(_on_crafting_ui_requested)
 
 	# Load menu scenes
 	_load_menus()
@@ -259,3 +263,10 @@ func _on_session_ended() -> void:
 	GameState.inventory.clear()
 
 	_enter_main_menu()
+
+
+# --- Crafting UI Handler ---
+
+func _on_crafting_ui_requested(requester) -> void:
+	if requester is WorkshopAdapter:
+		_crafting_ui.open(requester)
