@@ -40,11 +40,7 @@ func _initialize() -> void:
 		return
 
 	# CRITICAL: Get EventHooks reference via get_node (class_name removed to avoid shadowing)
-	# Debug: print available root children
-	var root = get_tree().root
-	print("[ModLoader] Root children: ", root.get_children().map(func(n): return n.name))
-
-	_event_hooks = root.get_node_or_null("EventHooks")
+	_event_hooks = get_tree().root.get_node_or_null("EventHooks")
 	if not _event_hooks:
 		push_error("[ModLoader] FATAL: EventHooks not available. Check autoload order.")
 		return
