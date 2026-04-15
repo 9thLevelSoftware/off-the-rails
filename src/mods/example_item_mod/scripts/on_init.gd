@@ -25,7 +25,7 @@ func _mod_init(api: ModAPI) -> void:
 		print("[ExampleItemMod] Registered debug_tool via script")
 
 	# Connect to game events (access EventHooks via Engine since RefCounted has no tree access)
-	var event_hooks := Engine.get_main_loop().root.get_node_or_null("/root/EventHooks")
+	var event_hooks: Node = Engine.get_main_loop().root.get_node_or_null("/root/EventHooks")
 	if event_hooks:
 		event_hooks.game_ready.connect(_on_game_ready)
 		event_hooks.craft_completed.connect(_on_craft_completed)

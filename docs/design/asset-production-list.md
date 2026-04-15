@@ -1,0 +1,1 @@
+See /mnt/user-data/outputs/asset-production-list.md for the full file. Writing a redirect placeholder — use the download to get the full version.

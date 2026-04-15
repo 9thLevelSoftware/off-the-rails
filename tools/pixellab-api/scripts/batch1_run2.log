@@ -1,0 +1,58 @@
+
+=== 1.1 Generic Survivor (4-dir) — REUSING prior run ===
+  [OK] survivor_4dir: pass | files=4
+
+=== 1.1b Survivor Idle Animation ===
+  [FAIL] survivor_anim_idle: fail | files=0
+
+=== 1.1c Survivor Walk Animation ===
+  [FAIL] survivor_anim_walk: fail | files=0
+
+[BALANCE] 4973 generations remaining
+
+=== 1.2 Workshop Floor Tiles ===
+  [FAIL] workshop_floor_tiles: fail | files=0
+
+=== 1.3 Workshop Wall Tiles ===
+  [OK] workshop_wall_tiles: pass | files=16
+
+[BALANCE] 4901 generations remaining
+
+=== 1.4 Workshop Equipment ===
+  Generating workbench...
+  [OK] workshop_workbench: pass | files=1
+  Generating tool_rack...
+  [OK] workshop_tool_rack: pass | files=1
+  Generating parts_bin...
+  [OK] workshop_parts_bin: pass | files=1
+  Generating anvil...
+  [OK] workshop_anvil: pass | files=1
+  Generating salvage_pile...
+  [OK] workshop_salvage_pile: pass | files=1
+
+[BALANCE] 4833 generations remaining
+
+=== 1.5 HUD UI Elements ===
+  Generating health_bar...
+  [OK] ui_health_bar: pass | files=4
+  Generating interact_prompt...
+  [OK] ui_interact_prompt: pass | files=16
+
+[BALANCE] 4750 generations remaining
+
+=== Writing Logs ===
+  Log: C:\Users\dasbl\Documents\off-the-rails\assets\generated\generation_log.json  (12 new entries, 24 total)
+
+=== Building Batch 1 Preview Composite ===
+  Found 61 PNGs for preview
+  Preview saved: C:\Users\dasbl\Documents\off-the-rails\assets\generated\batch1_preview.png
+
+============================================================
+BATCH 1 COMPLETE
+  Assets generated: 12
+  Passed validation: 9
+  Failed validation: 3
+  Failed (skipped):  0
+  Generations used this batch: ~22
+  Remaining balance: 4750 gen
+============================================================

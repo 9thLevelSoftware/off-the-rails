@@ -1,0 +1,32 @@
+
+=== breathing-idle ===
+  4 direction jobs: ['south', 'east', 'north', 'west']
+  Polling south (85396e7e...)...
+    4 images found
+    -> 4 files saved
+  Polling east (1df846b5...)...
+    4 images found
+    -> 4 files saved
+  Polling north (5750cc0f...)...
+    4 images found
+    -> 4 files saved
+  Polling west (8d751762...)...
+    4 images found
+    -> 4 files saved
+
+=== walk ===
+  4 direction jobs: ['south', 'east', 'north', 'west']
+  Polling south (334cabea...)...
+    6 images found
+    -> 6 files saved
+  Polling east (9e458574...)...
+    6 images found
+    -> 6 files saved
+  Polling north (10b8ab2d...)...
+    6 images found
+    -> 6 files saved
+  Polling west (b508b1f1...)...
+    6 images found
+    -> 6 files saved
+
+Balance: 4706 remaining
