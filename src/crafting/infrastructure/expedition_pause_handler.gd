@@ -6,7 +6,7 @@ extends RefCounted
 ## Pauses crafting when entering EXPEDITION, resumes when returning to TRAIN.
 
 ## JobScheduler instance for pause/resume control
-var _scheduler  # JobScheduler
+var _scheduler: JobScheduler
 var _connected: bool = false
 
 

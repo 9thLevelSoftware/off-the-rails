@@ -87,6 +87,14 @@ func on_interact() -> void:
 		print("Interacted with %s" % equipment_id)
 
 
+## Get the equipment type name (e.g., "WORKBENCH", "LOCKER").
+## Returns empty string if entity is not set.
+func get_equipment_type() -> String:
+	if _entity:
+		return _entity.get_type_name()
+	return ""
+
+
 func _exit_tree() -> void:
 	# Unregister when removed from tree
 	var controller := _find_controller()

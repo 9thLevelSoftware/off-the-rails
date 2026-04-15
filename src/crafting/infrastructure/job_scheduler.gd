@@ -216,7 +216,7 @@ func get_pause_reason() -> String:
 
 
 ## Get current queue.
-func get_queue():  # Returns CraftQueue
+func get_queue() -> CraftQueue:
 	return _queue
 
 

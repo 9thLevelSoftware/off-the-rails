@@ -193,7 +193,7 @@ func has_equipment_node(equipment_id: String) -> bool:
 ## Get an EquipmentInteractable by equipment type (e.g., "WORKBENCH")
 func get_interactable_by_type(equipment_type: String) -> EquipmentInteractable:
 	for interactable in _equipment_interactables.values():
-		# Access the entity's type via get_type_name() since _entity is private
-		if interactable._entity and interactable._entity.get_type_name().to_upper() == equipment_type.to_upper():
+		# Use public getter to avoid accessing private _entity member
+		if interactable.get_equipment_type().to_upper() == equipment_type.to_upper():
 			return interactable
 	return null

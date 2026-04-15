@@ -268,5 +268,7 @@ func _on_session_ended() -> void:
 # --- Crafting UI Handler ---
 
 func _on_crafting_ui_requested(requester) -> void:
-	if requester is WorkshopAdapter:
+	if requester is WorkshopAdapter and _crafting_ui:
 		_crafting_ui.open(requester)
+	elif not _crafting_ui:
+		push_warning("Main: CraftingUI not available")

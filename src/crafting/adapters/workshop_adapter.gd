@@ -199,7 +199,7 @@ func connect_to_workbench(workbench_interactable: EquipmentInteractable) -> void
 
 ## Handle workbench interaction from isometric system.
 func _on_workbench_interacted(equipment_id: String, equipment_type: String) -> void:
-	if equipment_type != "Workbench" and equipment_type != "workbench":
+	if equipment_type.to_upper() != "WORKBENCH":
 		return  # Only handle workbench interactions
 
 	print("[WorkshopAdapter] Workbench interaction: %s" % equipment_id)
