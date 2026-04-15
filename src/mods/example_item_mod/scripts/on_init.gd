@@ -24,9 +24,13 @@ func _mod_init(api: ModAPI) -> void:
 	if api.register_item(scripted_item):
 		print("[ExampleItemMod] Registered debug_tool via script")
 
-	# Connect to game events
-	EventHooks.game_ready.connect(_on_game_ready)
-	EventHooks.craft_completed.connect(_on_craft_completed)
+	# Connect to game events (access EventHooks via Engine since RefCounted has no tree access)
+	var event_hooks := Engine.get_main_loop().root.get_node_or_null("/root/EventHooks")
+	if event_hooks:
+		event_hooks.game_ready.connect(_on_game_ready)
+		event_hooks.craft_completed.connect(_on_craft_completed)
+	else:
+		push_warning("[ExampleItemMod] EventHooks autoload not found")
 
 	print("[ExampleItemMod] Initialization complete!")
 

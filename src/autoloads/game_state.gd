@@ -76,8 +76,10 @@ func init_content_registry() -> bool:
 ## Uses ModLoader's registry when available (single source of truth for all content including mods).
 func get_content_registry() -> ContentRegistry:
 	# Use ModLoader's registry (single source of truth for all content including mods)
-	if ModLoader and ModLoader.is_ready():
-		return ModLoader.get_content_registry()
+	# Access via get_node since ModLoader has no class_name (to avoid autoload shadowing)
+	var mod_loader := get_node_or_null("/root/ModLoader")
+	if mod_loader and mod_loader.is_ready():
+		return mod_loader.get_content_registry()
 	# Fallback for tests or if ModLoader not ready
 	if _content_registry == null:
 		if not init_content_registry():

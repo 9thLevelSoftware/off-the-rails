@@ -3,19 +3,25 @@ extends Node
 ## Integration test to verify mod loading and content registry unification.
 ## Run manually in editor or attach to a test scene.
 
+@onready var _mod_loader: Node = get_node_or_null("/root/ModLoader")
+
 func _ready() -> void:
 	print("=== Integration Test ===")
 
+	if not _mod_loader:
+		print("FAIL: ModLoader autoload not found")
+		return
+
 	# Test 1: ModLoader ready
-	if ModLoader.is_ready():
+	if _mod_loader.is_ready():
 		print("PASS: ModLoader initialized")
-		print("  Loaded mods: ", ModLoader.get_loaded_mod_ids())
+		print("  Loaded mods: ", _mod_loader.get_loaded_mod_ids())
 	else:
 		print("FAIL: ModLoader not ready")
 
 	# Test 2: ContentRegistry unified
 	var gs_registry = GameState.get_content_registry()
-	var ml_registry = ModLoader.get_content_registry()
+	var ml_registry = _mod_loader.get_content_registry()
 	if gs_registry == ml_registry:
 		print("PASS: ContentRegistry unified")
 	else:
@@ -26,5 +32,5 @@ func _ready() -> void:
 	print("  Items in registry: ", item_count)
 
 	# Test 4: Check for mod content (if any mods loaded)
-	if ModLoader.get_loaded_mod_ids().size() > 0:
+	if _mod_loader.get_loaded_mod_ids().size() > 0:
 		print("PASS: Mods loaded - check if mod items appear in registry")

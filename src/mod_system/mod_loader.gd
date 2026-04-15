@@ -24,6 +24,7 @@ var _error_handler: ModErrorHandler
 var _content_registry: ContentRegistry
 var _mod_api: ModAPI
 var _initialized: bool = false  # CRITICAL: initialization guard
+var _event_hooks: Node  # Cached reference to EventHooks autoload
 
 
 func _ready() -> void:
@@ -38,8 +39,9 @@ func _initialize() -> void:
 		push_warning("[ModLoader] Already initialized")
 		return
 
-	# CRITICAL: Verify EventHooks is available (autoloads are always valid once loaded)
-	if not EventHooks:
+	# CRITICAL: Get EventHooks reference via get_node (class_name removed to avoid shadowing)
+	_event_hooks = get_node_or_null("/root/EventHooks")
+	if not _event_hooks:
 		push_error("[ModLoader] FATAL: EventHooks not available. Check autoload order.")
 		return
 
@@ -65,7 +67,7 @@ func _initialize() -> void:
 
 	_initialized = true
 	print("[ModLoader] Initialization complete - %d mods loaded" % loaded)
-	EventHooks.game_ready.emit()
+	_event_hooks.game_ready.emit()
 
 
 ## Check if ModLoader has completed initialization.
@@ -200,8 +202,8 @@ func load_mod(mod_id: String) -> bool:
 	var manifest: ModManifest = _discovered_mods[mod_id]
 
 	# Emit mod loading signal
-	if EventHooks:
-		EventHooks.mod_loading.emit(mod_id)
+	if _event_hooks:
+		_event_hooks.mod_loading.emit(mod_id)
 
 	# Check dependencies first
 	if not _check_dependencies(manifest):
@@ -219,8 +221,8 @@ func load_mod(mod_id: String) -> bool:
 	mod_loaded.emit(mod_id)
 
 	# Emit mod loaded signal
-	if EventHooks:
-		EventHooks.mod_loaded.emit(mod_id)
+	if _event_hooks:
+		_event_hooks.mod_loaded.emit(mod_id)
 
 	print("[ModLoader] Loaded mod: %s" % mod_id)
 
@@ -493,9 +495,9 @@ func reload_mods() -> int:
 		_cleanup_mod_scripts(mod_id)
 
 	# Emit unload signals for all currently loaded mods
-	if EventHooks:
+	if _event_hooks:
 		for mod_id in _loaded_mods:
-			EventHooks.mod_unloaded.emit(mod_id)
+			_event_hooks.mod_unloaded.emit(mod_id)
 
 	_discovered_mods.clear()
 	_loaded_mods.clear()

@@ -78,9 +78,10 @@ func register_item(item_data: Dictionary) -> bool:
 	_content_registry.items.register_item(item, mod_id)
 	content_registered.emit(mod_id, "item", prefixed_id)
 
-	# Emit to EventHooks if available
-	if EventHooks:
-		EventHooks.item_registered.emit(prefixed_id, mod_id)
+	# Emit to EventHooks if available (access via Engine since RefCounted has no tree)
+	var event_hooks := Engine.get_main_loop().root.get_node_or_null("/root/EventHooks")
+	if event_hooks:
+		event_hooks.item_registered.emit(prefixed_id, mod_id)
 
 	print("[ModAPI] Registered item: %s" % prefixed_id)
 	return true
@@ -111,8 +112,9 @@ func register_recipe(recipe_data: Dictionary) -> bool:
 	_content_registry.recipes.register_recipe(recipe, mod_id)
 	content_registered.emit(mod_id, "recipe", prefixed_id)
 
-	if EventHooks:
-		EventHooks.recipe_registered.emit(prefixed_id, mod_id)
+	var event_hooks_2 := Engine.get_main_loop().root.get_node_or_null("/root/EventHooks")
+	if event_hooks_2:
+		event_hooks_2.recipe_registered.emit(prefixed_id, mod_id)
 
 	print("[ModAPI] Registered recipe: %s" % prefixed_id)
 	return true
