@@ -32,6 +32,9 @@ func _ready() -> void:
 	_render_equipment()
 	workshop_ready.emit()
 
+	# Register with GameState so player spawning works when session is active
+	GameState.register_scene(GameState.GameScene.TRAIN, self)
+
 
 ## Validate that required child nodes exist
 func _validate_children() -> void:

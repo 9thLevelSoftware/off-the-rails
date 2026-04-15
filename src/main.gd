@@ -5,7 +5,7 @@
 extends Node
 
 # --- Constants ---
-const TRAIN_SCENE_PATH: String = "res://src/train/train.tscn"
+const TRAIN_SCENE_PATH: String = "res://src/train/cars/workshop/scenes/workshop.tscn"
 const EXPEDITION_SCENE_PATH: String = "res://src/expedition/expedition.tscn"
 const MAIN_MENU_SCENE_PATH: String = "res://src/ui/menus/main_menu.tscn"
 const PROFESSION_SELECT_SCENE_PATH: String = "res://src/ui/menus/profession_select.tscn"

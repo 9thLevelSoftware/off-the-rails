@@ -23,3 +23,6 @@ y_sort_enabled = true
 [node name="IsometricInteractionController" type="Node" parent="."]
 script = ExtResource("4_interaction")
 prompt_scene = ExtResource("5_prompt")
+
+[node name="PlayerSpawn" type="Node2D" parent="."]
+position = Vector2(200, 150)
