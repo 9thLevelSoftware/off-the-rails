@@ -98,16 +98,16 @@ func load_from_data(data: Dictionary, source: String = "base") -> int:
 		push_warning("ItemRegistry: 'items' must be an array")
 		return 0
 
-	var count := 0
+	var loaded_count := 0
 	for item_data in items_array:
 		if not item_data is Dictionary:
 			continue
 		var item := _create_from_dict(item_data)
 		if item:
 			register_item(item, source)
-			count += 1
+			loaded_count += 1
 
-	return count
+	return loaded_count
 
 
 ## Create a ResourceItemData from a dictionary.
@@ -129,16 +129,16 @@ func _create_from_dict(data: Dictionary) -> ResourceItemData:
 	item.stack_size = data.get("stack_size", 10)
 
 	# Handle arrays
-	var sources = data.get("sources", [])
-	if sources is Array:
+	var sources_data = data.get("sources", [])
+	if sources_data is Array:
 		item.sources = []
-		for s in sources:
+		for s in sources_data:
 			item.sources.append(str(s))
 
-	var used_for = data.get("used_for", [])
-	if used_for is Array:
+	var used_for_data = data.get("used_for", [])
+	if used_for_data is Array:
 		item.used_for = []
-		for u in used_for:
+		for u in used_for_data:
 			item.used_for.append(str(u))
 
 	return item

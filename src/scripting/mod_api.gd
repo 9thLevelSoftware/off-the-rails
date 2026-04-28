@@ -10,6 +10,7 @@ extends RefCounted
 ## - Read methods return copies (Dictionaries), not references
 
 signal content_registered(mod_id: String, content_type: String, content_id: String)
+@warning_ignore("unused_signal")  # Reserved for future mod script execution tracking
 signal script_executed(mod_id: String, script_path: String)
 
 var _content_registry: ContentRegistry

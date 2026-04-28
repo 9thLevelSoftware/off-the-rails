@@ -125,16 +125,16 @@ func load_from_data(data: Dictionary, source: String = "base") -> int:
 		push_warning("RecipeRegistry: 'recipes' must be an array")
 		return 0
 
-	var count := 0
+	var loaded_count := 0
 	for recipe_data in recipes_array:
 		if not recipe_data is Dictionary:
 			continue
 		var recipe := _create_from_dict(recipe_data)
 		if recipe:
 			register_recipe(recipe, source)
-			count += 1
+			loaded_count += 1
 
-	return count
+	return loaded_count
 
 
 ## Create a RecipeData from a dictionary.

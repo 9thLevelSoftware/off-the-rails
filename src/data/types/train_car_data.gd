@@ -45,16 +45,16 @@ static func from_dict(data: Dictionary) -> TrainCarData:
 	train_car.upgrade_tree = data.get("upgrade_tree", "")
 	train_car.damage_effect = data.get("damage_effect", "")
 
-	var subsystems = data.get("subsystems", [])
-	if subsystems is Array:
+	var subsystems_data = data.get("subsystems", [])
+	if subsystems_data is Array:
 		train_car.subsystems = []
-		for sub in subsystems:
+		for sub in subsystems_data:
 			train_car.subsystems.append(str(sub))
 
-	var dependencies = data.get("dependencies", [])
-	if dependencies is Array:
+	var dependencies_data = data.get("dependencies", [])
+	if dependencies_data is Array:
 		train_car.dependencies = []
-		for dep in dependencies:
+		for dep in dependencies_data:
 			train_car.dependencies.append(str(dep))
 
 	return train_car

@@ -14,8 +14,8 @@ static func calculate_depth(iso_position: Vector2) -> float:
 
 # Convert screen coordinates to isometric grid coordinates
 static func screen_to_iso(screen_pos: Vector2) -> Vector2:
-	var iso_x = (screen_pos.x / (TILE_WIDTH * 0.5) + screen_pos.y / (TILE_HEIGHT * 0.5)) / 2
-	var iso_y = (screen_pos.y / (TILE_HEIGHT * 0.5) - screen_pos.x / (TILE_WIDTH * 0.5)) / 2
+	var iso_x = (screen_pos.x / (TILE_WIDTH * 0.5) + screen_pos.y / (TILE_HEIGHT * 0.5)) / 2.0
+	var iso_y = (screen_pos.y / (TILE_HEIGHT * 0.5) - screen_pos.x / (TILE_WIDTH * 0.5)) / 2.0
 	return Vector2(iso_x, iso_y)
 
 # Convert isometric grid coordinates to screen coordinates

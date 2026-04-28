@@ -347,19 +347,19 @@ func get_train_car(id: String) -> TrainCarData:
 
 # --- Conflict signal handlers ---
 
-func _on_item_conflict(item_id: String, old_source: String, new_source: String) -> void:
+func _on_item_conflict(item_id: String, _old_source: String, new_source: String) -> void:
 	content_conflict.emit("items", item_id, new_source)
 
 
-func _on_recipe_conflict(recipe_id: String, old_source: String, new_source: String) -> void:
+func _on_recipe_conflict(recipe_id: String, _old_source: String, new_source: String) -> void:
 	content_conflict.emit("recipes", recipe_id, new_source)
 
 
-func _on_profession_conflict(profession_id: String, old_source: String, new_source: String) -> void:
+func _on_profession_conflict(profession_id: String, _old_source: String, new_source: String) -> void:
 	content_conflict.emit("professions", profession_id, new_source)
 
 
-func _on_train_car_conflict(car_id: String, old_source: String, new_source: String) -> void:
+func _on_train_car_conflict(car_id: String, _old_source: String, new_source: String) -> void:
 	content_conflict.emit("train_cars", car_id, new_source)
 
 

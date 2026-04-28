@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://d1hphhq7s3xx0"]
+
+[ext_resource type="Shader" uid="uid://vl6eie5bn7ws" path="res://addons/quaternius/materials/M_BaseCharacter.tres" id="1_3w482"]
+[ext_resource type="Texture2D" uid="uid://bei84xepqly4c" path="res://addons/quaternius/materials/T_Regular_Female_Dark_BaseColor.png" id="2_hlt6t"]
+[ext_resource type="Texture2D" uid="uid://cfagkuanpxuin" path="res://addons/quaternius/materials/T_Regular_Female_Normal.png" id="3_wfqa0"]
+[ext_resource type="Texture2D" uid="uid://dgr0n7fsnwyn0" path="res://addons/quaternius/materials/T_Regular_Female_Roughness.png" id="4_gxnaw"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_3w482")
+shader_parameter/Skin_Color = Color(1, 1, 1, 1)
+shader_parameter/Base_Color_Texture = ExtResource("2_hlt6t")
+shader_parameter/Roughness_Texture = ExtResource("4_gxnaw")
+shader_parameter/Normal_Texture = ExtResource("3_wfqa0")

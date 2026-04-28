@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://c51phfsnimf2j"]
+
+[ext_resource type="Shader" uid="uid://vl6eie5bn7ws" path="res://addons/quaternius/materials/M_BaseCharacter.tres" id="1_m87mi"]
+[ext_resource type="Texture2D" uid="uid://big53x5slktjh" path="res://addons/quaternius/materials/T_Superhero_Female_Dark_BaseColor.png" id="2_qaw7j"]
+[ext_resource type="Texture2D" uid="uid://dn8h2gm78w41d" path="res://addons/quaternius/materials/T_Superhero_Female_Normal.png" id="3_fms26"]
+[ext_resource type="Texture2D" uid="uid://vrhac0n6ad0t" path="res://addons/quaternius/materials/T_Superhero_Female_Roughness.png" id="4_61gcb"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_m87mi")
+shader_parameter/Skin_Color = Color(1, 1, 1, 1)
+shader_parameter/Base_Color_Texture = ExtResource("2_qaw7j")
+shader_parameter/Roughness_Texture = ExtResource("4_61gcb")
+shader_parameter/Normal_Texture = ExtResource("3_fms26")

@@ -116,16 +116,16 @@ func load_from_data(data: Dictionary, source: String = "base") -> int:
 		push_warning("ProfessionRegistry: 'professions' must be an array")
 		return 0
 
-	var count := 0
+	var loaded_count := 0
 	for profession_data in professions_array:
 		if not profession_data is Dictionary:
 			continue
 		var profession := _create_from_dict(profession_data)
 		if profession:
 			register_profession(profession, source)
-			count += 1
+			loaded_count += 1
 
-	return count
+	return loaded_count
 
 
 ## Create a ProfessionData from a dictionary.

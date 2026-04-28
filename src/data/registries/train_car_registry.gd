@@ -135,16 +135,16 @@ func load_from_data(data: Dictionary, source: String = "base") -> int:
 		push_warning("TrainCarRegistry: 'train_cars' must be an array")
 		return 0
 
-	var count := 0
+	var loaded_count := 0
 	for car_data in train_cars_array:
 		if not car_data is Dictionary:
 			continue
 		var train_car := _create_from_dict(car_data)
 		if train_car:
 			register_train_car(train_car, source)
-			count += 1
+			loaded_count += 1
 
-	return count
+	return loaded_count
 
 
 ## Create a TrainCarData from a dictionary.
