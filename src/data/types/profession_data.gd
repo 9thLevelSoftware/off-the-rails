@@ -52,10 +52,10 @@ static func from_dict(data: Dictionary) -> ProfessionData:
 		for car in secondary:
 			profession.secondary_cars.append(str(car))
 
-	var synergies = data.get("synergies", [])
-	if synergies is Array:
+	var synergies_data = data.get("synergies", [])
+	if synergies_data is Array:
 		profession.synergies = []
-		for syn in synergies:
+		for syn in synergies_data:
 			profession.synergies.append(str(syn))
 
 	var bonuses = data.get("passive_bonuses", [])

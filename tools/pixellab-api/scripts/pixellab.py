@@ -236,8 +236,25 @@ class PixelLab:
     def get_tileset(self, tileset_id):
         return self._get(f"tilesets/{tileset_id}")
 
-    def create_isometric_tile(self, description, width=32, height=32, seed=None, tile_shape="block", **kwargs):
-        payload = {"description": description, "image_size": {"width": width, "height": height}, "isometric_tile_shape": tile_shape}
+    def create_isometric_tile(self, description, width=32, height=32, seed=None,
+                               tile_shape="thin tile", **kwargs):
+        """Create isometric tile.
+
+        Args:
+            tile_shape: 'thin tile' (flat) | 'thick tile' | 'block'
+            width/height: max 64px (API limit)
+
+        Note: Web UI has thickness/view_angle sliders but API doesn't expose them.
+        Use 'thin tile' for flat floor tiles.
+        """
+        # API enforces max 64x64
+        width = min(width, 64)
+        height = min(height, 64)
+        payload = {
+            "description": description,
+            "image_size": {"width": width, "height": height},
+            "isometric_tile_shape": tile_shape
+        }
         if seed is not None: payload["seed"] = seed
         payload.update(kwargs)
         return self._post("create-isometric-tile", payload)

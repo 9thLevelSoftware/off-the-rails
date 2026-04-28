@@ -39,6 +39,6 @@ func _on_game_ready() -> void:
 	print("[ExampleItemMod] Game is ready!")
 
 
-func _on_craft_completed(recipe_id: String, station_id: String, item_id: String) -> void:
+func _on_craft_completed(recipe_id: String, _station_id: String, item_id: String) -> void:
 	if "example_item_mod" in recipe_id:
 		print("[ExampleItemMod] Player crafted our item: %s" % item_id)

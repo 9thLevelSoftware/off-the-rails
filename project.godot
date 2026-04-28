@@ -22,10 +22,6 @@ GDAIMCPRuntime="*uid://dcne7ryelpxmn"
 GameState="*res://src/autoloads/game_state.gd"
 ModLoader="*res://src/mod_system/mod_loader.gd"
 
-[dotnet]
-
-project/assembly_name="OffTheRails"
-
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/gdai-mcp-plugin-godot/plugin.cfg")

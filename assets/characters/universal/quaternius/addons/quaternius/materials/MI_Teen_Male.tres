@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://bd73u2wo6jy8s"]
+
+[ext_resource type="Shader" uid="uid://vl6eie5bn7ws" path="res://addons/quaternius/materials/M_BaseCharacter.tres" id="1_etouo"]
+[ext_resource type="Texture2D" uid="uid://bta6gdqmo7kbu" path="res://addons/quaternius/materials/T_Teen_Male_Dark_BaseColor.png" id="2_klve4"]
+[ext_resource type="Texture2D" uid="uid://dxjtg84i5nmob" path="res://addons/quaternius/materials/T_Teen_Male_Normal.png" id="3_q8nvf"]
+[ext_resource type="Texture2D" uid="uid://crjhlva3xvxgn" path="res://addons/quaternius/materials/T_Teen_Male_Roughness.png" id="4_qh05f"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_etouo")
+shader_parameter/Skin_Color = Color(1, 1, 1, 1)
+shader_parameter/Base_Color_Texture = ExtResource("2_klve4")
+shader_parameter/Roughness_Texture = ExtResource("4_qh05f")
+shader_parameter/Normal_Texture = ExtResource("3_q8nvf")

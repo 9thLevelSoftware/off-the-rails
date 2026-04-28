@@ -4,7 +4,8 @@ extends Subsystem
 ## Abstract interface for power-providing subsystems.
 ## Extend this class to create subsystems that can provide power to others.
 
-## Emitted when power availability changes
+## Emitted when power availability changes (emitted by subclasses like PowerGrid)
+@warning_ignore("unused_signal")
 signal power_availability_changed(is_available: bool)
 
 

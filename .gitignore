@@ -4,3 +4,14 @@
 
 # AI tooling session files
 .superpowers/
+
+# Dependency and generated output
+node_modules/
+tools/godot-mcp/build/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local editor and OS metadata
+.DS_Store
+Thumbs.db

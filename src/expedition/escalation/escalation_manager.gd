@@ -125,8 +125,7 @@ func add_escalation(amount: float, reason: String = "") -> void:
 	if amount <= 0.0:
 		return
 
-	var old_level := escalation_level
-	escalation_level += amount  # Setter handles clamping
+	escalation_level += amount  # Setter handles clamping and emits signal
 
 	var reason_text := " (%s)" % reason if reason != "" else ""
 	print("Escalation +%.1f%s: %.1f%%" % [amount, reason_text, escalation_level])
