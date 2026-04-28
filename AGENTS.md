@@ -39,6 +39,13 @@ npm run build
 npm run inspector
 ```
 
+Symphony daemon commands, when working in `tools/symphony/`:
+
+```bash
+npm install && npm run build
+npm test
+```
+
 ## Runtime Assumptions
 
 - Godot: 4.6.2 stable.
@@ -54,9 +61,31 @@ npm run inspector
 - Keep generated files out of git; use validation to catch `__pycache__`, `*.pyc`, `node_modules`, `.godot`, and MCP build output.
 - Put long-lived decisions in `docs/engineering/`; use `docs/engineering/exec-plans/active/` for complex multi-step work.
 - Preserve user work in a dirty tree. Do not revert or clean unrelated changes without explicit instruction.
+- Use Conventional Commits: `feat:`, `fix:`, `refactor:`, `test:`, `docs:`.
 
 ## Validation Expectations
 
 - Run `python tools/validate.py --all` after code or standards changes.
 - For narrow documentation-only edits, run at least `python tools/validate.py --standards`.
 - Treat pre-existing validation failures as work to understand and report, not as noise to ignore.
+
+## Linear/Symphony Workflow
+
+- Symphony agents work from Linear tickets and should maintain one persistent `## Codex Workpad` comment per ticket.
+- Status flow: `Todo` -> `In Progress` -> `Human Review` -> `Merging` -> `Done`; use `Rework` for requested changes.
+- Move `Todo` tickets to `In Progress` before implementation.
+- Keep the workpad checklist, acceptance criteria, validation evidence, blockers, and PR state current.
+- Use the injected `linear_graphql` tool for Linear reads/writes when available.
+- If external auth or secrets are missing, record the exact blocker in the workpad and stop without fabricating progress.
+
+## GitHub/PR Expectations
+
+- Create a branch per task from the latest remote default branch.
+- Keep PRs small and tied to the Linear ticket.
+- Before requesting review, run the relevant validation, push the branch, link the PR to the ticket, and confirm actionable PR feedback has been addressed or explicitly answered.
+
+## Godot Design Constraints
+
+- Preserve the isometric foundation: 64x32 tile assumptions, Y-sorting, and 2D isometric movement conventions.
+- Keep mod-facing systems data-driven and documented in `docs/modding/` when behavior changes.
+- For gameplay features, prefer deterministic domain tests where possible, then scene/runtime validation where behavior depends on Godot nodes.

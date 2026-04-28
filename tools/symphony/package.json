@@ -1,0 +1,29 @@
+{
+  "name": "@off-the-rails/symphony",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Repo-owned Symphony-compatible Linear-to-Codex orchestrator for Off The Rails.",
+  "type": "module",
+  "bin": {
+    "off-the-rails-symphony": "./build/cli.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "start": "node build/cli.js ../../WORKFLOW.md",
+    "dry-run": "node build/cli.js ../../WORKFLOW.md --dry-run --once",
+    "generate-codex-protocol": "codex app-server generate-ts --experimental --out src/generated/codex-protocol"
+  },
+  "dependencies": {
+    "liquidjs": "^10.21.1",
+    "yaml": "^2.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.14"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

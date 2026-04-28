@@ -8,6 +8,12 @@
 # Dependency and generated output
 node_modules/
 tools/godot-mcp/build/
+tools/symphony/build/
+tools/symphony/log/
+tools/symphony/logs/
+tools/symphony/src/generated/codex-protocol/
+symphony-workspaces/
+off-the-rails-symphony-workspaces/
 **/__pycache__/
 *.py[cod]
 .pytest_cache/
